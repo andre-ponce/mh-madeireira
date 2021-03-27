@@ -1,7 +1,17 @@
+import React from 'react';
+import Head from 'next/head';
+
 function Home() {
   return (
-    <h1>Home</h1>
-  )
+    <>
+      <Head>
+        <title>Home - Braskape</title>
+      </Head>
+      <main>
+        <h1>Home</h1>
+      </main>
+    </>
+  );
 }
 
-export default Home
+export default Home;
