@@ -1,34 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Braskape
 
-## Getting Started
+<!-- BADGES -->
 
-First, run the development server:
+## Índice
+
+- [Requisitos](#requisitos)
+- [Instalação](#instalação)
+- [Ambiente](#ambiente)
+- [Contribuir](#contribuir)
+- [Desenvolvedores](#desenvolvedores)
+- [Docs](#docs)
+
+## Requisitos
+
+[Node.js] >= 10.13.x
+
+## Instalação
+
+macOS / Linux / Windows
+
+```sh
+npm install
+# ou
+yarn install
+```
+
+## Ambiente
+
+Para iniciar o ambiente de desenvolvimento, rode:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) no seu browser.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Você pode criar ou editar os arquivos de `src/pages` e ver o resultado em tempo real.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Contribuir
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<!-- DESCRIÇÃO -->
 
-## Learn More
+### Tipos possíveis
 
-To learn more about Next.js, take a look at the following resources:
+Tipo       | CHANGELOG                  | Versão gerada   | Descrição
+-----------|----------------------------|-----------------|-------------------------------------------------------------------------------------------
+`refactor` | "Code Refactoring"         | Patch "x.x.x+1" | melhoria lógica/semantica em um código pré existente
+`feat`     | "Features"                 | Minor "x.x+1.x" | Adição de nova funcionalidade
+`fix`      | "Bug Fixes"                | Patch "x.x.x+1" | Correção de bug
+`chore`    | "Improvements"             | Patch "x.x.x+1" | Uma pequena melhoria que não tem um impacto direto no negócio ou em algum dos outros tipos
+`test`     | "Tests"                    | Patch "x.x.x+1" | Adição de testes de qualquer tipo
+`perf`     | "Performance Improvements" | Patch "x.x.x+1" | Melhoria de performance
+`build`    | "Build System"             | Patch "x.x.x+1" | Adição ou mudança nos scripts de build do projeto
+`ci`       | "Continuous Integration"   | Patch "x.x.x+1" | Mudanças nos steps de CI
+`docs`     | "Documentation"            | Patch "x.x.x+1" | Adição ou mudança de documentação do projeto
+`style`    | "Styles"                   | Patch "x.x.x+1" | "Code style" Mudanças no estido do código sem afetá-lo: espaços, tabs, ponto e virgola
+`revert`   | "Reverts"                  | Patch "x.x.x+1" | Desfazer algo no projeto via git ou não
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Desenvolvedores
+Maná Machado – [@manamachado](https://github.com/manamachado)
 
-## Deploy on Vercel
+Pedro Ramon – [@pedroramon](https://github.com/pedroramon)
+## Docs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* [Next.js](https://nextjs.org/docs)
+* [semver](https://semver.org/lang/pt-BR/)
+* [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Node.js]:(https://nodejs.org/)
