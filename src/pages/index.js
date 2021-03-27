@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Head from 'next/head';
+
+import HelloWorld from '../components/HelloWorld';
 
 function Home() {
   return (
@@ -7,9 +9,7 @@ function Home() {
       <Head>
         <title>Home - Braskape</title>
       </Head>
-      <main>
-        <h1>Home</h1>
-      </main>
+      <HelloWorld />
     </>
   );
 }

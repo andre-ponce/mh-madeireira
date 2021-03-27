@@ -1,11 +1,5 @@
-const {
-  name: NAME,
-  version: VERSION,
-} = require('../../../../package.json');
+const { name, version } = require('../../../../package.json');
 
 export default (req, res) => {
-  res.json({
-    name: NAME,
-    version: VERSION,
-  });
+  res.json({ name, version });
 };
