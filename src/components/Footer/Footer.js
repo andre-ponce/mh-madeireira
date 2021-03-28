@@ -1,128 +1,16 @@
 import React from 'react';
+import Central from './Central';
+import Info from './Info';
+import Newsletter from './Newsletter';
+import Whatsapp from './Whatsapp';
 
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__whats-fixed">
-        <a href="https://wa.me/5511996523984" target="_blank" title="WHATSAPP" rel="noreferrer">
-          <img src="/images/whats_fixed.png" alt="whats fixo" />
-        </a>
-      </div>
-
-      <div className="footer__newsletter">
-        <div className="newsletter__container">
-          <div className="newsletter__text">
-            <img src="/images/envelope.png" alt="carta" />
-            <span>
-              Cadastre-se e receba descontos e
-              {' '}
-              <strong className="txt-yellow">ofertas exclusivas</strong>
-            </span>
-          </div>
-          <form className="newsletter__form">
-            <input className="input-text" type="text" placeholder="Nome" />
-            <div className="form__inputs">
-              <input className="input-text" type="text" placeholder="e-mail" />
-              <button className="yellow-button" type="submit">
-                <img src="/images/braskape_logo-aviao.png" alt="avião" />
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div className="footer__footer-central">
-        <div className="container_serie-ds">
-          <div className="footer-central__institucional">
-            <h2>INSTITUCIONAL</h2>
-            <a className="mg-b-5" href="#">Braskape na Mídia</a>
-            <a className="mg-b-5" href="#">Opções de Pagamento</a>
-            <a className="mg-b-5" href="#">Entregas e Frete</a>
-            <a className="mg-b-5" href="#">Política de Privacidade</a>
-            <a className="mg-b-5" href="#">Trocas e Devoluções</a>
-            <a className="mg-b-5" href="#">Como Comprar</a>
-            <a className="mg-b-5" href="#">Contato</a>
-          </div>
-          <div className="footer-central__atendimento">
-            <h2>ATENDIMENTO</h2>
-            <span>(11) 5180-1690</span>
-            <span>
-              Para tirar dúvidas ou comprar acesse nosso chat ou ligue de segunda à sexta das 8:00
-              às 18:00.
-            </span>
-            <span>sac@braskape.com.br</span>
-            <div className="atendimento__social-medias">
-              <a href="https://www.facebook.com/braskape">
-                <img src="/images/facebook.svg" alt="facebook" />
-              </a>
-
-              <a href="https://www.instagram.com/_braskape/">
-                <img src="/images/instagram.svg" alt="instagram" />
-              </a>
-
-              <a href="https://www.instagram.com/_braskape/">
-                <img src="/images/youtube.svg" alt="youtube" />
-              </a>
-            </div>
-          </div>
-          <div className="footer-central__pagamentos-envios">
-            <div className="pagamentos-envios__pagamentos">
-              <h2>FORMAS DE PAGAMENTO</h2>
-              <div>
-                <img src="/images/braskape-formas-pagamento-visa.jpg" alt="facebook" />
-                <img src="/images/braskape-formas-pagamento-mastercard.jpg" alt="instagram" />
-                <img src="/images/braskape-formas-pagamento-dinners.jpg" alt="youtube" />
-                <img
-                  src="/images/braskape-formas-pagamento-american-express.jpg"
-                  alt="youtube"
-                />
-              </div>
-            </div>
-
-            <div className="pagamentos-envios__envios">
-              <h2>FORMAS DE ENVIO</h2>
-              <div>
-                <img src="/images/braskape-formas-de-envio-pac.jpg" alt="facebook" />
-                <img src="/images/braskape-formas-de-envio-sedex.jpg" alt="instagram" />
-              </div>
-            </div>
-          </div>
-          <div className="footer-central__seals-and-security">
-            <h2>SELOS E SEGURANÇA</h2>
-            <div>
-              <img
-                className="seals-and-security__seal"
-                src="/images/braskape_selos-internet-segura.png"
-                alt="Internet Segura"
-              />
-              <img
-                className="seals-and-security__seal"
-                src="/images/braskape_selos-google.png"
-                alt="Google Safe Browsing"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="footer__company-infos container_serie-ds">
-        <div className="company-infos__desenvolvimento">
-          <span>Desenvolvimento:</span>
-          <div className="desenvolvimento__logos">
-            <a href="http://www.maximaecommerce.com.br/" target="_blank" rel="noreferrer">
-              <img src="/images/braskape_logo-maxima.png" alt="Máxima agência e-commerce" />
-            </a>
-            <a href="https://seriedesign.com.br/" target="_blank" rel="noreferrer">
-              <img src="/images/braskape_logo-serie.png" alt="Máxima agência e-commerce" />
-            </a>
-          </div>
-        </div>
-        <div className="company-infos__dados">
-          <span>Copyright © 2020 Braskape</span>
-          <span>CNPJ 50.598.333/0001-32</span>
-          <span>Todos os direitos reservados.</span>
-        </div>
-      </div>
+      <Whatsapp />
+      <Newsletter />
+      <Central />
+      <Info />
     </footer>
   );
 }
