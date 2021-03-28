@@ -1,0 +1,132 @@
+.slick-slider {
+  .slick-dots {
+    position: absolute;
+    bottom: 10px;
+    li {
+      height: 10px;
+      width: 20px;
+      button {
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        height: 10px;
+        width: 20px;
+        &::before {
+          opacity: 1;
+          content: "";
+          height: 8px;
+          width: 17px;
+          border-radius: 3px;
+          background: transparent;
+        }
+      }
+
+      &.slick-active {
+        button {
+          &::before {
+
+            height: 8px;
+            width: 16px;
+            margin-top: 2px;
+            margin-left: 2px;
+            background: #ecce02;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .slick-arrow {
+    z-index: 10;
+    width: 57px;
+    height: 57px;
+    top: calc(50% - 28.5px);
+    &::before {
+      display: none;
+    }
+  }
+
+  .slick {
+    &-prev {
+      left: -19px;
+      background: url('/images/braskape-icon-arrow-prev.png') !important;
+    }
+    &-next {
+      right: -19px;
+      background: url('/images/braskape-icon-arrow-next.png') !important;
+    }
+  }
+
+  @media screen and (max-width: 600px){
+    .slick-arrow {
+      width: 37px;
+      height: 37px;
+      top: calc(50% - 18.5px);
+    }
+    .slick {
+      &-prev {
+        background: url('/images/braskape-icon-arrow-prev--mobile.png') !important;
+      }
+      &-next {
+        background: url('/images/braskape-icon-arrow-next--mobile.png') !important;
+      }
+    }
+  }
+}
+
+.full-banner {
+  .slick-slide {
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 751px) {
+    .slick-slide {
+      img {
+        width: 100%;
+        height: 430px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.banner-ruler {
+  padding-bottom: 10px;
+  .slick-slide {
+    display: flex !important;
+    justify-content: center;
+  }
+  @media screen and (min-width: 1100px) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.products-carousel {
+  margin-right: -10px;
+  .slick-slide {
+    margin-right: 10px;
+  }
+}
+
+.main__store-front-brands {
+  .container_serie-ds {
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+
+    .slick-slide {
+      margin-right: 70px;
+    }
+
+    .slick {
+      &-prev,
+      &-next {
+        top: 50%;
+      }
+    }
+  }
+}

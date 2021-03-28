@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/all.scss';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -20,7 +21,6 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
-
     </>
   );
 }

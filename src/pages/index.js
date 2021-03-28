@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import HelloWorld from '../components/HelloWorld';
+import Footer from '../components/Footer';
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
       <Head>
         <title>Home - Braskape</title>
       </Head>
-      <HelloWorld />
+      <Footer />
     </>
   );
 }

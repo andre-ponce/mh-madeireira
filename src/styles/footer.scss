@@ -1,0 +1,287 @@
+.footer {
+  &__newsletter {
+    display: flex;
+    align-items: center;
+    padding: 30px 0px;
+    background: #292929;
+    .newsletter {
+      &__container {
+        display: flex;
+        max-width: 970px;
+        padding: 0 20px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      &__text {
+        display: flex;
+        color: #a9a9a9;
+        margin-right: 15px;
+        align-items: center;
+        img {
+          margin-right: 15px;
+        }
+        span {
+          width: 230px;
+          line-height: 22px;
+          font-size: 15px;
+          strong {
+            font-size: 15px;
+          }
+        }
+      }
+
+      &__form {
+        display: flex;
+        width: 100%;
+        input {
+          border-radius: 3px;
+          padding: 5px 10px;
+          height: 35px;
+          max-height: 35px;
+          width: 84%;
+        }
+        .form__inputs {
+          display: flex;
+          width: 100%;
+
+          button {
+            background: #f9d901;
+            height: 35px;
+            width: 35px;
+            padding: 0;
+          }
+        }
+      }
+
+      @media screen and (max-width: 800px){
+        &__text {
+          justify-content: center;
+          margin-right: 0;
+        }
+        &__container {
+          flex-direction: column;
+        }
+        &__form {
+          flex-direction: column;
+          & > input {
+            margin: 10px 0;
+          }
+          input {
+            width: 100%;
+          }
+          .form__inputs {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  &__footer-central {
+    background: #161616;
+
+    * {
+      color: #b0b0b0;
+      font-size: 12px;
+    }
+
+    h2 {
+      color: #f9d901;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .container_serie-ds {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 30px;
+      padding-bottom: 80px;
+    
+      .footer-central {
+        &__institucional,
+        &__atendimento,
+        &__pagamentos-envios,
+        &__selos-seguranca {
+          display: flex;
+          flex-direction: column;
+        }
+  
+        &__institucional {
+          width: 19%;
+
+          a {
+            margin-bottom: 10px;
+          }
+        }
+  
+        &__atendimento {
+          width: 17%;
+          margin-right: 75px;
+          .atendimento {
+            &__social-medias {
+              margin-top: 10px;
+            }
+          }
+          span {
+            line-height: 14px;
+            margin-bottom: 12px;
+          }
+        }
+  
+        &__pagamentos-envios {
+          width: 29%;
+          .pagamentos-envios {
+            &__pagamentos {
+              margin-bottom: 45px;
+            }
+            &__pagamentos,
+            &__envios {
+              img {
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+
+        &__seals-and-security {
+          width: 30%;
+          margin-right: -20px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          .seals-and-security {
+            &__seal {
+              display: block;
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width:1152px) {
+        .footer-central {
+          &__institucional {
+            width: 50%;
+          }
+          
+          &__atendimento {
+            width: 50%;
+            margin-right: 0px;
+          }
+          &__pagamentos-envios {
+            width: 50%;
+            margin-top: 35px;
+            .pagamentos-envios {
+              &__pagamentos {
+                margin-bottom: 40px;
+              }
+            }
+          }
+          &__seals-and-security {
+            width: 50%;
+            margin-top: 35px;
+          }
+        }
+      }
+
+      @media screen and (max-width: 680px) {
+        align-items: center;
+        padding-bottom: 5px;
+        flex-direction: column;
+        .footer-central {
+          &__institucional,
+          &__atendimento,
+          &__pagamentos-envios,
+          &__seals-and-security {
+            width: 100%;
+            text-align: center;
+          }
+
+          &__atendimento {
+            margin-top: 30px;
+            width: 45%;
+          }
+
+          &__seals-and-security {
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+
+  &__company-infos {
+    display: flex;
+    padding: 10px 0 7px 0;
+    font-size: 12px;
+    color: #292929;
+    justify-content: space-between;
+    .company-infos {
+      &__desenvolvimento{
+        display: flex;
+        align-items: center;
+        & > span {
+          margin-top: -5px;
+        }
+        .desenvolvimento__logos {
+          display: flex;
+          align-items: center;
+
+          a {
+            margin-left: 10px;
+          }
+        }
+      }
+
+      &__dados {
+        display: flex;
+        span:nth-child(2) {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+      padding: 0px 0 7px 0;
+      align-items: center;
+      .company-infos {
+        &__desenvolvimento{
+          margin-top: 10px;
+          flex-direction: column;
+          & > span {
+            margin-top: 0px;
+          }
+          .desenvolvimento__logos {
+            display: flex;
+            margin: 10px 0;
+            align-items: center;
+  
+            a:nth-child(1) {
+              margin-left: 0px;
+              margin-right: 20px;
+            }
+          }
+        }
+        &__dados {
+          flex-direction: column;
+          margin-bottom: 3px;
+          align-items: center;
+          span:nth-child(2) {
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  &__whats-fixed {
+    right: 20px;
+    bottom: 10px;
+    z-index: 999;
+    position: fixed;
+  }
+}
