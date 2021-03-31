@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev src",
-    "build": "next build src",
-    "start": "next start src",
-    "lint": "eslint src",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "prepare": "husky install"
