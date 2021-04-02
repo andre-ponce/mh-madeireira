@@ -6,20 +6,34 @@ function Central() {
       <div className="container_serie-ds">
         <div className="footer-central__institucional">
           <h2>INSTITUCIONAL</h2>
-          <a className="mg-b-5" href="#">Braskape na Mídia</a>
-          <a className="mg-b-5" href="#">Opções de Pagamento</a>
-          <a className="mg-b-5" href="#">Entregas e Frete</a>
-          <a className="mg-b-5" href="#">Política de Privacidade</a>
-          <a className="mg-b-5" href="#">Trocas e Devoluções</a>
-          <a className="mg-b-5" href="#">Como Comprar</a>
-          <a className="mg-b-5" href="#">Contato</a>
+          <a className="mg-b-5" href="#">
+            Braskape na Mídia
+          </a>
+          <a className="mg-b-5" href="#">
+            Opções de Pagamento
+          </a>
+          <a className="mg-b-5" href="#">
+            Entregas e Frete
+          </a>
+          <a className="mg-b-5" href="#">
+            Política de Privacidade
+          </a>
+          <a className="mg-b-5" href="#">
+            Trocas e Devoluções
+          </a>
+          <a className="mg-b-5" href="#">
+            Como Comprar
+          </a>
+          <a className="mg-b-5" href="#">
+            Contato
+          </a>
         </div>
         <div className="footer-central__atendimento">
           <h2>ATENDIMENTO</h2>
           <span>(11) 5180-1690</span>
           <span>
-            Para tirar dúvidas ou comprar acesse nosso chat ou ligue de segunda à sexta das 8:00
-            às 18:00.
+            Para tirar dúvidas ou comprar acesse nosso chat ou ligue de segunda
+            à sexta das 8:00 às 18:00.
           </span>
           <span>sac@braskape.com.br</span>
           <div className="atendimento__social-medias">
@@ -43,10 +57,7 @@ function Central() {
               <img src="/images/braskape-formas-pagamento-visa.jpg" alt="facebook" />
               <img src="/images/braskape-formas-pagamento-mastercard.jpg" alt="instagram" />
               <img src="/images/braskape-formas-pagamento-dinners.jpg" alt="youtube" />
-              <img
-                src="/images/braskape-formas-pagamento-american-express.jpg"
-                alt="youtube"
-              />
+              <img src="/images/braskape-formas-pagamento-american-express.jpg" alt="youtube" />
             </div>
           </div>
 
