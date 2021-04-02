@@ -18,6 +18,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "warn",
-    "jsx-a11y/anchor-is-valid": "warn"
+    "jsx-a11y/anchor-is-valid": "warn",
+    "react/button-has-type": "warn",
+    "no-void": "warn"
   }
 }

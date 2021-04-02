@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import AOS from 'aos';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'aos/dist/aos.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import '../styles/all.scss';
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <>
       <Head>
@@ -12,12 +20,6 @@ function MyApp({ Component, pageProps }) {
         {/* Bootstrap */}
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/76ba51fd1c.js" crossOrigin="anonymous" />
-        {/* Carousel */}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css" />
-        {/* Animations */}
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" />
       </Head>
 
       <Component {...pageProps} />
