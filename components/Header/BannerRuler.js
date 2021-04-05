@@ -1,8 +1,26 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 import Slider from 'react-slick';
 import { bannerRulerSettings } from './settings';
 
 function BannerRuler() {
+  if (isMobile) {
+    bannerRulerSettings.responsive = [
+      {
+        breakpoint: 950,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 670,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ];
+  }
+
   return (
     <div className="container_serie-ds">
       <Slider

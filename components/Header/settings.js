@@ -35,18 +35,4 @@ export const bannerRulerSettings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
-  responsive: [
-    {
-      breakpoint: 950,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 670,
-      settings: {
-        slidesToShow: 1,
-      },
-    },
-  ],
 };
