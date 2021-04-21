@@ -3,6 +3,7 @@ import Brands from './Brands';
 import CenterBanner from './CenterBanner';
 import Highlights from './Highlights';
 import MostWanted from './MostWanted';
+import OtherCategories from './OtherCategories';
 
 function Main() {
   return (
@@ -11,6 +12,7 @@ function Main() {
       <CenterBanner />
       <Highlights />
       <Brands />
+      <OtherCategories />
     </main>
   );
 }
