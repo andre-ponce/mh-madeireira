@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import MostWanted from '../components/MostWanted';
+import Main from '../components/Main';
 
 function Home() {
   return (
@@ -12,9 +12,7 @@ function Home() {
         <title>Home - Braskape</title>
       </Head>
       <Header />
-      <main className="main">
-        <MostWanted />
-      </main>
+      <Main />
       <Footer />
     </>
   );
