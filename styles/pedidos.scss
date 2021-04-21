@@ -1,0 +1,306 @@
+.main{
+    padding: 44px 0 50px;
+
+    @media screen and (max-width: 800px){
+        padding: 30px 0 0;
+    }
+
+    a{
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    a:hover{
+        color: #000000;
+        text-decoration: underline;
+    }
+
+    .page-title{
+        width: 100%;
+        margin: 0 0 33px;
+    }
+
+    .main__center{
+        position: relative;
+        display: block;
+        float: left;
+        width: 100%;
+
+        @media screen and (max-width: 1200px){
+            padding: 0;
+        }
+
+        .main__single__pedido{
+            position: relative;
+            display: block;
+            width: 100%;
+            border: 2px solid #eeeeee;
+            padding: 20px;
+            margin: 0 0 20px;
+
+            .cod{
+                color: #f8db00;
+                font-weight: bolder;
+                font-size: 16px;
+                text-transform: uppercase;
+                width: 16.66%;
+                position: relative;
+                display: inline-block;
+
+                @media screen and (max-width: 1030px){
+                    width: 49%;
+                    margin: 0 0 20px;
+                    text-align: center;
+                }
+            }
+
+            .date{
+                color: #000000;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: bold;
+                width: 16.66%;
+                position: relative;
+                display: inline-block;
+                text-align: center;
+
+                @media screen and (max-width: 1030px){
+                    width: 49%;
+                    margin: 0 0 20px;
+                    text-align: center;
+                }
+
+                span{
+                    position: relative;
+                    margin: 0 0 0 15px;
+                }
+            }
+
+            .status{
+                color: #000000;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: bold;
+                width: 32%;
+                position: relative;
+                display: inline-block;
+                text-align: center;
+
+                @media screen and (max-width: 1030px){
+                    width: 100%;
+                    margin: 0 0 20px;
+                    display: block;
+                    padding: 9px 30px;
+                    background-color: #eeeeee;
+                    text-align: center;
+                }
+            }
+
+            .button{
+                width: 16.66%;
+                position: relative;
+                display: inline-block;
+                text-align: center;
+
+                @media screen and (max-width: 1030px){
+                    width: 100%;
+                    margin: 0 0 20px;
+                }
+
+                a{
+                    color: #000000;
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: bold;
+                    background-color: #f8db00;
+                    text-decoration: none;
+                    padding: 9px 30px;
+                    transition: 0.3s;
+
+                    &:hover{
+                        background-color: #000000;
+                        color: #f8db00;
+                    }
+
+                    @media screen and (max-width: 1030px){
+                        display: block;
+                    }
+                }
+            }
+
+            .change{
+                width: 16.66%;
+                position: relative;
+                display: inline-block;
+                text-align: right;
+
+                @media screen and (max-width: 1030px){
+                    width: 100%;
+                }
+
+                a{
+                    color: #000000;
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: bold;
+                    text-decoration: underline;
+                    transition: 0.3s;
+
+                    &:hover{
+                        color: #f8db00;
+                    }
+
+                    @media screen and (max-width: 1030px){
+                        display: block;
+                        color: #ffffff;
+                        background-color: #000000;
+                        text-align: center;
+                        text-decoration: none;
+                        padding: 9px 30px;
+
+                        &:hover{
+                            background-color:  #f8db00;
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.overlay{
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+
+    .modal__pedido{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        width: 775px;
+        height: 400px;
+        overflow: auto;
+        background-color: #eeeeee;
+        padding: 40px 20px 20px;
+
+        @media screen and (max-width: 1030px){
+            width: 90%;
+        }
+    }
+
+    .close{
+        width: 30px;
+        text-align: center;
+        margin: 0 0 5px;
+        position: absolute;
+        top: 7px;
+        right: 0;
+    }
+
+    .modal__block{
+        position: relative;
+        display: block;
+        width: 48%;
+        float: left;
+        margin: 0 1% 20px;
+        background-color: #ffffff;
+        padding: 10px;
+        min-height: 156px;
+
+        @media screen and (max-width: 1030px){
+            width: 100%;
+        }
+
+        .title{
+            color: #f8db00;
+            font-weight: bold;
+            font-size: 15px;
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+
+        .sub{
+            font-size: 14px;
+            font-weight: 600;
+            color: #000000;
+            margin: 0 0 3px;
+        }
+
+        .text{
+            font-size: 14px;
+            margin: 0 0 10px;
+        }
+
+        .thumb{
+            position: relative;
+            display: block;
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+
+        .desc_produto{
+            position: relative;
+            display: block;
+            width: 50%;
+            float: left;
+            font-size: 14px;
+            line-height: 21px;
+            padding: 0 0 0 5px;
+        }
+
+        .valor{
+            position: relative;
+            display: block;
+            float: left;
+            width: 100%;
+            margin: 10px 0 0;
+
+            .val__item{
+                position: relative;
+                display: block;
+                float: left;
+                width: 50%;
+                text-align: center;
+
+                span{
+                    display: block;
+                    font-size: 15px;
+                    margin: 0 0 5px;
+                }
+
+                strong{
+                    font-weight: 600;
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .metodo__btn{
+            margin: 20px 0 0;
+            position: relative;
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color:  #f8db00;
+            color: #ffffff;
+            transition: 0.3s;
+            padding: 15px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &:hover{
+                background-color: #000000;
+            }
+        }
+    }
+}

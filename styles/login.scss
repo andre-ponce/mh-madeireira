@@ -1,0 +1,160 @@
+.main{
+    padding: 44px 0 50px;
+
+    @media screen and (max-width: 800px){
+        padding: 30px 0 0;
+    }
+
+    a{
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    a:hover{
+        color: #000000;
+        text-decoration: underline;
+    }
+
+    .page-title{
+        width: 100%;
+        margin: 0 0 33px;
+    }
+
+    .main__left{
+        position: relative;
+        display: block;
+        float: left;
+        width: 591px;
+        padding: 0 0 0 90px;
+        margin: 0 18px 0 0;
+
+        @media screen and (max-width: 1200px){
+            width: 49%;
+            margin: 0 1% 0 0;
+            padding: 0;
+        }
+
+        @media screen and (max-width: 800px){
+            width: 100%;
+            margin: 0 0 35px;
+            padding: 0;
+        }
+
+        .main__left__title{
+            font-size: 17px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 7px;
+        }
+
+        .main__left__subtitle{
+            font-size: 12px;
+            margin: 0 0 20px;
+        }
+    }
+
+    .main__right{
+        position: relative;
+        display: block;
+        float: left;
+        width: 591px;
+        padding: 0 90px 0 0;
+
+        @media screen and (max-width: 1200px){
+            width: 49%;
+            margin: 0 0 0 1%;
+            padding: 0;
+        }
+
+        @media screen and (max-width: 800px){
+            width: 100%;
+            margin: 0 0 35px;
+            padding: 0;
+        }
+
+        .main__right__title{
+            font-size: 17px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 7px;
+        }
+
+        .main__right__subtitle{
+            font-size: 12px;
+            margin: 0 0 20px;
+        }
+    }
+
+    .form-row {
+        margin: 0;
+        padding: 20px;
+        border: 2px solid #eee;
+  
+        input,
+        select {
+          border-radius: 0;
+          border: 2px solid #eee;
+        }
+  
+        label {
+          color: #000;
+          font-size: 14px;
+          margin-bottom: 10px;
+          float: left;
+          width: 100%;
+        }
+
+
+        .main_form_obs{
+            color: #c8c8c8;
+            font-size: 12px;
+            margin: 0 0 30px;
+            line-height: 10px;
+            padding: 0 0 0 5px;
+        }
+
+        .main__form__button{
+            position: relative;
+            display: block;
+            background-color: #000000;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 16px;
+            text-align: center;
+            padding: 14px 0;
+            width: 100%;
+            line-height: 12px;
+            transition: 0.3s;
+
+            &:hover{
+                background-color: #f9d901;
+            }
+        }
+      }
+  
+      .form-submit {
+        width: 100%;
+        height: 42px;
+        color: white;
+        border-radius: 0;
+        background: #459e4a;
+        text-transform: uppercase;
+      }
+
+    #cep-1{
+        width: 177px;
+        margin: 0 10px 0 0;
+        float: left;
+    }
+
+    #cep-2{
+        width: 90px;
+        float: left;
+    }
+
+
+
+
+
+
+}

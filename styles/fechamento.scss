@@ -1,0 +1,136 @@
+.main {
+  margin-top: 15px;
+  margin-bottom: 50px;
+
+  &__group-infos {
+    @media screen and (min-width: 768px) {
+      padding-right: 15px !important;
+    }
+  }
+
+  .group-descount-payment {
+    @media screen and (min-width: 992px) {
+      padding-right: 15px !important;
+    }
+  }
+
+  .product-mini-cart {
+    border-bottom: 2px solid #eee;
+    * {
+      font-size: 12px;
+    }
+    &__price {
+      font-size: 14px;
+    }
+    &__ref-cod {
+      @media screen and (max-width: 430px){
+        flex-direction: column;
+      }
+    }
+  }
+
+  .ft-size-12 {
+    font-size: 12px !important;
+  }
+
+  .ft-size-14 {
+    font-size: 14px !important;
+  }
+
+  .group {
+    padding: 20px 5px;
+    margin: 15px 0;
+    border: 2px solid #eee;
+
+    &--yelow {
+      border: 2px solid #f9d901;
+    }
+
+    h2, .top-group {
+      color: black;
+      font-size: 14px;
+      font-weight: bold;
+      padding-left: 7px;
+      padding-bottom: 15px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #eee;
+      svg {
+        font-size: 14px;
+        margin-right: 10px;
+      }
+    }
+
+    .top-group {
+      h2 {
+        border: none;
+      }
+
+      a {
+        color: #b1b1b1;
+        font-size: 11px;
+        font-weight: normal;
+        text-transform: none !important;
+      }
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      color: #bdbdbd;
+      margin-top: 15px;
+      margin-left: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      height: 40px;
+      font-size: 14;
+      padding: 0 10px;
+      border: 2px solid #eee;
+    }
+
+    .txt-gray {
+      color: #bdbdbd;
+    }
+
+    .txt-black {
+      color: #000000;
+    }
+
+    .button-black {
+      width: 100%;
+      height: 40px;
+      color: white;
+      display: block;
+      margin: 10px 0;
+      font-size: 14px;
+      background: black;
+      text-transform: uppercase;
+    }
+
+    .custom-radio {
+      padding-left: 30px;
+      .custom-control-label {
+        &::after {
+          top: 0;
+        }
+        &::before {
+          top: 0;
+          left: -30px !important;
+        }
+      }
+    }
+
+    .btn-finish {
+      width: 100%;
+      height: 40px;
+      color: white;
+      display: flex;
+      font-size: 14px;
+      background: #459e4a;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+    }
+  }
+}
