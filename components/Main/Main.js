@@ -1,5 +1,6 @@
 import React from 'react';
 import CenterBanner from './CenterBanner';
+import Highlights from './Highlights';
 import MostWanted from './MostWanted';
 
 function Main() {
@@ -7,6 +8,7 @@ function Main() {
     <main className="main">
       <MostWanted />
       <CenterBanner />
+      <Highlights />
     </main>
   );
 }
