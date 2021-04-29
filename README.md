@@ -1,4 +1,4 @@
-# Braskape
+# Braskape Catalog
 
 <!-- BADGES -->
 
@@ -47,17 +47,17 @@ Você pode criar ou editar os arquivos de `src/pages` e ver o resultado em tempo
 
 Tipo       | CHANGELOG                  | Versão gerada   | Descrição
 -----------|----------------------------|-----------------|-------------------------------------------------------------------------------------------
-`refactor` | "Code Refactoring"         | Patch "x.x.x+1" | melhoria lógica/semantica em um código pré existente
-`feat`     | "Features"                 | Minor "x.x+1.x" | Adição de nova funcionalidade
-`fix`      | "Bug Fixes"                | Patch "x.x.x+1" | Correção de bug
-`chore`    | "Improvements"             | Patch "x.x.x+1" | Uma pequena melhoria que não tem um impacto direto no negócio ou em algum dos outros tipos
-`test`     | "Tests"                    | Patch "x.x.x+1" | Adição de testes de qualquer tipo
-`perf`     | "Performance Improvements" | Patch "x.x.x+1" | Melhoria de performance
 `build`    | "Build System"             | Patch "x.x.x+1" | Adição ou mudança nos scripts de build do projeto
+`chore`    | "Improvements"             | Patch "x.x.x+1" | Uma pequena melhoria que não tem um impacto direto no negócio ou em algum dos outros tipos
 `ci`       | "Continuous Integration"   | Patch "x.x.x+1" | Mudanças nos steps de CI
 `docs`     | "Documentation"            | Patch "x.x.x+1" | Adição ou mudança de documentação do projeto
-`style`    | "Styles"                   | Patch "x.x.x+1" | "Code style" Mudanças no estido do código sem afetá-lo: espaços, tabs, ponto e virgola
+`feat`     | "Features"                 | Minor "x.x+1.x" | Adição de nova funcionalidade
+`fix`      | "Bug Fixes"                | Patch "x.x.x+1" | Correção de bug
+`perf`     | "Performance Improvements" | Patch "x.x.x+1" | Melhoria de performance
+`refactor` | "Code Refactoring"         | Patch "x.x.x+1" | melhoria lógica/semantica em um código pré existente
 `revert`   | "Reverts"                  | Patch "x.x.x+1" | Desfazer algo no projeto via git ou não
+`style`    | "Styles"                   | Patch "x.x.x+1" | "Code style" Mudanças no estido do código sem afetá-lo: espaços, tabs, ponto e virgola
+`test`     | "Tests"                    | Patch "x.x.x+1" | Adição de testes de qualquer tipo
 
 
 ## Desenvolvedores
