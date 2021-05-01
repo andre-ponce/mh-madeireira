@@ -56,7 +56,7 @@ Tipo       | CHANGELOG                  | Versão gerada   | Descrição
 `perf`     | "Performance Improvements" | Patch "x.x.x+1" | Melhoria de performance
 `refactor` | "Code Refactoring"         | Patch "x.x.x+1" | melhoria lógica/semantica em um código pré existente
 `revert`   | "Reverts"                  | Patch "x.x.x+1" | Desfazer algo no projeto via git ou não
-`style`    | "Styles"                   | Patch "x.x.x+1" | "Code style" Mudanças no estido do código sem afetá-lo: espaços, tabs, ponto e virgola
+`style`    | "Styles"                   | Patch "x.x.x+1" | "Code style" Mudanças no estido do código sem afetá-lo: espaços, tabs, ponto e virgula
 `test`     | "Tests"                    | Patch "x.x.x+1" | Adição de testes de qualquer tipo
 
 
