@@ -26,6 +26,7 @@ export const mostWantedSettings = {
 };
 
 export const brandsSettings = {
+  className: 'store-front-brands__carousel',
   slidesToShow: 7,
   variableWidth: true,
   centerMode: true,

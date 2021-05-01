@@ -5,13 +5,13 @@ import Highlights from './Highlights';
 import MostWanted from './MostWanted';
 import OtherCategories from './OtherCategories';
 
-function Main() {
+function Main({ brands }) {
   return (
     <main className="main">
       <MostWanted />
       <CenterBanner />
       <Highlights />
-      <Brands />
+      <Brands brands={brands} />
       <OtherCategories />
     </main>
   );
