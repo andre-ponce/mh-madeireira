@@ -30,8 +30,10 @@ function Home({ data }) {
     static: {
       urlBaseEstaticos,
       diretorioMarcas,
+      diretorioCategorias,
     },
     marcas,
+    menu,
   } = data;
 
   const brands = {
@@ -39,12 +41,17 @@ function Home({ data }) {
     marcas,
   };
 
+  const categories = {
+    staticUrl: `${urlBaseEstaticos}${diretorioCategorias}/`,
+    menu,
+  };
+
   return (
     <>
       <Head>
         <title>Home - Braskape</title>
       </Head>
-      <Header />
+      <Header categories={categories} />
       <Main
         brands={brands}
       />
