@@ -38,7 +38,7 @@ function Menu({ categories }) {
         {menu && menu.slice(0, 5).map((item) => (
           <li className="menu__item menu__item--has-subcategoria">
             <a href="/categoria.html">
-              <img src="/images/icons-menu/icon.png" alt="motor" />
+              <img src="/images/icons-menu/icon.png" alt={item.nome} />
               <span>{item.nome}</span>
             </a>
             <button
