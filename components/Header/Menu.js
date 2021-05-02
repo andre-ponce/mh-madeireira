@@ -35,7 +35,7 @@ function Menu({ categories }) {
           </a>
         </li>
 
-        {menu && menu.map((item) => (
+        {menu && menu.slice(0, 5).map((item) => (
           <li className="menu__item menu__item--has-subcategoria">
             <a href="/categoria.html">
               <img src="/images/icons-menu/icon.png" alt="motor" />
