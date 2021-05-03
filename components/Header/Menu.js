@@ -2,7 +2,7 @@ import React from 'react';
 import { isEmpty } from 'lodash';
 
 function Menu({ categories }) {
-  const { menu } = categories;
+  const { staticUrl, menu } = categories;
 
   return (
     <nav id="header__menu" className="header__menu collapse">
@@ -38,7 +38,7 @@ function Menu({ categories }) {
         {menu && menu.slice(0, 5).map((item) => (
           <li className="menu__item menu__item--has-subcategoria">
             <a href="/categoria.html">
-              <img src="/images/icons-menu/icon.png" alt={item.nome} />
+              <img src={`${staticUrl}${item.imagem}`} alt={item.nome} />
               <span>{item.nome}</span>
             </a>
             <button
