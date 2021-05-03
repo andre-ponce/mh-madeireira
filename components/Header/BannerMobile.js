@@ -12,10 +12,7 @@ function BannerMobile() {
   useEffect(() => setServerState(false), []);
 
   return (
-    <SliderRendered
-      className="header__banner header__banner--mobile full-banner"
-      {...bannerSettings}
-    >
+    <SliderRendered {...bannerSettings}>
       <a href="#">
         <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
       </a>

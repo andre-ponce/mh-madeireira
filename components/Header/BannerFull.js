@@ -18,10 +18,7 @@ function BannerFull() {
       data-aos="zoom-in"
       data-aos-duration="1000"
     >
-      <SliderRendered
-        className="header__banner header__banner--desk full-banner"
-        {...bannerSettings}
-      >
+      <SliderRendered {...bannerSettings}>
         <a href="#">
           <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
         </a>

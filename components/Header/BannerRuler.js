@@ -1,32 +1,19 @@
-import React from 'react';
-import { isMobile } from 'react-device-detect';
-import Slider from 'react-slick';
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { bannerRulerSettings } from './settings';
 
 function BannerRuler() {
-  if (isMobile) {
-    bannerRulerSettings.responsive = [
-      {
-        breakpoint: 950,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 670,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ];
-  }
+  const [isServer, setServerState] = useState(true);
+
+  const SliderRendered = dynamic(import('react-slick'), {
+    ssr: isServer,
+  });
+
+  useEffect(() => setServerState(false), []);
 
   return (
     <div className="container_serie-ds">
-      <Slider
-        className="header__banner banner-ruler"
-        {...bannerRulerSettings}
-      >
+      <SliderRendered {...bannerRulerSettings}>
         <a href="#">
           <img src="/images/banner_regua/banner.jpg" alt="Bem vindo à nova loja" />
         </a>
@@ -39,7 +26,7 @@ function BannerRuler() {
         <a href="#">
           <img src="/images/banner_regua/banner4.jpg" alt="Bem vindo à nova loja" />
         </a>
-      </Slider>
+      </SliderRendered>
     </div>
   );
 }
