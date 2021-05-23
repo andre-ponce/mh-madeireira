@@ -1,0 +1,206 @@
+.product {
+  display: block;
+  width: 20%;
+  border-radius: 4px;
+}
+.product > * {
+  background: white;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+}
+.product__topbar {
+  display: flex;
+  padding-top: 5px;
+  position: relative;
+  justify-content: center;
+  border-radius: 4px 4px 0 0;
+  border-top: 1px solid #dbdbdb;
+}
+.product__topbar img {
+  width: 100%;
+  margin: 0 8.5px;
+}
+.product__topbar .topbar__discount {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: #2e2e2e;
+  font-size: 12px;
+  border-radius: 50%;
+  align-items: center;
+  background: #f9d901;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.product__infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product__infos .infos__brand {
+  font-size: 14px;
+  color: #292929;
+  font-weight: bold;
+  margin-top: 13px;
+  margin-bottom: 6px;
+}
+.product__infos .infos__ref {
+  font-size: 12px;
+  color: #b0b0b0;
+}
+.product__infos .infos__name {
+  font-size: 14px;
+  color: #292929;
+  line-height: 20px;
+  margin: 14px 10px 20px 10px;
+}
+.product__prices {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.product__prices .prices__old {
+  font-size: 14px;
+  color: #b0b0b0;
+  text-decoration: line-through;
+}
+.product__prices .prices__actual {
+  font-size: 18px;
+  color: #292929;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+.product__prices .prices__installments {
+  font-size: 14px;
+  color: #b0b0b0;
+}
+.product__prices .prices__installments strong {
+  color: #292929;
+}
+.product__actions {
+  display: flex;
+  background: transparent;
+  flex-direction: column;
+  border-left: 0;
+  border-right: 0;
+}
+.product__actions .actions__buy,
+.product__actions .actions__link_category {
+  background: white;
+  border-radius: 4px;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+.product__actions .actions__link_category {
+  color: #292929;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-decoration: underline;
+}
+.product__actions .actions__buy {
+  opacity: 0;
+  display: flex;
+  padding: 0 2px 2px 2px;
+}
+.product__actions .actions__buy .buy__qtd {
+  width: 20%;
+  border-radius: 3px;
+  background: white;
+  border: 1px solid #dcdcdc;
+}
+.product__actions .actions__buy .buy__button {
+  width: 80%;
+  height: 35px;
+  color: white;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-left: 5px;
+  background: #01a201;
+}
+.product * {
+  text-align: center;
+}
+.product:hover {
+  box-shadow: 1px 1px 12px #2c2c2c30;
+}
+.product:hover .product__actions .actions__link_category {
+  border-radius: 0px;
+  border-bottom: none;
+}
+.product:hover .product__actions .actions__buy {
+  opacity: 1 !important;
+}
+.product .number_input {
+  width: 45px;
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+  position: relative;
+}
+.product .number_input input {
+  height: 100%;
+  max-width: 45px;
+  padding-right: 15px;
+}
+.product .number_input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.product .number_input button {
+  right: 0;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+.product .number_input button svg {
+  font-size: 11px;
+}
+.product .number_input .plus {
+  top: 0;
+}
+.product .number_input .minus {
+  bottom: 0;
+}
+@media screen and (max-width: 500px) {
+  .product__topbar {
+    padding-top: 5px;
+  }
+  .product__topbar .topbar__discount {
+    width: 30px;
+    height: 30px;
+    font-size: 8px;
+  }
+  .product__infos .infos__brand {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .product__infos .infos__name {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 12px 10px 10px 10px;
+  }
+  .product__prices .prices__old {
+    font-size: 12px;
+  }
+  .product__prices .prices__actual {
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .product__prices .prices__installments {
+    font-size: 12px;
+  }
+  .product__actions .actions__link_category {
+    font-size: 12px;
+    padding-top: 12px;
+    padding-bottom: 8px;
+  }
+  .product__actions .actions__buy {
+    display: none;
+  }
+}
