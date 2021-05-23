@@ -1,9 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 
-import Footer from '../components/Footer';
 import Header from '../components/Header';
-import Main from '../components/Main';
+import MostWanted from '../components/MostWanted';
+import CenterBanner from '../components/CenterBanner';
+import Highlights from '../components/Highlights';
+import Brands from '../components/Brands';
+import OtherCategories from '../components/OtherCategories';
+import Footer from '../components/Footer';
 
 export async function getServerSideProps() {
   const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {
@@ -52,9 +56,13 @@ function Home({ data }) {
         <title>Home - Braskape</title>
       </Head>
       <Header categories={categories} />
-      <Main
-        brands={brands}
-      />
+      <main className="main">
+        <MostWanted />
+        <CenterBanner />
+        <Highlights />
+        <Brands brands={brands} />
+        <OtherCategories />
+      </main>
       <Footer />
     </>
   );

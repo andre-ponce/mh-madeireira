@@ -1,31 +1,4 @@
-export const mostWantedSettings = {
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  autoplay: false,
-  autoplaySpeed: 2000,
-  responsive: [
-    {
-      breakpoint: 1100,
-      settings: {
-        slidesToShow: 4,
-      },
-    },
-    {
-      breakpoint: 920,
-      settings: {
-        slidesToShow: 3,
-      },
-    },
-    {
-      breakpoint: 690,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-  ],
-};
-
-export const brandsSettings = {
+export default {
   className: 'store-front-brands__carousel',
   slidesToShow: 7,
   variableWidth: true,

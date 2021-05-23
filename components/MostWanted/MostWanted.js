@@ -1,12 +1,12 @@
 import React from 'react';
 import Slick from 'react-slick';
-import { mostWantedSettings } from './settings';
+import settings from './settings';
 
 function MostWanted() {
   return (
     <section data-aos="fade-up" data-aos-duration="1000" className="container_serie-ds">
       <h2 className="title-border-left">Os mais buscados</h2>
-      <Slick className="products-carousel" {...mostWantedSettings}>
+      <Slick className="products-carousel" {...settings}>
         <div className="product">
           <a href="produto.html" className="product__topbar">
             <img src="/images/product1.jpg" alt="Produto x" />
