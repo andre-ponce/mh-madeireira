@@ -168,32 +168,32 @@
     border-radius: 3px;
     border: 1px solid #dcdcdc;
     position: relative;
-  
+
     input {
       height: 100%;
       max-width: 45px;
       padding-right: 15px;
-  
+
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
       }
     }
-  
+
     button {
       right: 0;
       width: 20px;
       height: 20px;
       position: absolute;
-  
+
       svg {
         font-size: 11px;
       }
     }
-  
+
     .plus {
       top: 0;
     }
-  
+
     .minus {
       bottom: 0;
     }
@@ -214,7 +214,7 @@
         }
       }
     }
-  
+
     &__infos {
       .infos {
         &__brand {
@@ -228,7 +228,7 @@
         }
       }
     }
-  
+
     &__prices {
       .prices {
         &__old {
@@ -244,7 +244,7 @@
         }
       }
     }
-  
+
     &__actions {
       .actions {
         &__link-category {

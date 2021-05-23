@@ -3,7 +3,7 @@ import Slick from 'react-slick';
 import Product from '../Product';
 
 import settings from './settings';
-import productsMock from './productsMock';
+import productsMock from '../Product/productsMock';
 
 function MostWanted() {
   return (
