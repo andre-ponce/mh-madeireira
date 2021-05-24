@@ -1,5 +1,6 @@
 import React from 'react';
 import Slick from 'react-slick';
+import shortid from 'shortid';
 
 import settings from './settings';
 
@@ -17,7 +18,7 @@ function Brands({ brands }) {
         <h2 className="title-border-left">Top Marcas</h2>
         <Slick {...settings}>
           {marcas && marcas.map((marca) => (
-            <a href="#">
+            <a href="#" key={shortid()}>
               <img src={`${staticUrl}${marca.imagem}`} alt={marca.nome} />
             </a>
           ))}

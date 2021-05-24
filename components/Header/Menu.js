@@ -1,5 +1,6 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
+import shortid from 'shortid';
 
 function Menu({ categories }) {
   const { staticUrl, menu } = categories;
@@ -21,7 +22,7 @@ function Menu({ categories }) {
           <i className="fal fa-angle-down" />
           <ul className="see-all__submenus">
             {menu && menu.map((item) => (
-              <li className="menu__item">
+              <li className="menu__item" key={shortid()}>
                 <a href="#">{item.nome}</a>
               </li>
             ))}
@@ -36,7 +37,7 @@ function Menu({ categories }) {
         </li>
 
         {menu && menu.slice(0, 5).map((item) => (
-          <li className="menu__item menu__item--has-subcategoria">
+          <li className="menu__item menu__item--has-subcategoria" key={shortid()}>
             <a href="/categoria.html">
               <img src={`${staticUrl}${item.imagem}`} alt={item.nome} />
               <span>{item.nome}</span>
@@ -57,7 +58,7 @@ function Menu({ categories }) {
                 <a href="categoria.html">{item.nome}</a>
               </li>
               {item.subMenus && item.subMenus.map((subMenu) => (
-                <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria">
+                <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria" key={shortid()}>
                   <a href="categoria.html">{subMenu.nome}</a>
                   <button
                     className="navbar-toggler"
@@ -76,7 +77,7 @@ function Menu({ categories }) {
                         <a href="categoria.html">{subMenu.nome}</a>
                       </li>
                       {subMenu.subMenus && subMenu.subMenus.map((sub) => (
-                        <li className="menu__item">
+                        <li className="menu__item" key={shortid()}>
                           <a href="categoria.html">{sub.nome}</a>
                         </li>
                       ))}

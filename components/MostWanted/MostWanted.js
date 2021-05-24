@@ -1,5 +1,6 @@
 import React from 'react';
 import Slick from 'react-slick';
+import shortid from 'shortid';
 import Product from '../Product';
 
 import settings from './settings';
@@ -11,7 +12,7 @@ function MostWanted() {
       <h2 className="title-border-left">Os mais buscados</h2>
       <Slick className="products-carousel" {...settings}>
         {productsMock.map((product) => (
-          <Product product={product} mostWanted />
+          <Product product={product} mostWanted key={shortid()} />
         ))}
       </Slick>
     </section>
