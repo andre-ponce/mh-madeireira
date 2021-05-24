@@ -11,7 +11,7 @@ function MostWanted() {
       <h2 className="title-border-left">Os mais buscados</h2>
       <Slick className="products-carousel" {...settings}>
         {productsMock.map((product) => (
-          <Product product={product} />
+          <Product product={product} mostWanted />
         ))}
       </Slick>
     </section>

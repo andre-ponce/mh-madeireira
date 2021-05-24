@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import styled from 'styled-components';
 
 import Header from '../components/Header';
 import MostWanted from '../components/MostWanted';
@@ -29,6 +30,11 @@ export async function getServerSideProps() {
   };
 }
 
+const Wrapper = styled.main`
+  padding-top: 20px;
+  background: #eeeeee;
+`;
+
 function Home({ data }) {
   const {
     static: {
@@ -56,13 +62,13 @@ function Home({ data }) {
         <title>Home - Braskape</title>
       </Head>
       <Header categories={categories} />
-      <main className="main">
+      <Wrapper>
         <MostWanted />
         <CenterBanner />
         <Highlights />
         <Brands brands={brands} />
         <OtherCategories />
-      </main>
+      </Wrapper>
       <Footer />
     </>
   );
