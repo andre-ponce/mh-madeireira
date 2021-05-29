@@ -34,7 +34,7 @@ export const bannerSettings = {
   ],
 };
 
-export const bannerRulerSettings = {
+export const bannerRullerSettings = {
   className: 'header__banner banner-ruler',
   arrows: false,
   slidesToShow: 3,
