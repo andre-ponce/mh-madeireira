@@ -12,7 +12,7 @@ import Brands from '../components/Brands';
 import OtherCategories from '../components/OtherCategories';
 import Footer from '../components/Footer';
 
-import products from '../data';
+import { products } from '../data';
 
 export async function getServerSideProps() {
   const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {

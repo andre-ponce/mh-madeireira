@@ -2,7 +2,20 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { bannerSettings, bannerRullerSettings } from './settings';
 
-function Banner({ isMobile }) {
+function CategoryBanner() {
+  return (
+    <img
+      className="main__banner"
+      src="/images/braskape_banner-category.jpg"
+      alt="Categoria1"
+      data-aos="fade-left"
+      data-aos-duration="1000"
+      data-aos-offset="300"
+    />
+  );
+}
+
+function Banner({ isMobile, isCategory }) {
   const [isServer, setServerState] = useState(true);
 
   const SliderRendered = dynamic(import('react-slick'), {
@@ -12,6 +25,12 @@ function Banner({ isMobile }) {
   useEffect(() => {
     setServerState(false);
   }, []);
+
+  if (isCategory) {
+    return (
+      <CategoryBanner />
+    );
+  }
 
   return (
     <>
