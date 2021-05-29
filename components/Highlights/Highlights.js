@@ -3,9 +3,7 @@ import shortid from 'shortid';
 
 import Product from '../Product';
 
-import productsMock from '../Product/productsMock';
-
-function Highlights() {
+function Highlights({ products }) {
   return (
     <section
       className="main__vitrine-destaques container_serie-ds"
@@ -15,7 +13,7 @@ function Highlights() {
     >
       <h2 className="title-border-left">Destaques</h2>
       <div className="vitrine-destaques__produtos">
-        {productsMock.map((product) => (
+        {products.map((product) => (
           <Product product={product} key={shortid()} />
         ))}
       </div>

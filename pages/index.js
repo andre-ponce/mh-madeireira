@@ -10,6 +10,8 @@ import Brands from '../components/Brands';
 import OtherCategories from '../components/OtherCategories';
 import Footer from '../components/Footer';
 
+import products from '../services/data';
+
 export async function getServerSideProps() {
   const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {
     headers: {
@@ -63,9 +65,9 @@ function Home({ data }) {
       </Head>
       <Header categories={categories} />
       <Wrapper>
-        <MostWanted />
+        <MostWanted products={products} />
         <CenterBanner />
-        <Highlights />
+        <Highlights products={products} />
         <Brands brands={brands} />
         <OtherCategories />
       </Wrapper>
