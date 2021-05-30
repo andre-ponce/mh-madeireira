@@ -55,7 +55,7 @@ function Category({ data }) {
       </Head>
       <Header categories={categories} />
       <Banner isCategory />
-      <Breadcrumb />
+      <Breadcrumb slug={slug} />
       <CategoryMain products={products} filters={filters} />
       <Footer />
     </>

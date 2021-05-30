@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Breadcrumb() {
+function Breadcrumb({ slug }) {
   return (
     <nav className="container_serie-ds">
       <ul className="main__breadcrumb">
@@ -12,7 +12,7 @@ function Breadcrumb() {
         </li>
         <li>
           <a href="index.html">
-            <h1>Categoria</h1>
+            <h1>{slug.toUpperCase()}</h1>
           </a>
         </li>
       </ul>
