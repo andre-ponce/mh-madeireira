@@ -36,16 +36,16 @@ function Banner({ isMobile, isCategory }) {
     <>
       {isMobile ? (
         <SliderRendered {...bannerSettings}>
-          <a href="#">
+          <a href="/">
             <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
           </a>
         </SliderRendered>
@@ -55,16 +55,16 @@ function Banner({ isMobile, isCategory }) {
           data-aos-duration="1000"
         >
           <SliderRendered {...bannerSettings}>
-            <a href="#">
+            <a href="/">
               <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
             </a>
-            <a href="#">
+            <a href="/">
               <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
             </a>
-            <a href="#">
+            <a href="/">
               <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
             </a>
-            <a href="#">
+            <a href="/">
               <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
             </a>
           </SliderRendered>
@@ -72,16 +72,16 @@ function Banner({ isMobile, isCategory }) {
       )}
       <div className="container_serie-ds">
         <SliderRendered {...bannerRullerSettings}>
-          <a href="#">
+          <a href="/">
             <img src="/images/banner_regua/banner.jpg" alt="Bem vindo à nova loja" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/images/banner_regua/banner2.jpg" alt="Bem vindo à nova loja" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/images/banner_regua/banner3.jpg" alt="Bem vindo à nova loja" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/images/banner_regua/banner4.jpg" alt="Bem vindo à nova loja" />
           </a>
         </SliderRendered>

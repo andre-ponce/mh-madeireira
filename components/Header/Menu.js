@@ -23,7 +23,7 @@ function Menu({ categories }) {
           <ul className="see-all__submenus">
             {menu && menu.map((item) => (
               <li className="menu__item" key={shortid()}>
-                <a href="#">{item.nome}</a>
+                <a href="/">{item.nome}</a>
               </li>
             ))}
           </ul>

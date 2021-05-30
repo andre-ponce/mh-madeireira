@@ -18,11 +18,11 @@ function Category({ products, filters }) {
                   <i className="fas fa-chevron-down" />
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                  <a className="dropdown-item" href="#">Nome A-Z</a>
-                  <a className="dropdown-item" href="#">Nome Z-A</a>
-                  <a className="dropdown-item" href="#">Menor Preço</a>
-                  <a className="dropdown-item" href="#">Maior Preço</a>
-                  <a className="dropdown-item" href="#">Mais vendidos</a>
+                  <a className="dropdown-item" href="/">Nome A-Z</a>
+                  <a className="dropdown-item" href="/">Nome Z-A</a>
+                  <a className="dropdown-item" href="/">Menor Preço</a>
+                  <a className="dropdown-item" href="/">Maior Preço</a>
+                  <a className="dropdown-item" href="/">Mais vendidos</a>
                 </div>
               </div>
             </div>

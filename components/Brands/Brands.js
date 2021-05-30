@@ -18,7 +18,7 @@ function Brands({ brands }) {
         <h2 className="title-border-left">Top Marcas</h2>
         <Slick {...settings}>
           {marcas && marcas.map((marca) => (
-            <a href="#" key={shortid()}>
+            <a href="/" key={shortid()}>
               <img src={`${staticUrl}${marca.imagem}`} alt={marca.nome} />
             </a>
           ))}

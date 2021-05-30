@@ -6,25 +6,25 @@ function Central() {
       <div className="container_serie-ds">
         <div className="footer-central__institucional">
           <h2>INSTITUCIONAL</h2>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Braskape na Mídia
           </a>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Opções de Pagamento
           </a>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Entregas e Frete
           </a>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Política de Privacidade
           </a>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Trocas e Devoluções
           </a>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Como Comprar
           </a>
-          <a className="mg-b-5" href="#">
+          <a className="mg-b-5" href="/">
             Contato
           </a>
         </div>
