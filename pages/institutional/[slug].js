@@ -1,11 +1,11 @@
 import Head from 'next/head';
 
-import InstitutionalPageMain from '../../components/InstitutionalPageMain';
+import InstitutionalMain from '../../components/InstitutionalMain';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 
-function InstitutionalPage({ global, page }) {
+function Institutional ({ global, page }) {
   if (page.scripts) {
     useInsecureRawScript(page.scripts);
   }
@@ -32,7 +32,7 @@ function InstitutionalPage({ global, page }) {
         <title>{page.titulo} {sulfixoDoTitulo}</title>
       </Head>
       <Header categories={categories} />
-      <InstitutionalPageMain titulo={page.titulo} conteudo={page.conteudo} />
+      <InstitutionalMain titulo={page.titulo} conteudo={page.conteudo} />
       <Footer />
     </>
   )
@@ -68,4 +68,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default InstitutionalPage
+export default Institutional

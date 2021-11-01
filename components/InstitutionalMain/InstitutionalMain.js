@@ -1,11 +1,6 @@
-import { useEffect } from 'react';
-import style from './InstitutionalPageMain.module.scss';
+import style from './InstitutionalMain.module.scss';
 
-function InstitutionalPageMain({
-  titulo,
-  conteudo,
-  scripts
-}) {
+function InstitutionalMain({ titulo, conteudo }) {
   return (
     <main className={style.main}>
       <section className="container_serie-ds">
@@ -16,4 +11,4 @@ function InstitutionalPageMain({
   );
 }
 
-export default InstitutionalPageMain;
+export default InstitutionalMain;
