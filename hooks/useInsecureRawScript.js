@@ -5,7 +5,6 @@ const useInsecureRawScript = (content) => {
         const script = document.createElement('script');
 
         script.innerText = content;
-        console.log('opa', content);
         document.body.appendChild(script);
 
         return () => {
