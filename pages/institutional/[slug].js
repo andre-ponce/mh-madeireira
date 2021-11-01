@@ -9,11 +9,14 @@ function InstitutionalPage({ global, page }) {
   if (page.scripts) {
     useInsecureRawScript(page.scripts);
   }
-  
+
   const {
     static: {
       urlBaseEstaticos,
       diretorioCategorias,
+    },
+    seo: {
+      sulfixoDoTitulo
     },
     menu,
   } = global;
@@ -26,7 +29,7 @@ function InstitutionalPage({ global, page }) {
   return (
     <>
       <Head>
-        <title>{page.titulo} - Braskape</title>
+        <title>{page.titulo} {sulfixoDoTitulo}</title>
       </Head>
       <Header categories={categories} />
       <InstitutionalPageMain titulo={page.titulo} conteudo={page.conteudo} />
