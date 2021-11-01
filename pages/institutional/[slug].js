@@ -1,9 +1,9 @@
-import Head from 'next/head';
+import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 
 import InstitutionalMain from '../../components/InstitutionalMain';
+import InstitutionalSeo from '../../components/InstitutionalMain/Institutional.seo';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 
 function Institutional ({ global, page }) {
   if (page.scripts) {
@@ -15,9 +15,6 @@ function Institutional ({ global, page }) {
       urlBaseEstaticos,
       diretorioCategorias,
     },
-    seo: {
-      sulfixoDoTitulo
-    },
     menu,
   } = global;
 
@@ -28,15 +25,12 @@ function Institutional ({ global, page }) {
 
   return (
     <>
-      <Head>
-        <title>{page.titulo} {sulfixoDoTitulo}</title>
-      </Head>
+      <InstitutionalSeo {...page}/>
       <Header categories={categories} />
       <InstitutionalMain titulo={page.titulo} conteudo={page.conteudo} />
       <Footer />
     </>
   )
-
 }
 
 export async function getServerSideProps(context) {
