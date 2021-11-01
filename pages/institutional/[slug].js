@@ -3,8 +3,13 @@ import Head from 'next/head';
 import InstitutionalPageMain from '../../components/InstitutionalPageMain';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 
 function InstitutionalPage({ global, page }) {
+  if (page.scripts) {
+    useInsecureRawScript(page.scripts);
+  }
+  
   const {
     static: {
       urlBaseEstaticos,
