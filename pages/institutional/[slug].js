@@ -1,7 +1,7 @@
 import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 
 import InstitutionalMain from '../../components/InstitutionalMain';
-import InstitutionalSeo from '../../components/InstitutionalMain/Institutional.seo';
+import InstitutionalSeo from '../../components/InstitutionalMain/InstitutionalSeo';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
