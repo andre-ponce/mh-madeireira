@@ -48,14 +48,14 @@ export async function getServerSideProps(context) {
       authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
     },
   });
-  
-  const page = await pageRes.json();
-  
-  if (!page) {
+
+  if (pageRes.status == 404) {
     return {
       notFound: true,
     };
   }
+  
+  const page = await pageRes.json();
 
   return {
     props: { global: data, page },
