@@ -1,0 +1,1 @@
+export { ProductRating as default } from './ProductRating'
