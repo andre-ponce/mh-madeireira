@@ -41,7 +41,7 @@ function Category({ data }) {
 
     <Layout globalData={data}>
       <Banner isCategory />
-      <Breadcrumb slug={slug} />
+      <Breadcrumb slug={slug} classPrefix="category" />
       <CategoryMain products={products} filters={filters} />
     </Layout>
     </>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Breadcrumb({ slug }) {
+function Breadcrumb({ slug, classPrefix }) {
   return (
     <nav className="container_serie-ds">
-      <ul className="main__breadcrumb">
+      <ul className={`main__breadcrumb ${classPrefix}__breadcrumb`}>
         <li>
           <a href="index.html">HOME</a>
         </li>
