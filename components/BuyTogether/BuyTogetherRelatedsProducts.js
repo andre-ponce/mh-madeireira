@@ -1,35 +1,43 @@
 import Slick from 'react-slick';
+
 import { BuyTogetherItem } from "./BuyTogetherItem";
 
-export function BuyTogetherRelatedsProducts({ products }) {
-  const others = [products];
-  const numberOfItens = products.length;
-  let splitArray = false;
-  if (numberOfItens > 3) {
-    splitArray = true;
-    const splitIndex = Math.ceil(numberOfItens / 2);
-    others.push(products.slice(splitIndex));
-    others[0] = products.slice(0, splitIndex);
-  }
+const slickSettings = {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplay: false,
+  autoplaySpeed: 2000,
+}
 
-  const settings = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplay: false,
-    autoplaySpeed: 2000,
+export function BuyTogetherRelatedsProducts({ products, isChecked, onChange }) {
+
+  const groups = [products];
+  const numberOfItens = products.length;
+  
+  if (numberOfItens > 3) {
+    const splitIndex = Math.ceil(numberOfItens / 2);
+    groups.push(groups[0].slice(splitIndex));
+    groups[0] = groups[0].slice(0, splitIndex);
   }
 
   return (
     <div className="buy-together__options">
-      <Slick className="buy-together-carousel" {...settings}>
-        {others[0].map(p => <BuyTogetherItem product={p} />)}
-      </Slick>
-
-      {!!splitArray &&
-        <Slick className="buy-together-carousel" {...settings}>
-          {others[1].map(p => <BuyTogetherItem product={p} />)}
-        </Slick>
+      {
+        groups.map(group => (
+          <Slick className="buy-together-carousel" {...slickSettings}>
+            {
+              group.map(product =>
+                <BuyTogetherItem
+                  key={product.id} 
+                  product={product} 
+                  isChecked={isChecked} 
+                  onChange={() => onChange(product.id)}
+                />
+              )
+            }
+          </Slick>
+        ))
       }
     </div>
   );

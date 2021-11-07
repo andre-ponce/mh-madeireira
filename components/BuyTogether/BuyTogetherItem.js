@@ -1,15 +1,34 @@
+import { useEffect, useRef } from "react";
 
-export function BuyTogetherItem({ product }) {
+export function BuyTogetherItem({ product, isChecked, onChange }) {
+  const ref = useRef();
+  
+  useEffect(() => {
+    if(ref) {
+      ref.current.checked = isChecked(product.id);
+    }
+  }, [isChecked(product.id)])
+
   return (
     <div className="options__option-to-buy">
-      <input type="checkbox" name="comprejunto1" id="comprejunto1" />
-      <label className="label-img" for="comprejunto1">
+
+      <input
+        type="checkbox"
+        name={`buy-together-${product.id}`}
+        id={`buy-together-${product.id}`}
+        ref={ref}
+        onChange={onChange}
+      />
+
+      <label className="label-img" htmlFor={`buy-together-${product.id}`}>
         <img src={product.image} alt="product" />
       </label>
-      <label for="comprejunto1" className="option-to-buy__infos">
+      
+      <label htmlFor={`buy-together-${product.id}`} className="option-to-buy__infos">
         <span className="infos__name">{product.name}</span>
         <span className="infos__price">{product.price}</span>
       </label>
+
     </div>
   );
 }
