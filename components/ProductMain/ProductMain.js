@@ -49,7 +49,7 @@ export function ProductMain({ product }) {
       <section className="container_serie-ds" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
         <h2 className="title-border-left">Produtos relacionados</h2>
         <Slick className="products-carousel" {...settingsRelateds}>
-          {product.relatedsProducts.map(p => <ProductCard mostWanted product={p} />)}
+          {product.relatedsProducts.map(p => <ProductCard mostWanted product={p} key={p.id} />)}
         </Slick>
       </section>
 

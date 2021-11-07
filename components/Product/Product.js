@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Product({ product, mostWanted }) {
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <div className="product" style={mostWanted ? { width: '100%' } : {}}>
       <a href={product.link} className="product__topbar">
@@ -43,15 +45,25 @@ function Product({ product, mostWanted }) {
         </a>
         <div className="actions__buy">
           <div className="number-input">
-            <input className="quantity" min="0" name="quantity" value="1" type="number" />
+            
+            <input 
+              className="quantity" 
+              min="0" 
+              name="quantity" 
+              type="number" 
+              value={quantity} 
+              onChange={(e) => setQuantity(e.target.value)} 
+            />
+
             <button
-              onClick="this.parentNode.querySelector('input[type=number]').stepUp()"
+              onClick={() => setQuantity(quantity + 1)}
               className="plus"
             >
               <i className="far fa-chevron-up" />
             </button>
             <button
-              onClick="this.parentNode.querySelector('input[type=number]').stepDown()"
+              disabled={quantity < 2}
+              onClick={() => setQuantity(quantity - 1)}
               className="minus"
             >
               <i className="far fa-chevron-down" />

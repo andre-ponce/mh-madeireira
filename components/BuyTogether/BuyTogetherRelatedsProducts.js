@@ -24,8 +24,8 @@ export function BuyTogetherRelatedsProducts({ products, isChecked, onChange }) {
   return (
     <div className="buy-together__options">
       {
-        groups.map(group => (
-          <Slick className="buy-together-carousel" {...slickSettings}>
+        groups.map((group, index) => (
+          <Slick className="buy-together-carousel" key={index} {...slickSettings}>
             {
               group.map(product =>
                 <BuyTogetherItem

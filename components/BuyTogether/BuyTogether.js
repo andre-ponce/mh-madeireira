@@ -12,7 +12,6 @@ export function BuyTogether({ mainProduct, relatedsProducts }) {
     setResume({
       itens: [mainProduct, ...relatedsProducts.filter(p => isChecked(p.id))]
     })
-    console.log('resume');
   }, [selecteds]);
 
   function onChange (id) {
