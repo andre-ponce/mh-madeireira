@@ -21,35 +21,38 @@ export async function getServerSideProps() {
     };
   }
 
+  const product = Object.assign(products[0], {
+    relatedsProducts: products.slice(1, 8),
+    media: [
+      {
+        src: '/images/braskape-pagina-produto.jpg',
+        alt: 'Photo One',
+        id: 1
+      }, {
+        src: '/images/braskape-pagina-produto.jpg',
+        alt: 'Photo Two',
+        id: 2
+      }, {
+        src: '/images/braskape-pagina-produto.jpg',
+        alt: 'Photo Three',
+        id: 3
+      }, {
+        src: '/images/braskape-pagina-produto.jpg',
+        alt: 'Photo Four',
+        id: 4
+      }, {
+        src: '/images/braskape-pagina-produto.jpg',
+        alt: 'Photo Five',
+        id: 5
+      },
+    ],
+    buyTogether: products.slice(1, 6),
+  }) 
+
   return {
     props: { 
       global, 
-      product: {
-        relatedsProducts: products.slice(0, 8),
-        media: [
-          {
-            src: '/images/braskape-pagina-produto.jpg',
-            alt: 'Photo One',
-            id: 1
-          }, {
-            src: '/images/braskape-pagina-produto.jpg',
-            alt: 'Photo Two',
-            id: 2
-          }, {
-            src: '/images/braskape-pagina-produto.jpg',
-            alt: 'Photo Three',
-            id: 3
-          }, {
-            src: '/images/braskape-pagina-produto.jpg',
-            alt: 'Photo Four',
-            id: 4
-          }, {
-            src: '/images/braskape-pagina-produto.jpg',
-            alt: 'Photo Five',
-            id: 5
-          },
-        ]
-      } 
+      product,
     },
   };
 }

@@ -27,7 +27,7 @@ export function ProductMain({ product }) {
         </div>
       </div>
 
-      <BuyTogether />
+      <BuyTogether mainProduct={product} relatedsProducts={product.buyTogether} />
 
       <Tab
         initialTab="Descrição"
