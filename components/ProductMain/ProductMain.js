@@ -2,7 +2,6 @@ import { useState } from "react";
 import Slick from 'react-slick';
 
 import ProductCard from '../Product';
-import { products } from '../../data';
 import settingsRelateds from '../MostWanted/settings';
 import Breadcrumb from "../Breadcrumb";
 import Tab from "../Tab";
@@ -13,7 +12,7 @@ import BuyBox from "../BuyBox";
 import PhotoGalery from "../PhotoGalery";
 import PaymentOptionsModal from "../PaymentOptionsModal";
 
-export function ProductMain({ photos }) {
+export function ProductMain({ product }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
 
   return (
@@ -21,7 +20,7 @@ export function ProductMain({ photos }) {
       <Breadcrumb slug="Produto" classPrefix="product" />
       <div className="main__product">
         <div className="product__container-left" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-          <PhotoGalery photos={photos} />
+          <PhotoGalery photos={product.media} />
         </div>
         <div className="product__container-right" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
           <BuyBox />
@@ -50,7 +49,7 @@ export function ProductMain({ photos }) {
       <section className="container_serie-ds" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
         <h2 className="title-border-left">Produtos relacionados</h2>
         <Slick className="products-carousel" {...settingsRelateds}>
-          {products.slice(0, 5).map(p => <ProductCard mostWanted product={p} />)}
+          {product.relatedsProducts.map(p => <ProductCard mostWanted product={p} />)}
         </Slick>
       </section>
 
