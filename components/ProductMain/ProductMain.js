@@ -5,6 +5,7 @@ import ProductCard from '../Product';
 import settingsRelateds from '../MostWanted/settings';
 import Breadcrumb from "../Breadcrumb";
 import Tab from "../Tab";
+import TabPanel from "../Tab/TabPanel";
 import ProductRecommendForm from "../ProductRecommendForm";
 import ProductDescription from "../ProductDescription";
 import BuyTogether from "../BuyTogether";
@@ -29,22 +30,17 @@ export function ProductMain({ product }) {
 
       <BuyTogether mainProduct={product} relatedsProducts={product.buyTogether} />
 
-      <Tab
-        initialTab="Descrição"
-        tabs={[
-          {
-            title: 'Descrição',
-            body: <ProductDescription rawHtml={'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p><div className="triade__item__title">INFORMAÇÕES TÉCNICAS</div><dl><dt>Composição</dt><dd>100% Algodão</dd></dl>'} />
-          },
-          {
-            title: 'De sua opinião',
-            body: <><a href="">Dê a sua opnião</a></>
-          },
-          {
-            title: 'Indique um amigo',
-            body: <ProductRecommendForm />
-          }
-        ]} />
+      <Tab>
+        <TabPanel title='Descrição' active>
+          <ProductDescription rawHtml={'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p><div className="triade__item__title">INFORMAÇÕES TÉCNICAS</div><dl><dt>Composição</dt><dd>100% Algodão</dd></dl>'} />
+        </TabPanel>
+        <TabPanel title='De sua opinião'>
+          <a href="">Dê a sua opnião</a>
+        </TabPanel>
+        <TabPanel title='Indique um amigo'>
+          <ProductRecommendForm />
+        </TabPanel>
+      </Tab>
 
       <section className="container_serie-ds" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
         <h2 className="title-border-left">Produtos relacionados</h2>
