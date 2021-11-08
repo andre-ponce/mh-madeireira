@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { isEmpty } from 'lodash';
-import shortid from 'shortid';
 import GlobalDataContext from '../../contexts/GlobalDataContext';
 
 function MenuSeeAll({ itens }) {
