@@ -11,7 +11,7 @@ function MenuSeeAll({ itens }) {
 
       <ul className="see-all__submenus">
         {itens.map((item) =>
-          <MenuSeeAllItem item={item} />
+          <MenuSeeAllItem item={item} key={item.id} />
         )}
       </ul>
     </li>
@@ -20,7 +20,7 @@ function MenuSeeAll({ itens }) {
 
 function MenuSeeAllItem({ item: linha }) {
   return (
-    <li class={`menu__item ${isEmpty(linha.subMenus) ? '' : 'menu__item--has-subcategoria'}`}>
+    <li className={`menu__item ${isEmpty(linha.subMenus) ? '' : 'menu__item--has-subcategoria'}`}>
 
       <a href="/categoria.html">
         <img src="./src/images/icons-menu/icon.png" alt="motor" />
@@ -30,29 +30,29 @@ function MenuSeeAllItem({ item: linha }) {
       {
         !isEmpty(linha.subMenus) &&
         <>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filtros" aria-controls="filtros" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-chevron-right"></i>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#filtros" aria-controls="filtros" aria-expanded="false" aria-label="Toggle navigation">
+            <i className="fas fa-chevron-right"></i>
           </button>
 
-          <ul class="item__subcategorias collapse navbar-collapse nvl-1" id="filtros">
-            <li class="category_father_name">
+          <ul className="item__subcategorias collapse navbar-collapse nvl-1" id="filtros">
+            <li className="category_father_name">
               <a href={`/category/${linha.slug}`}>{linha.nome}</a>
             </li>
             {
               linha.subMenus.map(departamento =>
-                <li class={`menu__item menu__item-subcategoria ${isEmpty(departamento.subMenus) ? '' : 'menu__item--has-subcategoria'}`}>
+                <li key={departamento.id} className={`menu__item menu__item-subcategoria ${isEmpty(departamento.subMenus) ? '' : 'menu__item--has-subcategoria'}`}>
                   <a href={`/category/${departamento.slug}`}>{departamento.nome}</a>
                   {
                     !isEmpty(departamento.subMenus) &&
                     <>
-                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#subcategorias" aria-controls="subcategorias" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="far fa-chevron-right"></i>
+                      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#subcategorias" aria-controls="subcategorias" aria-expanded="false" aria-label="Toggle navigation">
+                        <i className="far fa-chevron-right"></i>
                       </button>
 
-                      <ul class="subcategoria__group collapse navbar-collapse nvl-2" id="subcategorias">
+                      <ul className="subcategoria__group collapse navbar-collapse nvl-2" id="subcategorias">
                         {
                           departamento.subMenus.map(subDepartamento =>
-                            <li class="menu__item">
+                            <li key={subDepartamento.id}  className="menu__item">
                               <a href={`/category/${subDepartamento.slug}`}>
                                 {subDepartamento.nome}
                               </a>
@@ -98,7 +98,7 @@ function Menu({ categories }) {
         </li>
 
         {menu && menu.slice(0, 5).map((linha) => (
-          <li className="menu__item menu__item--has-subcategoria" key={shortid()}>
+          <li className="menu__item menu__item--has-subcategoria" key={linha.id}>
             <a href={`/category/${linha.slug}`}>
               <img src={`${staticUrl}${linha.imagem}`} alt={linha.nome} />
               <span>{linha.nome}</span>
@@ -119,7 +119,7 @@ function Menu({ categories }) {
                 <a href={`/category/${linha.slug}`}>{linha.nome}</a>
               </li>
               {linha.subMenus && linha.subMenus.map((departamento) => (
-                <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria" key={shortid()}>
+                <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria" key={departamento.id}>
                   <a href={`/category/${departamento.slug}`}>{departamento.nome}</a>
                   {!isEmpty(departamento.subMenus) && (
                     <>
@@ -140,7 +140,7 @@ function Menu({ categories }) {
                           <a href={`/category/${departamento.slug}`}>{departamento.nome}</a>
                         </li>
                         {departamento.subMenus && departamento.subMenus.map((subDepartamento) => (
-                          <li className="menu__item" key={shortid()}>
+                          <li className="menu__item" key={subDepartamento.id}>
                             <a href={`/category/${subDepartamento.slug}`}>{subDepartamento.nome}</a>
                           </li>
                         ))}
