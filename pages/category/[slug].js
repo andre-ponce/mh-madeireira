@@ -2,11 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+import Layout from '../../components/Layout';
 import Banner from '../../components/Banner';
 import Breadcrumb from '../../components/Breadcrumb';
 import CategoryMain from '../../components/CategoryMain';
-import Footer from '../../components/Footer';
-import Layout from '../../components/Layout';
 
 import { products, filters } from '../../data';
 

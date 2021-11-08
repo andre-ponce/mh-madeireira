@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { isEmpty } from 'lodash';
 import shortid from 'shortid';
+import GlobalDataContext from '../../contexts/GlobalDataContext';
 
 function MenuSeeAll({ itens }) {
   return (
@@ -72,8 +73,19 @@ function MenuSeeAllItem({ item: linha }) {
   )
 }
 
-function Menu({ categories }) {
-  const { staticUrl, menu } = categories;
+function Menu() {
+  const global = useContext(GlobalDataContext);
+  
+  const {
+    static: {
+      urlBaseEstaticos,
+      diretorioCategorias,
+    },
+    menu,
+  } = global;
+
+  const staticUrl = `${urlBaseEstaticos}${diretorioCategorias}/`;
+  
   return (
     <nav id="header__menu" className="header__menu collapse">
 
