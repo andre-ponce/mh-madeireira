@@ -1,5 +1,5 @@
 import React from 'react';
-import Topbar from './Topbar';
+import Topbar from '../TopBar';
 import Menu from './Menu';
 import SearchBar from './SearchBar';
 import TopbarFixed from './TopbarFixed';
