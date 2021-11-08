@@ -354,8 +354,7 @@
                 flex-direction: column;
 
                 width: 628px;
-                height: 390px;
-                max-height: 390px;
+                height: calc(100vh - 155px);
                 overflow-y: auto;
                 overflow-x: auto;
 
@@ -390,7 +389,7 @@
                 & > li {
                   background: #292929;
                   display: flex;
-                  width: 220px;
+                  width: 210px;
                   & > a {
                     width: 80%;
                     color: white;
@@ -446,8 +445,8 @@
                     overflow-y: auto;
 
                     position: fixed;
-                    margin-left: 220px;
-                    top: 148px;
+                    margin-left: 210px;
+                    top: 151px;
 
                     &::before {
                       content: "";
