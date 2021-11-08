@@ -6,7 +6,7 @@ import Banner from '../../components/Banner';
 import Breadcrumb from '../../components/Breadcrumb';
 import CategoryMain from '../../components/CategoryMain';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import Layout from '../../components/Layout';
 
 import { products, filters } from '../../data';
 
@@ -32,32 +32,19 @@ export async function getServerSideProps() {
 
 function Category({ data }) {
   const router = useRouter();
-
   const { slug } = router.query;
-
-  const {
-    static: {
-      urlBaseEstaticos,
-      diretorioCategorias,
-    },
-    menu,
-  } = data;
-
-  const categories = {
-    staticUrl: `${urlBaseEstaticos}${diretorioCategorias}/`,
-    menu,
-  };
 
   return (
     <>
-      <Head>
-        <title>{`${slug.toUpperCase()} - Braskape`}</title>
-      </Head>
-      <Header categories={categories} />
+    <Head>
+      <title>{`${slug.toUpperCase()} - Braskape`}</title>
+    </Head>
+
+    <Layout globalData={data}>
       <Banner isCategory />
       <Breadcrumb slug={slug} />
       <CategoryMain products={products} filters={filters} />
-      <Footer />
+    </Layout>
     </>
   );
 }

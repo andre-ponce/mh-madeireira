@@ -3,14 +3,14 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
 
-import Header from '../components/Header';
 import Banner from '../components/Banner';
 import MostWanted from '../components/MostWanted';
 import CenterBanner from '../components/CenterBanner';
 import Highlights from '../components/Highlights';
 import Brands from '../components/Brands';
 import OtherCategories from '../components/OtherCategories';
-import Footer from '../components/Footer';
+
+import Layout from '../components/Layout';
 
 import { products } from '../data';
 
@@ -44,10 +44,8 @@ function Home({ data }) {
     static: {
       urlBaseEstaticos,
       diretorioMarcas,
-      diretorioCategorias,
     },
     marcas,
-    menu,
   } = data;
 
   const brands = {
@@ -55,26 +53,22 @@ function Home({ data }) {
     marcas,
   };
 
-  const categories = {
-    staticUrl: `${urlBaseEstaticos}${diretorioCategorias}/`,
-    menu,
-  };
-
   return (
     <>
       <Head>
         <title>Home - Braskape</title>
       </Head>
-      <Header categories={categories} />
-      <Banner isMobile={isMobile} />
-      <Wrapper>
-        <MostWanted products={products} />
-        <CenterBanner />
-        <Highlights products={products} />
-        <Brands brands={brands} />
-        <OtherCategories />
-      </Wrapper>
-      <Footer />
+
+      <Layout globalData={data} >
+        <Banner isMobile={isMobile} />
+        <Wrapper>
+          <MostWanted products={products} />
+          <CenterBanner />
+          <Highlights products={products} />
+          <Brands brands={brands} />
+          <OtherCategories />
+        </Wrapper>
+      </Layout>
     </>
   );
 }
