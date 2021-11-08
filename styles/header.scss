@@ -549,6 +549,7 @@
               align-items: center;
               justify-content: center;
               img {
+                max-height: 100%;
                 margin-right: 10px;
                 -webkit-filter: grayscale(100%);
                 filter: grayscale(100%);
