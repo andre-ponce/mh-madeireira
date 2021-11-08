@@ -20,7 +20,7 @@ function MenuSeeAll({ itens }) {
 
 function MenuSeeAllItem({ item: linha }) {
   return (
-    <li class={`menu__item ${linha.subMenus.length > 0 ? 'menu__item--has-subcategoria' : ''}`}>
+    <li class={`menu__item ${isEmpty(linha.subMenus) ? '' : 'menu__item--has-subcategoria'}`}>
 
       <a href="/categoria.html">
         <img src="./src/images/icons-menu/icon.png" alt="motor" />
@@ -28,7 +28,7 @@ function MenuSeeAllItem({ item: linha }) {
       </a>
 
       {
-        linha.subMenus.length > 0 &&
+        !isEmpty(linha.subMenus) &&
         <>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filtros" aria-controls="filtros" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-chevron-right"></i>
@@ -36,14 +36,14 @@ function MenuSeeAllItem({ item: linha }) {
 
           <ul class="item__subcategorias collapse navbar-collapse nvl-1" id="filtros">
             <li class="category_father_name">
-              <a href="categoria.html">{linha.nome}</a>
+              <a href={`/category/${linha.slug}`}>{linha.nome}</a>
             </li>
             {
               linha.subMenus.map(departamento =>
-                <li class={`menu__item menu__item-subcategoria ${departamento.subMenus.length > 0 ? 'menu__item--has-subcategoria' : ''}`}>
-                  <a href="categoria.html">{departamento.nome}</a>
+                <li class={`menu__item menu__item-subcategoria ${isEmpty(departamento.subMenus) ? '' : 'menu__item--has-subcategoria'}`}>
+                  <a href={`/category/${departamento.slug}`}>{departamento.nome}</a>
                   {
-                    departamento.subMenus.length > 0 &&
+                    !isEmpty(departamento.subMenus) &&
                     <>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#subcategorias" aria-controls="subcategorias" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="far fa-chevron-right"></i>
@@ -53,7 +53,7 @@ function MenuSeeAllItem({ item: linha }) {
                         {
                           departamento.subMenus.map(subDepartamento =>
                             <li class="menu__item">
-                              <a href="categoria.html">
+                              <a href={`/category/${subDepartamento.slug}`}>
                                 {subDepartamento.nome}
                               </a>
                             </li>
@@ -97,11 +97,11 @@ function Menu({ categories }) {
           </a>
         </li>
 
-        {menu && menu.slice(0, 5).map((item) => (
+        {menu && menu.slice(0, 5).map((linha) => (
           <li className="menu__item menu__item--has-subcategoria" key={shortid()}>
-            <a href="/categoria.html">
-              <img src={`${staticUrl}${item.imagem}`} alt={item.nome} />
-              <span>{item.nome}</span>
+            <a href={`/category/${linha.slug}`}>
+              <img src={`${staticUrl}${linha.imagem}`} alt={linha.nome} />
+              <span>{linha.nome}</span>
             </a>
             <button
               className="navbar-toggler"
@@ -116,33 +116,36 @@ function Menu({ categories }) {
             </button>
             <ul className="item__subcategorias collapse navbar-collapse nvl-1" id="filtros">
               <li className="category_father_name">
-                <a href="categoria.html">{item.nome}</a>
+                <a href={`/category/${linha.slug}`}>{linha.nome}</a>
               </li>
-              {item.subMenus && item.subMenus.map((subMenu) => (
+              {linha.subMenus && linha.subMenus.map((departamento) => (
                 <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria" key={shortid()}>
-                  <a href="categoria.html">{subMenu.nome}</a>
-                  <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#subcategorias"
-                    aria-controls="subcategorias"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                  >
-                    <i className="far fa-chevron-right" />
-                  </button>
-                  {!isEmpty(subMenu.subMenus) && (
-                    <ul className="subcategoria__group collapse navbar-collapse nvl-2" id="subcategorias">
-                      <li className="category_father_name">
-                        <a href="categoria.html">{subMenu.nome}</a>
-                      </li>
-                      {subMenu.subMenus && subMenu.subMenus.map((sub) => (
-                        <li className="menu__item" key={shortid()}>
-                          <a href="categoria.html">{sub.nome}</a>
+                  <a href={`/category/${departamento.slug}`}>{departamento.nome}</a>
+                  {!isEmpty(departamento.subMenus) && (
+                    <>
+                      <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#subcategorias"
+                        aria-controls="subcategorias"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                      >
+                        <i className="far fa-chevron-right" />
+                      </button>
+
+                      <ul className="subcategoria__group collapse navbar-collapse nvl-2" id="subcategorias">
+                        <li className="category_father_name">
+                          <a href={`/category/${departamento.slug}`}>{departamento.nome}</a>
                         </li>
-                      ))}
-                    </ul>
+                        {departamento.subMenus && departamento.subMenus.map((subDepartamento) => (
+                          <li className="menu__item" key={shortid()}>
+                            <a href={`/category/${subDepartamento.slug}`}>{subDepartamento.nome}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
                   )}
                 </li>
               ))}
