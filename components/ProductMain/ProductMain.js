@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Slick from 'react-slick';
+import { isEmpty } from "lodash";
 
 import ProductCard from '../Product';
 import settingsRelateds from '../MostWanted/settings';
@@ -13,7 +14,7 @@ import BuyBox from "../BuyBox";
 import PhotoGalery from "../PhotoGalery";
 import PaymentOptionsModal from "../PaymentOptionsModal";
 
-export function ProductMain({ product }) {
+export function ProductMain({ product, buyTogether, relateds }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
 
   return (
@@ -28,7 +29,10 @@ export function ProductMain({ product }) {
         </div>
       </div>
 
-      <BuyTogether mainProduct={product} relatedsProducts={product.buyTogether} />
+      {
+        buyTogether &&
+        <BuyTogether mainProduct={product} relatedsProducts={buyTogether} />
+      }
 
       <Tab>
         <TabPanel title='Descrição' active>
@@ -42,15 +46,20 @@ export function ProductMain({ product }) {
         </TabPanel>
       </Tab>
 
-      <section className="container_serie-ds" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-        <h2 className="title-border-left">Produtos relacionados</h2>
-        <Slick className="products-carousel" {...settingsRelateds}>
-          {product.relatedsProducts.map(p => <ProductCard mostWanted product={p} key={p.id} />)}
-        </Slick>
-      </section>
+      {
+        !isEmpty(relateds) &&
+        <section className="container_serie-ds" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
+          <h2 className="title-border-left">Produtos relacionados</h2>
+          <Slick className="products-carousel" {...settingsRelateds}>
+            {relateds.map(p => <ProductCard mostWanted product={p} key={p.id} />)}
+          </Slick>
+        </section>
+      }
 
-      {!!payOptionsVisible &&
-        <PaymentOptionsModal hide={() => setPayOptionsVisible(false)} />}
+      {
+        !!payOptionsVisible &&
+        <PaymentOptionsModal hide={() => setPayOptionsVisible(false)} />
+      }
     </main>
   );
 }
