@@ -1,6 +1,6 @@
 export const products = [
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product1.jpg',
     id: '7',
     id: '1',
@@ -15,7 +15,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product2.jpg',
     id: '2',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -29,7 +29,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product3.jpg',
     id: '3',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -43,7 +43,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product4.jpg',
     id: '4',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -57,7 +57,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product5.jpg',
     id: '5',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -71,7 +71,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product1.jpg',
     id: '6',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -85,7 +85,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product2.jpg',
     id: '7',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -99,7 +99,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product3.jpg',
     id: '8',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -113,7 +113,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product4.jpg',
     id: '9',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -127,7 +127,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product5.jpg',
     id: '10',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -141,7 +141,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product1.jpg',
     id: '11',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -155,7 +155,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product2.jpg',
     id: '12',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -169,7 +169,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product3.jpg',
     id: '13',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -183,7 +183,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product4.jpg',
     id: '14',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
@@ -197,7 +197,7 @@ export const products = [
     category: '+ categoria lorem ipsum',
   },
   {
-    link: 'produto.html',
+    link: '/product/1',
     image: '/images/product5.jpg',
     id: '15',
     name: 'Lorem ipsum sit amet consectetur adipiscing elit sed do eiusmod tempor incidi...',
