@@ -40,11 +40,13 @@ function Topbar() {
           </a>
         </Link>
 
-        <span className="topbar__top">
-          Varejista de peças automotivas
-          {' '}
-          <strong className="txt-yellow">desde {anoDaFundacao}</strong>
-        </span>
+        {anoDaFundacao &&
+          <span className="topbar__top">
+            Varejista de peças automotivas
+            {' '}
+            <strong className="txt-yellow">desde {anoDaFundacao}</strong>
+          </span>
+        }
 
         <span className="topbar__top">
           <strong>

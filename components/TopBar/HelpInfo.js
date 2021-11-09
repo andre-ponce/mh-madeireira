@@ -4,9 +4,9 @@ function HelpInfo({ emailAtendimento, telefone, whatsapp }) {
       <img src="/images/help.svg" alt="Ajuda" />
       <span>Ajuda</span>
       <div className="block_hover">
-        <span>{emailAtendimento}</span>
-        <span>{telefone}</span>
-        <span>{whatsapp}</span>
+        {emailAtendimento && <span>{emailAtendimento}</span>}
+        {telefone && <span>{telefone}</span>}
+        {whatsapp && <span>{whatsapp}</span>}
       </div>
     </div>
   );
