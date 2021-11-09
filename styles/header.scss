@@ -395,12 +395,19 @@
                     color: white;
                     font-size: 14px;
                     display: flex;
-                    height: 31px;
                     align-items: center;
                     padding-left: 20px;
 
                     & > img {
                       display: none;
+                    }
+
+                    & > span {
+                      display: flex;
+                      min-height: 31px;
+                      line-height: 1.3rem;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
                     }
                   }
 
