@@ -1,9 +1,7 @@
 import Head from 'next/head';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 import { ProductMain } from "../../components/ProductMain/ProductMain";
-
 import { products } from '../../data';
 
 export async function getServerSideProps() {
@@ -12,9 +10,9 @@ export async function getServerSideProps() {
       authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
     },
   });
-  
+
   const global = await response.json();
-  
+
   if (!global) {
     return {
       notFound: true,
@@ -47,39 +45,26 @@ export async function getServerSideProps() {
       },
     ],
     buyTogether: products.slice(1, 6),
-  }) 
+  })
 
   return {
-    props: { 
-      global, 
+    props: {
+      global,
       product,
     },
   };
 }
 
 function Product({ global, product }) {
-
-  const {
-    static: {
-      urlBaseEstaticos,
-      diretorioCategorias,
-    },
-    menu,
-  } = global;
-
-  const categories = {
-    staticUrl: `${urlBaseEstaticos}${diretorioCategorias}/`,
-    menu,
-  };
-
   return (
     <>
       <Head>
         <title>Home - Braskape</title>
       </Head>
-      <Header categories={categories} />
-      <ProductMain product={product}/>
-      <Footer />
+
+      <Layout globalData={global}>
+        <ProductMain product={product} />
+      </Layout>
     </>
   )
 }
