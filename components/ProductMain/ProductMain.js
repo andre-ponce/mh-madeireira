@@ -3,7 +3,7 @@ import Slick from 'react-slick';
 import { isEmpty } from "lodash";
 
 import ProductCard from '../Product';
-import settingsRelateds from '../MostWanted/settings';
+import settingsRelateds from '../ProductCarousel/settings';
 import Breadcrumb from "../Breadcrumb";
 import Tab from "../Tab";
 import TabPanel from "../Tab/TabPanel";
@@ -13,6 +13,7 @@ import BuyTogether from "../BuyTogether";
 import BuyBox from "../BuyBox";
 import PhotoGalery from "../PhotoGalery";
 import PaymentOptionsModal from "../PaymentOptionsModal";
+import ProductCarousel from "../ProductCarousel";
 
 export function ProductMain({ product, buyTogether, relateds }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
@@ -48,12 +49,7 @@ export function ProductMain({ product, buyTogether, relateds }) {
 
       {
         !isEmpty(relateds) &&
-        <section className="container_serie-ds" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-          <h2 className="title-border-left">Produtos relacionados</h2>
-          <Slick className="products-carousel" {...settingsRelateds}>
-            {relateds.map(p => <ProductCard mostWanted product={p} key={p.id} />)}
-          </Slick>
-        </section>
+        <ProductCarousel products={relateds} title="Produtos relacionados" />
       }
 
       {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { isMobile } from 'react-device-detect';
 
 import Banner from '../components/Banner';
-import MostWanted from '../components/MostWanted';
+import ProductCarousel from '../components/ProductCarousel';
 import CenterBanner from '../components/CenterBanner';
 import Highlights from '../components/Highlights';
 import Brands from '../components/Brands';
@@ -62,7 +62,7 @@ function Home({ data }) {
       <Layout globalData={data} >
         <Banner isMobile={isMobile} />
         <Wrapper>
-          <MostWanted products={products} />
+          <ProductCarousel products={products} title="Os mais buscados" />
           <CenterBanner />
           <Highlights products={products} />
           <Brands brands={brands} />
