@@ -46,7 +46,11 @@ function Topbar() {
           <strong className="txt-yellow">desde {anoDaFundacao}</strong>
         </span>
 
-        <span className="topbar__top"><strong className="txt-yellow">{emailAtendimento}</strong></span>
+        <span className="topbar__top">
+          <strong>
+            <a className="txt-yellow" href={`mailto:${emailAtendimento}`}>{emailAtendimento}</a>
+          </strong>
+        </span>
 
         <span className="topbar__top">
           Televendas:
