@@ -41,7 +41,13 @@ function Category({ data }) {
 
     <Layout globalData={data}>
       <Banner isCategory />
-      <Breadcrumb slug={slug} classPrefix="category" />
+      <Breadcrumb
+        path={[{
+          nome: product.name,
+          slug: `/category/${slug}`
+        }]}
+        classPrefix="category"
+      />
       <CategoryMain products={products} filters={filters} />
     </Layout>
     </>

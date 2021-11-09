@@ -18,7 +18,15 @@ export function ProductMain({ product, buyTogether, relateds }) {
 
   return (
     <main className="container_serie-ds">
-      <Breadcrumb slug="Produto" classPrefix="product" />
+
+      <Breadcrumb
+        path={[{
+          nome: product.name,
+          slug: "/product/1"
+        }]}
+        classPrefix="product"
+      />
+
       <div className="main__product">
         <div className="product__container-left" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
           <PhotoGalery photos={product.media} />
