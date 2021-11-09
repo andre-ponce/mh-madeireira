@@ -60,7 +60,7 @@ function Menu() {
                 <a href={`/category/${linha.slug}`}>{linha.nome}</a>
               </li>
               {linha.subMenus && linha.subMenus.map((departamento) => (
-                <MenuNivelOne category={departamento}/>
+                <MenuNivelOne key={departamento.id} category={departamento}/>
               ))}
             </ul>
           </li>

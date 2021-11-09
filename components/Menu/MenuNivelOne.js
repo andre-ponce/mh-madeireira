@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash';
 
 function MenuNivelOne({ category }) {
   return (
-    <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria" key={category.id}>
+    <li className="menu__item menu__item-subcategoria menu__item--has-subcategoria">
       <a href={`/category/${category.slug}`}>{category.nome}</a>
       {!isEmpty(category.subMenus) && (
         <>

@@ -45,7 +45,7 @@ export default function CartResume() {
                 <ul className="cart-container__items">
                   {
                     itens.map(item =>
-                      <CartResumeItem item={item} />)
+                      <CartResumeItem key={item.id} item={item} />)
                   }
                 </ul>
                 <div className="cart-container__subtotal">
