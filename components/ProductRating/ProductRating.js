@@ -1,4 +1,4 @@
-export function ProductRating() {
+function ProductRating() {
   return (
     <>
       <div className="infos__avaliation">
@@ -14,3 +14,5 @@ export function ProductRating() {
     </>
   );
 }
+
+export default ProductRating;

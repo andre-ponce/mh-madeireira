@@ -1,1 +1,1 @@
-export { ProductRating as default } from './ProductRating'
+export { default } from './ProductRating'

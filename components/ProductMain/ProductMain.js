@@ -1,9 +1,6 @@
 import { useState } from "react";
-import Slick from 'react-slick';
 import { isEmpty } from "lodash";
 
-import ProductCard from '../Product';
-import settingsRelateds from '../ProductCarousel/settings';
 import Breadcrumb from "../Breadcrumb";
 import Tab from "../Tab";
 import TabPanel from "../Tab/TabPanel";
@@ -14,6 +11,7 @@ import BuyBox from "../BuyBox";
 import PhotoGalery from "../PhotoGalery";
 import PaymentOptionsModal from "../PaymentOptionsModal";
 import ProductCarousel from "../ProductCarousel";
+import ProductRating from "../ProductRating";
 
 export function ProductMain({ product, buyTogether, relateds }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
@@ -39,10 +37,12 @@ export function ProductMain({ product, buyTogether, relateds }) {
         <TabPanel title='Descrição' active>
           <ProductDescription rawHtml={'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p><div className="triade__item__title">INFORMAÇÕES TÉCNICAS</div><dl><dt>Composição</dt><dd>100% Algodão</dd></dl>'} />
         </TabPanel>
-        <TabPanel title='De sua opinião'>
+        <TabPanel title='Avalie este produto'>
           <a href="">Dê a sua opnião</a>
+          <ProductRating />
+
         </TabPanel>
-        <TabPanel title='Indique um amigo'>
+        <TabPanel title='Indique para um amigo'>
           <ProductRecommendForm />
         </TabPanel>
       </Tab>
