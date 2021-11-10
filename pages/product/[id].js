@@ -37,7 +37,7 @@ function Product({ global, product }) {
 
   const [relateds, setRelateds] = useState([]);
   const [buyTogether, setBuyTogether] = useState([]);
-  const [galery, setGalery] = useState([]);
+  const [galery, setGalery] = useState();
 
   useEffect(() => {
     async function getRelateds () {

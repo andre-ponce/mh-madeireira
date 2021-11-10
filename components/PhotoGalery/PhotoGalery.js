@@ -1,32 +1,64 @@
 import { useEffect } from "react";
 import Slick from 'react-slick';
+import { Loader } from "./Loader";
 
-export function PhotoGalery({ photos }) {
+const defaultSettingsGalery = {
+  dots: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: false
+}
 
-  const settingsGalery = {
-    dots: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplay: false,
-    autoplaySpeed: 2000,
-  }
+export function PhotoGalery({ photos, slickSettings }) {
+
+  const settings = {
+    ...defaultSettingsGalery,
+    ...slickSettings
+  };
 
   useEffect(() => {
-    const gl = document.querySelectorAll('.slider__product__galery .slick-slide:not(.slick-cloned)');
-    const bl = document.querySelectorAll('.slider__product__galery .slick-dots > li');
 
-    for (a = 0; a < gl.length; a++) {
-      const urlImg = gl[a].querySelector('img').getAttribute('src');
-      bl[a].style.backgroundImage = 'url("' + urlImg + '")';
+    if (!photos) {
+      return;
     }
-  }, []);
+
+    const slides = document.querySelectorAll('.slider__product__galery .slick-slide:not(.slick-cloned) img');
+    const li = document.querySelectorAll('.slider__product__galery .slick-dots > li');
+
+    slides.forEach((img, index) => {
+      if (li[index]) {
+        li[index].style.backgroundImage = `url("${img.src}")`;
+      }
+    });
+  }, [photos]);
+
+  /**
+   * O Slick só aplica as setas de navegação quando existem mais de uma imagem, o que é o ideal!
+   * Mas no layout da galeria, isso deixa uma vazio bem desconfortável, então duplico a imagem,
+   * apenas para manter as arrows e suprir esse espaço.
+   */
+  const galery = [...(photos || [])];
+  if (galery.length == 1) {
+    galery.push(galery[0]);
+  }
 
   return (
-    <Slick className="slider__product__galery" {...settingsGalery}>
-      {photos.map(photo => (
-        <div key={photo.id}><img src={photo.src} alt={photo.alt} key={photo.id} /></div>
-      ))}
-    </Slick>
+    photos == undefined
+      ? (
+        <Slick className="slider__product__galery" {...settings}>
+          <div>
+            <Loader />
+          </div>
+        </Slick>
+      )
+      : (
+        <Slick className={`slider__product__galery ${photos.length > 1 ? 'slider__product__galery--has-thumbs' : ''}`} {...settings}>
+          {galery.map(photo => (
+            <div key={photo.id}>
+              <img src={photo.url} alt={photo.textoAlternativo} title={photo.titulo} />
+            </div>
+          ))}
+        </Slick>
+      )
   );
 }
