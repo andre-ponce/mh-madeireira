@@ -13,15 +13,15 @@ import PaymentOptionsModal from "../PaymentOptionsModal";
 import ProductCarousel from "../ProductCarousel";
 import ProductRating from "../ProductRating";
 
-export function ProductMain({ product, buyTogether, relateds }) {
+export function ProductMain({ product, buyTogether, relateds, galery }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
-
+  console.log()
   return (
     <main className="container_serie-ds">
 
       <Breadcrumb
         path={[{
-          nome: product.name,
+          nome: product.nome,
           slug: "/product/1"
         }]}
         classPrefix="product"
@@ -29,7 +29,7 @@ export function ProductMain({ product, buyTogether, relateds }) {
 
       <div className="main__product">
         <div className="product__container-left" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-          <PhotoGalery photos={product.media} />
+          <PhotoGalery photos={galery} />
         </div>
         <div className="product__container-right" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
           <BuyBox />
@@ -37,7 +37,7 @@ export function ProductMain({ product, buyTogether, relateds }) {
       </div>
 
       {
-        buyTogether &&
+        !isEmpty(buyTogether) &&
         <BuyTogether mainProduct={product} relatedsProducts={buyTogether} />
       }
 

@@ -41,6 +41,7 @@ function Product({ global, product }) {
 
   const [relateds, setRelateds] = useState([]);
   const [buyTogether, setBuyTogether] = useState([]);
+  const [galery, setGalery] = useState([]);
 
   useEffect(() => {
     async function init () {
@@ -48,7 +49,28 @@ function Product({ global, product }) {
       setRelateds(await getRelateds(id));
     }
 
-    init();
+    async function getRelateds () {
+      const res = await fetch(`/api/product/${id}/relateds`);
+      if (res.status == 200) {
+        const relateds = await res.json();
+        setRelateds(relateds);
+        return;
+      }
+      setRelateds([]);
+    }
+
+    async function getGalery () {
+      const res = await fetch(`/api/product/${id}/galery`);
+      if (res.status == 200) {
+        const relateds = await res.json();
+        setGalery(relateds);
+        return;
+      }
+      setGalery([]);
+    }
+
+    getRelateds();
+    getGalery();
   }, [id]);
 
   return (
@@ -62,6 +84,7 @@ function Product({ global, product }) {
           product={product}
           buyTogether={buyTogether}
           relateds={relateds}
+          galery={galery}
         />
       </Layout>
     </>

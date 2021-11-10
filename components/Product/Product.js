@@ -1,58 +1,55 @@
 import React, { useState } from 'react';
+import { format } from '../../helpers';
 
 function Product({ product, mostWanted }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="product" style={mostWanted ? { width: '100%' } : {}}>
-      <a href={product.link} className="product__topbar">
-        <img src={product.image} alt={product.name} />
-        <span className="topbar__discount">{product.discount}</span>
+      <a href={`/product/${product.id}`} className="product__topbar">
+        <img src={product.fotoUrl || '/images/no-image-avaliable.jpg'} alt={product.name} />
+        {product.desconto > 0 && <span className="topbar__discount">{product.desconto}</span>}
       </a>
       <div className="product__infos">
-        <strong className="infos__brand">{product.brand}</strong>
-        <span className="infos__ref">{product.ref}</span>
-        <a href={product.link}>
+        <strong className="infos__brand">{product.marcaNome}</strong>
+        <span className="infos__ref">{product.sku}</span>
+        <a href={`/product/${product.id}`}>
           <h3 className="infos__name">
-            {product.name}
+            {product.nome}
           </h3>
         </a>
       </div>
       <div className="product__prices">
-        <span className="prices__old">{product.oldPrice}</span>
-        <strong className="prices__actual">{product.price}</strong>
+        <span className="prices__old">{format.currency(product.precoDe)}</span>
+        <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
         <span className="prices__installments">
-          {' '}
-          {product.installments.split(' ', 2).join(' ')}
+          {product.parcelamento}x de
           {' '}
           <strong>
-            {product.installments.split(' ', 5)[2]}
-            {' '}
-            {product.installments.split(' ', 5)[3]}
+            {format.currency(product.valorParcelamento)}
           </strong>
           {' '}
-          {product.installments.split(' ', 5)[4]}
-          {' '}
+          s/ juros
         </span>
       </div>
       <div className="product__actions">
-        <a
+        {/* <a
           className="actions__link-category"
           href={product.categoryLink}
         >
           {product.category}
 
-        </a>
+        </a> */}
         <div className="actions__buy">
           <div className="number-input">
-            
-            <input 
-              className="quantity" 
-              min="0" 
-              name="quantity" 
-              type="number" 
-              value={quantity} 
-              onChange={(e) => setQuantity(e.target.value)} 
+
+            <input
+              className="quantity"
+              min="0"
+              name="quantity"
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
             />
 
             <button
