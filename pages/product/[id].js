@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Layout from '../../components/Layout';
 import { ProductMain } from "../../components/ProductMain/ProductMain";
-import {
-  getBuyTogether,
-  getProduct,
-  getRelateds
-} from '../../services/product.service'
+import { getProduct } from '../../services/product.service'
 
 export async function getServerSideProps({query}) {
   const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {
@@ -44,11 +40,6 @@ function Product({ global, product }) {
   const [galery, setGalery] = useState([]);
 
   useEffect(() => {
-    async function init () {
-      setBuyTogether(await getBuyTogether(id));
-      setRelateds(await getRelateds(id));
-    }
-
     async function getRelateds () {
       const res = await fetch(`/api/product/${id}/relateds`);
       if (res.status == 200) {
