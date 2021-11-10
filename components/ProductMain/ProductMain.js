@@ -32,7 +32,7 @@ export function ProductMain({ product, buyTogether, relateds, galery }) {
           <PhotoGalery photos={galery} />
         </div>
         <div className="product__container-right" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-          <BuyBox />
+          <BuyBox product={product} />
         </div>
       </div>
 
