@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
+
 import { format } from '../../helpers';
 
 function Product({ product, mostWanted }) {
@@ -6,18 +8,22 @@ function Product({ product, mostWanted }) {
 
   return (
     <div className="product" style={mostWanted ? { width: '100%' } : {}}>
-      <a href={`/product/${product.id}`} className="product__topbar">
-        <img src={product.fotoUrl || '/images/no-image-avaliable.jpg'} alt={product.name} />
-        {product.desconto > 0 && <span className="topbar__discount">{product.desconto}</span>}
-      </a>
+      <Link href={`/product/${product.id}`} passHref>
+        <a className="product__topbar">
+          <img src={product.fotoUrl || '/images/no-image-avaliable.jpg'} alt={product.name} />
+          {product.desconto > 0 && <span className="topbar__discount">{product.desconto}</span>}
+        </a>
+      </Link>
       <div className="product__infos">
         <strong className="infos__brand">{product.marcaNome}</strong>
         <span className="infos__ref">{product.sku}</span>
-        <a href={`/product/${product.id}`}>
-          <h3 className="infos__name">
-            {product.nome}
-          </h3>
-        </a>
+        <Link href={`/product/${product.id}`} passHref>
+          <a>
+            <h3 className="infos__name">
+              {product.nome}
+            </h3>
+          </a>
+        </Link>
       </div>
       <div className="product__prices">
         <span className="prices__old">{format.currency(product.precoDe)}</span>
