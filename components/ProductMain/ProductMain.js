@@ -15,7 +15,7 @@ import ProductRating from "../ProductRating";
 
 export function ProductMain({ product, buyTogether, relateds, galery }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
-  console.log()
+
   return (
     <main className="container_serie-ds">
 
@@ -32,7 +32,7 @@ export function ProductMain({ product, buyTogether, relateds, galery }) {
           <PhotoGalery photos={galery} />
         </div>
         <div className="product__container-right" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-          <BuyBox product={product} />
+          <BuyBox product={product} openPaymentModal={() => setPayOptionsVisible(true)} />
         </div>
       </div>
 

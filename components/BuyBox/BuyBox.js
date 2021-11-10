@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { format } from "../../helpers";
 
-export function BuyBox({ product }) {
+export function BuyBox({ product, openPaymentModal }) {
   const [quantity, setQuantity] = useState(1);
   const [cep, setCep] = useState('');
 
@@ -47,7 +47,7 @@ export function BuyBox({ product }) {
           <button className="buy__button">COMPRAR</button>
         </div>
         <div className="price-infos__installments-group">
-          <a className="open__modal" onClick={() => setPayOptionsVisible(true)}>Mais opcões de pagamento</a>
+          <a className="open__modal" onClick={openPaymentModal}>Mais opcões de pagamento</a>
           <div className="installments-group__installments">
             <span>{product.parcelamento}x de {format.currency(product.valorParcelamento)}</span>
           </div>
