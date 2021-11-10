@@ -39,13 +39,11 @@ function Product({ product, mostWanted }) {
         </span>
       </div>
       <div className="product__actions">
-        {/* <a
-          className="actions__link-category"
-          href={product.categoryLink}
-        >
-          {product.category}
-
-        </a> */}
+        <Link href={product.categoryLink || `/product/${product.id}`}>
+          <a className="actions__link-category">
+            {product.categoria || ' '}
+          </a>
+        </Link>
         <div className="actions__buy">
           <div className="number-input">
 
