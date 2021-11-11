@@ -2,33 +2,19 @@ import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 
 import InstitutionalMain from '../../components/InstitutionalMain';
 import InstitutionalSeo from '../../components/InstitutionalMain/InstitutionalSeo';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import Layout from '../../components/Layout';
 
-function Institutional ({ global, page }) {
+function Institutional({ global, page }) {
   if (page.scripts) {
     useInsecureRawScript(page.scripts);
   }
 
-  const {
-    static: {
-      urlBaseEstaticos,
-      diretorioCategorias,
-    },
-    menu,
-  } = global;
-
-  const categories = {
-    staticUrl: `${urlBaseEstaticos}${diretorioCategorias}/`,
-    menu,
-  };
-
   return (
     <>
-      <InstitutionalSeo {...page}/>
-      <Header categories={categories} />
-      <InstitutionalMain titulo={page.titulo} conteudo={page.conteudo} />
-      <Footer />
+      <Layout globalData={global}>
+        <InstitutionalSeo {...page} />
+        <InstitutionalMain titulo={page.titulo} conteudo={page.conteudo} />
+      </Layout>
     </>
   )
 }
@@ -54,7 +40,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
-  
+
   const page = await pageRes.json();
 
   return {
