@@ -3,6 +3,7 @@ import useInsecureRawScript from '../../hooks/useInsecureRawScript'
 import InstitutionalMain from '../../components/InstitutionalMain';
 import InstitutionalSeo from '../../components/InstitutionalMain/InstitutionalSeo';
 import Layout from '../../components/Layout';
+import { getInstitutionalPage } from '../../services/institutional.service';
 
 function Institutional({ global, page }) {
   if (page.scripts) {
@@ -26,25 +27,18 @@ export async function getServerSideProps(context) {
     },
   });
 
-  const data = await response.json();
+  const global = await response.json();
 
   const { slug } = context.query;
-  const pageRes = await fetch(`https://api-catalogo.maximaweb.com.br/institucional/${slug}`, {
-    headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
-    },
-  });
-
-  if (pageRes.status == 404) {
+  const page = await getInstitutionalPage(slug);
+  if (page.notFound) {
     return {
       notFound: true,
     };
   }
 
-  const page = await pageRes.json();
-
   return {
-    props: { global: data, page },
+    props: { global, page },
   };
 }
 
