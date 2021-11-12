@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { format } from "../../helpers";
+import { format, image } from "../../helpers";
 
 export function BuyTogetherItem({ product, isChecked, onChange }) {
   const ref = useRef();
@@ -22,7 +22,7 @@ export function BuyTogetherItem({ product, isChecked, onChange }) {
       />
 
       <label className="label-img" htmlFor={`buy-together-${product.id}`}>
-        <img src={product.fotoUrl} style={{ maxHeight: '140px', maxWidth: '140px' }} alt="product" />
+        <img src={image.fallback(product.fotoUrl)} style={{ maxHeight: '140px', maxWidth: '140px' }} alt="product" />
       </label>
 
       <label htmlFor={`buy-together-${product.id}`} className="option-to-buy__infos">

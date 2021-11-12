@@ -1,10 +1,10 @@
-import { format } from "../../helpers";
+import { format, image } from "../../helpers";
 
 export function BuyTogetherMainProduct({ product }) {
   return (
     <div className="product">
       <a className="product__topbar">
-        <img src={product.fotoUrl} alt="Produto x" />
+        <img src={image.fallback(product.fotoUrl)} alt="Produto x" />
         {
           product.desconto > 0 &&
           <span className="topbar__discount">

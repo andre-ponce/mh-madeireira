@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-import { format } from '../../helpers';
+import { format, image } from '../../helpers';
 
 function Product({ product, mostWanted }) {
   const [quantity, setQuantity] = useState(1);
@@ -10,7 +10,7 @@ function Product({ product, mostWanted }) {
     <div className="product" style={mostWanted ? { width: '100%' } : {}}>
       <Link href={`/product/${product.id}`} passHref>
         <a className="product__topbar">
-          <img src={product.fotoUrl || '/images/no-image-avaliable.jpg'} alt={product.name} />
+          <img src={image.fallback(product.fotoUrl) || '/images/no-image-avaliable.jpg'} alt={product.name} />
           {product.desconto > 0 && <span className="topbar__discount">{product.desconto}</span>}
         </a>
       </Link>

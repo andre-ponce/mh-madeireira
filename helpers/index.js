@@ -27,3 +27,9 @@ export const format = {
     }).format(value);
   }
 }
+
+export const image = {
+  fallback(url) {
+    return url || '/images/no-image-avaliable.jpg'
+  }
+}
