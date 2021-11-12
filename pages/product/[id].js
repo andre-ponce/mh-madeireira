@@ -21,7 +21,13 @@ export async function getServerSideProps({query}) {
     };
   }
 
-  const product = await getProduct(query.id);
+  const { notFound, ...product} = await getProduct(query.id);
+
+  if (notFound) {
+    return {
+      notFound
+    }
+  }
 
   return {
     props: {
