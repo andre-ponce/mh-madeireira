@@ -6,12 +6,16 @@ import { format, image } from '../../helpers';
 function Product({ product, mostWanted }) {
   const [quantity, setQuantity] = useState(1);
 
+  const precoDe = product.precoDe > product.precoPor
+    ? product.precoDe
+    : product.precoPor * 1.05;
+
   return (
     <div className="product" style={mostWanted ? { width: '100%' } : {}}>
       <Link href={`/product/${product.id}`} passHref>
         <a className="product__topbar">
           <img src={image.fallback(product.fotoUrl) || '/images/no-image-avaliable.jpg'} alt={product.name} />
-          {product.desconto > 0 && <span className="topbar__discount">{product.desconto}</span>}
+          {<span className="topbar__discount">{format.discount(product.desconto > 0 ? product.desconto : 5)}</span>}
         </a>
       </Link>
       <div className="product__infos">
@@ -26,7 +30,7 @@ function Product({ product, mostWanted }) {
         </Link>
       </div>
       <div className="product__prices">
-        <span className="prices__old">{format.currency(product.precoDe)}</span>
+        <span className="prices__old">{format.currency(precoDe)}</span>
         <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
         <span className="prices__installments">
           {product.parcelamento}x de

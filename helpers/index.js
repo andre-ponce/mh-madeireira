@@ -25,6 +25,10 @@ export const format = {
       currency: "BRL",
       maximumFractionDigits: 2
     }).format(value);
+  },
+
+  discount(value) {
+    return `-${value.toFixed(0)}%`
   }
 }
 
