@@ -274,8 +274,12 @@
             padding: 0px;
             min-height: 175px;
             align-items: center;
-            img {
-              margin: 0 10px;
+            .label-img{
+              min-width: 155px;
+              max-width: 155px;
+              img {
+                margin: 0 10px;
+              }
             }
             .option-to-buy {
               &__infos {
