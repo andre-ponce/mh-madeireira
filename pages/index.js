@@ -9,28 +9,17 @@ import CenterBanner from '../components/CenterBanner';
 import Highlights from '../components/Highlights';
 import Brands from '../components/Brands';
 import OtherCategories from '../components/OtherCategories';
-
 import Layout from '../components/Layout';
-
-import { products } from '../data';
+import { getHomeData } from '../services/home.service'
+import { getGlobalData } from '../services/dados-globais.service'
 
 export async function getServerSideProps() {
-  const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {
-    headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
-    },
-  });
 
-  const data = await response.json();
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+  const home = await getHomeData();
+  const global = await getGlobalData();
 
   return {
-    props: { data },
+    props: { home, global },
   };
 }
 
@@ -39,34 +28,43 @@ const Wrapper = styled.main`
   background: #eeeeee;
 `;
 
-function Home({ data }) {
+function Home({ home, global }) {
+
   const {
     static: {
       urlBaseEstaticos,
       diretorioMarcas,
     },
-    marcas,
-  } = data;
+    seo: {
+      tituloGlobal
+    }
+  } = global;
+
+  const {
+    maisBuscados,
+    destaques,
+    carrosselMarcas
+  } = home;
 
   const brands = {
     staticUrl: `${urlBaseEstaticos}${diretorioMarcas}/`,
-    marcas,
+    marcas: carrosselMarcas,
   };
 
   return (
     <>
       <Head>
-        <title>Home - Braskape</title>
+        <title>{tituloGlobal}</title>
       </Head>
 
-      <Layout globalData={data} >
+      <Layout globalData={global} >
         <Banner isMobile={isMobile} />
         <Wrapper>
-          <ProductCarousel products={products} title="Os mais buscados" />
+          <ProductCarousel products={maisBuscados} title="Os mais buscados" />
           <CenterBanner />
-          <Highlights products={products} />
+          <Highlights products={destaques} />
           <Brands brands={brands} />
-          <OtherCategories />
+          {/* <OtherCategories /> */}
         </Wrapper>
       </Layout>
     </>
