@@ -43,7 +43,8 @@ function Home({ home, global }) {
   const {
     maisBuscados,
     destaques,
-    carrosselMarcas
+    carrosselMarcas,
+    carrosselBanners
   } = home;
 
   const brands = {
@@ -58,7 +59,7 @@ function Home({ home, global }) {
       </Head>
 
       <Layout globalData={global} >
-        <Banner isMobile={isMobile} />
+        <Banner isMobile={isMobile} carousel={carrosselBanners} />
         <Wrapper>
           <ProductCarousel products={maisBuscados} title="Os mais buscados" />
           <CenterBanner />

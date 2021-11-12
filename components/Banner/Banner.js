@@ -15,7 +15,13 @@ function CategoryBanner() {
   );
 }
 
-function Banner({ isMobile, isCategory }) {
+function Wrapper({ children, isMobile }) {
+  return isMobile
+    ? <div data-aos="zoom-in" data-aos-duration="1000">{children}</div>
+    : <>{children}</>;
+}
+
+function Banner({ carousel, isMobile, isCategory }) {
   const [isServer, setServerState] = useState(true);
 
   const SliderRendered = dynamic(import('react-slick'), {
@@ -32,44 +38,32 @@ function Banner({ isMobile, isCategory }) {
     );
   }
 
+  const urlImage = ({urlMobile, url}, isMobile) => {
+    if (isMobile) {
+      return urlMobile || url;
+    }
+
+    return url;
+  }
+
   return (
     <>
-      {isMobile ? (
+      <Wrapper isMobile={isMobile}>
         <SliderRendered {...bannerSettings}>
-          <a href="/">
-            <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
-          </a>
-          <a href="/">
-            <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
-          </a>
-          <a href="/">
-            <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
-          </a>
-          <a href="/">
-            <img src="/images/full-banner-mobile.png" alt="Bem vindo à nova loja" />
-          </a>
+          {
+            carousel.map(banner => (
+              <a href={banner.href} target={banner.target || '_blank'}>
+                <img
+                  src={urlImage(banner, isMobile)}
+                  title={banner.titulo}
+                  alt={banner.textoAlternativo}
+                />
+              </a>
+            ))
+          }
         </SliderRendered>
-      ) : (
-        <div
-          data-aos="zoom-in"
-          data-aos-duration="1000"
-        >
-          <SliderRendered {...bannerSettings}>
-            <a href="/">
-              <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
-            </a>
-            <a href="/">
-              <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
-            </a>
-            <a href="/">
-              <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
-            </a>
-            <a href="/">
-              <img src="/images/braskape-banner.jpg" alt="Bem vindo à nova loja" />
-            </a>
-          </SliderRendered>
-        </div>
-      )}
+      </Wrapper>
+
       <div className="container_serie-ds">
         <SliderRendered {...bannerRullerSettings}>
           <a href="/">
