@@ -4,23 +4,12 @@ import { useEffect, useState } from 'react';
 
 import Layout from '../../components/Layout';
 import { ProductMain } from "../../components/ProductMain/ProductMain";
+import { getGlobalData } from '../../services/dados-globais.service';
 import { getProduct } from '../../services/product.service'
 
 export async function getServerSideProps({query}) {
-  const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {
-    headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
-    },
-  });
 
-  const global = await response.json();
-
-  if (!global) {
-    return {
-      notFound: true,
-    };
-  }
-
+  const global = await getGlobalData();
   const { notFound, ...product} = await getProduct(query.id);
 
   if (notFound) {

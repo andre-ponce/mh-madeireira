@@ -8,28 +8,16 @@ import Breadcrumb from '../../components/Breadcrumb';
 import CategoryMain from '../../components/CategoryMain';
 
 import { products, filters } from '../../data';
+import { getGlobalData } from '../../services/dados-globais.service';
 
 export async function getServerSideProps() {
-  const response = await fetch(process.env.API_DADOS_GLOBAIS_HOST, {
-    headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
-    },
-  });
-
-  const data = await response.json();
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
+  const global = await getGlobalData();
   return {
-    props: { data },
+    props: { global },
   };
 }
 
-function Category({ data }) {
+function Category({ global }) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -39,7 +27,7 @@ function Category({ data }) {
       <title>{`${slug.toUpperCase()} - Braskape`}</title>
     </Head>
 
-    <Layout globalData={data}>
+    <Layout globalData={global}>
       <Banner isCategory />
       <Breadcrumb
         path={[{
