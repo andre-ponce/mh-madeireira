@@ -92,6 +92,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
+      <div id="modal-container"></div>
     </>
   );
 }

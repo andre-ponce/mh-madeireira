@@ -57,3 +57,18 @@ export async function getRelateds (id) {
 
   return [];
 }
+
+export async function getPaymentConditions (id) {
+  const response = await fetch(`${process.env.API_HOST}/produto/${id}/condicoes-de-pagamento`, {
+    headers: {
+      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
+    },
+  });
+
+  if (response.status == 200) {
+    return await response.json();
+  }
+
+  return [];
+}
+

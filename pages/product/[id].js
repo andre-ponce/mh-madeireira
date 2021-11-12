@@ -54,11 +54,13 @@ function Product({ global, product }) {
   const [relateds, setRelateds] = useState([]);
   const [buyTogether, setBuyTogether] = useState([]);
   const [galery, setGalery] = useState();
+  const [payConditions, setPayConditions] = useState();
 
   useEffect(() => {
     fecthData(`/api/product/${id}/galery`, setGalery);
     fecthData(`/api/product/${id}/buy-together`, setBuyTogether);
     fecthData(`/api/product/${id}/relateds`, setRelateds);
+    fecthData(`/api/product/${id}/payment-conditions`, setPayConditions);
   }, [id]);
 
   return (
@@ -73,6 +75,7 @@ function Product({ global, product }) {
           buyTogether={buyTogether}
           relateds={relateds}
           galery={galery}
+          payConditions={payConditions}
         />
       </Layout>
     </>

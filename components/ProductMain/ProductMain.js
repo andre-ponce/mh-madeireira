@@ -9,13 +9,10 @@ import ProductDescription from "../ProductDescription";
 import BuyTogether from "../BuyTogether";
 import BuyBox from "../BuyBox";
 import PhotoGalery from "../PhotoGalery";
-import PaymentOptionsModal from "../PaymentOptionsModal";
 import ProductCarousel from "../ProductCarousel";
 import ProductRating from "../ProductRating";
 
-export function ProductMain({ product, buyTogether, relateds, galery }) {
-  const [payOptionsVisible, setPayOptionsVisible] = useState(false);
-
+export function ProductMain({ product, buyTogether, relateds, galery, payConditions }) {
   return (
     <main className="container_serie-ds">
 
@@ -32,7 +29,7 @@ export function ProductMain({ product, buyTogether, relateds, galery }) {
           <PhotoGalery photos={galery} />
         </div>
         <div className="product__container-right" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
-          <BuyBox product={product} openPaymentModal={() => setPayOptionsVisible(true)} />
+          <BuyBox product={product} payConditions={payConditions} />
         </div>
       </div>
 
@@ -58,11 +55,6 @@ export function ProductMain({ product, buyTogether, relateds, galery }) {
       {
         !isEmpty(relateds) &&
         <ProductCarousel products={relateds} title="Produtos relacionados" />
-      }
-
-      {
-        !!payOptionsVisible &&
-        <PaymentOptionsModal hide={() => setPayOptionsVisible(false)} />
       }
     </main>
   );

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { format } from "../../helpers";
 
-export function BuyBox({ product, openPaymentModal }) {
+import PaymentOptionsModal from "../PaymentOptionsModal";
+
+export function BuyBox({ product, payConditions }) {
+  const [payOptionsVisible, setPayOptionsVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [cep, setCep] = useState('');
 
@@ -47,7 +50,7 @@ export function BuyBox({ product, openPaymentModal }) {
           <button className="buy__button">COMPRAR</button>
         </div>
         <div className="price-infos__installments-group">
-          <a className="open__modal" onClick={openPaymentModal}>Mais opcões de pagamento</a>
+          <a className="open__modal" onClick={() => setPayOptionsVisible(true)}>Mais opcões de pagamento</a>
           <div className="installments-group__installments">
             <span>{product.parcelamento}x de {format.currency(product.valorParcelamento)}</span>
           </div>
@@ -60,6 +63,11 @@ export function BuyBox({ product, openPaymentModal }) {
           <a className="cep__dont-know" href="">Não sei meu CEP</a>
         </div>
       </div>
+
+      {
+        !!payOptionsVisible &&
+        <PaymentOptionsModal payConditions={payConditions} handleHide={() => setPayOptionsVisible(false)} />
+      }
     </>
   );
 }
