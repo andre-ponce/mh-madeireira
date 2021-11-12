@@ -53,15 +53,26 @@ function Product({ global, product }) {
     async function getGalery () {
       const res = await fetch(`/api/product/${id}/galery`);
       if (res.status == 200) {
-        const relateds = await res.json();
-        setGalery(relateds);
+        const galery = await res.json();
+        setGalery(galery);
         return;
       }
       setGalery([]);
     }
 
+    async function getBuyTogether () {
+      const res = await fetch(`/api/product/${id}/buy-together`);
+      if (res.status == 200) {
+        const products = await res.json();
+        setBuyTogether(products);
+        return;
+      }
+      setBuyTogether([]);
+    }
+
     getRelateds();
     getGalery();
+    getBuyTogether();
   }, [id]);
 
   return (
