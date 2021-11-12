@@ -4,12 +4,12 @@ import Info from './Info';
 import Newsletter from './Newsletter';
 import Whatsapp from './Whatsapp';
 
-function Footer() {
+function Footer({pages}) {
   return (
     <footer className="footer">
       <Whatsapp />
       <Newsletter />
-      <Central />
+      <Central pages={pages} />
       <Info />
     </footer>
   );

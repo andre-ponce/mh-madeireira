@@ -9,7 +9,7 @@ export function Layout({ children, globalData }) {
       <UserLoggedContext.Provider value={{loggedIn: false}}>
         <Header />
         {children}
-        <Footer />
+        <Footer pages={globalData.paginas} />
       </UserLoggedContext.Provider>
     </GlobalDataContext.Provider>
   )
