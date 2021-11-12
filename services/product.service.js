@@ -1,7 +1,7 @@
 export async function getProduct (id) {
-  const response = await fetch(`${process.env.API_HOST}/produto/${id}`, {
+  const response = await fetch(`${process.env.API_CATALOG}/produto/${id}`, {
     headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
+      authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
@@ -17,9 +17,9 @@ export async function getProduct (id) {
 }
 
 export async function getGalery(id) {
-  const response = await fetch(`${process.env.API_HOST}/produto/${id}/galeria`, {
+  const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/galeria`, {
     headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
+      authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
@@ -31,9 +31,9 @@ export async function getGalery(id) {
 }
 
 export async function getBuyTogether(id) {
-  const response = await fetch(`${process.env.API_HOST}/produto/${id}/compre-junto`, {
+  const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/compre-junto`, {
     headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
+      authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
@@ -45,9 +45,9 @@ export async function getBuyTogether(id) {
 }
 
 export async function getRelateds (id) {
-  const response = await fetch(`${process.env.API_HOST}/produto/${id}/relacionados`, {
+  const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/relacionados`, {
     headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
+      authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
@@ -59,9 +59,9 @@ export async function getRelateds (id) {
 }
 
 export async function getPaymentConditions (id) {
-  const response = await fetch(`${process.env.API_HOST}/produto/${id}/condicoes-de-pagamento`, {
+  const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/condicoes-de-pagamento`, {
     headers: {
-      authorization: process.env.API_DADOS_GLOBAIS_TOKEN,
+      authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
