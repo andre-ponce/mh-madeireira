@@ -37,6 +37,16 @@ export async function getServerSideProps({query}) {
   };
 }
 
+async function fecthData (url, cb) {
+  const res = await fetch(url);
+  if (res.status == 200) {
+    const products = await res.json();
+    cb(products);
+    return;
+  }
+  cb([]);
+}
+
 function Product({ global, product }) {
   const router = useRouter();
   const { id } = router.query;
@@ -46,39 +56,9 @@ function Product({ global, product }) {
   const [galery, setGalery] = useState();
 
   useEffect(() => {
-    async function getRelateds () {
-      const res = await fetch(`/api/product/${id}/relateds`);
-      if (res.status == 200) {
-        const relateds = await res.json();
-        setRelateds(relateds);
-        return;
-      }
-      setRelateds([]);
-    }
-
-    async function getGalery () {
-      const res = await fetch(`/api/product/${id}/galery`);
-      if (res.status == 200) {
-        const galery = await res.json();
-        setGalery(galery);
-        return;
-      }
-      setGalery([]);
-    }
-
-    async function getBuyTogether () {
-      const res = await fetch(`/api/product/${id}/buy-together`);
-      if (res.status == 200) {
-        const products = await res.json();
-        setBuyTogether(products);
-        return;
-      }
-      setBuyTogether([]);
-    }
-
-    getRelateds();
-    getGalery();
-    getBuyTogether();
+    fecthData(`/api/product/${id}/galery`, setGalery);
+    fecthData(`/api/product/${id}/buy-together`, setBuyTogether);
+    fecthData(`/api/product/${id}/relateds`, setRelateds);
   }, [id]);
 
   return (
