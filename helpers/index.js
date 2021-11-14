@@ -32,6 +32,21 @@ export const format = {
   }
 }
 
+export const link = {
+
+  whatsappApi (number) {
+
+    if (!number) return '';
+
+    let sanitize = number + '';
+    sanitize = sanitize.replace(/[^0-9]+/g, '');
+    sanitize = sanitize.replace(/^0?55/, '');
+
+    return `https://wa.me/055${sanitize}`;
+  }
+
+}
+
 export const image = {
   fallback(url) {
     return url || '/images/no-image-avaliable.jpg'
