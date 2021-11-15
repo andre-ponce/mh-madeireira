@@ -1,4 +1,3 @@
-import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -7,36 +6,46 @@ import Banner from '../../../components/Banner';
 import Breadcrumb from '../../../components/Breadcrumb';
 import CategoryMain from '../../../components/CategoryMain';
 
-import { products, filters } from '../../../data';
 import { getGlobalData } from '../../../services/dados-globais.service';
+import { getCategoryResults } from '../../../services/categories.service';
+import { linkTo } from '../../../helpers';
+import useCategoryFilter from '../../../hooks/useCategoryFilter';
 
-export async function getServerSideProps() {
+export async function getServerSideProps({query}) {
   const global = await getGlobalData();
+  const { id, slug, ...rest } = query;
+  const category = await getCategoryResults(id, rest);
+  console.log(category, id)
   return {
-    props: { global },
+    props: { global, category },
   };
 }
 
-function Category({ global }) {
-  const router = useRouter();
-  const { slug } = router.query;
+function Category({ global, category: { nome, itens: products, filtros: filters, breadcrumbs } }) {
+  const [isChecked, onToggleFilter] = useCategoryFilter();
+
+  const bcPath = breadcrumbs.map(b => {
+    b.slug = linkTo.category({
+      id: b.id.split('-')[1],
+      prefixo: b.id.split('-')[0],
+      slug: b.slug
+    });
+    return b;
+  })
 
   return (
     <>
     <Head>
-      <title>{`${slug.toUpperCase()} - Braskape`}</title>
+      <title>{`${nome}${global.seo.sulfixoDoTitulo}`}</title>
     </Head>
 
     <Layout globalData={global}>
       <Banner isCategory />
       <Breadcrumb
-        path={[{
-          nome: slug,
-          slug: `/category/${slug}`
-        }]}
+        path={bcPath}
         classPrefix="category"
       />
-      <CategoryMain products={products} filters={filters} />
+      <CategoryMain products={products} filters={filters} isFilterActive={isChecked} onFilterChange={onToggleFilter} />
     </Layout>
     </>
   );
