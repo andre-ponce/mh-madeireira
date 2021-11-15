@@ -59,7 +59,16 @@ export const link = {
     sanitize = sanitize.replace(/^0?55/, '');
 
     return `https://wa.me/055${sanitize}`;
-  }
+  },
+
+  mailto (email) {
+    return `mailto:${email}`;
+  },
+
+  tel (phone) {
+    const sanitize = ((phone || '') + '').replace(/[^0-9]+/g, '');
+    return `tel:${sanitize}`;
+  },
 
 }
 

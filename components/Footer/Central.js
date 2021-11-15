@@ -1,13 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
+import { link } from '../../helpers';
 
-function Central({pages}) {
+function Central({
+  pages,
+  informacoesDeAtendimento,
+  supportPhone,
+  supportEmail,
+  facebook,
+  instagram,
+  youtube,
+}) {
+
   return (
     <div className="footer__footer-central">
       <div className="container_serie-ds">
         <div className="footer-central__institucional">
           <h2>INSTITUCIONAL</h2>
-          {pages.map(p =>(
+          {pages.map(p => (
             <Link href={`/institutional/${p.slug}`} passHref>
               <a className="mg-b-5">
                 {p.titulo}
@@ -17,26 +27,35 @@ function Central({pages}) {
         </div>
         <div className="footer-central__atendimento">
           <h2>ATENDIMENTO</h2>
-          <span>(11) 5180-1690</span>
-          <span>
-            Para tirar dúvidas ou comprar acesse nosso chat ou ligue de segunda
-            à sexta das 8:00 às 18:00.
-          </span>
-          <span>sac@braskape.com.br</span>
+
+          {supportPhone && <span><a href={link.tel(supportPhone)}>{supportPhone}</a></span>}
+
+          {informacoesDeAtendimento && <span>{informacoesDeAtendimento}</span>}
+
+          {supportEmail && <span><a href={link.mailto(supportEmail)}>{supportEmail}</a></span>}
+
           <div className="atendimento__social-medias">
-            <a href="https://www.facebook.com/braskape">
-              <img src="/images/facebook.svg" alt="facebook" />
-            </a>
-
-            <a href="https://www.instagram.com/_braskape/">
-              <img src="/images/instagram.svg" alt="instagram" />
-            </a>
-
-            <a href="https://www.instagram.com/_braskape/">
-              <img src="/images/youtube.svg" alt="youtube" />
-            </a>
+            {
+              facebook &&
+              <a href={facebook}>
+                <img src="/images/facebook.svg" alt="facebook" />
+              </a>
+            }
+            {
+              instagram &&
+              <a href={instagram}>
+                <img src="/images/instagram.svg" alt="instagram" />
+              </a>
+            }
+            {
+              youtube &&
+              <a href={youtube}>
+                <img src="/images/youtube.svg" alt="youtube" />
+              </a>
+            }
           </div>
         </div>
+
         <div className="footer-central__pagamentos-envios">
           <div className="pagamentos-envios__pagamentos">
             <h2>FORMAS DE PAGAMENTO</h2>
