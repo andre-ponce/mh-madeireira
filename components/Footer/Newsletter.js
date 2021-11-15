@@ -1,20 +1,26 @@
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import React from 'react';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 function Newsletter() {
+  const [alertMessage, setAlertMessage] = useState('');
+
   const { handleSubmit, handleChange, values, errors, touched, isSubmitting } = useFormik({
     initialValues: {
       email: '',
       name: ''
     },
+
     onSubmit: async ({ email, name }, { resetForm }) => {
       await fetch('/api/newsletter', {
         body: JSON.stringify({ email, name }),
         method: 'post'
       });
+
       resetForm();
-      alert('Cadastrado com sucesso!');
+      setAlertMessage('E-mail cadastrado com Sucesso!');
     },
+
     validate: async ({ email, name }) => {
       const errors = {};
       if (!name) {
@@ -76,6 +82,12 @@ function Newsletter() {
                     <i className="fa fa-spin fa-spinner"></i>
                   </span>
                   : <img src="/images/braskape_logo-aviao.png" alt="avião" />
+              }
+              {
+                alertMessage &&
+                <SweetAlert onConfirm={() => setAlertMessage('')} btnSize="sm" confirmBtnText="Voltar" confirmBtnStyle={{border: '0'}}>
+                  {alertMessage}
+                </SweetAlert>
               }
             </button>
           </div>
