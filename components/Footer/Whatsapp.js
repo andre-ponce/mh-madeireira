@@ -1,7 +1,7 @@
-import { link } from '../../helpers';
+import { linkTo } from '../../helpers';
 
 function Whatsapp({ whatsapp }) {
-  const href = link.whatsappApi(whatsapp);
+  const href = linkTo.whatsappApi(whatsapp);
   return href
     ? (
       <div className="footer__whats-fixed">

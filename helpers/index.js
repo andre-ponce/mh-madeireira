@@ -48,7 +48,7 @@ export const format = {
   }
 }
 
-export const link = {
+export const linkTo = {
 
   whatsappApi (number) {
 
@@ -69,6 +69,10 @@ export const link = {
     const sanitize = ((phone || '') + '').replace(/[^0-9]+/g, '');
     return `tel:${sanitize}`;
   },
+
+  category (cat) {
+    return `/category/${cat.slug}/${cat.prefixo.toLowerCase()}-${cat.id}`;
+  }
 
 }
 

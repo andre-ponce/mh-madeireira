@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { link } from '../../helpers';
+import { linkTo } from '../../helpers';
 
 function Central({
   pages,
@@ -28,11 +28,11 @@ function Central({
         <div className="footer-central__atendimento">
           <h2>ATENDIMENTO</h2>
 
-          {supportPhone && <span><a href={link.tel(supportPhone)}>{supportPhone}</a></span>}
+          {supportPhone && <span><a href={linkTo.tel(supportPhone)}>{supportPhone}</a></span>}
 
           {informacoesDeAtendimento && <span>{informacoesDeAtendimento}</span>}
 
-          {supportEmail && <span><a href={link.mailto(supportEmail)}>{supportEmail}</a></span>}
+          {supportEmail && <span><a href={linkTo.mailto(supportEmail)}>{supportEmail}</a></span>}
 
           <div className="atendimento__social-medias">
             {
