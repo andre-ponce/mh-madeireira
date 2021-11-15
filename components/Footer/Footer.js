@@ -9,7 +9,8 @@ function Footer({pages}) {
 
   const {
     institucional: {
-      whatsapp
+      whatsapp,
+      cnpj
     }
   } = useContext(GlobalDataContext);
 
@@ -18,7 +19,7 @@ function Footer({pages}) {
       <Whatsapp whatsapp={whatsapp}/>
       <Newsletter />
       <Central pages={pages} />
-      <Info />
+      <Info document={cnpj} />
     </footer>
   );
 }

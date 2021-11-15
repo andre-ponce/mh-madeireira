@@ -29,6 +29,22 @@ export const format = {
 
   discount(value) {
     return `-${value.toFixed(0)}%`
+  },
+
+  nationalDocument (number, prefixType) {
+    if (!number) return '';
+
+    const onlyNumbers = (number + '').replace(/[^0-9]+/g, '')
+
+    if (onlyNumbers.length == 11) {
+      return `${prefixType ? 'CPF' : ''} ${onlyNumbers.slice(0, 3)}.${onlyNumbers.slice(3, 6)}.${onlyNumbers.slice(6, 9)}.${onlyNumbers.slice(9, 11)}`
+    }
+    else if (onlyNumbers.length == 14) {
+      return `${prefixType ? 'CNPJ' : ''} ${onlyNumbers.slice(0, 2)}.${onlyNumbers.slice(2, 5)}.${onlyNumbers.slice(5, 8)}/${onlyNumbers.slice(8, 12)}-${onlyNumbers.slice(12, 14)}`;
+    }
+    else {
+      return '';
+    }
   }
 }
 
