@@ -4,13 +4,14 @@ import Layout from '../../../components/Layout';
 import Banner from '../../../components/Banner';
 import Breadcrumb from '../../../components/Breadcrumb';
 import CategoryMain from '../../../components/CategoryMain';
+import CategoryBanner from '../../../components/CategoryMain/CategoryBanner';
 
 import { getGlobalData } from '../../../services/dados-globais.service';
 import { getCategoryResults } from '../../../services/categories.service';
 import { linkTo } from '../../../helpers';
 import useCategoryFilter from '../../../hooks/useCategoryFilter';
 
-export async function getServerSideProps({query}) {
+export async function getServerSideProps({ query }) {
   const global = await getGlobalData();
   const { id, slug, ...rest } = query;
   const category = await getCategoryResults(id, rest);
@@ -35,18 +36,20 @@ function Category({ global, category: { nome, itens, filtros, breadcrumbs } }) {
 
   return (
     <>
-    <Head>
-      <title>{`${nome}${global.seo.sulfixoDoTitulo}`}</title>
-    </Head>
+      <Head>
+        <title>{`${nome}${global.seo.sulfixoDoTitulo}`}</title>
+      </Head>
 
-    <Layout globalData={global}>
-      <Banner isCategory />
-      <Breadcrumb
-        path={bcPath}
-        classPrefix="category"
-      />
-      <CategoryMain products={itens} filters={filtros} isFilterActive={isChecked} onFilterChange={onToggleFilter} />
-    </Layout>
+      <Layout globalData={global}>
+        <CategoryBanner
+          breadcrumbs={<Breadcrumb path={bcPath}/>}
+          banner={{
+            src: '/images/braskape_banner-category.jpg',
+            alt: nome
+          }}
+        />
+        <CategoryMain name={nome} products={itens} filters={filtros} isFilterActive={isChecked} onFilterChange={onToggleFilter} />
+      </Layout>
     </>
   );
 }

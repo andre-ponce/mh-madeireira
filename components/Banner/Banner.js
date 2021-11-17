@@ -2,26 +2,13 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { bannerSettings, bannerRullerSettings } from './settings';
 
-function CategoryBanner() {
-  return (
-    <img
-      className="main__banner"
-      src="/images/braskape_banner-category.jpg"
-      alt="Categoria1"
-      data-aos="fade-left"
-      data-aos-duration="1000"
-      data-aos-offset="300"
-    />
-  );
-}
-
 function Wrapper({ children, isMobile }) {
   return isMobile
     ? <div data-aos="zoom-in" data-aos-duration="1000">{children}</div>
     : <>{children}</>;
 }
 
-function Banner({ carousel, isMobile, isCategory }) {
+function Banner({ carousel, isMobile }) {
   const [isServer, setServerState] = useState(true);
 
   const SliderRendered = dynamic(import('react-slick'), {
@@ -32,13 +19,7 @@ function Banner({ carousel, isMobile, isCategory }) {
     setServerState(false);
   }, []);
 
-  if (isCategory) {
-    return (
-      <CategoryBanner />
-    );
-  }
-
-  const urlImage = ({urlMobile, url}, isMobile) => {
+  const urlImage = ({ urlMobile, url }, isMobile) => {
     if (isMobile) {
       return urlMobile || url;
     }
