@@ -20,8 +20,7 @@ export async function getCategoryResults (id, query) {
   const response = await fetch(url, {
     headers: {
       authorization: process.env.API_CATALOG_TOKEN,
-    },
-
+    }
   });
 
   if (response.status == 200) {
