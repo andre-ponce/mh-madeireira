@@ -48,7 +48,8 @@ function Loading () {
       width: '100vw',
       position: 'fixed',
       zIndex: '9999',
-      backgroundColor: "rgba(255, 255, 255, 0.8)"
+      backgroundColor: "rgba(255, 255, 255, 0.8)",
+      cursor: 'progress'
     }}>
     </div>
   )
