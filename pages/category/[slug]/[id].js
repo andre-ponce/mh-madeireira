@@ -25,13 +25,14 @@ function Category({ global, category: { nome, itens: products, filtros: filters,
   const [isChecked, onToggleFilter] = useCategoryFilter();
 
   const bcPath = breadcrumbs.map(b => {
-    b.slug = linkTo.category({
+    return {
+    ...b,
+    slug: linkTo.category({
+      slug: b.slug,
       id: b.id.split('-')[1],
       prefixo: b.id.split('-')[0],
-      slug: b.slug
-    });
-    return b;
-  })
+    })
+  }})
 
   return (
     <>
