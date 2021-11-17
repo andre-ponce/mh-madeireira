@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { isEmpty } from "lodash";
 
 import Breadcrumb from "../Breadcrumb";
@@ -14,14 +13,13 @@ import ProductRating from "../ProductRating";
 
 export function ProductMain({ product, buyTogether, relateds, galery, payConditions }) {
   return (
-    <main className="container_serie-ds">
+    <main className="container_serie-ds pg-product">
 
       <Breadcrumb
         path={[{
           nome: product.nome,
           slug: "/product/1"
         }]}
-        classPrefix="product"
       />
 
       <div className="main__product">

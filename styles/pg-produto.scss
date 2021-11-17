@@ -353,11 +353,13 @@
   }
 }
 
-.product__breadcrumb{
-  margin: 8px 0 20px;
-  padding: 10px 0;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 2px solid #e5e5e5;
+.pg-product{
+  .main__breadcrumb{
+    margin: 8px 0 20px;
+    padding: 10px 0;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 2px solid #e5e5e5;
+  }
 }
 
 .triade{

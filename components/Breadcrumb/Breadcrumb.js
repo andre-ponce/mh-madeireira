@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
-function Breadcrumb({ path, classPrefix }) {
+function Breadcrumb({ path }) {
   return (
     <nav className="container_serie-ds">
-      <ul className={`main__breadcrumb ${classPrefix}__breadcrumb`}>
+      <ul className="main__breadcrumb">
         <li>
           <Link href='/' passHref>
             <a>HOME</a>
