@@ -5,7 +5,7 @@ export default function useCategoryFilter () {
   const { query } = router;
 
   function isChecked (filter, id) {
-    return query[filter] && query[filter].includes(id);
+    return !!query[filter] && query[filter].includes(id);
   }
 
   async function onToggleFilter (filter, id) {
@@ -19,13 +19,13 @@ export default function useCategoryFilter () {
     }
 
     if (query[filter].includes(id)) {
-      query[filter] = query[filter].filter( item => item != id);
+      query[filter] = query[filter].filter(item => item != id);
     }
     else {
       query[filter].push(id);
     }
 
-    await router.push({ query })
+    await router.push({ query }, {...router.asPath}, { scroll: false })
   }
 
   return [isChecked, onToggleFilter]
