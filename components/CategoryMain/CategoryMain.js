@@ -1,9 +1,8 @@
 import React from 'react';
 import CatalogFilter from '../CatalogFilter';
-import Pagination from '../Pagination';
 import Product from '../Product';
 
-function Category({ name, products, filters, onFilterChange, isFilterActive }) {
+function Category({ name, products, filters, onFilterChange, isFilterActive, pagination }) {
   return (
     <main>
       <div className="container_serie-ds">
@@ -36,7 +35,7 @@ function Category({ name, products, filters, onFilterChange, isFilterActive }) {
               ))}
             </div>
 
-            <Pagination />
+            { pagination }
 
             <p className="gallery__description" data-aos="fade-left" data-aos-duration="1000">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
