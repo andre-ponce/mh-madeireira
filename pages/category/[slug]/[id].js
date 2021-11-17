@@ -20,8 +20,15 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-function Category({ global, category: { nome, itens, filtros, breadcrumbs } }) {
+function Category({ global, category }) {
   const [isChecked, onToggleFilter] = useCategoryFilter();
+  const {
+    categoria,
+    ultimaPagina,
+    itens,
+    filtros,
+    breadcrumbs,
+  } = category
 
   const bcPath = breadcrumbs.map(b => {
     return {
@@ -37,7 +44,7 @@ function Category({ global, category: { nome, itens, filtros, breadcrumbs } }) {
   return (
     <>
       <Head>
-        <title>{`${nome}${global.seo.sulfixoDoTitulo}`}</title>
+        <title>{`${categoria.nome}${global.seo.sulfixoDoTitulo}`}</title>
       </Head>
 
       <Layout globalData={global}>
@@ -45,10 +52,10 @@ function Category({ global, category: { nome, itens, filtros, breadcrumbs } }) {
           breadcrumbs={<Breadcrumb path={bcPath}/>}
           banner={{
             src: '/images/braskape_banner-category.jpg',
-            alt: nome
+            alt: categoria.nome
           }}
         />
-        <CategoryMain name={nome} products={itens} filters={filtros} isFilterActive={isChecked} onFilterChange={onToggleFilter} />
+        <CategoryMain name={categoria.nome} products={itens} filters={filtros} isFilterActive={isChecked} onFilterChange={onToggleFilter} />
       </Layout>
     </>
   );

@@ -1,14 +1,14 @@
 export async function getCategoryResults (id, query) {
 
-  const url = new URL(`${process.env.API_CATALOG}/catalogos/${id}`);
-  url.searchParams.append('cont', '21');
+  const url = new URL(`${process.env.API_CATALOG}/catalogo/${id}`);
+  url.searchParams.append('itens', '21');
 
   if (query) {
     Object.keys(query).forEach(key => {
       const value = query[key];
       if (Array.isArray(value)) {
         value.forEach(v => {
-          url.searchParams.append(key, value);
+          url.searchParams.append(key, v);
         })
       }
       else {
