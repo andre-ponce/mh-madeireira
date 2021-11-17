@@ -3,7 +3,7 @@ import CatalogFilter from '../CatalogFilter';
 import Pagination from '../Pagination';
 import Product from '../Product';
 
-function Category({ products, filters, onFilterChange, isFilterActive }) {
+function Category({ name, products, filters, onFilterChange, isFilterActive }) {
   return (
     <main>
       <div className="container_serie-ds">
