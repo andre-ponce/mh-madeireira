@@ -5,6 +5,11 @@
     flex-direction: column;
     .gallery {
 
+      &__top-filter {
+        display: flex;
+        justify-content: space-between;
+      }
+
       &__order-by {
         display: flex;
         font-size: 12px;
@@ -31,6 +36,26 @@
 
           &-item {
             padding: 0.4rem 1.5rem;
+          }
+        }
+      }
+
+      &__search {
+        display: flex;
+        font-size: 12px;
+        align-items: center;
+
+        input {
+          border: 1px solid #999;
+          padding: 7px 10px;
+          font-size: 16px;
+          margin: 0 5px;
+        }
+
+        label{
+          font-size: 14px;
+          strong {
+            font-weight: 900;
           }
         }
       }
