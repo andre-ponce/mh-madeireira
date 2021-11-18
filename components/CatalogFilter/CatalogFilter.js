@@ -11,7 +11,7 @@ function CatalogFilter({ filters, onFilterChange, isFilterActive }) {
       </button>
 
       <div className="collapse navbar-collapse show" id="filtros">
-        {filters.map((filter) => (
+        {filters.sort((one, another) => one > another ? 1 : -1).map((filter) => (
           <CatalogFilterGroup
             filter={filter}
             onFilterChange={onFilterChange}
