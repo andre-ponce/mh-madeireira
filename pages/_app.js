@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import AOS from 'aos';
 import $ from 'jquery';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -71,8 +70,6 @@ function MyApp({ Component, pageProps }) {
     $(window).resize(() => {
       OrganizarMenu();
     });
-
-    AOS.init();
   }, []);
 
   return (

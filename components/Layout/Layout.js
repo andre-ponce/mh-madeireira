@@ -4,6 +4,7 @@ import Footer from '../Footer'
 import UserLoggedContext from '../../contexts/UserLoggedContext'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import AOS from 'aos';
 
 export function Layout({ children, globalData }) {
   const router = useRouter();
@@ -12,15 +13,23 @@ export function Layout({ children, globalData }) {
   useEffect(() => {
     const handleStart = () => {
       setIsLoading(true);
+      const aosElements = document.querySelectorAll('[data-aos]');
+      aosElements.forEach(el => {
+        el.classList.remove('aos-init');
+        el.classList.remove('aos-animate');
+      })
     }
 
     const handleStop = () => {
       setIsLoading(false);
+      AOS.refresh(true);
     }
 
     router.events.on('routeChangeStart', handleStart);
     router.events.on('routeChangeComplete', handleStop);
     router.events.on('routeChangeError', handleStop);
+
+    AOS.init();
 
     return () => {
       router.events.off('routeChangeStart', handleStart);
@@ -31,7 +40,7 @@ export function Layout({ children, globalData }) {
 
   return (
     <GlobalDataContext.Provider value={globalData}>
-      <UserLoggedContext.Provider value={{loggedIn: false}}>
+      <UserLoggedContext.Provider value={{ loggedIn: false }}>
         {isLoading && <Loading />}
         <Header />
         {children}
@@ -41,7 +50,7 @@ export function Layout({ children, globalData }) {
   )
 }
 
-function Loading () {
+function Loading() {
   return (
     <div style={{
       height: '100vh',
