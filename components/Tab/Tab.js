@@ -1,23 +1,39 @@
 import { useState } from "react";
 
+const isValidTabChildren = (panel) => {
+  if (!panel) {
+    return false;
+  }
+
+  if (!panel['$$typeof'] || panel['$$typeof'].toString() != 'Symbol(react.element)') {
+    return false;
+  }
+
+  if (!panel.props) {
+    return false;
+  }
+
+  if (!panel.props.title) {
+    return false;
+  }
+
+  return true;
+}
+
 export function Tab({ children }) {
-
   let panels = [];
-  let active;
+
   if (!Array.isArray(children)) {
-    if (children.type.name !== 'TabPanel') {
-      return <></>;
-    }
-
     panels.push(children);
-    active = children;
-  }
-  else {
-    panels = children.filter(i => i.type.name === 'TabPanel');
-    active = panels.filter(i => i.props.active)[0] || panels[0];
   }
 
-  const [activeTab, setActiveTab] = useState(active.props.title);
+  panels = children.filter(isValidTabChildren);
+  if (panels.length < 1) {
+    return <></>;
+  }
+
+  const activeChildren = panels.filter(i => i.props.active == 'true')[0] || panels[0];
+  const [activeTab, setActiveTab] = useState(activeChildren.props.title);
 
   return (
     <>
