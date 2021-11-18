@@ -1,9 +1,13 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function CategorySearch({ categoyName }) {
   const router = useRouter();
   const [search, setSearch] = useState(router.query.q);
+
+  useEffect(() => {
+    setSearch(router.query.q || '');
+  }, [router.query]);
 
   return (
     <div className="gallery__search">
