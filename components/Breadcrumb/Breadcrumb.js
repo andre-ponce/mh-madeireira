@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Link from 'next/link';
 
 function Breadcrumb({ path }) {
@@ -12,7 +12,7 @@ function Breadcrumb({ path }) {
         </li>
         {
           path.map((item, index) => (
-            <>
+            <Fragment key={item.slug}>
               <li className="breadcrumb__icon">
                 <i className="fas fa-chevron-right" />
               </li>
@@ -27,7 +27,7 @@ function Breadcrumb({ path }) {
                   </a>
                 </Link>
               </li>
-            </>
+            </Fragment>
           ))
         }
       </ul>
