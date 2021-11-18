@@ -25,6 +25,10 @@ export default function useCategoryFilter () {
       query[filter].push(id);
     }
 
+    if ((query.p || 1) > 1) {
+      query.p = 1;
+    }
+
     await router.push({ query }, {...router.asPath}, { scroll: false })
   }
 
