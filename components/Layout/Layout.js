@@ -5,7 +5,12 @@ import UserLoggedContext from '../../contexts/UserLoggedContext'
 import useAnimateOnRouteChange from '../../hooks/useAnimateOnRouteChange'
 
 export function Layout({ children, globalData }) {
-  const isLoading = useAnimateOnRouteChange();
+
+  if (!globalData) {
+    throw new Error("globalData is missing");
+  }
+
+  useAnimateOnRouteChange();
 
   return (
     <GlobalDataContext.Provider value={globalData}>
