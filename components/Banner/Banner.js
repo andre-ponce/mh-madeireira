@@ -33,7 +33,7 @@ function Banner({ carousel, isMobile }) {
         <SliderRendered {...bannerSettings}>
           {
             carousel.map(banner => (
-              <a href={banner.href} target={banner.target || '_blank'}>
+              <a href={banner.href} key={banner.href} target={banner.target || '_blank'}>
                 <img
                   src={urlImage(banner, isMobile)}
                   title={banner.titulo}
