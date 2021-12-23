@@ -1,5 +1,6 @@
 .header{
   border-top: 1px solid #f9d901;
+  position: relative;
   &__topbar {
     .topbar {
       &__top {
@@ -309,15 +310,14 @@
       }
 
       .container_serie-ds {
+        min-height: 35px;
         display: flex;
         justify-content: space-between;
 
-        /* & > li {
-          margin-right: 26.5px;
-          &:last-of-type {
-            margin-right: 0;
+        &.calculating{
+          max-width: unset;
+          width: 1000vw;
           }
-        } */
 
         & > .menu {
           &__see-all {
@@ -543,9 +543,13 @@
           }
 
           &__item {
-            min-width: 120px;
+            min-width: 35px;
             position: relative;
             & > button {
+              display: none;
+            }
+
+            &--invisible {
               display: none;
             }
 
@@ -556,6 +560,7 @@
               justify-content: center;
               img {
                 max-height: 100%;
+                min-width: 35px;
                 margin-right: 10px;
                 -webkit-filter: grayscale(100%);
                 filter: grayscale(100%);
@@ -728,6 +733,7 @@
             & > ul {
               width: auto;
               direction: ltr;
+              text-align: right;
               right: 0;
               left: unset;
               &  > li {
@@ -769,15 +775,29 @@
       background: #00000080;
       position: fixed;
       top: 0;
-      left: 0;
+      left: -100vw;
       width: 100vw;
       height: 100vh;
-      display: block;
+      opacity: 0;
       z-index: 999;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: left;
+      transition: all .3s;
+
+      &--active {
+        left: 0vw;
+        opacity: 1;
+      }
 
       & > .container_serie-ds {
         padding: 0;
         overflow: auto;
+        background: #292929;
+        width: 80vw;
+        max-width: 400px;
+        height: 100vh;
+        margin: 0;
 
         &::-webkit-scrollbar {
           width: 8px;
@@ -831,7 +851,7 @@
 
           & > a {
             display: flex;
-            width: 55%;
+            width: 75%;
             align-items: center;
             padding-left: 10px;
             color: white;
@@ -842,7 +862,8 @@
           }
 
           & > button {
-            width: 45%;
+            width: 25%;
+            min-width: 35px;
             display: flex;
             border-radius: 0;
             align-items: center;
@@ -917,22 +938,9 @@
       }
 
       & > .navbar-toggler {
-        top: 0;
-        left: 0;
         height: 48px;
-        position: fixed;
         border-radius: 0;
-        margin-left: 400px;
         background: #292929;
-      }
-
-      & > ul {
-        background: #292929;
-        position: fixed;
-        left: 0;
-        width: 80vw;
-        max-width: 400px;
-        height: 100vh;
       }
     }
   }

@@ -5,24 +5,24 @@ import CartResume from '../CartResume';
 import HelpInfo from '../TopBar/HelpInfo';
 import UserInfo from '../TopBar/UserInfo';
 
-function TopbarFixed() {
+function TopbarFixed({ isFixed, toggleMenu }) {
   const {
     institucional: {
       telefone,
       whatsapp,
       emailAtendimento
     }
-  } = useContext(GlobalDataContext)
+  } = useContext(GlobalDataContext);
 
   return (
-    <div className="header__topbar--fixed d-none">
+    <div className={`header__topbar--fixed ${isFixed ? 'fixed' : 'd-none'}`}>
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
         <a href="index.html" className="logo">
           <img className="logo__img" src="/images/logo_img.png" alt="Braskape Logo" />
           <img className="logo__text" src="/images/logo_text.svg" alt="Braskape" />
         </a>
 
-        <button className="topbar--fixed__menu" data-toggle="collapse" data-target="#header__menu" aria-controls="header__menu" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="topbar--fixed__menu" onClick={toggleMenu}>
           <i className="fas fa-bars menu-icon" />
         </button>
 

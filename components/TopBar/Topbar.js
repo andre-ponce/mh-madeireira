@@ -7,7 +7,7 @@ import HelpInfo from './HelpInfo';
 import UserInfo from './UserInfo';
 import { format } from '../../helpers'
 
-function Topbar() {
+function Topbar({ openMenuMobile }) {
 
   const {
     institucional: {
@@ -23,12 +23,7 @@ function Topbar() {
     <div className="topbar__top">
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#header__menu"
-        >
+        <button className="navbar-toggler" type="button" onClick={openMenuMobile}>
           <i className="fas fa-bars menu-icon" />
         </button>
 

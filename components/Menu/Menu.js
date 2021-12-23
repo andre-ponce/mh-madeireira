@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import Link from 'next/link'
 import GlobalDataContext from '../../contexts/GlobalDataContext';
 
 import { linkTo } from '../../helpers'
 import MenuSeeAll from './MenuSeeAll';
 import MenuNivelOne from './MenuNivelOne';
+import { useAutoSizedMenu } from './useAutoSizedMenu';
+import { ButtonCloseMenuMobile } from './ButtonCloseMenuMobile';
 
-function Menu() {
+function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
   const {
     static: {
       urlBaseEstaticos,
@@ -14,22 +16,17 @@ function Menu() {
     },
     menu,
   } = useContext(GlobalDataContext);
-
   const staticUrl = `${urlBaseEstaticos}${diretorioCategorias}/`;
 
+  const ulRef = useRef();
+  useAutoSizedMenu(ulRef);
+
   return (
-    <nav id="header__menu" className="header__menu collapse">
+    <nav className={`header__menu ${isMenuMobileActive ? 'header__menu--active' : ''} ${isFixed ? 'fixed' : ''}`}>
 
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#header__menu"
-      >
-        <img src="/images/icons-menu/close-menu.png" alt="menu" />
-      </button>
+      <ButtonCloseMenuMobile close={closeMenuMobile} />
 
-      <ul className="container_serie-ds categorias_container--sd">
+      <ul className="container_serie-ds categorias_container--sd" ref={ulRef}>
 
         <MenuSeeAll itens={menu} />
 
@@ -40,7 +37,7 @@ function Menu() {
           </a>
         </li>
 
-        {menu && menu.slice(0, 8).map((linha) => (
+        {menu && menu.map((linha) => (
           <li className="menu__item menu__item--has-subcategoria" key={linha.id}>
             <Link href={linkTo.category(linha)} passHref>
               <a>
