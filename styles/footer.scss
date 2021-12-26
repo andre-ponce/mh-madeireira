@@ -295,7 +295,7 @@
   }
 
   &__whats-fixed {
-    right: 20px;
+    left: calc(100vw - 70px);
     bottom: 10px;
     z-index: 999;
     position: fixed;
