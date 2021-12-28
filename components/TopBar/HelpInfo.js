@@ -1,7 +1,11 @@
+import Image from 'next/image';
+
 function HelpInfo({ emailAtendimento, telefone, whatsapp }) {
   return (
     <div className="help">
-      <img src="/images/help.svg" alt="Ajuda" />
+      <span className='tag_image'>
+        <Image src='/images/help.svg' alt="Ajuda" width="30px" height="30px" className='tag_image' />
+      </span>
       <span>Ajuda</span>
       <div className="block_hover">
         {emailAtendimento && <span>{emailAtendimento}</span>}
