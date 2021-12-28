@@ -3,11 +3,13 @@ import Topbar from '../TopBar';
 import Menu from '../Menu';
 import SearchBar from './SearchBar';
 import TopbarFixed from './TopbarFixed';
+import useFixedShadow from '../../hooks/useFixedShadow'
 
 function Header() {
   const [isTopFixed, setIsTopFixed] = useState(false);
   const [isMenuFixed, setIsMenuFixed] = useState(false);
   const [isMenuMobileActive, setIsMenuMobileActive] = useState();
+  const { addShadow, popShadow } = useFixedShadow();
 
   useEffect(() => {
     function toogleFixed() {
@@ -20,16 +22,23 @@ function Header() {
     }
   }, []);
 
-  const toggleMenu = () => setIsMenuFixed(!isMenuFixed);
+  const toggleMenu = () => {
+    setIsMenuFixed(!isMenuFixed);
+  }
+
+  const toggleMenuMobile = (state) => {
+    setIsMenuMobileActive(state);
+    state ? addShadow() : popShadow();
+  }
 
   return (
     <header className="header">
       <div className="header__topbar">
-        <Topbar openMenuMobile={() => setIsMenuMobileActive(true)} />
+        <Topbar openMenuMobile={() => toggleMenuMobile(true)} />
         <SearchBar />
       </div>
       <TopbarFixed isFixed={isTopFixed} toggleMenu={toggleMenu} />
-      <Menu isFixed={isTopFixed && isMenuFixed} isMenuMobileActive={isMenuMobileActive} closeMenuMobile={() => setIsMenuMobileActive(false)} />
+      <Menu isFixed={isTopFixed && isMenuFixed} isMenuMobileActive={isMenuMobileActive} closeMenuMobile={() => toggleMenuMobile(false)} />
     </header>
   );
 }
