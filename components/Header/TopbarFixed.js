@@ -3,7 +3,7 @@ import GlobalDataContext from '../../contexts/GlobalDataContext';
 import { format } from '../../helpers';
 import CartResume from '../CartResume';
 import HelpInfo from '../TopBar/HelpInfo';
-import UserInfo from '../TopBar/UserInfo';
+import UserTag from '../UserTag/UserTag';
 
 function TopbarFixed({ isFixed, toggleMenu }) {
   const {
@@ -38,7 +38,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
           whatsapp={format.telephone(whatsapp)}
           emailAtendimento={emailAtendimento}
         />
-        <UserInfo />
+        <UserTag />
         <CartResume />
       </div>
     </div>

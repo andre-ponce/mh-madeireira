@@ -4,7 +4,7 @@ import Link from 'next/link'
 import GlobalDataContext from '../../contexts/GlobalDataContext';
 import CartResume from '../CartResume';
 import HelpInfo from './HelpInfo';
-import UserInfo from './UserInfo';
+import UserTag from '../UserTag/UserTag';
 import { format } from '../../helpers'
 
 function Topbar({ openMenuMobile }) {
@@ -60,7 +60,7 @@ function Topbar({ openMenuMobile }) {
           telefone={format.telephone(telefone)}
           whatsapp={format.telephone(whatsapp)}
         />
-        <UserInfo />
+        <UserTag />
         <CartResume />
       </div>
     </div>
