@@ -1,5 +1,8 @@
 import CartResumeItem from "./CartResumeItem";
 import { isEmpty } from "lodash";
+import { useState } from "react";
+import useFixedShadow from "../../hooks/useFixedShadow";
+import { EmptyCart } from "./EmptyCart";
 
 const itens = [
   {
@@ -26,18 +29,31 @@ const itens = [
 ];
 
 export default function CartResume() {
+  const [cartResumeActive, setCartResumeActive] = useState(false);
+  const { addShadow, popShadow } = useFixedShadow();
+
+  const cartActiveClassName = cartResumeActive ? 'cart__cart-container--active' : '';;
+
+  function toogleSideBar(status) {
+    setCartResumeActive(status);
+    status ? addShadow() : popShadow();
+  }
+
   return (
     <div className="cart">
-      <img src="/images/cart.svg" alt="Carrinho" />
-      <span className="cart__qtd">{itens.length}</span>
-      <div className={`cart__cart-container block_hover ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
+      <span className="cart__icon_group" onClick={() => toogleSideBar(true)}>
+        <img src="/images/cart.svg" alt="Carrinho" />
+        <span className="cart__qtd">{itens.length}</span>
+      </span>
+
+      <div className={`cart__cart-container block_hover ${cartActiveClassName} ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
+        <button className="navbar-toggler" type="button" onClick={() => toogleSideBar(false)}>
+          <img src="/images/icons-menu/close-menu.png" alt="menu" />
+        </button>
         {
           isEmpty(itens)
             ? (
-              <>
-                <span className="cart-container__title">SEU CARRINHO ESTÁ VAZIO</span>
-                <img src="/images/cart-empty.png" alt="carrinho vazio" />
-              </>
+              <EmptyCart />
             )
             : (
               <>
@@ -53,9 +69,9 @@ export default function CartResume() {
                   <div className="subtotal__prices">
                     <span className="prices__price">R$ 999,99</span>
                     <span className="prices__installments">
-                      Em até
-                      <strong>12x</strong>
-                      de
+                      Em até {' '}
+                      <strong>12x</strong> {' '}
+                      de {' '}
                       <strong>R$ R$ 999,99</strong>
                     </span>
                   </div>
@@ -71,5 +87,3 @@ export default function CartResume() {
     </div>
   );
 }
-
-
