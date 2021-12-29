@@ -1,4 +1,3 @@
-import CartResumeItem from "./CartResumeItem";
 import { isEmpty } from "lodash";
 import { useState } from "react";
 import useFixedShadow from "../../hooks/useFixedShadow";
