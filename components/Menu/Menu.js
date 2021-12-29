@@ -29,7 +29,7 @@ function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
           <UserTag isMobile={true} />
         </li>
         {menu && menu.map((linha) => (
-          <MenuItem linha={linha} staticUrl={staticUrl} />
+          <MenuItem key={linha.id} linha={linha} staticUrl={staticUrl} />
         ))}
       </ul>
     </nav>

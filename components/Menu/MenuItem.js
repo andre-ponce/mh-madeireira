@@ -9,7 +9,7 @@ export function MenuItem({ linha, staticUrl }) {
   const subMenuClassName = isSubMenuActive ? 'menu__item--subcategoria-active' : '';
 
   return (
-    <li className={`menu__item menu__item--has-subcategoria ${subMenuClassName}`} key={linha.id}>
+    <li className={`menu__item menu__item--has-subcategoria ${subMenuClassName}`}>
       <Link href={linkTo.category(linha)} passHref>
         <a>
           <img src={`${staticUrl}${linha.imagem}`} alt={linha.nome} />
