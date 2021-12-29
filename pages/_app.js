@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
 
       <Component {...pageProps} />
       <div id="modal-container"></div>
-      <div class="fixed-shadow"></div>
+      <div className="fixed-shadow"></div>
     </>
   );
 }
