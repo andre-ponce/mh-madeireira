@@ -11,7 +11,7 @@ function Product({ product, mostWanted }) {
     : product.precoPor * 1.05;
 
   return (
-    <div className="product" style={mostWanted ? { width: '100%' } : {}}>
+    <div className="product">
       <Link href={`/product/${product.id}`} passHref>
         <a className="product__topbar">
           <img src={image.fallback(product.fotoUrl) || '/images/no-image-avaliable.jpg'} alt={product.name} />
