@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { format, image } from '../../helpers';
-import { addToCart } from '../../services/cart.service';
+import { addToCart } from '../../services/cart.client';
 
 function Product({ product }) {
   const [busy, setBusy] = useState(false);

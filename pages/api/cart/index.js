@@ -1,4 +1,4 @@
-import { addToCart, getCart } from "../../../services/cart.api.mock";
+import { addToCart, getCart } from "../../../services/cart.server";
 
 export default async function handler(req, res) {
 

@@ -1,4 +1,4 @@
-import { removeFromCart, updateCartItem } from '../../services/cart.service';
+import { removeFromCart, updateCartItem } from '../../services/cart.client';
 
 export function CartQuantityPanel({ item }) {
 

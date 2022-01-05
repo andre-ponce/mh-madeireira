@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCart } from "../services/cart.service";
+import { getCart } from "../services/cart.client";
 import { onCartChange, offCartChange } from '../services/cart.observable'
 
 export function useCart() {
