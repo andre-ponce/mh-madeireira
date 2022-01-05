@@ -2,4 +2,4 @@ import { createContext } from 'react'
 
 const GlobalDataContext = createContext({});
 
-export default GlobalDataContext
+export default GlobalDataContext;

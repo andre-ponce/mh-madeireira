@@ -37,13 +37,17 @@ export default function UserTag({ isMobile }) {
           )
           : (
             <>
-              <a href="cadastro.html" className="login__container d-flex align-items-center">
-                <img src="/images/login.svg" alt="Login" />
-                <div className="d-flex flex-column">
-                  <span>Entre ou</span>
-                  <span>Cadastre-se</span>
-                </div>
-              </a>
+              <Link href="/login" passHref>
+                <a className="login__container d-flex align-items-center">
+                  <span className='tag_image'>
+                    <Image src="/images/login.svg" alt="Login" width="30px" height="30px" />
+                  </span>
+                  <div className="d-flex flex-column">
+                    <span>Entre ou</span>
+                    <span>Cadastre-se</span>
+                  </div>
+                </a>
+              </Link>
             </>
           )
       }
