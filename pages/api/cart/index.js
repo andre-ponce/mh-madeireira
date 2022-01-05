@@ -1,0 +1,27 @@
+import { addToCart, getCart } from "../../../services/cart.api.mock";
+
+export default async function handler(req, res) {
+
+  const method = req.method.toLowerCase();
+
+  switch (method) {
+    case "get":
+      const cart = await getCart();
+      res.status(200).json(cart);
+      break;
+
+    case "post":
+      const { product, quantity } = JSON.parse(req.body);
+      await addToCart(product, quantity);
+      res.status(200);
+      break;
+
+    default:
+      res.status(405);
+      break;
+  }
+
+  res.end();
+}
+
+

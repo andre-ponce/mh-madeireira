@@ -1,38 +1,20 @@
-import { isEmpty } from "lodash";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFixedShadow from "../../hooks/useFixedShadow";
-import { EmptyCart } from "./EmptyCart";
-import { CartGrid } from "./CartGrid";
-
-const itens = [
-  {
-    id: '1',
-    image: '/images/home/product-mini-cart.png',
-    name: 'Lorem ipsum sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...',
-    quantity: 1,
-    unityPrice: 999.99
-  },
-  {
-    id: '2',
-    image: '/images/home/product-mini-cart.png',
-    name: 'Lorem ipsum sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...',
-    quantity: 2,
-    unityPrice: 9.99
-  }
-  , {
-    id: '3',
-    image: '/images/home/product-mini-cart.png',
-    name: 'Lorem ipsum sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...',
-    quantity: 1,
-    unityPrice: 999999.99
-  }
-];
+import SessionContext from "../../contexts/SessionContext";
+import { CartSideBar } from "./CartSideBar";
+import { CartIcon } from "./CartIcon";
+import { onCartItemPushed, offCartItemPushed } from "../../services/cart.observable";
 
 export default function CartResume() {
   const [cartResumeActive, setCartResumeActive] = useState(false);
   const { addShadow, popShadow } = useFixedShadow();
+  const cart = useContext(SessionContext);
 
-  const cartActiveClassName = cartResumeActive ? 'cart__cart-container--active' : '';;
+  useEffect(() => {
+    const handle = () => toogleSideBar(true);
+    onCartItemPushed(handle);
+    return () => offCartItemPushed(handle);
+  }, []);
 
   function toogleSideBar(status) {
     setCartResumeActive(status);
@@ -41,21 +23,11 @@ export default function CartResume() {
 
   return (
     <div className="cart">
-      <span className="cart__icon_group" onClick={() => toogleSideBar(true)}>
-        <img src="/images/cart.svg" alt="Carrinho" />
-        <span className="cart__qtd">{itens.length}</span>
-      </span>
-
-      <div className={`cart__cart-container block_hover ${cartActiveClassName} ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
-        <button className="navbar-toggler" type="button" onClick={() => toogleSideBar(false)}>
-          <img src="/images/icons-menu/close-menu.png" alt="menu" />
-        </button>
-        {
-          isEmpty(itens)
-            ? <EmptyCart />
-            : <CartGrid itens={itens} />
-        }
-      </div>
+      <CartIcon openResume={() => toogleSideBar(true)} count={cart.itens.length} />
+      {
+        cartResumeActive &&
+        <CartSideBar closeSidebar={() => toogleSideBar(false)} cart={cart} />
+      }
     </div>
   );
 }
