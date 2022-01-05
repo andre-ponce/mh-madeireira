@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-
 import { format, image } from '../../helpers';
+import { addToCart } from '../../services/cart.service';
 
-function Product({ product, mostWanted }) {
+function Product({ product }) {
+  const [busy, setBusy] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   const precoDe = product.precoDe > product.precoPor
     ? product.precoDe
     : product.precoPor * 1.05;
+
+  const add = async (product, quantity) => {
+    setBusy(true);
+    await addToCart(product, quantity);
+    setBusy(false);
+  }
 
   return (
     <div className="product">
@@ -49,7 +56,7 @@ function Product({ product, mostWanted }) {
           </a>
         </Link>
         <div className="actions__buy">
-          <div className="number-input">
+          {/* <div className="number-input buy__qtd">
 
             <input
               className="quantity"
@@ -73,8 +80,12 @@ function Product({ product, mostWanted }) {
             >
               <i className="far fa-chevron-down" />
             </button>
-          </div>
-          <button className="buy__button">COMPRAR</button>
+          </div> */}
+          <button className="buy__button" onClick={async () => await add(product, quantity)}>
+            {
+              busy ? "..." : "COMPRAR"
+            }
+          </button>
         </div>
       </div>
     </div>
