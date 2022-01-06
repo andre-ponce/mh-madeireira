@@ -1,7 +1,21 @@
-export default function Login() {
+import Layout from '../components/Layout'
+import LoginMain from '../components/Login/LoginMain';
+import { getGlobalData } from '../services/dados-globais.service';
+
+export async function getStaticProps() {
+  const global = await getGlobalData();
+  return {
+    props: { global },
+    revalidate: 1,
+  };
+};
+
+function Login({ global }) {
   return (
-    <div>
-      <h1>Login</h1>
-    </div>
-  );
+    <Layout globalData={global} secureArea>
+      <LoginMain />
+    </Layout>
+  )
 }
+
+export default Login;
