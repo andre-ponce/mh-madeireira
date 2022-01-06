@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import TopbarFixed from './TopbarFixed';
 import useFixedShadow from '../../hooks/useFixedShadow';
 
-function Header() {
+export function Header() {
   const [isTopFixed, setIsTopFixed] = useState(false);
   const [isMenuFixed, setIsMenuFixed] = useState(false);
   const [isMenuMobileActive, setIsMenuMobileActive] = useState();
@@ -47,5 +47,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
