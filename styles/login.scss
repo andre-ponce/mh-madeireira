@@ -126,7 +126,7 @@
       transition: 0.3s;
 
       &:hover {
-        background-color: #f9d901;
+        background-color: var(--main-color);
       }
     }
   }

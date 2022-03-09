@@ -164,7 +164,7 @@
                   justify-content: center;
                   height: 38px;
                   font-size: 14px;
-                  background: #f9d901;
+                  background: var(--main-color);
                 }
               }
 
@@ -407,7 +407,7 @@
   }
 
   a {
-    background-color: #f9d901;
+    background-color: var(--main-color);
     color: #fff;
     text-transform: uppercase;
     font-size: 14px;
@@ -818,12 +818,12 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #f8db00;
+        background-color: var(--main-color);
       }
     }
 
     .active {
-      background-color: #f8db00 !important;
+      background-color: var(--main-color) !important;
     }
   }
 
@@ -877,7 +877,7 @@
   width: 400px;
   max-width: 100%;
   text-align: center;
-  background-color: #f8db00;
+  background-color: var(--main-color);
   color: #000000;
   font-size: 11px;
   font-weight: 600;

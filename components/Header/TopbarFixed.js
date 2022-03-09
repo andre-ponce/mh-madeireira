@@ -33,8 +33,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
         <Link href="/" passHref>
           <a href className="logo">
-            <img className="logo__img" src="/images/logo_img.png" alt="Braskape Logo" />
-            <img className="logo__text" src="/images/logo_text.svg" alt="Braskape" />
+            <img className="logo__img" src="/images/logo_img--fixed.png" alt="Logo" />
           </a>
         </Link>
 
@@ -63,8 +62,8 @@ function TopbarFixed({ isFixed, toggleMenu }) {
         />
         <UserTag />
         <CartIcon />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

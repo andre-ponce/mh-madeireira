@@ -24,7 +24,7 @@ export default function SearchBar() {
             onChange={(ev) => setSearch(ev.target.value)}
             type="search"
             className="input-text"
-            placeholder="Digite o que busca ou o código original da peça"
+            placeholder="Digite o que busca"
           />
           <button className="yellow-button" type="submit">
             <i className="fa-solid fa-magnifying-glass" />

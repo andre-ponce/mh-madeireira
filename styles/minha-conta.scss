@@ -77,7 +77,7 @@
       transition: 0.3s;
       text-decoration: none;
       cursor: pointer;
-      background-color: #f8db00;
+      background-color: var(--main-color);
 
       &:hover {
         background-color: #000000;
@@ -129,7 +129,7 @@
     min-height: 156px;
 
     .title {
-      color: #f8db00;
+      color: var(--main-color);
       font-weight: bold;
       font-size: 15px;
       text-transform: uppercase;

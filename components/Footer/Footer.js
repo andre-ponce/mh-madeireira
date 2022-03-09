@@ -16,6 +16,7 @@ function Footer({ pages, hideNewsletter, hideWhatsapp }) {
       facebook,
       instagram,
       youtube,
+      nomeFantasia,
     },
     site: {
       informacoesDeAtendimento,
@@ -35,7 +36,7 @@ function Footer({ pages, hideNewsletter, hideWhatsapp }) {
         instagram={instagram}
         youtube={youtube}
       />
-      <Info document={cnpj} />
+      <Info document={cnpj} storeName={nomeFantasia} />
     </footer>
   );
 }

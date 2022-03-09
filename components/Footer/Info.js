@@ -1,6 +1,7 @@
-import { format } from '@/helpers';
+import React from 'react';
+import { format } from '../../helpers';
 
-function Info({ document }) {
+function Info({ document, storeName }) {
   const currentYear = new Date().getFullYear();
   const formated = format.brasilianDocument(document, true);
 
@@ -18,7 +19,7 @@ function Info({ document }) {
         </div>
       </div>
       <div className="company-infos__dados">
-        <span>{`Copyright © ${currentYear} Braskape`}</span>
+        <span>Copyright © {currentYear} - {storeName}</span>
         {formated && <span>{formated}</span>}
         <span>Todos os direitos reservados.</span>
       </div>
