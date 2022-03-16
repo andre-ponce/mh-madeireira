@@ -5,16 +5,23 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 function Newsletter() {
   const [alertMessage, setAlertMessage] = useState('');
 
-  const { handleSubmit, handleChange, values, errors, touched, isSubmitting } = useFormik({
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    errors,
+    touched,
+    isSubmitting,
+  } = useFormik({
     initialValues: {
       email: '',
-      name: ''
+      name: '',
     },
 
     onSubmit: async ({ email, name }, { resetForm }) => {
       await fetch('/api/newsletter', {
         body: JSON.stringify({ email, name }),
-        method: 'post'
+        method: 'post',
       });
 
       resetForm();
@@ -22,21 +29,20 @@ function Newsletter() {
     },
 
     validate: async ({ email, name }) => {
-      const errors = {};
+      const valErrors = {};
       if (!name) {
-        errors.name = "Informe seu nome"
+        valErrors.name = 'Informe seu nome';
       }
 
       if (!email) {
-        errors.email = "Informe seu e-mail"
-      }
-      else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-        errors.email = "Esse não parece um e-mail válido"
+        valErrors.email = 'Informe seu e-mail';
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+        valErrors.email = 'Esse não parece um e-mail válido';
       }
 
-      return errors;
-    }
-  })
+      return valErrors;
+    },
+  });
 
   return (
     <div className="footer__newsletter">
@@ -78,16 +84,25 @@ function Newsletter() {
             <button className="yellow-button" type="submit">
               {
                 isSubmitting
-                  ? <span>
-                    <i className="fa fa-spin fa-spinner"></i>
-                  </span>
+                  ? (
+                    <span>
+                      <i className="fa fa-spin fa-spinner" />
+                    </span>
+                  )
                   : <img src="/images/braskape_logo-aviao.png" alt="avião" />
               }
               {
-                alertMessage &&
-                <SweetAlert onConfirm={() => setAlertMessage('')} btnSize="sm" confirmBtnText="Voltar" confirmBtnStyle={{border: '0'}}>
-                  {alertMessage}
-                </SweetAlert>
+                alertMessage
+                && (
+                  <SweetAlert
+                    onConfirm={() => setAlertMessage('')}
+                    btnSize="sm"
+                    confirmBtnText="Voltar"
+                    confirmBtnStyle={{ border: '0' }}
+                  >
+                    {alertMessage}
+                  </SweetAlert>
+                )
               }
             </button>
           </div>

@@ -10,7 +10,7 @@ export default function SearchBar() {
     if (!search) return;
     await router.push({
       pathname: '/busca',
-      query: { q: search }
+      query: { q: search },
     });
   }
 
@@ -24,12 +24,13 @@ export default function SearchBar() {
             onChange={(ev) => setSearch(ev.target.value)}
             type="search"
             className="input-text"
-            placeholder="Digite o que busca ou o código original da peça" />
-          <button className="yellow-button" type='submit'>
+            placeholder="Digite o que busca ou o código original da peça"
+          />
+          <button className="yellow-button" type="submit">
             <i className="far fa-search" />
           </button>
         </form>
-        <button id="btn_clean-filter" className="btn_clean-filter d-none" type='button'>
+        <button id="btn_clean-filter" className="btn_clean-filter d-none" type="button">
           <span>Limpar</span>
           <span>Filtro</span>
         </button>

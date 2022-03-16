@@ -1,1 +1,1 @@
-export { ProductRecommendForm as default } from './ProductRecommendForm'
+export { ProductRecommendForm as default } from './ProductRecommendForm';

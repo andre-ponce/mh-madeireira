@@ -4,8 +4,7 @@ import GlobalDataContext from '../../contexts/GlobalDataContext';
 import MenuSeeAll from './MenuSeeAll';
 import { useAutoSizedMenu } from './useAutoSizedMenu';
 import { ButtonCloseMenuMobile } from './ButtonCloseMenuMobile';
-import UserTag from '../UserTag/UserTag'
-import { MenuItem } from './MenuItem';
+import UserTag from '../UserTag/UserTag'; import { MenuItem } from './MenuItem';
 
 function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
   const {
@@ -26,7 +25,7 @@ function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
       <ul className="container_serie-ds categorias_container--sd" ref={ulRef}>
         <MenuSeeAll itens={menu} />
         <li className="menu__item menu__login">
-          <UserTag isMobile={true} />
+          <UserTag isMobile />
         </li>
         {menu && menu.map((linha) => (
           <MenuItem key={linha.id} linha={linha} staticUrl={staticUrl} />
@@ -35,6 +34,5 @@ function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
     </nav>
   );
 }
-
 
 export default Menu;

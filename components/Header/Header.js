@@ -3,7 +3,7 @@ import Topbar from '../TopBar';
 import Menu from '../Menu';
 import SearchBar from './SearchBar';
 import TopbarFixed from './TopbarFixed';
-import useFixedShadow from '../../hooks/useFixedShadow'
+import useFixedShadow from '../../hooks/useFixedShadow';
 
 function Header() {
   const [isTopFixed, setIsTopFixed] = useState(false);
@@ -19,17 +19,18 @@ function Header() {
     window.addEventListener('scroll', toogleFixed);
     return () => {
       window.removeEventListener('scroll', toogleFixed);
-    }
+    };
   }, []);
 
   const toggleMenu = () => {
     setIsMenuFixed(!isMenuFixed);
-  }
+  };
 
   const toggleMenuMobile = (state) => {
     setIsMenuMobileActive(state);
-    state ? addShadow() : popShadow();
-  }
+    const fn = state ? addShadow : popShadow;
+    fn();
+  };
 
   return (
     <header className="header">
@@ -38,7 +39,11 @@ function Header() {
         <SearchBar />
       </div>
       <TopbarFixed isFixed={isTopFixed} toggleMenu={toggleMenu} />
-      <Menu isFixed={isTopFixed && isMenuFixed} isMenuMobileActive={isMenuMobileActive} closeMenuMobile={() => toggleMenuMobile(false)} />
+      <Menu
+        isFixed={isTopFixed && isMenuFixed}
+        isMenuMobileActive={isMenuMobileActive}
+        closeMenuMobile={() => toggleMenuMobile(false)}
+      />
     </header>
   );
 }

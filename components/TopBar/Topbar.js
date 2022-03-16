@@ -1,22 +1,20 @@
 import React, { useContext } from 'react';
-import Link from 'next/link'
-
+import Link from 'next/link';
 import GlobalDataContext from '../../contexts/GlobalDataContext';
 import CartResume from '../CartResume';
 import HelpInfo from './HelpInfo';
 import UserTag from '../UserTag/UserTag';
-import { format } from '../../helpers'
+import { format } from '../../helpers';
 
 function Topbar({ openMenuMobile }) {
-
   const {
     institucional: {
       emailAtendimento,
       nomeFantasia,
       telefone,
       whatsapp,
-      anoDaFundacao
-    }
+      anoDaFundacao,
+    },
   } = useContext(GlobalDataContext);
 
   return (
@@ -35,12 +33,19 @@ function Topbar({ openMenuMobile }) {
           </a>
         </Link>
 
-        {anoDaFundacao &&
-          <span className="topbar__top">
-            Varejista de peças automotivas
-            {' '}
-            <strong className="txt-yellow">desde {anoDaFundacao}</strong>
-          </span>
+        {
+          anoDaFundacao
+          && (
+            <span className="topbar__top">
+              Varejista de peças automotivas
+              {' '}
+              <strong className="txt-yellow">
+                desde
+                {' '}
+                {anoDaFundacao}
+              </strong>
+            </span>
+          )
         }
 
         <span className="topbar__top">

@@ -2,16 +2,18 @@ import { useEffect } from 'react';
 
 export function useAutoSizedMenu(ref) {
   useEffect(() => {
-    const ul = ref.current;
-    const lis = [...ul.children];
     const margin = 20;
-
+    const ul = ref.current;
     ul.classList.add('calculating');
-    lis.forEach(li => {
+
+    const lis = [...ul.children].map((l) => {
+      const li = l;
       li.classList.remove('menu__item--invisible');
       li.dataset.w = li.offsetWidth;
       li.classList.add('menu__item--invisible');
+      return li;
     });
+
     ul.classList.remove('calculating');
 
     function resizeMenu() {
@@ -21,20 +23,20 @@ export function useAutoSizedMenu(ref) {
 
       const ulWidth = ul.offsetWidth;
       let visiblesWidth = 0;
-      for (const li of lis) {
-        const currentLiWidth = parseInt(li.dataset.w) + margin;
+      lis.forEach((li) => {
+        const currentLiWidth = parseInt(li.dataset.w, 10) + margin;
         if (currentLiWidth <= margin) {
-          continue;
+          return;
         }
 
         if ((visiblesWidth + currentLiWidth) > ulWidth) {
           li.classList.add('menu__item--invisible');
-          continue;
+          return;
         }
 
         li.classList.remove('menu__item--invisible');
         visiblesWidth += currentLiWidth;
-      }
+      });
 
       ul.classList.remove('calculating');
     }

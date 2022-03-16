@@ -31,7 +31,7 @@ export const format = {
     return `-${value.toFixed(0)}%`
   },
 
-  nationalDocument (number, prefixType) {
+  nationalDocument(number, prefixType) {
     if (!number) return '';
 
     const onlyNumbers = (number + '').replace(/[^0-9]+/g, '')
@@ -50,7 +50,7 @@ export const format = {
 
 export const linkTo = {
 
-  whatsappApi (number) {
+  whatsappApi(number) {
 
     if (!number) return '';
 
@@ -61,16 +61,16 @@ export const linkTo = {
     return `https://wa.me/055${sanitize}`;
   },
 
-  mailto (email) {
+  mailto(email) {
     return `mailto:${email}`;
   },
 
-  tel (phone) {
+  tel(phone) {
     const sanitize = ((phone || '') + '').replace(/[^0-9]+/g, '');
     return `tel:${sanitize}`;
   },
 
-  category (cat) {
+  category(cat) {
     return `/category/${cat.slug}/${cat.prefixo.toLowerCase()}-${cat.id}`;
   }
 

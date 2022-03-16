@@ -1,4 +1,4 @@
-export default function TabPanel({ children, active, title }) {
+export default function TabPanel({ children }) {
   return (
     <>
       {children}

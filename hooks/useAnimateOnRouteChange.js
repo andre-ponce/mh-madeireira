@@ -1,7 +1,6 @@
-import AOS from "aos";
-import { useEffect, useState } from "react";
-import { useRouter } from 'next/router'
-
+import AOS from 'aos';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 export default function useAnimateOnRouteChange() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);

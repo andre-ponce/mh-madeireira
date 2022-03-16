@@ -17,18 +17,20 @@ export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
 
           {(seeAll ? filter.itens : filter.itens.slice(0, 5)).map((item) => (
             filter.tratarComoLink
-
-              ? <CatalogFilterLink
+              ? (
+                <CatalogFilterLink
                   key={item.id}
                   item={item}
                 />
-
-              : <CatalogFilterItem
+              )
+              : (
+                <CatalogFilterItem
                   key={item.id}
                   item={item}
                   onChange={(id) => onFilterChange(filter.query, id)}
                   isActive={(id) => isFilterActive(filter.query, id)}
                 />
+              )
           ))}
 
           <span
@@ -36,7 +38,7 @@ export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
               color: 'blue',
               textDecoration: 'underline',
               cursor: 'pointer',
-              fontSize: '12px'
+              fontSize: '12px',
             }}
             onClick={() => setSeeAll(!seeAll)}
           >

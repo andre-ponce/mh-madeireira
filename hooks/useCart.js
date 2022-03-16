@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { getCart } from "../services/cart.client";
-import { onCartChange, offCartChange } from '../services/cart.observable'
-
+import { useEffect, useState } from 'react';
+import { getCart } from '../services/cart.client';
+import { onCartChange, offCartChange } from '../services/cart.observable';
 export function useCart() {
   const [cart, setCart] = useState({ itens: [] });
 

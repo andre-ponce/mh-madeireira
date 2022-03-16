@@ -7,11 +7,11 @@ export function Loader() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: "40px",
-        color: "#ccc"
+        fontSize: '40px',
+        color: '#ccc',
       }}
     >
-      <i className="fa fa-spin fa-spinner"></i>
+      <i className="fa fa-spin fa-spinner" />
     </div>
   );
 }

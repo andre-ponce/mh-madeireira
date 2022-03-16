@@ -8,13 +8,11 @@ import ProductCarousel from '../components/ProductCarousel';
 import CenterBanner from '../components/CenterBanner';
 import Highlights from '../components/Highlights';
 import Brands from '../components/Brands';
-import OtherCategories from '../components/OtherCategories';
 import Layout from '../components/Layout';
-import { getHomeData } from '../services/home.service'
-import { getGlobalData } from '../services/dados-globais.service'
+import { getHomeData } from '../services/home.service';
+import { getGlobalData } from '../services/dados-globais.service';
 
 export async function getServerSideProps() {
-
   const home = await getHomeData();
   const global = await getGlobalData();
 
@@ -29,22 +27,21 @@ const Wrapper = styled.main`
 `;
 
 function Home({ home, global }) {
-
   const {
     static: {
       urlBaseEstaticos,
       diretorioMarcas,
     },
     seo: {
-      tituloGlobal
-    }
+      tituloGlobal,
+    },
   } = global;
 
   const {
     maisBuscados,
     destaques,
     carrosselMarcas,
-    carrosselBanners
+    carrosselBanners,
   } = home;
 
   const brands = {
@@ -58,14 +55,13 @@ function Home({ home, global }) {
         <title>{tituloGlobal}</title>
       </Head>
 
-      <Layout globalData={global} >
+      <Layout globalData={global}>
         <Banner isMobile={isMobile} carousel={carrosselBanners} />
         <Wrapper>
           <ProductCarousel products={maisBuscados} title="Os mais buscados" />
           <CenterBanner />
           <Highlights products={destaques} />
           <Brands brands={brands} />
-          {/* <OtherCategories /> */}
         </Wrapper>
       </Layout>
     </>

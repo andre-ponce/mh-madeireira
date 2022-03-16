@@ -19,8 +19,8 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
-      <div id="modal-container"></div>
-      <div className="fixed-shadow"></div>
+      <div id="modal-container" />
+      <div className="fixed-shadow" />
     </>
   );
 }

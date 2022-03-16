@@ -1,4 +1,4 @@
-import { NextSeo } from 'next-seo'
+import { NextSeo } from 'next-seo';
 
 export default function InstitutionalSeo({
   tagTitle,
@@ -8,7 +8,6 @@ export default function InstitutionalSeo({
   ogSiteName,
   ogImage,
 }) {
-
   return (
     <>
       <NextSeo
@@ -18,9 +17,9 @@ export default function InstitutionalSeo({
           title: ogTitulo || tagTitle,
           description: ogDescription || metaDescription,
           site_name: ogSiteName,
-          images: [{ url: ogImage }]
+          images: [{ url: ogImage }],
         }}
       />
     </>
-  )
+  );
 }

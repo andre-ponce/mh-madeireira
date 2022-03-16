@@ -1,15 +1,15 @@
-export async function getProduct (id) {
+export async function getProduct(id) {
   const response = await fetch(`${process.env.API_CATALOG}/produto/${id}`, {
     headers: {
       authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
-  if (response.status == 200) {
-    return await response.json();
+  if (response.status === 200) {
+    return response.json();
   }
 
-  if (response.status == 404) {
+  if (response.status === 404) {
     return { notFound: true };
   }
 
@@ -23,8 +23,8 @@ export async function getGalery(id) {
     },
   });
 
-  if (response.status == 200) {
-    return await response.json();
+  if (response.status === 200) {
+    return response.json();
   }
 
   return [];
@@ -37,38 +37,37 @@ export async function getBuyTogether(id) {
     },
   });
 
-  if (response.status == 200) {
-    return await response.json();
+  if (response.status === 200) {
+    return response.json();
   }
 
   return [];
 }
 
-export async function getRelateds (id) {
+export async function getRelateds(id) {
   const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/relacionados`, {
     headers: {
       authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
-  if (response.status == 200) {
-    return await response.json();
+  if (response.status === 200) {
+    return response.json();
   }
 
   return [];
 }
 
-export async function getPaymentConditions (id) {
+export async function getPaymentConditions(id) {
   const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/condicoes-de-pagamento`, {
     headers: {
       authorization: process.env.API_CATALOG_TOKEN,
     },
   });
 
-  if (response.status == 200) {
-    return await response.json();
+  if (response.status === 200) {
+    return response.json();
   }
 
   return [];
 }
-

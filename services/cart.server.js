@@ -10,26 +10,23 @@ export const addToCart = async (product, quantity) => {
     id: cart.itens.length + 1,
     image: product.fotoUrl,
     name: product.nome,
-    quantity: quantity,
-    unityPrice: product.precoPor
+    unityPrice: product.precoPor,
+    quantity,
   });
 };
 
-export const updateCartItem = async (item) => {
-  cart.itens = cart.itens.map(x => {
-    if (x.id != item.id) {
-      return x;
+export const updateCartItem = async (newItem) => {
+  cart.itens = cart.itens.map((oldItem) => {
+    if (oldItem.id !== newItem.id) {
+      return oldItem;
     }
 
-    x.quantity = item.quantity;
-    return item;
+    return { ...oldItem, quantity: newItem.quantity };
   });
 };
 
 export const removeFromCart = async (id) => {
-  cart.itens = cart.itens.filter(x => x.id != id);
+  cart.itens = cart.itens.filter((x) => x.id !== id);
 };
 
-export const getCart = async () => {
-  return cart;
-};
+export const getCart = async () => cart;

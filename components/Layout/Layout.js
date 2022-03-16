@@ -1,19 +1,18 @@
-import GlobalDataContext from '../../contexts/GlobalDataContext'
-import SessionContext from '../../contexts/SessionContext'
-import Header from '../Header'
-import Footer from '../Footer'
-import UserLoggedContext from '../../contexts/UserLoggedContext'
-import useAnimateOnRouteChange from '../../hooks/useAnimateOnRouteChange'
-import { useCart } from '../../hooks/useCart'
+import GlobalDataContext from '../../contexts/GlobalDataContext';
+import SessionContext from '../../contexts/SessionContext';
+import Header from '../Header';
+import Footer from '../Footer';
+import UserLoggedContext from '../../contexts/UserLoggedContext';
+import useAnimateOnRouteChange from '../../hooks/useAnimateOnRouteChange';
+import { useCart } from '../../hooks/useCart';
 
 export function Layout({ children, globalData }) {
-
   if (!globalData) {
-    throw new Error("globalData is missing");
+    throw new Error('globalData is missing');
   }
 
   useAnimateOnRouteChange();
-  var cart = useCart();
+  const cart = useCart();
 
   return (
     <GlobalDataContext.Provider value={globalData}>
@@ -25,5 +24,5 @@ export function Layout({ children, globalData }) {
         </SessionContext.Provider>
       </UserLoggedContext.Provider>
     </GlobalDataContext.Provider>
-  )
+  );
 }

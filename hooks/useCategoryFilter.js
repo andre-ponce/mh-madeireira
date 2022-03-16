@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 
-export default function useCategoryFilter () {
+export default function useCategoryFilter() {
   const router = useRouter();
   const { query } = router;
 
-  function isChecked (filter, id) {
+  function isChecked(filter, id) {
     return !!query[filter] && query[filter].includes(id);
   }
 
-  async function onToggleFilter (filter, id) {
+  async function onToggleFilter(filter, id) {
 
     if (!query[filter]) {
       query[filter] = [];
@@ -29,7 +29,7 @@ export default function useCategoryFilter () {
       query.p = 1;
     }
 
-    await router.push({ query }, {...router.asPath}, { scroll: false })
+    await router.push({ query }, { ...router.asPath }, { scroll: false })
   }
 
   return [isChecked, onToggleFilter]

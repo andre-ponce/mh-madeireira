@@ -1,3 +1,1 @@
-import InstitutionalMain from './InstitutionalMain'
-
-export default InstitutionalMain;
+export { default } from './InstitutionalMain';

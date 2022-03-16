@@ -10,8 +10,8 @@ function TopbarFixed({ isFixed, toggleMenu }) {
     institucional: {
       telefone,
       whatsapp,
-      emailAtendimento
-    }
+      emailAtendimento,
+    },
   } = useContext(GlobalDataContext);
 
   return (
@@ -22,13 +22,13 @@ function TopbarFixed({ isFixed, toggleMenu }) {
           <img className="logo__text" src="/images/logo_text.svg" alt="Braskape" />
         </a>
 
-        <button className="topbar--fixed__menu" onClick={toggleMenu}>
+        <button type="button" className="topbar--fixed__menu" onClick={toggleMenu}>
           <i className="fas fa-bars menu-icon" />
         </button>
 
         <form className="form-search d-flex">
           <input type="text" className="input-text" placeholder="Digite o que busca ou o código original da peça" />
-          <button className="yellow-button">
+          <button type="button" className="yellow-button">
             <i className="far fa-search" />
           </button>
         </form>

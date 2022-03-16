@@ -5,24 +5,26 @@ import { addToCart } from '../../services/cart.client';
 
 function Product({ product }) {
   const [busy, setBusy] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity] = useState(1);
 
   const precoDe = product.precoDe > product.precoPor
     ? product.precoDe
     : product.precoPor * 1.05;
 
-  const add = async (product, quantity) => {
+  const add = async () => {
     setBusy(true);
     await addToCart(product, quantity);
     setBusy(false);
-  }
+  };
 
   return (
     <div className="product">
       <Link href={`/product/${product.id}`} passHref>
         <a className="product__topbar">
           <img src={image.fallback(product.fotoUrl) || '/images/no-image-avaliable.jpg'} alt={product.name} />
-          {<span className="topbar__discount">{format.discount(product.desconto > 0 ? product.desconto : 5)}</span>}
+          <span className="topbar__discount">
+            {format.discount(product.desconto > 0 ? product.desconto : 5)}
+          </span>
         </a>
       </Link>
       <div className="product__infos">
@@ -40,7 +42,8 @@ function Product({ product }) {
         <span className="prices__old">{format.currency(precoDe)}</span>
         <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
         <span className="prices__installments">
-          {product.parcelamento}x de
+          {product.parcelamento}
+          x de
           {' '}
           <strong>
             {format.currency(product.valorParcelamento)}
@@ -81,9 +84,9 @@ function Product({ product }) {
               <i className="far fa-chevron-down" />
             </button>
           </div> */}
-          <button className="buy__button" onClick={async () => await add(product, quantity)}>
+          <button type="button" className="buy__button" onClick={async () => add(product, quantity)}>
             {
-              busy ? "..." : "COMPRAR"
+              busy ? '...' : 'COMPRAR'
             }
           </button>
         </div>

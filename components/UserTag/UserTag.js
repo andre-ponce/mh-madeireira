@@ -16,12 +16,12 @@ export default function UserTag({ isMobile }) {
           ? (
             <>
               <span className="login__container d-flex align-items-center">
-                <span className='tag_image'>
+                <span className="tag_image">
                   <Image src="/images/login.svg" alt="Login" width="30px" height="30px" />
                 </span>
                 <span className="d-flex flex-column">
                   <span>Olá, Fulano</span>
-                  <span className='login__account'>
+                  <span className="login__account">
                     Minha conta
                     {' '}
                     <i className="fal fa-chevron-down" />
@@ -39,7 +39,7 @@ export default function UserTag({ isMobile }) {
             <>
               <Link href="/login" passHref>
                 <a className="login__container d-flex align-items-center">
-                  <span className='tag_image'>
+                  <span className="tag_image">
                     <Image src="/images/login.svg" alt="Login" width="30px" height="30px" />
                   </span>
                   <div className="d-flex flex-column">
@@ -52,5 +52,5 @@ export default function UserTag({ isMobile }) {
           )
       }
     </Wrapper>
-  )
+  );
 }

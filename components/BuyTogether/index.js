@@ -1,1 +1,1 @@
-export { BuyTogether as default } from './BuyTogether'
+export { BuyTogether as default } from './BuyTogether';

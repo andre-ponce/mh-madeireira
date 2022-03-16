@@ -1,11 +1,12 @@
-import { useState } from "react";
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { useState } from 'react';
 
 const isValidTabChildren = (panel) => {
   if (!panel) {
     return false;
   }
 
-  if (!panel['$$typeof'] || panel['$$typeof'].toString() != 'Symbol(react.element)') {
+  if (!panel.$$typeof || panel.$$typeof.toString() !== 'Symbol(react.element)') {
     return false;
   }
 
@@ -18,7 +19,7 @@ const isValidTabChildren = (panel) => {
   }
 
   return true;
-}
+};
 
 export function Tab({ children }) {
   let panels = [];
@@ -32,29 +33,29 @@ export function Tab({ children }) {
     return <></>;
   }
 
-  const activeChildren = panels.filter(i => i.props.active == 'true')[0] || panels[0];
+  const activeChildren = panels.filter((i) => i.props.active === 'true')[0] || panels[0];
   const [activeTab, setActiveTab] = useState(activeChildren.props.title);
 
   return (
     <>
       <section className="triade" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="0">
         {
-          panels.map(t =>
+          panels.map((t) => (
             <h2
               key={t.props.title}
               onClick={() => setActiveTab(t.props.title)}
-              className={"title-border-left " + (activeTab != t.props.title ? 'disable__item' : '')}
+              className={`title-border-left ${activeTab !== t.props.title ? 'disable__item' : ''}`}
             >
               {t.props.title}
             </h2>
-          )
+          ))
         }
         {
-          panels.map(t =>
-            <div key={t.props.title} className={"triade__item " + (activeTab != t.props.title ? 'd-none' : '')}>
+          panels.map((t) => (
+            <div key={t.props.title} className={`triade__item ${activeTab !== t.props.title ? 'd-none' : ''}`}>
               {t}
             </div>
-          )
+          ))
         }
       </section>
     </>

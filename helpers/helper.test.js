@@ -1,5 +1,4 @@
-import { format } from "."
-
+import { format } from '.';
 test('format.telephone() shold return empty', () => {
   expect(format.telephone()).toBe('');
 });
