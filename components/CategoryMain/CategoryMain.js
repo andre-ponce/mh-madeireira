@@ -37,7 +37,7 @@ function Category({ name, products, filters, onFilterChange, isFilterActive, pag
 
             <div className="gallery__products">
               {products.map((product) => (
-                <Product product={product} />
+                <Product key={product.id} product={product} />
               ))}
             </div>
 
