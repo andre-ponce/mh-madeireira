@@ -12,7 +12,7 @@ export default function CategorySearch({ categoyName }) {
   return (
     <div className="gallery__search">
       <label htmlFor="categorySearch">Buscar dentro de <strong>{categoyName}</strong></label>
-      <input id="categorySearch" name="categorySearch" className="" value={search} onChange={(e) => setSearch(e.target.value)} />
+      <input value={search} onChange={(e) => setSearch(e.target.value)} />
       {!router.query.q &&
         <button
           className="yellow-button"

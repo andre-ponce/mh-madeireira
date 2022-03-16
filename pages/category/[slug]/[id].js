@@ -7,7 +7,7 @@ import CategoryMain from '../../../components/CategoryMain';
 import CategoryBanner from '../../../components/CategoryMain/CategoryBanner';
 
 import { getGlobalData } from '../../../services/dados-globais.service';
-import { getCategoryResults } from '../../../services/categories.service';
+import { getCategoryResults } from '../../../services/catalog.service';
 import { linkTo } from '../../../helpers';
 import useCategoryFilter from '../../../hooks/useCategoryFilter';
 import Pagination from '../../../components/Pagination';
