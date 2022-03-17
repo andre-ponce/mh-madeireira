@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
+import React, { useContext, useState } from 'react';
 import GlobalDataContext from '../../contexts/GlobalDataContext';
 import { format } from '../../helpers';
 import CartResume from '../CartResume';
@@ -14,6 +15,18 @@ function TopbarFixed({ isFixed, toggleMenu }) {
     },
   } = useContext(GlobalDataContext);
 
+  const router = useRouter();
+  const [search, setSearch] = useState('');
+
+  async function doSearch(ev) {
+    ev.preventDefault();
+    if (!search) return;
+    await router.push({
+      pathname: '/busca',
+      query: { q: search },
+    });
+  }
+
   return (
     <div className={`header__topbar--fixed ${isFixed ? 'fixed' : 'd-none'}`}>
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
@@ -26,9 +39,16 @@ function TopbarFixed({ isFixed, toggleMenu }) {
           <i className="fas fa-bars menu-icon" />
         </button>
 
-        <form className="form-search d-flex">
-          <input type="text" className="input-text" placeholder="Digite o que busca ou o código original da peça" />
-          <button type="button" className="yellow-button">
+        <form className="form-search d-flex" onSubmit={doSearch}>
+          <input
+            value={search}
+            required
+            onChange={(ev) => setSearch(ev.target.value)}
+            type="search"
+            className="input-text"
+            placeholder="Digite o que busca ou o código original da peça"
+          />
+          <button type="submit" className="yellow-button">
             <i className="far fa-search" />
           </button>
         </form>

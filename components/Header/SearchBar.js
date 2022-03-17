@@ -15,9 +15,9 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="topbar__search" onSubmit={doSearch}>
+    <div className="topbar__search">
       <div className="container_serie-ds d-flex align-items-center">
-        <form className="search__input-search form-search d-flex">
+        <form className="search__input-search form-search d-flex" onSubmit={doSearch}>
           <input
             value={search}
             required
