@@ -5,11 +5,14 @@ import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import { ProductMain } from '../../components/ProductMain/ProductMain';
 import { getGlobalData } from '../../services/dados-globais.service';
-import { getProduct } from '../../services/product.service';
+import { getProduct, getDescription } from '../../services/product.service';
 
 export async function getServerSideProps({ query }) {
   const global = await getGlobalData();
   const { notFound, ...product } = await getProduct(query.id);
+  const { descricaoHTML } = await getDescription();
+
+  product.descricaoHTML = descricaoHTML;
 
   if (notFound) {
     return {

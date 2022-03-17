@@ -43,13 +43,17 @@ export function ProductMain({
       }
 
       <Tab>
-        <TabPanel title="Descrição" active>
-          <ProductDescription rawHtml={'<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p><div className="triade__item__title">INFORMAÇÕES TÉCNICAS</div><dl><dt>Composição</dt><dd>100% Algodão</dd></dl>'} />
-        </TabPanel>
-        <TabPanel title="Avalie este produto">
+        {
+          product.descricaoHTML
+          && (
+            <TabPanel title="Descrição" active>
+              <ProductDescription rawHtml={product.descricaoHTML} />
+            </TabPanel>
+          )
+        }
+        <TabPanel title="Avalie este produto" active={!product.descricaoHTML}>
           <a href="">Dê a sua opnião</a>
           <ProductRating />
-
         </TabPanel>
         <TabPanel title="Indique para um amigo">
           <ProductRecommendForm />

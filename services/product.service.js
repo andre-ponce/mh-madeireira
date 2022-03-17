@@ -30,6 +30,20 @@ export async function getGalery(id) {
   return [];
 }
 
+export async function getDescription(id) {
+  const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/descricao`, {
+    headers: {
+      authorization: process.env.API_CATALOG_TOKEN,
+    },
+  });
+
+  if (response.status === 200) {
+    return response.json();
+  }
+
+  return { descricaoHTML: '' };
+}
+
 export async function getBuyTogether(id) {
   const response = await fetch(`${process.env.API_CATALOG}/produto/${id}/compre-junto`, {
     headers: {
