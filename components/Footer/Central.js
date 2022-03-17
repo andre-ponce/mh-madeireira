@@ -11,14 +11,13 @@ function Central({
   instagram,
   youtube,
 }) {
-
   return (
     <div className="footer__footer-central">
       <div className="container_serie-ds">
         <div className="footer-central__institucional">
           <h2>INSTITUCIONAL</h2>
-          {pages.map(p => (
-            <Link href={`/institutional/${p.slug}`} passHref>
+          {pages.map((p) => (
+            <Link href={`/institutional/${p.slug}`} passHref key={p.id}>
               <a className="mg-b-5">
                 {p.titulo}
               </a>
@@ -36,22 +35,28 @@ function Central({
 
           <div className="atendimento__social-medias">
             {
-              facebook &&
-              <a href={facebook}>
-                <img src="/images/facebook.svg" alt="facebook" />
-              </a>
+              facebook
+              && (
+                <a href={facebook}>
+                  <img src="/images/facebook.svg" alt="facebook" />
+                </a>
+              )
             }
             {
-              instagram &&
-              <a href={instagram}>
-                <img src="/images/instagram.svg" alt="instagram" />
-              </a>
+              instagram
+              && (
+                <a href={instagram}>
+                  <img src="/images/instagram.svg" alt="instagram" />
+                </a>
+              )
             }
             {
-              youtube &&
-              <a href={youtube}>
-                <img src="/images/youtube.svg" alt="youtube" />
-              </a>
+              youtube
+              && (
+                <a href={youtube}>
+                  <img src="/images/youtube.svg" alt="youtube" />
+                </a>
+              )
             }
           </div>
         </div>

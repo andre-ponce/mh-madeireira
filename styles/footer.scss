@@ -295,9 +295,16 @@
   }
 
   &__whats-fixed {
-    right: 20px;
+    left: calc(100vw - 70px);
     bottom: 10px;
     z-index: 999;
     position: fixed;
+    transition: all .2s;
+  }
+}
+
+.mobile_shadow--active {
+  .footer__whats-fixed {
+    left: calc(100vw + 70px);
   }
 }

@@ -1,7 +1,7 @@
-import { getGalery } from "../../../../services/product.service"
+import { getGalery } from '../../../../services/product.service';
 
-export default async function handler (req, res) {
+export default async function handler(req, res) {
   const galery = await getGalery(req.query.id);
-  var statusCode = galery.length > 0 ? 200 : 204;
+  const statusCode = galery.length > 0 ? 200 : 204;
   res.status(statusCode).json(galery);
 }

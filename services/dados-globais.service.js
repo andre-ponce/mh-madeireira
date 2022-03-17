@@ -5,5 +5,5 @@ export async function getGlobalData() {
     },
   });
 
-  return await response.json();
+  return response.json();
 }

@@ -3,14 +3,24 @@ import CatalogFilter from '../CatalogFilter';
 import Product from '../Product';
 import CategorySearch from './CategorySearch';
 
-function Category({ name, products, filters, onFilterChange, isFilterActive, pagination }) {
-
+function Category({
+  name,
+  products,
+  filters,
+  onFilterChange,
+  isFilterActive,
+  pagination,
+}) {
   return (
     <main>
       <div className="container_serie-ds">
         <div className="row mx-0 mt-4">
 
-          <CatalogFilter filters={filters} onFilterChange={onFilterChange} isFilterActive={isFilterActive} />
+          <CatalogFilter
+            filters={filters}
+            onFilterChange={onFilterChange}
+            isFilterActive={isFilterActive}
+          />
 
           <section className="col-12 col-lg-9 main__gallery d-flex pr-0" data-aos="fade-left" data-aos-duration="1000" data-aos-offset="-200">
 
@@ -37,7 +47,7 @@ function Category({ name, products, filters, onFilterChange, isFilterActive, pag
 
             <div className="gallery__products">
               {products.map((product) => (
-                <Product product={product} />
+                <Product key={product.id} product={product} />
               ))}
             </div>
 

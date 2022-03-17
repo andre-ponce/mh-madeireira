@@ -1,15 +1,14 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import Modal from "../Modal";
-import { format } from "../../helpers";
+import Modal from '../Modal';
+import { format } from '../../helpers';
 
 export function PaymentOptionsModal({ payConditions, handleHide }) {
-
   useEffect(() => {
     const ESC_KEY_CODE = 27;
 
     function keyUp(e) {
-      if (e.keyCode == ESC_KEY_CODE) {
+      if (e.keyCode === ESC_KEY_CODE) {
         handleHide();
       }
     }
@@ -22,9 +21,9 @@ export function PaymentOptionsModal({ payConditions, handleHide }) {
   }, []);
 
   return (
-    <Modal>
+    <Modal handleHide={handleHide}>
       <div className="modal__pedido" onClick={(e) => e.stopPropagation()}>
-        <a className="close" onClick={handleHide}><i className="fal fa-times"></i></a>
+        <a className="close" onClick={handleHide}><i className="fal fa-times" /></a>
         <div className="title">Formas de pagamento</div>
         <div className="modal__forma">
           <a className="modal__forma__item active">Cartão de Crédito</a>
@@ -35,14 +34,14 @@ export function PaymentOptionsModal({ payConditions, handleHide }) {
             <tbody>
 
               {
-                payConditions.map(p =>
+                payConditions.map((p) => (
                   <tr key={p.parcela}>
-                    <td>{p.parcela}x</td>
-                    <td>de {format.currency(p.valor)}</td>
+                    <td>{`${p.parcela}x`}</td>
+                    <td>{`de ${format.currency(p.valor)}`}</td>
                     <td>{p.semJuros ? 'sem juros' : 'com juros'}</td>
-                    <td>total {format.currency(p.parcela * p.valor)}</td>
+                    <td>{`total ${format.currency(p.parcela * p.valor)}`}</td>
                   </tr>
-                )
+                ))
               }
             </tbody>
           </table>

@@ -9,13 +9,14 @@ export function CatalogFilterItem({ item, onChange, isActive }) {
         type="checkbox"
         className="custom-control-input"
         id={`catalogFilterItem_${item.uid}`}
-        checked={isActive(item.uid)} onChange={() => onChange(item.uid)}
+        checked={isActive(item.uid)}
+        onChange={() => onChange(item.uid)}
       />
       <label
         className="custom-control-label"
         htmlFor={`catalogFilterItem_${item.uid}`}
       >
-        {item.nome} ({item.correspondecias})
+        {`${item.nome} (${item.correspondecias})`}
       </label>
     </div>
   );
@@ -28,7 +29,8 @@ export function CatalogFilterLink({ item }) {
         <a>
           {item.nome}
         </a>
-      </Link> ({item.correspondecias})
+      </Link>
+      {`(${item.correspondecias})`}
     </div>
   );
 }

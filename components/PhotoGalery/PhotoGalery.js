@@ -1,23 +1,21 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import Slick from 'react-slick';
-import { Loader } from "./Loader";
+import { Loader } from './Loader';
 
 const defaultSettingsGalery = {
   dots: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: false
-}
+  autoplay: false,
+};
 
 export function PhotoGalery({ photos, slickSettings }) {
-
   const settings = {
     ...defaultSettingsGalery,
-    ...slickSettings
+    ...slickSettings,
   };
 
   useEffect(() => {
-
     if (!photos) {
       return;
     }
@@ -38,12 +36,12 @@ export function PhotoGalery({ photos, slickSettings }) {
    * apenas para manter as arrows e suprir esse espaço.
    */
   const galery = [...(photos || [])];
-  if (galery.length == 1) {
+  if (galery.length === 1) {
     galery.push(galery[0]);
   }
 
   return (
-    photos == undefined
+    photos === undefined
       ? (
         <Slick className="slider__product__galery" {...settings}>
           <div>
@@ -53,7 +51,7 @@ export function PhotoGalery({ photos, slickSettings }) {
       )
       : (
         <Slick className={`slider__product__galery ${photos.length > 1 ? 'slider__product__galery--has-thumbs' : ''}`} {...settings}>
-          {galery.map(photo => (
+          {galery.map((photo) => (
             <div key={photo.id}>
               <img src={photo.url} alt={photo.textoAlternativo} title={photo.titulo} />
             </div>

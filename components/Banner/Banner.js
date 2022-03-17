@@ -19,23 +19,23 @@ function Banner({ carousel, isMobile }) {
     setServerState(false);
   }, []);
 
-  const urlImage = ({ urlMobile, url }, isMobile) => {
+  const urlImage = ({ urlMobile, url }) => {
     if (isMobile) {
       return urlMobile || url;
     }
 
     return url;
-  }
+  };
 
   return (
     <>
       <Wrapper isMobile={isMobile}>
         <SliderRendered {...bannerSettings}>
           {
-            carousel.map(banner => (
-              <a href={banner.href} target={banner.target || '_blank'}>
+            carousel.map((banner) => (
+              <a href={banner.href} key={banner.href} target={banner.target || '_blank'}>
                 <img
-                  src={urlImage(banner, isMobile)}
+                  src={urlImage(banner)}
                   title={banner.titulo}
                   alt={banner.textoAlternativo}
                 />

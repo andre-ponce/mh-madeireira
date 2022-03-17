@@ -6,27 +6,26 @@ import { BuyTogetherResume } from './BuyTogetherResume';
 
 export function BuyTogether({ mainProduct, relatedsProducts }) {
   const [selecteds, setSelecteds] = useState([]);
-  const [resume, setResume] = useState({itens: [mainProduct]});
+  const [resume, setResume] = useState({ itens: [mainProduct] });
+
+  function isChecked(id) {
+    return selecteds.includes(id);
+  }
 
   useEffect(() => {
     setResume({
-      itens: [mainProduct, ...relatedsProducts.filter(p => isChecked(p.id))]
-    })
+      itens: [mainProduct, ...relatedsProducts.filter((p) => isChecked(p.id))],
+    });
   }, [selecteds]);
 
-  function onChange (id) {
+  function onChange(id) {
     if (isChecked(id)) {
-      selecteds.splice(selecteds.indexOf(id), 1)
-    }
-    else {
-      selecteds.push(id)
+      selecteds.splice(selecteds.indexOf(id), 1);
+    } else {
+      selecteds.push(id);
     }
 
     setSelecteds([...selecteds]);
-  }
-
-  function isChecked (id) {
-    return selecteds.includes(id);
   }
 
   return (
@@ -34,9 +33,17 @@ export function BuyTogether({ mainProduct, relatedsProducts }) {
       <h2 className="title-border-left">Compre Junto</h2>
       <div className="buy-together__container">
         <BuyTogetherMainProduct product={mainProduct} />
-        <img className="buy-together__image-plus" src="/images/buy-together_plus.png" alt="" />
-        <BuyTogetherRelatedsProducts products={relatedsProducts} onChange={onChange} isChecked={isChecked} />
-        <BuyTogetherResume resume={resume}/>
+        <img
+          className="buy-together__image-plus"
+          src="/images/buy-together_plus.png"
+          alt=""
+        />
+        <BuyTogetherRelatedsProducts
+          products={relatedsProducts}
+          onChange={onChange}
+          isChecked={isChecked}
+        />
+        <BuyTogetherResume resume={resume} />
       </div>
     </div>
   );

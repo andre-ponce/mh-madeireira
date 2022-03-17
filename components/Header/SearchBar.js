@@ -1,42 +1,36 @@
-import React from 'react';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function SearchBar() {
+  const router = useRouter();
+  const [search, setSearch] = useState('');
+
+  async function doSearch(ev) {
+    ev.preventDefault();
+    if (!search) return;
+    await router.push({
+      pathname: '/busca',
+      query: { q: search },
+    });
+  }
+
   return (
-    <div className="topbar__search">
+    <div className="topbar__search" onSubmit={doSearch}>
       <div className="container_serie-ds d-flex align-items-center">
-        <div className="search__selections d-flex">
-          <select name="montadora" className="active-select" id="select-montadora">
-            <option value="">Selecione a Montadora</option>
-            <option value="">Volkswagen</option>
-          </select>
-
-          <select name="veiculo" className="d-none active-select" id="select-veiculo">
-            <option value="">Selecione o Veículo</option>
-            <option value="">Gol Quadrado</option>
-          </select>
-
-          <select name="ano" className="d-none active-select" id="select-ano">
-            <option value="">Ano</option>
-            <option value="">2000</option>
-          </select>
-
-          <select name="modelo" className="d-none active-select" id="select-modelo">
-            <option value="">Selecione o Modelo</option>
-            <option value="">4 portas</option>
-          </select>
-          <span className="active-line" />
-        </div>
-        <span className="txt-busca">Busca Avançada</span>
         <form className="search__input-search form-search d-flex">
           <input
-            type="text"
+            value={search}
+            required
+            onChange={(ev) => setSearch(ev.target.value)}
+            type="search"
             className="input-text"
-            placeholder="Digite o que busca ou o código original da peça" />
-          <button className="yellow-button">
+            placeholder="Digite o que busca ou o código original da peça"
+          />
+          <button className="yellow-button" type="submit">
             <i className="far fa-search" />
           </button>
         </form>
-        <button id="btn_clean-filter" className="btn_clean-filter d-none">
+        <button id="btn_clean-filter" className="btn_clean-filter d-none" type="button">
           <span>Limpar</span>
           <span>Filtro</span>
         </button>

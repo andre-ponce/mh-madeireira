@@ -1,7 +1,12 @@
 import React from 'react';
 import { PaginationItem } from './PaginationItem';
 
-function Pagination({ currentPage, isLastPage, nextHref, prevHref }) {
+function Pagination({
+  currentPage,
+  isLastPage,
+  nextHref,
+  prevHref,
+}) {
   return (
     <div className="gallery__pagination">
       <PaginationItem text="< Página Anterior" href={currentPage < 2 ? '' : prevHref} />

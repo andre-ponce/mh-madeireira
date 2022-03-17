@@ -3,19 +3,18 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import Layout from '../../components/Layout';
-import { ProductMain } from "../../components/ProductMain/ProductMain";
+import { ProductMain } from '../../components/ProductMain/ProductMain';
 import { getGlobalData } from '../../services/dados-globais.service';
-import { getProduct } from '../../services/product.service'
+import { getProduct } from '../../services/product.service';
 
-export async function getServerSideProps({query}) {
-
+export async function getServerSideProps({ query }) {
   const global = await getGlobalData();
-  const { notFound, ...product} = await getProduct(query.id);
+  const { notFound, ...product } = await getProduct(query.id);
 
   if (notFound) {
     return {
-      notFound
-    }
+      notFound,
+    };
   }
 
   return {
@@ -26,9 +25,9 @@ export async function getServerSideProps({query}) {
   };
 }
 
-async function fecthData (url, cb) {
+async function fecthData(url, cb) {
   const res = await fetch(url);
-  if (res.status == 200) {
+  if (res.status === 200) {
     const products = await res.json();
     cb(products);
     return;
@@ -68,7 +67,7 @@ function Product({ global, product }) {
         />
       </Layout>
     </>
-  )
+  );
 }
 
 export default Product;

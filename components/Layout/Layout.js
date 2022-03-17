@@ -1,65 +1,28 @@
-import GlobalDataContext from '../../contexts/GlobalDataContext'
-import Header from '../Header'
-import Footer from '../Footer'
-import UserLoggedContext from '../../contexts/UserLoggedContext'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import AOS from 'aos';
+import GlobalDataContext from '../../contexts/GlobalDataContext';
+import SessionContext from '../../contexts/SessionContext';
+import Header from '../Header';
+import Footer from '../Footer';
+import UserLoggedContext from '../../contexts/UserLoggedContext';
+import useAnimateOnRouteChange from '../../hooks/useAnimateOnRouteChange';
+import { useCart } from '../../hooks/useCart';
 
 export function Layout({ children, globalData }) {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  if (!globalData) {
+    throw new Error('globalData is missing');
+  }
 
-  useEffect(() => {
-    const handleStart = () => {
-      setIsLoading(true);
-      const aosElements = document.querySelectorAll('[data-aos]');
-      aosElements.forEach(el => {
-        el.classList.remove('aos-init');
-        el.classList.remove('aos-animate');
-      })
-    }
-
-    const handleStop = () => {
-      setIsLoading(false);
-      AOS.refresh(true);
-    }
-
-    router.events.on('routeChangeStart', handleStart);
-    router.events.on('routeChangeComplete', handleStop);
-    router.events.on('routeChangeError', handleStop);
-
-    AOS.init();
-
-    return () => {
-      router.events.off('routeChangeStart', handleStart);
-      router.events.off('routeChangeComplete', handleStop);
-      router.events.off('routeChangeError', handleStop);
-    }
-  }, [router])
+  useAnimateOnRouteChange();
+  const cart = useCart();
 
   return (
     <GlobalDataContext.Provider value={globalData}>
       <UserLoggedContext.Provider value={{ loggedIn: false }}>
-        {isLoading && <Loading />}
-        <Header />
-        {children}
-        <Footer pages={globalData.paginas} />
+        <SessionContext.Provider value={cart}>
+          <Header />
+          {children}
+          <Footer pages={globalData.paginas} />
+        </SessionContext.Provider>
       </UserLoggedContext.Provider>
     </GlobalDataContext.Provider>
-  )
-}
-
-function Loading() {
-  return (
-    <div style={{
-      height: '100vh',
-      width: '100vw',
-      position: 'fixed',
-      zIndex: '9999',
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-      cursor: 'progress'
-    }}>
-    </div>
-  )
+  );
 }

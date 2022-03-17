@@ -8,7 +8,8 @@ export default function CategoryBanner({ banner, breadcrumbs }) {
         alt={banner.alt}
         data-aos="fade-left"
         data-aos-duration="1000"
-        data-aos-offset="300" />
+        data-aos-offset="300"
+      />
       {breadcrumbs}
     </div>
   );

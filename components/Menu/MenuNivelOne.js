@@ -1,7 +1,6 @@
 import React from 'react';
-import Link from 'next/link'
-import { isEmpty } from 'lodash';
-import { linkTo } from '../../helpers'
+import Link from 'next/link'; import { isEmpty } from 'lodash';
+import { linkTo } from '../../helpers';
 
 function MenuNivelOne({ category }) {
   return (

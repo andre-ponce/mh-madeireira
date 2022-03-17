@@ -7,7 +7,6 @@ import Newsletter from './Newsletter';
 import Whatsapp from './Whatsapp';
 
 function Footer({ pages }) {
-
   const {
     institucional: {
       whatsapp,
@@ -19,8 +18,8 @@ function Footer({ pages }) {
       youtube,
     },
     site: {
-      informacoesDeAtendimento
-    }
+      informacoesDeAtendimento,
+    },
   } = useContext(GlobalDataContext);
 
   return (

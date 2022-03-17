@@ -5,18 +5,18 @@ export async function getHomeData() {
     },
   });
 
-  return await response.json();
+  return response.json();
 }
 
 export async function signupNewsletter({ email, name }) {
   const response = await fetch(`${process.env.API_CATALOG}/newsletter`, {
     headers: {
       authorization: process.env.API_CATALOG_TOKEN,
-      'content-type': 'application/json'
+      'content-type': 'application/json',
     },
     method: 'POST',
-    body: JSON.stringify({ nome: name, email, cadastradoVia: 'site' })
+    body: JSON.stringify({ nome: name, email, cadastradoVia: 'site' }),
   });
 
-  return await response.json();
+  return response.json();
 }

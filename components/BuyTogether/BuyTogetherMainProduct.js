@@ -1,4 +1,4 @@
-import { format, image } from "../../helpers";
+import { format, image } from '../../helpers';
 
 export function BuyTogetherMainProduct({ product }) {
   return (
@@ -6,10 +6,11 @@ export function BuyTogetherMainProduct({ product }) {
       <a className="product__topbar">
         <img src={image.fallback(product.fotoUrl)} alt="Produto x" />
         {
-          product.desconto > 0 &&
-          <span className="topbar__discount">
-            {`-${product.desconto}%`}
-          </span>
+          product.desconto > 0 && (
+            <span className="topbar__discount">
+              {`-${product.desconto}%`}
+            </span>
+          )
         }
       </a>
       <div className="product__infos">

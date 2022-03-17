@@ -1,1 +1,1 @@
-export { ProductMain as default } from './ProductMain'
+export { ProductMain as default } from './ProductMain';

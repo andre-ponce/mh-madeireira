@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import { format } from '../../helpers';
 
-function Info({document}) {
+function Info({ document }) {
   const currentYear = new Date().getFullYear();
   const formated = format.nationalDocument(document, true);
 
@@ -19,7 +18,7 @@ function Info({document}) {
         </div>
       </div>
       <div className="company-infos__dados">
-        <span>Copyright © {currentYear} Braskape</span>
+        <span>{`Copyright © ${currentYear} Braskape`}</span>
         {formated && <span>{formated}</span>}
         <span>Todos os direitos reservados.</span>
       </div>

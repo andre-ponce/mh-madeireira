@@ -1,34 +1,27 @@
 import React, { useContext } from 'react';
-import Link from 'next/link'
-
+import Link from 'next/link';
 import GlobalDataContext from '../../contexts/GlobalDataContext';
 import CartResume from '../CartResume';
 import HelpInfo from './HelpInfo';
-import UserInfo from './UserInfo';
-import { format } from '../../helpers'
+import UserTag from '../UserTag/UserTag';
+import { format } from '../../helpers';
 
-function Topbar() {
-
+function Topbar({ openMenuMobile }) {
   const {
     institucional: {
       emailAtendimento,
       nomeFantasia,
       telefone,
       whatsapp,
-      anoDaFundacao
-    }
+      anoDaFundacao,
+    },
   } = useContext(GlobalDataContext);
 
   return (
     <div className="topbar__top">
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#header__menu"
-        >
+        <button className="navbar-toggler" type="button" onClick={openMenuMobile}>
           <i className="fas fa-bars menu-icon" />
         </button>
 
@@ -40,12 +33,19 @@ function Topbar() {
           </a>
         </Link>
 
-        {anoDaFundacao &&
-          <span className="topbar__top">
-            Varejista de peças automotivas
-            {' '}
-            <strong className="txt-yellow">desde {anoDaFundacao}</strong>
-          </span>
+        {
+          anoDaFundacao
+          && (
+            <span className="topbar__top">
+              Varejista de peças automotivas
+              {' '}
+              <strong className="txt-yellow">
+                desde
+                {' '}
+                {anoDaFundacao}
+              </strong>
+            </span>
+          )
         }
 
         <span className="topbar__top">
@@ -65,7 +65,7 @@ function Topbar() {
           telefone={format.telephone(telefone)}
           whatsapp={format.telephone(whatsapp)}
         />
-        <UserInfo />
+        <UserTag />
         <CartResume />
       </div>
     </div>

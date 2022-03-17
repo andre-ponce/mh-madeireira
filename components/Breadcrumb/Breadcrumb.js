@@ -6,7 +6,7 @@ function Breadcrumb({ path }) {
     <nav className="container_serie-ds">
       <ul className="main__breadcrumb">
         <li>
-          <Link href='/' passHref>
+          <Link href="/" passHref>
             <a>HOME</a>
           </Link>
         </li>

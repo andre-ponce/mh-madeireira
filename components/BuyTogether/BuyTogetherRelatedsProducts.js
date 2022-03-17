@@ -1,20 +1,18 @@
 import Slick from 'react-slick';
 
-import { BuyTogetherItem } from "./BuyTogetherItem";
+import { BuyTogetherItem } from './BuyTogetherItem';
 
 const slickSettings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplay: false,
   autoplaySpeed: 2000,
-}
+};
 
 export function BuyTogetherRelatedsProducts({ products, isChecked, onChange }) {
-
-  const groups = [products];
+  const groups = [products].map((group, index) => ({ itens: group, index }));
   const numberOfItens = products.length;
-  
+
   if (numberOfItens > 3) {
     const splitIndex = Math.ceil(numberOfItens / 2);
     groups.push(groups[0].slice(splitIndex));
@@ -24,17 +22,17 @@ export function BuyTogetherRelatedsProducts({ products, isChecked, onChange }) {
   return (
     <div className="buy-together__options">
       {
-        groups.map((group, index) => (
-          <Slick className="buy-together-carousel" key={index} {...slickSettings}>
+        groups.map((item) => (
+          <Slick className="buy-together-carousel" key={item.index} {...slickSettings}>
             {
-              group.map(product =>
+              item.group.map((product) => (
                 <BuyTogetherItem
-                  key={product.id} 
-                  product={product} 
-                  isChecked={isChecked} 
+                  key={product.id}
+                  product={product}
+                  isChecked={isChecked}
                   onChange={() => onChange(product.id)}
                 />
-              )
+              ))
             }
           </Slick>
         ))

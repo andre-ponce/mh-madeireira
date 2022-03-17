@@ -1,4 +1,4 @@
-import useInsecureRawScript from '../../hooks/useInsecureRawScript'
+import useInsecureRawScript from '../../hooks/useInsecureRawScript';
 
 import InstitutionalMain from '../../components/InstitutionalMain';
 import InstitutionalSeo from '../../components/InstitutionalMain/InstitutionalSeo';
@@ -18,11 +18,10 @@ function Institutional({ global, page }) {
         <InstitutionalMain titulo={page.titulo} conteudo={page.conteudo} />
       </Layout>
     </>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
-
   const global = await getGlobalData();
   const { slug } = context.query;
   const page = await getInstitutionalPage(slug);
@@ -37,4 +36,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default Institutional
+export default Institutional;

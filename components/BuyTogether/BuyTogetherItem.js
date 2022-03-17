@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react";
-import { format, image } from "../../helpers";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect, useRef } from 'react';
+import { format, image } from '../../helpers';
 
 export function BuyTogetherItem({ product, isChecked, onChange }) {
   const ref = useRef();
 
   useEffect(() => {
-    if(ref) {
+    if (ref) {
       ref.current.checked = isChecked(product.id);
     }
-  }, [isChecked(product.id)])
+  }, [isChecked(product.id)]);
 
   return (
     <div className="options__option-to-buy">
