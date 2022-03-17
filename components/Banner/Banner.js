@@ -36,7 +36,6 @@ function Banner({ carousel, isMobile }) {
               <a href={banner.href} key={banner.href} target={banner.target || '_blank'}>
                 <img
                   src={urlImage(banner)}
-                  title={banner.titulo}
                   alt={banner.textoAlternativo}
                 />
               </a>
