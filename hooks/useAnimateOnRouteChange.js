@@ -9,10 +9,11 @@ export default function useAnimateOnRouteChange() {
   const loadingClass = 'routing';
   const setIsRouting = (loading) => {
     setIsLoading(loading);
-    const fn = loading
-      ? document.body.classList.add
-      : document.body.classList.remove;
-    fn(loadingClass);
+    if (loading) {
+      document.body.classList.add(loadingClass);
+    } else {
+      document.body.classList.remove(loadingClass);
+    }
   };
 
   useEffect(() => {
