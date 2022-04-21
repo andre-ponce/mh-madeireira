@@ -6,9 +6,7 @@ function Breadcrumb({ path }) {
     <nav className="container_serie-ds">
       <ul className="main__breadcrumb">
         <li>
-          <Link href="/" passHref>
-            <a>HOME</a>
-          </Link>
+          <Link href="/">HOME</Link>
         </li>
         {
           path.map((item, index) => (
@@ -18,7 +16,7 @@ function Breadcrumb({ path }) {
               </li>
               <li>
                 <Link href={item.slug} passHref>
-                  <a>
+                  <a href>
                     {
                       index < path.length - 1
                         ? <>{item.nome.toUpperCase()}</>

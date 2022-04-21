@@ -1,16 +1,16 @@
 import Head from 'next/head';
 
 import { useRouter } from 'next/router';
-import Layout from '../../../components/Layout';
-import Breadcrumb from '../../../components/Breadcrumb';
-import CategoryMain from '../../../components/CategoryMain';
-import CategoryBanner from '../../../components/CategoryMain/CategoryBanner';
+import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumb';
+import CategoryMain from '../../components/CategoryMain';
+import CategoryBanner from '../../components/CategoryMain/CategoryBanner';
 
-import { getGlobalData } from '../../../services/dados-globais.service';
-import { getCategoryResults } from '../../../services/catalog.service';
-import { linkTo } from '../../../helpers';
-import useCategoryFilter from '../../../hooks/useCategoryFilter';
-import Pagination from '../../../components/Pagination';
+import { getGlobalData } from '../../services/dados-globais.service';
+import { getCategoryResults } from '../../services/catalog.service';
+import { linkTo } from '../../helpers';
+import useCategoryFilter from '../../hooks/useCategoryFilter';
+import Pagination from '../../components/Pagination';
 
 export async function getServerSideProps({ query }) {
   const global = await getGlobalData();

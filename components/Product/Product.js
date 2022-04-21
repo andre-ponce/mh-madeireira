@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { format, image } from '../../helpers';
+import { format, image, linkTo } from '../../helpers';
 import { addToCart } from '../../services/cart.client';
 
 function Product({ product }) {
   const [busy, setBusy] = useState(false);
   const [quantity] = useState(1);
-
-  const precoDe = product.precoDe > product.precoPor
-    ? product.precoDe
-    : product.precoPor * 1.05;
 
   const add = async () => {
     setBusy(true);
@@ -19,7 +15,7 @@ function Product({ product }) {
 
   return (
     <div className="product">
-      <Link href={`/product/${product.id}`} passHref>
+      <Link href={linkTo.product(product)} passHref>
         <a className="product__topbar">
           <img src={image.fallback(product.fotoUrl) || '/images/no-image-avaliable.jpg'} alt={product.name} />
           <span className="topbar__discount">
@@ -31,7 +27,7 @@ function Product({ product }) {
         <strong className="infos__brand">{product.marcaNome}</strong>
         <span className="infos__ref">{product.sku}</span>
         <Link href={`/product/${product.id}`} passHref>
-          <a>
+          <a href>
             <h3 className="infos__name">
               {product.nome}
             </h3>
@@ -39,7 +35,10 @@ function Product({ product }) {
         </Link>
       </div>
       <div className="product__prices">
-        <span className="prices__old">{format.currency(precoDe)}</span>
+        {
+          product.precoDe > product.precoPor
+          && <span className="prices__old">{format.currency(product.precoDe)}</span>
+        }
         <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
         <span className="prices__installments">
           {product.parcelamento}

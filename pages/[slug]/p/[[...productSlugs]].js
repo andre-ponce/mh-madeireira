@@ -2,14 +2,15 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import Layout from '../../components/Layout';
-import { ProductMain } from '../../components/ProductMain/ProductMain';
-import { getGlobalData } from '../../services/dados-globais.service';
-import { getProduct, getDescription } from '../../services/product.service';
+import Layout from '../../../components/Layout';
+import { ProductMain } from '../../../components/ProductMain/ProductMain';
+import { getGlobalData } from '../../../services/dados-globais.service';
+import { getProduct, getDescription } from '../../../services/product.service';
 
 export async function getServerSideProps({ query }) {
   const global = await getGlobalData();
-  const { notFound, ...product } = await getProduct(query.id);
+  const [id] = query.productSlugs;
+  const { notFound, ...product } = await getProduct(id);
   const { descricaoHTML } = await getDescription();
 
   product.descricaoHTML = descricaoHTML;
@@ -31,8 +32,8 @@ export async function getServerSideProps({ query }) {
 async function fecthData(url, cb) {
   const res = await fetch(url);
   if (res.status === 200) {
-    const products = await res.json();
-    cb(products);
+    const data = await res.json();
+    cb(data);
     return;
   }
   cb([]);
@@ -40,7 +41,7 @@ async function fecthData(url, cb) {
 
 function Product({ global, product }) {
   const router = useRouter();
-  const { id } = router.query;
+  const [id] = router.query.productSlugs;
 
   const [relateds, setRelateds] = useState([]);
   const [buyTogether, setBuyTogether] = useState([]);
