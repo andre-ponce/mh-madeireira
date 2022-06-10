@@ -3,14 +3,22 @@ import { format, linkTo } from '@/helpers';
 import Link from 'next/link';
 import PaymentOptionsModal from '../PaymentOptionsModal';
 import { ProductFreightSimulator } from './ProductFreightSimulator';
+import { addToCart } from '@/services/cart.service';
 
 export function BuyBox({ product, payConditions }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [busy, setBusy] = useState(false);
 
   const precoDe = product.precoDe > product.precoPor
     ? product.precoDe
     : product.precoPor * 1.05;
+
+  const buy = async () => {
+    setBusy(true);
+    await addToCart({ id: product.id }, quantity);
+    setBusy(false);
+  };
 
   return (
     <>
@@ -67,7 +75,15 @@ export function BuyBox({ product, payConditions }) {
               <i className="fa-solid fa-plus" />
             </button>
           </div>
-          <button type="button" className="buy__button">COMPRAR</button>
+          <button onClick={buy} type="button" className="buy__button">
+            {
+              busy ? (
+                <span><i className="fa-solid fa-spin fa-spinner" /></span>
+              ) : (
+                <span>COMPRAR</span>
+              )
+            }
+          </button>
         </div>
         <div className="price-infos__installments-group">
           <button type="button" className="open__modal" onClick={() => setPayOptionsVisible(true)}>Mais opcões de pagamento</button>
