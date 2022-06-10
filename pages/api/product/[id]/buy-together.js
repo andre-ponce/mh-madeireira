@@ -1,7 +1,10 @@
-import { getBuyTogether } from '../../../../services/product.service';
+import { getBuyTogether } from '@/server/api/product.api';
 
 export default async function handler(req, res) {
   const products = await getBuyTogether(req.query.id);
-  const statusCode = products.length > 0 ? 200 : 204;
-  res.status(statusCode).json(products);
+  if (products.length > 0) {
+    return res.status(200).json(products).end();
+  }
+
+  return res.status(204).end();
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import useFixedShadow from '@/hooks/useFixedShadow';
 import Topbar from '../TopBar';
 import Menu from '../Menu';
 import SearchBar from './SearchBar';
 import TopbarFixed from './TopbarFixed';
-import useFixedShadow from '../../hooks/useFixedShadow';
 
 export function Header() {
   const [isTopFixed, setIsTopFixed] = useState(false);
@@ -13,7 +13,7 @@ export function Header() {
 
   useEffect(() => {
     function toogleFixed() {
-      const shouldBeFixed = window.innerWidth > 1000 && window.scrollY > 0;
+      const shouldBeFixed = window.innerWidth > 1000 && window.scrollY > 50;
       setIsTopFixed(shouldBeFixed);
     }
     window.addEventListener('scroll', toogleFixed);

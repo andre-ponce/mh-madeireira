@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Link from 'next/link';
-import { format, image, linkTo } from '../../helpers';
-import { addToCart } from '../../services/cart.client';
+import { format, image, linkTo } from '@/helpers';
+import { addToCart } from '@/services/cart.service';
+import SessionContext from '@/contexts/SessionContext';
 
 function Product({ product }) {
   const [busy, setBusy] = useState(false);
-  const [quantity] = useState(1);
+  const { itens } = useContext(SessionContext);
+  const current = itens.filter(item => item.produtoId == product.id)[0];
+  const alreadyIn = !!current;
+  const initialQuantity = alreadyIn ? current.quantidade : 1;
+
+  const [quantity, setQuantity] = useState(initialQuantity);
+
 
   const add = async () => {
     setBusy(true);
@@ -17,7 +24,7 @@ function Product({ product }) {
     <div className="product">
       <Link href={linkTo.product(product)} passHref>
         <a className="product__topbar">
-          <img src={image.fallback(product.fotoUrl) || '/images/no-image-avaliable.jpg'} alt={product.name} />
+          <img src={image.fallback(product.fotoUrl)} alt={product.name} />
           <span className="topbar__discount">
             {format.discount(product.desconto > 0 ? product.desconto : 5)}
           </span>
@@ -26,7 +33,7 @@ function Product({ product }) {
       <div className="product__infos">
         <strong className="infos__brand">{product.marcaNome}</strong>
         <span className="infos__ref">{product.sku}</span>
-        <Link href={`/product/${product.id}`} passHref>
+        <Link href={linkTo.product(product)} passHref>
           <a href>
             <h3 className="infos__name">
               {product.nome}
@@ -52,13 +59,13 @@ function Product({ product }) {
         </span>
       </div>
       <div className="product__actions">
-        <Link href={product.categoryLink || `/product/${product.id}`}>
+        <Link href={product.categoryLink || linkTo.product(product)}>
           <a className="actions__link-category">
             {product.categoria || ' '}
           </a>
         </Link>
         <div className="actions__buy">
-          {/* <div className="number-input buy__qtd">
+          <div className="number-input buy__qtd">
 
             <input
               className="quantity"
@@ -73,19 +80,21 @@ function Product({ product }) {
               onClick={() => setQuantity(quantity + 1)}
               className="plus"
             >
-              <i className="far fa-chevron-up" />
+              <i className="fa-solid fa-chevron-up" />
             </button>
             <button
               disabled={quantity < 2}
               onClick={() => setQuantity(quantity - 1)}
               className="minus"
             >
-              <i className="far fa-chevron-down" />
+              <i className="fa-solid fa-chevron-down" />
             </button>
-          </div> */}
+          </div>
           <button type="button" className="buy__button" onClick={async () => add(product, quantity)}>
             {
-              busy ? '...' : 'COMPRAR'
+              busy
+                ? <span><i className='fa fa-spin fa-spinner'></i></span>
+                : (alreadyIn ? <>ALTERAR</> : <>COMPRAR</>)
             }
           </button>
         </div>

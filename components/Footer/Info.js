@@ -1,8 +1,8 @@
-import { format } from '../../helpers';
+import { format } from '@/helpers';
 
 function Info({ document }) {
   const currentYear = new Date().getFullYear();
-  const formated = format.nationalDocument(document, true);
+  const formated = format.brasilianDocument(document, true);
 
   return (
     <div className="footer__company-infos container_serie-ds">

@@ -1,23 +1,35 @@
-import { removeFromCart, updateCartItem } from '../../../services/cart.server';
+import { removeFromCart, updateCartItem } from '@/server/api/cart.api';
+import { cookie as CONSTANT } from '@/server/constants/cookies';
+import { verbsRouter } from '@/server/lib/verbs-api-router';
 
-export default async function handler(req, res) {
-  const method = req.method.toLowerCase();
+const { session: { COOKIE_NAME } } = CONSTANT;
 
-  switch (method) {
-    case 'put':
-      await updateCartItem(JSON.parse(req.body));
+export default verbsRouter({
+
+  async put(req, res) {
+    const { cookies, query: { id } } = req;
+    const session = cookies[COOKIE_NAME];
+    const { quantity } = JSON.parse(req.body);
+    const result = await updateCartItem(session, id, quantity);
+
+    if (result.success) {
       res.status(200).send();
-      break;
+    } else {
+      res.status(400).send();
+    }
+  },
 
-    case 'delete':
-      await removeFromCart(req.query.id);
-      res.status(200);
-      break;
+  async delete(req, res) {
+    const { cookies } = req;
+    const session = cookies[COOKIE_NAME];
+    const { query: { id } } = req;
+    const result = await removeFromCart(session, id);
 
-    default:
-      res.status(405);
-      break;
-  }
+    if (result.success) {
+      res.status(200).send();
+    } else {
+      res.status(400).send();
+    }
+  },
 
-  res.end();
-}
+});

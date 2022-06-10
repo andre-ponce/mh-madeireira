@@ -1,10 +1,8 @@
 .main {
-
   &__gallery {
     display: flex;
     flex-direction: column;
     .gallery {
-
       &__top-filter {
         display: flex;
         justify-content: space-between;
@@ -52,7 +50,7 @@
           margin: 0 5px;
         }
 
-        label{
+        label {
           font-size: 14px;
           strong {
             font-weight: 900;
@@ -67,7 +65,7 @@
         .product {
           width: calc(33% - 10px);
           margin-right: 18px;
-          &:nth-child(3n){
+          &:nth-child(3n) {
             margin-right: 0;
           }
         }
@@ -97,21 +95,21 @@
       }
     }
 
-    @media screen and (max-width: 991px){
+    @media screen and (max-width: 991px) {
       padding-left: 0;
     }
 
-    @media screen and (max-width: 670px){
+    @media screen and (max-width: 670px) {
       .gallery {
         &__products {
           .product {
             width: calc(50% - 9px);
             margin-right: 18px;
             margin-bottom: 18px;
-            &:nth-child(3n){
+            &:nth-child(3n) {
               margin-right: 18px;
             }
-            &:nth-child(2n){
+            &:nth-child(2n) {
               margin-right: 0;
             }
           }
@@ -119,28 +117,26 @@
       }
     }
 
-    @media screen and (max-width: 500px){
+    @media screen and (max-width: 500px) {
       .gallery {
         &__products {
           .product {
             width: calc(50% - 6px);
             margin-right: 12px;
             margin-bottom: 12px;
-            &:nth-child(3n){
+            &:nth-child(3n) {
               margin-right: 12px;
             }
-            &:nth-child(2n){
+            &:nth-child(2n) {
               margin-right: 0;
             }
           }
         }
       }
     }
-
   }
 
   &__filters {
-
     .filters {
       &__title {
         outline: none;
@@ -184,9 +180,7 @@
           }
         }
 
-        .custom-checkbox
-        .custom-control-input:checked ~
-        .custom-control-label::after {
+        .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
           background: no-repeat center !important;
           background-image: url(/images/checkbox-check.png) !important;
         }
@@ -219,7 +213,7 @@
       }
     }
 
-    @media screen and (max-width: 991px){
+    @media screen and (max-width: 991px) {
       border: 1px solid #eee;
       padding-right: 20px;
       margin-bottom: 20px;
@@ -240,11 +234,11 @@
 
   &__banner {
     position: relative;
-    width: 100vw;
+    width: 100%;
     text-align: center;
     min-height: 75px;
     img {
-      max-width: 100%;
+      width: 100%;
       margin: auto;
     }
 

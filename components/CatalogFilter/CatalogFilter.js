@@ -7,7 +7,7 @@ function CatalogFilter({ filters, onFilterChange, isFilterActive }) {
 
       <button className="navbar-toggler mb-4 filters__title" type="button" data-toggle="collapse" data-target="#filtros" aria-controls="filtros" aria-expanded="true" aria-label="Toggle navigation">
         FILTRAR POR
-        <i className="fas fa-filter" />
+        <i className="fa-solid fa-filter" />
       </button>
 
       <div className="collapse navbar-collapse show" id="filtros">

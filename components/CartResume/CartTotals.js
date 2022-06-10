@@ -1,9 +1,13 @@
-export function CartTotals() {
+import { format } from '@/helpers';
+
+export function CartTotals({ itens }) {
+  const total = itens.reduce((acc, item) => acc + item.precoTotal, 0);
+
   return (
     <div className="cart-container__subtotal">
       <span className="subtotal__title">SUBTOTAL</span>
       <div className="subtotal__prices">
-        <span className="prices__price">R$ 999,99</span>
+        <span className="prices__price">{format.currency(total)}</span>
         <span className="prices__installments">
           Em até
           {' '}
@@ -11,7 +15,7 @@ export function CartTotals() {
           {' '}
           de
           {' '}
-          <strong>R$ R$ 999,99</strong>
+          <strong>{format.currency(total / 12.0)}</strong>
         </span>
       </div>
     </div>

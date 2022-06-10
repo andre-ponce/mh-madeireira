@@ -1,10 +1,10 @@
-import useInsecureRawScript from '../../hooks/useInsecureRawScript';
+import useInsecureRawScript from '@/hooks/useInsecureRawScript';
 
-import InstitutionalMain from '../../components/InstitutionalMain';
-import InstitutionalSeo from '../../components/InstitutionalMain/InstitutionalSeo';
-import Layout from '../../components/Layout';
-import { getInstitutionalPage } from '../../services/institutional.service';
-import { getGlobalData } from '../../services/dados-globais.service';
+import InstitutionalMain from '@/components/InstitutionalMain';
+import InstitutionalSeo from '@/components/InstitutionalMain/InstitutionalSeo';
+import Layout from '@/components/Layout';
+import { getInstitutionalPage } from '@/server/api/institutional.api';
+import { getGlobalData } from '@/server/api/global.api';
 
 function Institutional({ global, page }) {
   if (page.scripts) {

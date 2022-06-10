@@ -1,4 +1,4 @@
-import { linkTo } from '../../helpers';
+import { linkTo } from '@/helpers';
 
 function Whatsapp({ whatsapp }) {
   const href = linkTo.whatsappApi(whatsapp);

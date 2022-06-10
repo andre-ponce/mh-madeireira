@@ -1,5 +1,5 @@
-import { getGlobalData } from '../../../services/dados-globais.service';
-import { getCategoryResults } from '../../../services/catalog.service';
+import { getGlobalData } from '@/server/api/global.api';
+import { getCategoryResults } from '@/server/api/catalog.api';
 
 export { default } from '../catalog';
 

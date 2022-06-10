@@ -11,7 +11,7 @@ export function Loader() {
         color: '#ccc',
       }}
     >
-      <i className="fa fa-spin fa-spinner" />
+      <i className="fa-solid fa-spin fa-spinner" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { getGalery } from '../../../../services/product.service';
+import { getGalery } from '@/server/api/product.api';
 
 export default async function handler(req, res) {
   const galery = await getGalery(req.query.id);

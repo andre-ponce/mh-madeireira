@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import GlobalDataContext from '../../contexts/GlobalDataContext';
+import GlobalDataContext from '@/contexts/GlobalDataContext';
 
 import MenuSeeAll from './MenuSeeAll';
 import { useAutoSizedMenu } from './useAutoSizedMenu';
@@ -20,18 +20,27 @@ function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
   useAutoSizedMenu(ulRef);
 
   return (
-    <nav className={`header__menu ${isMenuMobileActive ? 'header__menu--active' : ''} ${isFixed ? 'fixed' : ''}`}>
-      <ButtonCloseMenuMobile close={closeMenuMobile} />
-      <ul className="container_serie-ds categorias_container--sd" ref={ulRef}>
-        <MenuSeeAll itens={menu} />
-        <li className="menu__item menu__login">
-          <UserTag isMobile />
-        </li>
-        {menu && menu.map((linha) => (
-          <MenuItem key={linha.id} linha={linha} staticUrl={staticUrl} />
-        ))}
-      </ul>
-    </nav>
+    <>
+      {
+        isFixed && (
+          <nav className="header__menu">
+            <ul className="container_serie-ds categorias_container--sd" />
+          </nav>
+        )
+      }
+      <nav className={`header__menu ${isMenuMobileActive ? 'header__menu--active' : ''} ${isFixed ? 'fixed' : ''}`}>
+        <ButtonCloseMenuMobile close={closeMenuMobile} />
+        <ul className="container_serie-ds categorias_container--sd" ref={ulRef}>
+          <MenuSeeAll itens={menu} />
+          <li className="menu__item menu__login">
+            <UserTag isMobile />
+          </li>
+          {menu && menu.map((linha) => (
+            <MenuItem key={linha.id} linha={linha} staticUrl={staticUrl} />
+          ))}
+        </ul>
+      </nav>
+    </>
   );
 }
 

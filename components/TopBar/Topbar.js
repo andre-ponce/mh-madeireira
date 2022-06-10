@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import GlobalDataContext from '../../contexts/GlobalDataContext';
-import CartResume from '../CartResume';
+import GlobalDataContext from '@/contexts/GlobalDataContext';
+import { format, linkTo } from '@/helpers';
 import HelpInfo from './HelpInfo';
 import UserTag from '../UserTag/UserTag';
-import { format } from '../../helpers';
+import { CartIcon } from '../CartResume/CartIcon';
 
 function Topbar({ openMenuMobile }) {
   const {
@@ -22,11 +22,11 @@ function Topbar({ openMenuMobile }) {
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
 
         <button className="navbar-toggler" type="button" onClick={openMenuMobile}>
-          <i className="fas fa-bars menu-icon" />
+          <i className="fa-solid fa-bars menu-icon" />
         </button>
 
         <Link href="/" passHref>
-          <a className="logo">
+          <a href className="logo">
             <img className="logo__img" src="/images/logo_img.png" alt={`${nomeFantasia} Logo`} />
             <img className="logo__text" src="/images/logo_text.svg" alt={nomeFantasia} />
             <h1 className="d-none">{nomeFantasia}</h1>
@@ -50,7 +50,7 @@ function Topbar({ openMenuMobile }) {
 
         <span className="topbar__top">
           <strong>
-            <a className="txt-yellow" href={`mailto:${emailAtendimento}`}>{emailAtendimento}</a>
+            <a className="txt-yellow" href={linkTo.mailto(emailAtendimento)}>{emailAtendimento}</a>
           </strong>
         </span>
 
@@ -66,7 +66,7 @@ function Topbar({ openMenuMobile }) {
           whatsapp={format.telephone(whatsapp)}
         />
         <UserTag />
-        <CartResume />
+        <CartIcon />
       </div>
     </div>
   );

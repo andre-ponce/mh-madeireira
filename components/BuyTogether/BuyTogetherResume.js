@@ -1,4 +1,4 @@
-import { format } from '../../helpers';
+import { format } from '@/helpers';
 
 export function BuyTogetherResume({ resume: { itens } }) {
   const total = itens.reduce((prev, current) => prev + current.precoPor, 0);

@@ -1,0 +1,55 @@
+.confirmacao {
+  max-width: 1200px;
+  margin: 15px auto 50px;
+  text-align: center;
+  font-size: 1rem;
+
+  &--title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 25px 0;
+  }
+
+  &--message {
+    font-size: 0.8rem;
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1rem;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  &--details {
+    margin: 15px auto;
+    line-height: 1rem;
+  }
+
+  &--code {
+    display: block;
+    margin: 15px auto;
+    font-size: 1.8rem;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
+
+  &--action {
+    display: block;
+    width: 300px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    margin: auto;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #f9d901;
+      color: #000;
+    }
+  }
+}

@@ -1,4 +1,20 @@
 {
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ],
+        "map": [
+          [
+            "@",
+            "."
+          ]
+        ]
+      }
+    }
+  },
   "env": {
     "browser": true,
     "es2021": true,

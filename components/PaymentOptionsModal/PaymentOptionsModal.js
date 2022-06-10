@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import Modal from '../Modal';
-import { format } from '../../helpers';
+import { format } from '@/helpers';
 
 export function PaymentOptionsModal({ payConditions, handleHide }) {
   useEffect(() => {

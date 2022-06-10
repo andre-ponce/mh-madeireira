@@ -6,7 +6,7 @@ export function SecureArea({ children, globalData }) {
     <>
       <SecureAreaHeader />
       {children}
-      <Footer pages={globalData.paginas} hideNewsletter />
+      <Footer pages={globalData.paginas} hideNewsletter hideWhatsapp />
     </>
   );
 }

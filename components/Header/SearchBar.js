@@ -27,7 +27,7 @@ export default function SearchBar() {
             placeholder="Digite o que busca ou o código original da peça"
           />
           <button className="yellow-button" type="submit">
-            <i className="far fa-search" />
+            <i className="fa-solid fa-magnifying-glass" />
           </button>
         </form>
         <button id="btn_clean-filter" className="btn_clean-filter d-none" type="button">

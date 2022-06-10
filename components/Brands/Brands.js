@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import React from 'react';
 import Slick from 'react-slick';
-import shortid from 'shortid';
+import { linkTo } from '@/helpers';
 
 import settings from './settings';
 
@@ -17,10 +18,12 @@ function Brands({ brands }) {
       <div className="container_serie-ds">
         <h2 className="title-border-left">Top Marcas</h2>
         <Slick {...settings}>
-          {marcas && marcas.map((marca) => (
-            <a href="/" key={shortid()}>
-              <img src={`${staticUrl}${marca.imagem}`} alt={marca.nome} />
-            </a>
+          {marcas && marcas.map((brand) => (
+            <Link key={brand.id} passHref href={linkTo.brand(brand)}>
+              <a href>
+                <img src={`${staticUrl}${brand.imagem}`} alt={brand.nome} />
+              </a>
+            </Link>
           ))}
         </Slick>
       </div>

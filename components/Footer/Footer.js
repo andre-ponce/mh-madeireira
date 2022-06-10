@@ -6,7 +6,7 @@ import Info from './Info';
 import Newsletter from './Newsletter';
 import Whatsapp from './Whatsapp';
 
-function Footer({ pages, hideNewsletter }) {
+function Footer({ pages, hideNewsletter, hideWhatsapp }) {
   const {
     institucional: {
       whatsapp,
@@ -24,7 +24,7 @@ function Footer({ pages, hideNewsletter }) {
 
   return (
     <footer className="footer">
-      <Whatsapp whatsapp={whatsapp} />
+      {!hideWhatsapp && <Whatsapp whatsapp={whatsapp} />}
       {!hideNewsletter && <Newsletter />}
       <Central
         pages={pages}

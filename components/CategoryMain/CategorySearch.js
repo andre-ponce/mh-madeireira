@@ -28,7 +28,7 @@ export default function CategorySearch({ categoyName }) {
               router.push({ query }, { ...router.asPath }, { scroll: false });
             }}
           >
-            <i className="far fa-search" />
+            <i className="fa-solid fa-magnifying-glass" />
           </button>
         )
       }
@@ -45,7 +45,7 @@ export default function CategorySearch({ categoyName }) {
               setSearch('');
             }}
           >
-            <i className="far fa-times" />
+            <i className="fa-solid fa-times" />
           </button>
         )
       }

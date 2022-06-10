@@ -86,7 +86,7 @@ function Newsletter() {
                 isSubmitting
                   ? (
                     <span>
-                      <i className="fa fa-spin fa-spinner" />
+                      <i className="fa-solid fa-spin fa-spinner" />
                     </span>
                   )
                   : <img src="/images/braskape_logo-aviao.png" alt="avião" />

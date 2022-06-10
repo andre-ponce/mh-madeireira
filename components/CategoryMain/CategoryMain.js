@@ -31,7 +31,7 @@ function Category({
                 <div className="dropdown">
                   <button type="button" className="btn btn-secondary" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-38,0">
                     Selecione
-                    <i className="fas fa-chevron-down" />
+                    <i className="fa-solid fa-chevron-down" />
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                     <a className="dropdown-item" href="/">Nome A-Z</a>

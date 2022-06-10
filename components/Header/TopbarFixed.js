@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
-import GlobalDataContext from '../../contexts/GlobalDataContext';
-import { format } from '../../helpers';
-import CartResume from '../CartResume';
+import GlobalDataContext from '@/contexts/GlobalDataContext';
+import { format } from '@/helpers';
+import { CartIcon } from '../CartResume/CartIcon';
 import HelpInfo from '../TopBar/HelpInfo';
 import UserTag from '../UserTag/UserTag';
 
@@ -36,7 +36,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
         </a>
 
         <button type="button" className="topbar--fixed__menu" onClick={toggleMenu}>
-          <i className="fas fa-bars menu-icon" />
+          <i className="fa-solid fa-bars menu-icon" />
         </button>
 
         <form className="form-search d-flex" onSubmit={doSearch}>
@@ -49,7 +49,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
             placeholder="Digite o que busca ou o código original da peça"
           />
           <button type="submit" className="yellow-button">
-            <i className="far fa-search" />
+            <i className="fa-solid fa-magnifying-glass" />
           </button>
         </form>
 
@@ -59,7 +59,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
           emailAtendimento={emailAtendimento}
         />
         <UserTag />
-        <CartResume />
+        <CartIcon />
       </div>
     </div>
   );

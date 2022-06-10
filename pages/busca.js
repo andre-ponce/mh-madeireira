@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
-import CategoryMain from '../components/CategoryMain';
+import Layout from '@/components/Layout';
+import CategoryMain from '@/components/CategoryMain';
 
-import { getGlobalData } from '../services/dados-globais.service';
-import { getSearchResults } from '../services/catalog.service';
-import useCategoryFilter from '../hooks/useCategoryFilter';
-import Pagination from '../components/Pagination';
+import { getGlobalData } from '@/server/api/global.api';
+import { getSearchResults } from '@/server/api/catalog.api';
+import useCategoryFilter from '@/hooks/useCategoryFilter';
+import Pagination from '@/components/Pagination';
 
 export async function getServerSideProps({ query }) {
   if (!query.q) {

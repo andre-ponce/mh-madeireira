@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { linkTo } from '../../helpers';
+import { linkTo } from '@/helpers';
 import MenuNivelOne from './MenuNivelOne';
 
 export function MenuItem({ linha, staticUrl }) {
@@ -18,7 +18,7 @@ export function MenuItem({ linha, staticUrl }) {
       </Link>
 
       <button className="navbar-toggler" type="button" onClick={() => setIsSubMenuActive(!isSubMenuActive)}>
-        <i className="fas fa-chevron-right" />
+        <i className="fa-solid fa-chevron-right" />
       </button>
 
       <ul className="item__subcategorias navbar-collapse nvl-1">

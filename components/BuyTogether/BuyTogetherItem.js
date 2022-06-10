@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useRef } from 'react';
-import { format, image } from '../../helpers';
+import { format, image } from '@/helpers';
 
 export function BuyTogetherItem({ product, isChecked, onChange }) {
   const ref = useRef();

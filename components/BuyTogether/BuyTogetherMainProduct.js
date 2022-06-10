@@ -1,4 +1,4 @@
-import { format, image } from '../../helpers';
+import { format, image } from '@/helpers';
 
 export function BuyTogetherMainProduct({ product }) {
   return (

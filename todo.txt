@@ -1,0 +1,4 @@
+-- Avaliar route shadowing nos filtros de categorias
+-- Adicionar StrictMode
+-- Adicionar ErrorBoundrie
+-- Validar páginas que EXIGEM a sessão

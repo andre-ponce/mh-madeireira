@@ -1,7 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+/**
+ * Register the size of the menu's itens (\<li\>) and calculate
+ * how many of then fits the viewport width.
+ * @param {Element} ref useRef() - <ul> of itens of the menu
+ */
 export function useAutoSizedMenu(ref) {
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const margin = 20;
     const ul = ref.current;
     ul.classList.add('calculating');

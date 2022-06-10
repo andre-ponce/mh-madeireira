@@ -1,24 +1,30 @@
-import { addToCart, getCart } from '../../../services/cart.server';
+import { addToCart, getCart } from '@/server/api/cart.api';
+import { cookie as CONSTANT } from '@/server/constants/cookies';
+import { verbsRouter } from '@/server/lib/verbs-api-router';
 
-export default async function handler(req, res) {
-  const method = req.method.toLowerCase();
+const { session: { COOKIE_NAME } } = CONSTANT;
 
-  switch (method) {
-    case 'get':
-      res.status(200).json(await getCart());
-      break;
+export default verbsRouter({
 
-    case 'post': {
-      const { product, quantity } = JSON.parse(req.body);
-      await addToCart(product, quantity);
-      res.status(200);
-      break;
+  async get(req, res) {
+    const { cookies } = req;
+    const session = cookies[COOKIE_NAME];
+    const cart = await getCart(session);
+    res.status(200).json(cart);
+  },
+
+  async post(req, res) {
+    const { cookies } = req;
+    const session = cookies[COOKIE_NAME];
+    const { product, quantity } = JSON.parse(req.body);
+    const result = await addToCart(session, product, quantity);
+
+    if (result.success) {
+      res.status(200).end();
+      return;
     }
 
-    default:
-      res.status(405);
-      break;
-  }
+    res.status(400).end();
+  },
 
-  res.end();
-}
+});

@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
+
 export default function useFixedShadow() {
-  const [useCount, setUseCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    useCount > 0
-      ? document.body.classList.add('mobile_shadow--active')
-      : document.body.classList.remove('mobile_shadow--active');
-  }, [useCount]);
+    if (count > 0) {
+      document.body.classList.add('mobile_shadow--active');
+    } else {
+      document.body.classList.remove('mobile_shadow--active');
+    }
+  }, [count]);
 
   return {
-    addShadow: () => setUseCount(useCount + 1),
-    popShadow: () => useCount > 0 && setUseCount(useCount - 1),
-  }
+    addShadow: () => setCount(count + 1),
+    popShadow: () => count > 0 && setCount(count - 1),
+    flush: () => setCount(0),
+  };
 }

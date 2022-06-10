@@ -1,4 +1,4 @@
-import { getRelateds } from '../../../../services/product.service';
+import { getRelateds } from '@/server/api/product.api';
 
 export default async function handler(req, res) {
   const relateds = await getRelateds(req.query.id);

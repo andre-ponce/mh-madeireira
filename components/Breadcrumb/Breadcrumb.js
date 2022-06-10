@@ -12,7 +12,7 @@ function Breadcrumb({ path }) {
           path.map((item, index) => (
             <Fragment key={item.slug}>
               <li className="breadcrumb__icon">
-                <i className="fas fa-chevron-right" />
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: '20px' }} />
               </li>
               <li>
                 <Link href={item.slug} passHref>

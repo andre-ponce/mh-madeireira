@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import Layout from '../../../components/Layout';
-import { ProductMain } from '../../../components/ProductMain/ProductMain';
-import { getGlobalData } from '../../../services/dados-globais.service';
-import { getProduct, getDescription } from '../../../services/product.service';
+import Layout from '@/components/Layout';
+import { ProductMain } from '@/components/ProductMain/ProductMain';
+import { getGlobalData } from '@/server/api/global.api';
+import { getProduct, getDescription } from '@/server/api/product.api';
 
 export async function getServerSideProps({ query }) {
   const global = await getGlobalData();
@@ -58,7 +58,7 @@ function Product({ global, product }) {
   return (
     <>
       <Head>
-        <title>Home - Braskape</title>
+        <title>{`${product.nome} - ${product.marcaNome} ${global.seo.sulfixoDoTitulo}`}</title>
       </Head>
 
       <Layout globalData={global}>

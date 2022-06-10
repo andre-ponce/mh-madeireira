@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { linkTo } from '../../helpers';
+import { linkTo } from '@/helpers';
 
 function Central({
   pages,

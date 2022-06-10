@@ -34,7 +34,7 @@
       &__form {
         display: flex;
         width: 100%;
-        &__input{
+        &__input {
           width: 100%;
           position: relative;
           input {
@@ -45,7 +45,7 @@
             width: 95%;
           }
 
-          span{
+          span {
             position: absolute;
             bottom: -10px;
             left: 0;
@@ -70,7 +70,7 @@
         }
       }
 
-      @media screen and (max-width: 800px){
+      @media screen and (max-width: 800px) {
         &__text {
           justify-content: center;
           margin-right: 0;
@@ -114,7 +114,7 @@
       flex-wrap: wrap;
       padding-top: 30px;
       padding-bottom: 80px;
-    
+
       .footer-central {
         &__institucional,
         &__atendimento,
@@ -123,7 +123,7 @@
           display: flex;
           flex-direction: column;
         }
-  
+
         &__institucional {
           width: 19%;
 
@@ -131,7 +131,7 @@
             margin-bottom: 10px;
           }
         }
-  
+
         &__atendimento {
           width: 17%;
           margin-right: 75px;
@@ -145,7 +145,7 @@
             margin-bottom: 12px;
           }
         }
-  
+
         &__pagamentos-envios {
           width: 29%;
           .pagamentos-envios {
@@ -176,12 +176,12 @@
         }
       }
 
-      @media screen and (max-width:1152px) {
+      @media screen and (max-width: 1152px) {
         .footer-central {
           &__institucional {
             width: 50%;
           }
-          
+
           &__atendimento {
             width: 50%;
             margin-right: 0px;
@@ -235,7 +235,7 @@
     color: #292929;
     justify-content: space-between;
     .company-infos {
-      &__desenvolvimento{
+      &__desenvolvimento {
         display: flex;
         align-items: center;
         & > span {
@@ -265,7 +265,7 @@
       padding: 0px 0 7px 0;
       align-items: center;
       .company-infos {
-        &__desenvolvimento{
+        &__desenvolvimento {
           margin-top: 10px;
           flex-direction: column;
           & > span {
@@ -275,7 +275,7 @@
             display: flex;
             margin: 10px 0;
             align-items: center;
-  
+
             a:nth-child(1) {
               margin-left: 0px;
               margin-right: 20px;
@@ -295,11 +295,11 @@
   }
 
   &__whats-fixed {
-    left: calc(100vw - 70px);
+    left: calc(100vw - 91px);
     bottom: 10px;
     z-index: 999;
     position: fixed;
-    transition: all .2s;
+    transition: all 0.2s;
   }
 }
 

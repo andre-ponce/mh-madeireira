@@ -1,8 +1,38 @@
-export function CartIcon({ count, openResume }) {
+import { useContext } from 'react';
+import SessionContext from '@/contexts/SessionContext';
+import { trigger } from '@/helpers/observable';
+
+export function CartIcon() {
+  const cart = useContext(SessionContext);
+  const { itens, loading, error } = cart;
+
+  const onClick = () => (error ? trigger('cart:refresh') : trigger('cart:open'));
+
   return (
-    <span className="cart__icon_group" onClick={openResume}>
-      <img src="/images/cart.svg" alt="Carrinho" />
-      <span className="cart__qtd">{count}</span>
-    </span>
+    <div className="cart">
+      <span className="cart__icon_group" onClick={onClick}>
+        <img src="/images/cart.svg" alt="Carrinho" />
+        {
+          error
+          && (
+            <span className="cart__qtd" title={error}>
+              <i className="fa-solid fa-rotate text-danger" />
+            </span>
+          )
+        }
+        {
+          loading
+          && (
+            <span className="cart__qtd">
+              <i className="fa-solid fa-spinner fa-spin" />
+            </span>
+          )
+        }
+        {
+          !loading && !error
+          && <span className="cart__qtd">{itens.length}</span>
+        }
+      </span>
+    </div>
   );
 }

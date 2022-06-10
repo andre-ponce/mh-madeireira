@@ -23,7 +23,6 @@
       &.slick-active {
         button {
           &::before {
-
             height: 8px;
             width: 16px;
             margin-top: 2px;
@@ -37,7 +36,7 @@
   }
 
   .slick-arrow {
-    z-index: 10;
+    z-index: 2;
     width: 57px;
     height: 57px;
     top: calc(50% - 28.5px);
@@ -49,15 +48,15 @@
   .slick {
     &-prev {
       left: -19px;
-      background: url('/images/braskape-icon-arrow-prev.png') !important;
+      background: url("/images/braskape-icon-arrow-prev.png") !important;
     }
     &-next {
       right: -19px;
-      background: url('/images/braskape-icon-arrow-next.png') !important;
+      background: url("/images/braskape-icon-arrow-next.png") !important;
     }
   }
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     .slick-arrow {
       width: 37px;
       height: 37px;
@@ -65,10 +64,10 @@
     }
     .slick {
       &-prev {
-        background: url('/images/braskape-icon-arrow-prev--mobile.png') !important;
+        background: url("/images/braskape-icon-arrow-prev--mobile.png") !important;
       }
       &-next {
-        background: url('/images/braskape-icon-arrow-next--mobile.png') !important;
+        background: url("/images/braskape-icon-arrow-next--mobile.png") !important;
       }
     }
   }
@@ -117,7 +116,7 @@
       width: calc(50vw - 30px);
       max-width: 374px;
     }
-    @media screen and (max-width: 425px){
+    @media screen and (max-width: 425px) {
       width: calc(100vw - 40px);
       max-width: 370px;
     }

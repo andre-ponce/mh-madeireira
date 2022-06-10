@@ -9,7 +9,7 @@ export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
 
       <button className="navbar-toggler mb-3" type="button" data-toggle="collapse" data-target={`#navbarNav_${filter.query}`} aria-controls={`navbarNav_${filter.query}`} aria-expanded="true" aria-label="Toggle navigation">
         {filter.nome}
-        <i className="fas fa-chevron-down" />
+        <i className="fa-solid fa-chevron-down" />
       </button>
 
       <div className="collapse navbar-collapse show" id={`navbarNav_${filter.query}`}>

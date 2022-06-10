@@ -1,4 +1,4 @@
-import { signupNewsletter } from '../../services/home.service';
+import { signupNewsletter } from '@/server/api/home.api';
 
 export default async (req, res) => {
   const { name, email } = JSON.parse(req.body);

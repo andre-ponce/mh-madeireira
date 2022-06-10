@@ -12,22 +12,29 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@use-it/event-listener": "^0.1.7",
     "aos": "^2.3.4",
     "bootstrap": "^4.5.0",
+    "cep-promise": "^4.1.2",
+    "eslint-import-resolver-alias": "^1.1.2",
     "formik": "^2.2.9",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "next": "^12.0.7",
+    "next-connect": "^0.12.2",
     "next-seo": "^4.28.1",
     "react": "^17.0.2",
     "react-bootstrap-sweetalert": "^5.2.0",
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.2",
+    "react-input-mask": "^2.0.4",
     "react-slick": "^0.28.1",
     "sass": "^1.32.8",
     "shortid": "^2.2.16",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "yup": "^0.32.11",
+    "yup-locale-pt": "^0.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.13.13",

@@ -1,13 +1,12 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from 'react';
-import { format } from '../../helpers';
-
+import { format, linkTo } from '@/helpers';
+import Link from 'next/link';
 import PaymentOptionsModal from '../PaymentOptionsModal';
+import { ProductFreightSimulator } from './ProductFreightSimulator';
 
 export function BuyBox({ product, payConditions }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [cep, setCep] = useState('');
 
   const precoDe = product.precoDe > product.precoPor
     ? product.precoDe
@@ -19,11 +18,15 @@ export function BuyBox({ product, payConditions }) {
         <span className="infos__title">{product.nome}</span>
         <span className="infos__cod">
           COD:
+          {' '}
           {product.sku}
         </span>
         <span className="infos__brand">
           MARCA:
-          {product.marcaNome}
+          {' '}
+          <Link href={linkTo.brand({ slug: 'marca', id: product.marcaId })}>
+            {product.marcaNome}
+          </Link>
         </span>
       </div>
 
@@ -57,11 +60,11 @@ export function BuyBox({ product, payConditions }) {
         <div className="price-infos__buy">
           <div className="block_qtd-item">
             <button type="button" className="qtd-item__minus" onClick={() => quantity > 1 && setQuantity(quantity - 1)}>
-              <i className="far fa-minus" />
+              <i className="fa-solid fa-minus" />
             </button>
             <input type="number" disabled min="0" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
             <button type="button" className="qtd-item__plus" onClick={() => setQuantity(quantity + 1)}>
-              <i className="far fa-plus" />
+              <i className="fa-solid fa-plus" />
             </button>
           </div>
           <button type="button" className="buy__button">COMPRAR</button>
@@ -77,13 +80,7 @@ export function BuyBox({ product, payConditions }) {
             </span>
           </div>
         </div>
-        <div className="price-infos__cep">
-          <div className="cep__calc-container">
-            <input type="number" placeholder="00000-000" max="99999999" value={cep} onChange={(e) => setCep(e.target.value)} />
-            <button>CALCULAR</button>
-          </div>
-          <a className="cep__dont-know" href="">Não sei meu CEP</a>
-        </div>
+        <ProductFreightSimulator productId={product.id} />
       </div>
 
       {
