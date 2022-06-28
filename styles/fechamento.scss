@@ -96,37 +96,6 @@
       padding: 15px 7px 0;
     }
 
-    // .top-group {
-    //   color: black;
-    //   font-size: 14px;
-    //   font-weight: bold;
-    //   padding-left: 7px;
-    //   padding-bottom: 15px;
-    //   text-transform: uppercase;
-    //   border-bottom: 2px solid #eee;
-    //   svg {
-    //     font-size: 14px;
-    //     margin-right: 10px;
-    //   }
-    // }
-
-    // .top-group {
-    //   a {
-    //     color: #b1b1b1;
-    //     font-size: 11px;
-    //     font-weight: normal;
-    //     text-transform: none !important;
-    //   }
-    // }
-
-    // span {
-    //   display: block;
-    //   font-size: 14px;
-    //   color: #bdbdbd;
-    //   margin-top: 15px;
-    //   margin-left: 10px;
-    // }
-
     input[type="text"],
     select {
       width: 100%;
@@ -216,6 +185,26 @@
 .change-address--container {
   max-width: 800px;
   width: 80vw;
+
+  .change-address--empty {
+    text-align: center;
+
+    span {
+      display: block;
+      padding: 20px 0;
+      color: #999;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 30px;
+      background-color: #000;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  }
 
   .enderecos__list--item {
     padding: 10px;
@@ -461,49 +450,7 @@
     &--container {
       border: 2px solid #f9d901;
       padding: 10px 30px;
-    }
-
-    &--group {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-
-      label {
-        font-size: 0.8em;
-        margin-bottom: 5px;
-      }
-
-      .input-icon {
-        display: block;
-        position: relative;
-        input {
-          padding-left: 40px !important;
-        }
-      }
-
-      &-icon {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-
-        * {
-          font-size: 16px;
-        }
-      }
-
-      &-error {
-        font-size: 0.7em;
-        color: var(--danger);
-      }
-    }
-
-    &--inline-group {
-      display: flex;
-      margin-right: -10px;
-
-      * {
-        margin-right: 10px;
-      }
+      background-color: #fff;
     }
 
     &--generic {
@@ -513,6 +460,21 @@
         font-size: 0.9em;
         display: block;
         margin-bottom: 10px;
+      }
+
+      &-link {
+        text-transform: lowercase;
+        text-decoration: underline;
+        font-size: 0.8em;
+        cursor: pointer;
+
+        &.invalid {
+          color: var(--danger);
+        }
+      }
+
+      &-icon {
+        margin-right: 5px;
       }
 
       &-oldprice {
@@ -613,6 +575,7 @@
         padding: 15px 0;
         border-top: 2px solid #eee;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         margin: 10px 0;
         justify-content: flex-end;
@@ -628,7 +591,99 @@
           font-weight: bold;
           margin-left: 10px;
         }
+
+        &-installment {
+          color: #666 !important;
+          font-weight: bold;
+          font-size: 0.9rem;
+          width: 100%;
+          text-align: right;
+          margin-top: 10px;
+        }
       }
+    }
+  }
+}
+
+.card-form {
+  &--modal {
+    width: 400px;
+
+    @media screen and (max-width: 768px) {
+      min-width: 90vw;
+    }
+  }
+
+  &--group {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+
+    label {
+      font-size: 0.8em;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      height: 40px;
+      font-size: 14;
+      padding: 0 10px;
+      border: 2px solid #ccc;
+      background-color: #fff;
+    }
+
+    .input-icon {
+      display: block;
+      position: relative;
+      input {
+        padding-left: 40px !important;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+
+      * {
+        font-size: 16px;
+      }
+    }
+
+    &-error {
+      font-size: 0.7em;
+      color: var(--danger);
+    }
+  }
+
+  &--button {
+    display: block;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    text-transform: uppercase;
+    margin: 20px 0 0;
+  }
+
+  &--link-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 10px 0 0;
+    color: #999;
+  }
+
+  &--inline-group {
+    display: flex;
+    margin-right: -10px;
+
+    * {
+      margin-right: 10px;
     }
   }
 }

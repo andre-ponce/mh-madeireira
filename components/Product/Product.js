@@ -7,7 +7,7 @@ import SessionContext from '@/contexts/SessionContext';
 function Product({ product }) {
   const [busy, setBusy] = useState(false);
   const { itens } = useContext(SessionContext);
-  const current = itens.filter(item => item.produtoId == product.id)[0];
+  const current = itens?.filter(item => item.produtoId == product.id)[0];
   const alreadyIn = !!current;
   const initialQuantity = alreadyIn ? current.quantidade : 1;
 

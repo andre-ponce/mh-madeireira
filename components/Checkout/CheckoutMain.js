@@ -16,7 +16,7 @@ export function CheckoutMain() {
   const [firstLoad, setFirstLoad] = useState(true);
   useEffect(() => { setFirstLoad(false); }, [value]);
 
-  if (firstLoad && !value) {
+  if (firstLoad && !value.loading) {
     return <div>Carregando...</div>;
   }
 
@@ -55,18 +55,6 @@ export function CheckoutMain() {
             </div>
           </div>
         </div>
-        {/* <div className="fechamento__group-infos col-12 col-md-6 col-lg-4 mb-3 px-0 d-flex flex-column">
-          <PersonalBox />
-          <AddressBox />
-          <DeliveryBox />
-        </div>
-
-        <div className="col-12 col-md-6 col-lg-8 px-0 d-flex flex-wrap">
-          <div className="group-descount-payment col-sm-12 col-lg-6 mb-3 px-0">
-            <DiscountBox />
-          </div>
-          <CartBox />
-        </div> */}
       </main>
     </CheckoutProvider>
   );

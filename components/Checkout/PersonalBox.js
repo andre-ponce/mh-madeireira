@@ -10,6 +10,7 @@ export function PersonalBox() {
     nome,
     email,
     telefone,
+    celular,
     documentoNacional,
   } = cliente || {};
 
@@ -33,7 +34,7 @@ export function PersonalBox() {
             <span className="personal-data--icon">
               <i className="mr-3 fas fa-phone-alt" />
             </span>
-            {format.telephone(telefone)}
+            {format.telephone(celular || telefone)}
           </span>
           <span className="personal-data--row">
             <span className="personal-data--icon">

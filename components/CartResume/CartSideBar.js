@@ -39,7 +39,6 @@ export function CartSideBar() {
   }
 
   useEventListener('keydown', ({ keyCode }) => keyCode === 27 && close());
-  // useEventListener('keydown', ({ target, keyCode }) => target === document.body && keyCode === 67 && open());
 
   useEffect(() => observe([
     'cart:open',

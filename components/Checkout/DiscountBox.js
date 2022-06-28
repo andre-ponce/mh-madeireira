@@ -25,7 +25,7 @@ export function DiscountBox() {
   } = cupomDeDesconto || {};
 
   useEffect(() => {
-    setCode(codigoCupomDesconto);
+    setCode(codigoCupomDesconto || '');
   }, [codigoCupomDesconto]);
 
   async function applyCode(couponCode) {

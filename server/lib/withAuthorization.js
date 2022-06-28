@@ -33,3 +33,10 @@ export const withAuthorization = (fn) => async (context) => {
 
   return { props: {} };
 };
+
+export const tryAuthorization = async (context) => {
+  const { req: { cookies } } = context;
+  const sessionToken = cookies[COOKIE_NAME];
+  const user = await getUser(sessionToken);
+  return user;
+};

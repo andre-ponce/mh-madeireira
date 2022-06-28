@@ -47,6 +47,15 @@ export const format = {
 
     return '';
   },
+
+  installment({
+    descontoPercentual, parcela, semJuros, valorParcela,
+  }) {
+    const discount = descontoPercentual > 0 ? ` (${descontoPercentual}% de desconto)` : '';
+    const taxNote = semJuros && !discount ? ' (sem juros)' : '';
+
+    return `${parcela} x de ${format.currency(valorParcela)}${discount}${taxNote}`;
+  },
 };
 
 export const linkTo = {
@@ -155,8 +164,12 @@ export const linkTo = {
 };
 
 export const image = {
-  fallback(url) {
-    return url || '/images/no-image-avaliable.jpg';
+  fallback(url, prefix) {
+    if (!url) {
+      return '/images/no-image-avaliable.jpg';
+    }
+
+    return `${prefix}${url}`;
   },
 };
 
@@ -164,17 +177,12 @@ export const mask = {
   phone(value, set) {
     const phone = value.replace(/[^0-9]+/g, '');
 
-    if (!phone.length) {
-      set('');
-      return;
-    }
-
     if (phone.length > 10) {
       set('(99) 9 9999-9999');
       return;
     }
 
-    set('(99) 9999-99999');
+    set('(99)  9999-99999');
   },
   cep: '99999-999',
   cpf: '999.999.999-99',

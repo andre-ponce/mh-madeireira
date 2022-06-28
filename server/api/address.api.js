@@ -20,10 +20,11 @@ export async function getAddress(sessionId) {
   };
 }
 
-export async function createAddress(address) {
+export async function createAddress(sessionId, address) {
   const response = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente/enderecos`, {
     headers: {
       authorization: process.env.API_CATALOG_TOKEN,
+      'x-mw-sessao': sessionId,
       'content-type': 'application/json',
     },
     method: 'POST',

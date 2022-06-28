@@ -1263,6 +1263,11 @@ $close-button-width: 48px;
             .prices {
               &__price {
                 color: #6d6a6a;
+
+                &--subline {
+                  display: inline-block;
+                  font-size: 10px;
+                }
               }
               &__installments {
                 color: #6d6a6a;

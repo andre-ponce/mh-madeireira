@@ -101,7 +101,7 @@ function FreightData({
                       provedor, id, preco, prazo,
                     }) => <Provider key={id} name={provedor} price={preco} time={prazo} />)
                   }
-                  <span className='cart-freight--time-message'>* os prazo de entrega começas a contar após a confirmação do pagamento.</span>
+                  <span className='cart-freight--time-message'>* os prazo de entrega começam a contar após a confirmação do pagamento.</span>
                 </>
               )
             }

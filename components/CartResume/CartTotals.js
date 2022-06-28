@@ -1,21 +1,25 @@
 import { format } from '@/helpers';
 
-export function CartTotals({ itens }) {
-  const total = itens.reduce((acc, item) => acc + item.precoTotal, 0);
+export function CartTotals({ paymentDetails }) {
+  const { subTotalAvista, valorParcelaSemJuros, parcelasSemJuros, descontoAvista } = paymentDetails;
 
   return (
     <div className="cart-container__subtotal">
       <span className="subtotal__title">SUBTOTAL</span>
       <div className="subtotal__prices">
-        <span className="prices__price">{format.currency(total)}</span>
+        <span className="prices__price">{`${format.currency(subTotalAvista)}`}</span>
+        {
+          descontoAvista > 0
+          && <span className="prices__price--subline">{`(à vista com ${descontoAvista}% de desconto)`}</span>
+        }
         <span className="prices__installments">
-          Em até
+          Ou em até
           {' '}
-          <strong>12x</strong>
+          <strong>{`${parcelasSemJuros}x`}</strong>
           {' '}
           de
           {' '}
-          <strong>{format.currency(total / 12.0)}</strong>
+          <strong>{`${format.currency(valorParcelaSemJuros)} (sem juros)`}</strong>
         </span>
       </div>
     </div>

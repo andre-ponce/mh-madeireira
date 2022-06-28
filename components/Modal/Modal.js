@@ -35,11 +35,18 @@ export default function Modal({ children, handleHide }) {
     );
 }
 
-export function FloatBox({ children, canClose, handleHide, title }) {
+export function FloatBox({ children, className, canClose, handleHide, title }) {
   return (
     <Modal handleHide={handleHide}>
-      <div className="float-box" onClick={(e) => e.stopPropagation()}>
-        {canClose && <a href className="close" onClick={handleHide}><i className="fa-solid fa-times" /></a>}
+      <div className={`float-box ${className}`} onClick={(e) => e.stopPropagation()}>
+        {
+          canClose
+          && (
+            <button type="button" className="close" onClick={handleHide}>
+              <i className="fa-solid fa-times" />
+            </button>
+          )
+        }
         {title && <div className="title">{title}</div>}
         <div className="float-box__content">
           {children}

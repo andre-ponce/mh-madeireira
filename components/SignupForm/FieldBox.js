@@ -6,7 +6,7 @@ import {
 } from 'formik';
 
 function FieldBoxComp({
-  label, name, type, children, busy, className, ...rest
+  label, name, type, tip, children, busy, className, ...rest
 }) {
   if (type === 'select' && !children) {
     return <></>;
@@ -17,7 +17,10 @@ function FieldBoxComp({
 
   return (
     <div className={`${error && touch ? 'invalid-field' : ''} ${className || 'col-md-12 mb-3'}`}>
-      <label htmlFor={name}>{`${label}:`}</label>
+      <label htmlFor={name}>
+        {`${label}: `}
+        {tip && <span className="field--tip">{`(${tip})`}</span>}
+      </label>
       {type === 'select'
         ? (
           <Field {...rest} as="select" type={type} name={name} id={name} className="form-control">

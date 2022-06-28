@@ -51,11 +51,23 @@ export function AddressBox() {
           <button type="button" className="button-black" onClick={() => setShowingNewAdress(true)}>Adicionar outro endereço</button>
         </div>
 
+        <p style={{ color: '#f00' }}>PREFIRO RETIRAR NA LOJA</p>
+
         {!!showingNewAdress
           && <NewAddressModal onSubmit={setAddress} onClose={() => setShowingNewAdress(false)} />}
 
         {!!showingAdresses
-          && <ChooseAddressModal onSubmit={setAddress} onClose={() => setShowingAdresses(false)} />}
+          && (
+            <ChooseAddressModal
+              onSubmit={setAddress}
+              onClose={() => setShowingAdresses(false)}
+              newAddres={() => {
+                setShowingAdresses(false);
+                setShowingNewAdress(true);
+              }}
+            />
+          )
+        }
       </CheckoutBox>
     </>
   );

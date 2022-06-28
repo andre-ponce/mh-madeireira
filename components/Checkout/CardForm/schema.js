@@ -4,6 +4,7 @@ import {
   setLocale,
   addMethod,
   ref,
+  number,
 } from 'yup';
 import { ptShort } from 'yup-locale-pt';
 import { validate } from '@/helpers';
@@ -61,4 +62,5 @@ export const cardSchema = object({
     .min(3)
     .max(4)
     .required('O código de segurança é obrigatório'),
+  installments: number().required(),
 });

@@ -1,10 +1,12 @@
 import { FloatBox } from '@/components/Modal/Modal';
 import { format } from '@/helpers';
+import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
 
-export function ChooseAddressModal({ onClose, onSubmit }) {
+export function ChooseAddressModal({ onClose, onSubmit, newAddres }) {
   const [addresses, setAddresses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   async function choose(address) {
     setLoading(true);
@@ -28,17 +30,41 @@ export function ChooseAddressModal({ onClose, onSubmit }) {
       const res = await fetch('/api/clients/address');
       const list = await res.json();
       setAddresses(list);
+      setLoaded(true);
     };
 
     handle();
   }, []);
 
+  const title = isEmpty(addresses) ? '' : 'Escolher Endereço de Entrega';
+
   return (
-    <FloatBox handleHide={onClose} canClose title="Escolher Endereço de Entrega">
+    <FloatBox handleHide={onClose} canClose title={title}>
       <div className="change-address--container">
-        {addresses.map((address) => (
-          <AddressDetail key={address.id} onClick={choose} address={address} disabled={loading} />
-        ))}
+        {
+          !isEmpty(addresses)
+          && addresses.map((address) => (
+            <AddressDetail key={address.id} onClick={choose} address={address} disabled={loading} />
+          ))
+        }
+        {
+          isEmpty(addresses) && loaded
+          && (
+            <div className="change-address--empty">
+              <span>Você ainda não possuí endereços de entrega cadastrados</span>
+              <button type="button" onClick={newAddres}>Cadastrar Endereço</button>
+            </div>
+          )
+        }
+        {
+          !loaded
+          && (
+            <div className="change-address--empty">
+              <span><i className="fa-solid fa-spin fa-spinner" /></span>
+              <span>Carregando...</span>
+            </div>
+          )
+        }
       </div>
     </FloatBox>
   );

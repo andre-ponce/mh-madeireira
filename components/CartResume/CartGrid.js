@@ -4,7 +4,7 @@ import CartResumeItem from './CartResumeItem';
 import { CartTotals } from './CartTotals';
 
 export function CartGrid({ cart, closeSidebar, hideFooter }) {
-  const { itens } = cart;
+  const { itens, ...rest } = cart;
 
   return (
     <>
@@ -15,7 +15,7 @@ export function CartGrid({ cart, closeSidebar, hideFooter }) {
       {!hideFooter && (
         <>
           <CartFreight />
-          <CartTotals itens={itens} />
+          <CartTotals paymentDetails={rest} />
           <span className="cart-coupom-alert">Possui cupom ou vale? Você poderá usá-los na etapa de pagamento.</span>
           <CartActions closeSidebar={closeSidebar} />
         </>

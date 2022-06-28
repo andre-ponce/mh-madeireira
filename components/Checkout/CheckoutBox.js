@@ -1,6 +1,6 @@
-import Link from "next/link";
-
-export function CheckoutBox({ title, icon, action, children }) {
+export function CheckoutBox({
+  title, icon, action, children,
+}) {
   let tagIcon = icon;
   if (typeof icon === 'string' && /fa-/.test(icon)) {
     tagIcon = <span><i className={`fa-solid ${icon}`} /></span>;

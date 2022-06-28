@@ -12,8 +12,8 @@ export const ContactFormSection = connect(({ formik: { isValid, isSubmitting } }
   return (
     <FormSection name="Dados de Contato">
       <div className="form-row tell-group" style={{ border: 'none !important', padding: '0 !important' }}>
-        <FieldBox onInput={(ev) => mask.phone(ev.target.value, setCelphoneMask)} name="celular" label="Celular/Whatsapp" type="phone" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={celphoneMask} maskChar="" />
-        <FieldBox onInput={(ev) => mask.phone(ev.target.value, setPhoneMask)} name="telefone" label="Telefone" type="text" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={phoneMask} maskChar="" />
+        <FieldBox onInput={(ev) => mask.phone(ev.target.value, setCelphoneMask)} name="celular" label="Celular/Whatsapp" type="tel" inputMode="tel" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={celphoneMask} maskChar="" />
+        <FieldBox onInput={(ev) => mask.phone(ev.target.value, setPhoneMask)} name="telefone" label="Telefone" type="tel" inputMode="tel" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={phoneMask} maskChar="" />
       </div>
       <FieldBox name="segmento" label="Interesse" type="select">
         <option>Selecione</option>

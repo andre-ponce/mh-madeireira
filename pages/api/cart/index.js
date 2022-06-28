@@ -9,7 +9,13 @@ export default verbsRouter({
   async get(req, res) {
     const { cookies } = req;
     const session = cookies[COOKIE_NAME];
-    const cart = await getCart(session);
+    const { fail, ...cart } = await getCart(session);
+
+    if (fail) {
+      res.status(400).end();
+      return;
+    }
+
     res.status(200).json(cart);
   },
 
