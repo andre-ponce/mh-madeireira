@@ -4,6 +4,9 @@ export function useJSONStorage(key) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [json, setJson] = useState(() => {
+    if (typeof window === 'undefined') {
+      return {};
+    }
     const data = localStorage.getItem(key);
     let initialValue = null;
     if (data) {

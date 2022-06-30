@@ -169,7 +169,7 @@ export const image = {
       return '/images/no-image-avaliable.jpg';
     }
 
-    return `${prefix}${url}`;
+    return `${prefix || ''}${url}`;
   },
 };
 

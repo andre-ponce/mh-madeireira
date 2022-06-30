@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { format, linkTo } from '@/helpers';
 import Link from 'next/link';
+import { addToCart } from '@/services/cart.service';
 import PaymentOptionsModal from '../PaymentOptionsModal';
 import { ProductFreightSimulator } from './ProductFreightSimulator';
-import { addToCart } from '@/services/cart.service';
+import ProductRating from '../ProductRating';
 
 export function BuyBox({ product, payConditions }) {
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
@@ -36,6 +37,7 @@ export function BuyBox({ product, payConditions }) {
             {product.marcaNome}
           </Link>
         </span>
+        <ProductRating />
       </div>
 
       <div className="product__price-infos">
@@ -60,7 +62,7 @@ export function BuyBox({ product, payConditions }) {
               {' '}
               à vista (com
               {' '}
-              {product.descontoPagamentoAvista * 100}
+              {product.descontoPagamentoAvista}
               % de desconto)
             </span>
           )

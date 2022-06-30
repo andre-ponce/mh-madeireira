@@ -2,12 +2,6 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { bannerSettings, bannerRullerSettings } from './settings';
 
-function Wrapper({ children, isMobile }) {
-  return isMobile
-    ? <div data-aos="zoom-in" data-aos-duration="1000">{children}</div>
-    : <>{children}</>;
-}
-
 function Banner({ carousel, isMobile }) {
   const [isServer, setServerState] = useState(true);
 
@@ -29,20 +23,18 @@ function Banner({ carousel, isMobile }) {
 
   return (
     <>
-      <Wrapper isMobile={isMobile}>
-        <SliderRendered {...bannerSettings}>
-          {
-            carousel.map((banner) => (
-              <a href={banner.href} key={banner.href} target={banner.target || '_blank'}>
-                <img
-                  src={urlImage(banner)}
-                  alt={banner.textoAlternativo}
-                />
-              </a>
-            ))
-          }
-        </SliderRendered>
-      </Wrapper>
+      <SliderRendered {...bannerSettings}>
+        {
+          carousel.map((banner) => (
+            <a href={banner.href} key={banner.href} target={banner.target || '_blank'}>
+              <img
+                src={urlImage(banner)}
+                alt={banner.textoAlternativo}
+              />
+            </a>
+          ))
+        }
+      </SliderRendered>
 
       <div className="container_serie-ds">
         <SliderRendered {...bannerRullerSettings}>

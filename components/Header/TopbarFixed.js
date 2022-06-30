@@ -5,6 +5,7 @@ import { format } from '@/helpers';
 import { CartIcon } from '../CartResume/CartIcon';
 import HelpInfo from '../TopBar/HelpInfo';
 import UserTag from '../UserTag/UserTag';
+import Link from 'next/link';
 
 function TopbarFixed({ isFixed, toggleMenu }) {
   const {
@@ -30,10 +31,12 @@ function TopbarFixed({ isFixed, toggleMenu }) {
   return (
     <div className={`header__topbar--fixed ${isFixed ? 'fixed' : 'd-none'}`}>
       <div className="container_serie-ds d-flex justify-content-between align-items-center">
-        <a href="index.html" className="logo">
-          <img className="logo__img" src="/images/logo_img.png" alt="Braskape Logo" />
-          <img className="logo__text" src="/images/logo_text.svg" alt="Braskape" />
-        </a>
+        <Link href="/" passHref>
+          <a href className="logo">
+            <img className="logo__img" src="/images/logo_img.png" alt="Braskape Logo" />
+            <img className="logo__text" src="/images/logo_text.svg" alt="Braskape" />
+          </a>
+        </Link>
 
         <button type="button" className="topbar--fixed__menu" onClick={toggleMenu}>
           <i className="fa-solid fa-bars menu-icon" />

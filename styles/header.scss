@@ -440,7 +440,7 @@ $close-button-width: 48px;
                     &::before {
                       content: "";
                       width: 490px;
-                      top: 148px;
+                      top: 151px;
                       height: 100%;
                       position: fixed;
                       display: block;
@@ -478,6 +478,10 @@ $close-button-width: 48px;
                         font-size: 14px;
                         line-height: 36px;
                         font-weight: bold;
+
+                        &:hover {
+                          text-decoration: underline;
+                        }
                       }
                       & > button {
                         display: none;
@@ -498,6 +502,10 @@ $close-button-width: 48px;
                             font-size: 12px;
                             line-height: 25px;
                             font-weight: normal;
+
+                            &:hover {
+                              text-decoration: underline;
+                            }
                           }
                         }
                       }
@@ -859,8 +867,13 @@ $close-button-width: 48px;
                 margin-right: 10px;
                 display: block !important;
               }
-              span {
-                color: white;
+              div {
+                display: block !important;
+                line-height: 0;
+                span {
+                  font-size: 12px;
+                  color: white;
+                }
               }
             }
 
@@ -908,7 +921,7 @@ $close-button-width: 48px;
           button svg {
             display: flex;
             align-items: center;
-            height: 40px;
+            height: 20px;
             color: white;
           }
 

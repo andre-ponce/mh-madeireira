@@ -25,7 +25,7 @@ function Category({
           <section className="col-12 col-lg-9 main__gallery d-flex pr-0" data-aos="fade-left" data-aos-duration="1000" data-aos-offset="-200">
 
             <div className="gallery__top-filter mb-3">
-              <CategorySearch categoyName={name} />
+              {/* <CategorySearch categoyName={name} /> */}
               <div className="gallery__order-by">
                 ORDENAR POR
                 <div className="dropdown">

@@ -9,7 +9,6 @@ import BuyTogether from '../BuyTogether';
 import BuyBox from '../BuyBox';
 import PhotoGalery from '../PhotoGalery';
 import ProductCarousel from '../ProductCarousel';
-import ProductRating from '../ProductRating';
 
 export function ProductMain({
   product,
@@ -53,7 +52,6 @@ export function ProductMain({
         }
         <TabPanel title="Avalie este produto" active={!product.descricaoHTML}>
           <a href="">Dê a sua opnião</a>
-          <ProductRating />
         </TabPanel>
         <TabPanel title="Indique para um amigo">
           <ProductRecommendForm />
@@ -62,7 +60,11 @@ export function ProductMain({
 
       {
         !isEmpty(relateds)
-        && <ProductCarousel products={relateds} title="Produtos relacionados" />
+        && (
+          <div className="relateds__galery">
+            <ProductCarousel products={relateds} title="Produtos relacionados" />
+          </div>
+        )
       }
     </main>
   );

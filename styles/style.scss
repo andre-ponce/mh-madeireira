@@ -1,21 +1,26 @@
+:root {
+  --cc-text: #333;
+  --cc-btn-primary-bg: #333;
+}
+
 html {
   * {
     font-size: 12px;
     outline: none !important;
     box-sizing: border-box !important;
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: "Open Sans", sans-serif !important;
   }
 
   body {
-    transition: all ease .2s;
+    transition: all ease 0.2s;
     margin-right: auto;
     opacity: 1;
 
-    &.mobile_shadow--active{
+    &.mobile_shadow--active {
       overflow: hidden;
       height: 100vh;
 
-      .fixed-shadow{
+      .fixed-shadow {
         overflow-y: scroll;
         z-index: 2;
         width: 100vw;
@@ -27,12 +32,12 @@ html {
       }
     }
 
-    & > #__next{
+    & > #__next {
       overflow-x: hidden;
     }
 
     &.routing {
-      overflow-Y: hidden;
+      overflow-y: hidden;
       margin-right: 13px;
       opacity: 0.05;
       cursor: progress;
@@ -66,7 +71,7 @@ html {
     .logo__img {
       margin-right: 6px;
     }
-    @media screen and (max-width:500px) {
+    @media screen and (max-width: 500px) {
       .logo__img {
         display: none;
       }
@@ -87,7 +92,7 @@ html {
     margin-left: auto;
     margin-right: auto;
 
-    @media screen and (max-width: 1200px){
+    @media screen and (max-width: 1200px) {
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -174,7 +179,8 @@ html {
   align-items: center;
   border: 1px solid #eaeaea;
 
-  input, button {
+  input,
+  button {
     width: 33%;
     height: 100%;
     border: none !important;

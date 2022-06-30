@@ -16,7 +16,7 @@ export function CatalogFilterItem({ item, onChange, isActive }) {
         className="custom-control-label"
         htmlFor={`catalogFilterItem_${item.uid}`}
       >
-        {`${item.nome} (${item.correspondecias})`}
+        {`${item.nome} PP (${item.correspondecias})`}
       </label>
     </div>
   );
@@ -24,7 +24,7 @@ export function CatalogFilterItem({ item, onChange, isActive }) {
 
 export function CatalogFilterLink({ item }) {
   return (
-    <div className="filter__link mb-1">
+    <div className="filter__link mb-2">
       <Link href={linkTo.category(item)} passHref>
         <a>
           {item.nome}

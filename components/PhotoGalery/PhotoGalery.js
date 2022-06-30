@@ -30,15 +30,7 @@ export function PhotoGalery({ photos, slickSettings }) {
     });
   }, [photos]);
 
-  /**
-   * O Slick só aplica as setas de navegação quando existem mais de uma imagem, o que é o ideal!
-   * Mas no layout da galeria, isso deixa uma vazio bem desconfortável, então duplico a imagem,
-   * apenas para manter as arrows e suprir esse espaço.
-   */
   const galery = [...(photos || [])];
-  if (galery.length === 1) {
-    galery.push(galery[0]);
-  }
 
   return (
     photos === undefined
@@ -52,7 +44,7 @@ export function PhotoGalery({ photos, slickSettings }) {
       : (
         <Slick className={`slider__product__galery ${photos.length > 1 ? 'slider__product__galery--has-thumbs' : ''}`} {...settings}>
           {galery.map((photo) => (
-            <div key={photo.id}>
+            <div className="slider__product__galery--photo" key={photo.id}>
               <img src={photo.url} alt={photo.textoAlternativo} title={photo.titulo} />
             </div>
           ))}

@@ -3,6 +3,7 @@ import { CatalogFilterItem, CatalogFilterLink } from './CatalogFilterItem';
 
 export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
   const [seeAll, setSeeAll] = useState(false);
+  const vizibleItems = 5;
 
   return (
     <div className="filters__filter mb-4">
@@ -15,13 +16,15 @@ export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
       <div className="collapse navbar-collapse show" id={`navbarNav_${filter.query}`}>
         <div className="navbar-nav">
 
-          {(seeAll ? filter.itens : filter.itens.slice(0, 5)).map((item) => (
+          {(seeAll ? filter.itens : filter.itens.slice(0, vizibleItems)).map((item) => (
             filter.tratarComoLink
               ? (
-                <CatalogFilterLink
-                  key={item.id}
-                  item={item}
-                />
+                <span>
+                  <CatalogFilterLink
+                    key={item.id}
+                    item={item}
+                  />
+                </span>
               )
               : (
                 <CatalogFilterItem
@@ -33,17 +36,21 @@ export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
               )
           ))}
 
-          <span
-            style={{
-              color: 'blue',
-              textDecoration: 'underline',
-              cursor: 'pointer',
-              fontSize: '12px',
-            }}
-            onClick={() => setSeeAll(!seeAll)}
-          >
-            {seeAll ? 'esconder' : 'veja todos'}
-          </span>
+          {
+            filter.itens.length > vizibleItems && (
+              <span
+                style={{
+                  color: 'blue',
+                  textDecoration: 'underline',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                }}
+                onClick={() => setSeeAll(!seeAll)}
+              >
+                {seeAll ? 'esconder' : 'veja todos'}
+              </span>
+            )
+          }
 
         </div>
       </div>

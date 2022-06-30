@@ -1,9 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { isMobile } from 'react-device-detect';
 
 function Breadcrumb({ path }) {
+  const [containerClass, setContainerClass] = useState('');
+
+  useEffect(() => {
+    if (isMobile) {
+      setContainerClass('');
+    }
+    else {
+      setContainerClass('container_serie-ds');
+    }
+  }, [isMobile]);
+
   return (
-    <nav className="container_serie-ds">
+    <nav className={containerClass}>
       <ul className="main__breadcrumb">
         <li>
           <Link href="/">HOME</Link>
@@ -12,7 +24,7 @@ function Breadcrumb({ path }) {
           path.map((item, index) => (
             <Fragment key={item.slug}>
               <li className="breadcrumb__icon">
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: '20px' }} />
+                <i className="fa-solid fa-chevron-right" style={{ fontSize: '1em' }} />
               </li>
               <li>
                 <Link href={item.slug} passHref>

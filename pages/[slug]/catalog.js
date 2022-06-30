@@ -43,7 +43,7 @@ function Category({ global, category }) {
     breadcrumbs,
   } = category;
 
-  const breadcrumbsPath = breadcrumbs.map((b) => ({
+  const breadcrumbsPath = (breadcrumbs || []).map((b) => ({
     ...b,
     slug: linkTo.category({
       slug: b.slug,

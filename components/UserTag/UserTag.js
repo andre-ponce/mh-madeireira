@@ -23,8 +23,8 @@ export default function UserTag({ isMobile }) {
                     <Image src="/images/login.svg" alt="Login" width="30px" height="30px" />
                   </span>
                   <div className="d-flex flex-column">
-                    <span>Entre ou</span>
-                    <span>Cadastre-se</span>
+                    <span>Entre ou </span>
+                    <span>cadastre-se</span>
                   </div>
                 </a>
               </Link>

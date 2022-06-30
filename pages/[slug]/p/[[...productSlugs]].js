@@ -11,7 +11,7 @@ export async function getServerSideProps({ query }) {
   const global = await getGlobalData();
   const [id] = query.productSlugs;
   const { notFound, ...product } = await getProduct(id);
-  const { descricaoHTML } = await getDescription();
+  const { descricaoHTML } = await getDescription(id);
 
   product.descricaoHTML = descricaoHTML;
 
