@@ -298,7 +298,8 @@ $close-button-width: 48px;
 
         &.calculating {
           max-width: unset;
-          width: 1000vw;
+          width: 10000vw;
+          opacity: 0;
         }
 
         & > .menu {

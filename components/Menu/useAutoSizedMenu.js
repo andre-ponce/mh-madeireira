@@ -56,7 +56,7 @@ export function useAutoSizedMenu(ref) {
 
     window.addEventListener('resize', debouncedResizeMenu);
 
-    debouncedResizeMenu();
+    resizeMenu();
 
     return () => {
       window.removeEventListener('resize', debouncedResizeMenu);
