@@ -1,6 +1,6 @@
 export const cookieConsentConfig = {
   current_lang: 'pt',
-  page_scripts: true, // default: false
+  page_scripts: false, // default: false
   languages: {
     pt: {
       consent_modal: {
