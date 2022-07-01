@@ -26,9 +26,13 @@ function Product({ product }) {
         <Link href={linkTo.product(product)} passHref>
           <a className="product__topbar">
             <img src={image.fallback(product.fotoUrl)} alt={product.name} />
-            <span className="topbar__discount">
-              {format.discount(product.desconto > 0 ? product.desconto : 5)}
-            </span>
+            {
+              product.desconto > 0 && (
+                <span className="topbar__discount">
+                  {format.discount(product.desconto)}
+                </span>
+              )
+            }
           </a>
         </Link>
         <div className="product__infos">
@@ -45,7 +49,8 @@ function Product({ product }) {
         <div className="product__prices">
           {
             product.precoDe > product.precoPor
-            && <span className="prices__old">{format.currency(product.precoDe)}</span>
+              ? <span className="prices__old">{format.currency(product.precoDe)}</span>
+              : <span className="prices__old">&nbsp;</span>
           }
           <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
           <span className="prices__installments">
