@@ -7,7 +7,6 @@ const verbs = {
     const { cookies, query: { p: paymentId } } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
     const { error, ...checkout } = await getCheckoutSession(sessionId, paymentId);
-
     if (error) {
       res.status(400).end();
       return;

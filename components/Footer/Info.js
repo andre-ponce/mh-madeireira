@@ -11,10 +11,7 @@ function Info({ document, storeName }) {
         <span>Desenvolvimento:</span>
         <div className="desenvolvimento__logos">
           <a href="http://www.maximaecommerce.com.br/" target="_blank" rel="noreferrer">
-            <img src="/images/braskape_logo-maxima.png" alt="Máxima agência e-commerce" />
-          </a>
-          <a href="https://seriedesign.com.br/" target="_blank" rel="noreferrer">
-            <img src="/images/braskape_logo-serie.png" alt="Série Design" />
+            <img src="/images/logo-maxima-ecommerce.svg" alt="Máxima agência e-commerce" />
           </a>
         </div>
       </div>

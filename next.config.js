@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ['www.braskape.com.br'],
+    domains: ['static.imperiomangueiras.com.br'],
   },
 };
