@@ -4,7 +4,7 @@ const localCache = {
 async function fetchProviders(type, zipcode, productId) {
   const URL = type === 'cart' ? '/api/cart/freight' : `/api/product/${productId}/freight`;
   const response = await fetch(`${URL}?cep=${zipcode}`);
-  if (response.ok) {
+  if (response.status === 200) {
     const freight = await response.json();
     return freight;
   }
