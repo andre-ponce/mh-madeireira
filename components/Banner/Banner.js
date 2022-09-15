@@ -36,10 +36,10 @@ function Banner({ carousel, isMobile }) {
         }
       </SliderRendered>
 
-      <div className="container_serie-ds">
+      {/* <div className="container_serie-ds">
         <SliderRendered {...bannerRullerSettings}>
           <a href="/">
-            <img src="/images/banner_regua/banner.jpg" alt="Bem vindo à nova loja" />
+            <img  src="/images/banner_regua/banner.jpg" alt="Bem vindo à nova loja" />
           </a>
           <a href="/">
             <img src="/images/banner_regua/banner2.jpg" alt="Bem vindo à nova loja" />
@@ -51,7 +51,7 @@ function Banner({ carousel, isMobile }) {
             <img src="/images/banner_regua/banner4.jpg" alt="Bem vindo à nova loja" />
           </a>
         </SliderRendered>
-      </div>
+      </div> */}
     </>
   );
 }

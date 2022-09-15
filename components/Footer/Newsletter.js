@@ -48,7 +48,7 @@ function Newsletter() {
     <div className="footer__newsletter">
       <div className="newsletter__container">
         <div className="newsletter__text">
-          <img src="/images/envelope.png" alt="carta" />
+          <img src="/images/envelope.png" alt="carta" style={{ filter: 'grayscale(100%)' }} />
           <span>
             Cadastre-se e receba descontos e
             {' '}
@@ -92,17 +92,10 @@ function Newsletter() {
                   : <img src="/images/braskape_logo-aviao.png" alt="avião" />
               }
               {
-                alertMessage
-                && (
-                  <SweetAlert
-                    onConfirm={() => setAlertMessage('')}
-                    btnSize="sm"
-                    confirmBtnText="Voltar"
-                    confirmBtnStyle={{ border: '0' }}
-                  >
-                    {alertMessage}
-                  </SweetAlert>
-                )
+                alertMessage &&
+                <SweetAlert onConfirm={() => setAlertMessage('')} btnSize="sm" confirmBtnText="Voltar" confirmBtnStyle={{ border: '0' }}>
+                  {alertMessage}
+                </SweetAlert>
               }
             </button>
           </div>

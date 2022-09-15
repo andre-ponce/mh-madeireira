@@ -7,7 +7,7 @@
       padding: 10px 0;
       &:first-child {
         padding-left: 10px;
-        border-left: 4px solid #f9d901;
+        border-left: 4px solid var(--main-color);
       }
       &:last-child {
         max-width: 100%;

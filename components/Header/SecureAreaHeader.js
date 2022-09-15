@@ -15,8 +15,7 @@ export function SecureAreaHeader() {
         <div className="container_serie-ds">
           <Link href="/" passHref>
             <a href className="logo">
-              <img className="logo__img" src="/images/logo_img.png" alt="Braskape" />
-              <img className="logo__text" src="/images/logo_text.svg" alt="Braskape" />
+              <img className="logo__img" src="/images/logo_img.png" alt="Logo" />
               <h1 className="d-none">{nomeFantasia.toUpperCase()}</h1>
             </a>
           </Link>

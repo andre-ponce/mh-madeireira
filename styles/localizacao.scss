@@ -10,7 +10,7 @@
       width: 100%;
     }
 
-    &:first-of-type{
+    &:first-of-type {
       margin-right: 18px;
     }
 
@@ -37,7 +37,7 @@
         font-size: 14px;
         margin-top: 25px;
         margin-left: 15px;
-        background: #f9d901;
+        background: var(--main-color);
 
         display: flex;
         align-items: center;
@@ -47,7 +47,7 @@
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      &:first-of-type{
+      &:first-of-type {
         margin-right: 0;
         margin-bottom: 30px;
       }

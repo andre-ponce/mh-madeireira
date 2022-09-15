@@ -32,7 +32,6 @@ const verbs = {
       return res.status(400).json({ sucesso: false, erros: ['falha ao salvar endereço, por favor, contate nosso suporte'] });
     }
 
-    console.log('aqui');
     const result = await createAddress(sessionId, address);
 
     if (!result.falha) {
