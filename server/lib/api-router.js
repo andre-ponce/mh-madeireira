@@ -1,3 +1,6 @@
+import { InvalidSessionError } from '../api/api.helper';
+import { cookie } from '../constants/cookies';
+
 function helper(req, res) {
   const generic = (response, data, status) => {
     let result = response.status(status);
@@ -43,7 +46,7 @@ export function apiRouter(router) {
     .filter((verb) => ['get', 'post', 'put', 'delete', 'patch'].includes(verb))
     .reduce((current, verb) => ({ ...current, [verb]: router[verb] }), {});
 
-  return (req, res) => {
+  return async (req, res) => {
     const method = req.method.toLowerCase();
     const route = verbs[method];
     if (!route || typeof route !== 'function') {
@@ -52,6 +55,15 @@ export function apiRouter(router) {
 
     const utils = helper(req, res);
     extendResponseWithHelpers(res, utils);
-    return route.call({ ...utils.result }, req, res, utils);
+
+    try {
+      return await route.call({ ...utils.result }, req, res, utils);
+    } catch (err) {
+      if (err instanceof InvalidSessionError) {
+        res.setHeader('set-cookie', `${cookie.session.COOKIE_NAME}=; path=/; samesite=strict; httponly; maxAge=0; secure;`);
+      }
+
+      return res.serverError();
+    }
   };
 }

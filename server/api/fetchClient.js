@@ -114,6 +114,10 @@ export function fetchClient(urlBase) {
 
       return response;
     } catch (err) {
+      if (err instanceof InvalidSessionError) {
+        throw (err);
+      }
+
       return {
         $error: {
           origin: `${getMethod(requestConfig)} ${url}`,

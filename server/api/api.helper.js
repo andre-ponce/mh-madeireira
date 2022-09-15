@@ -1,5 +1,3 @@
-
-
 function ApiHandleError(message, error) {
   this.message = message;
   this.error = error;
@@ -52,6 +50,11 @@ export const credentials = (session) => {
 
 export const configureResponse = async (response, config) => {
   const allow = config.allow || [200, 201];
+
+  if (response.$error) {
+    return [response.$error, { serverError: true }];
+  }
+
   const data = await readResponse(response);
 
   if (allow.includes(200) && response.ok) {

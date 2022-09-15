@@ -1,6 +1,6 @@
 import { credentials } from './api.helper';
 
-const baseUrl = `${process.env.API_CHECKOUT}/v1/checkout/sessao`;
+const baseUrl = `${process.env.API_CHECKOUT}/sessao`;
 
 const timeout = 5000;
 
