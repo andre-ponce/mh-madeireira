@@ -15,7 +15,7 @@ function helper(req, res) {
     result: {
       ok: (data) => generic(res, data, 200),
       created: (data) => generic(res, data, 201),
-      noResult: () => generic(res, null, 204),
+      noContent: () => generic(res, null, 204),
       badRequest: (data) => generic(res, data, 400),
       unauthorized: (data) => generic(res, data, 401),
       forbidden: (data) => generic(res, data, 403),
@@ -28,7 +28,7 @@ function helper(req, res) {
 function extendResponseWithHelpers(res, { result }) {
   res.ok = result.ok;
   res.created = result.created;
-  res.noResult = result.noResult;
+  res.noContent = result.noContent;
   res.badRequest = result.badRequest;
   res.unauthorized = result.unauthorized;
   res.forbidden = result.forbidden;
