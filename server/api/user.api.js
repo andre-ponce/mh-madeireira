@@ -12,7 +12,7 @@ export async function getUserInfo(session) {
 }
 
 export async function checkEmailAvailability(email) {
-  const response = await account.get(`/email-disponivel?email=${email}`);
+  const response = await account.get('/email-disponivel', { query: { email } });
   return configureResponse(response, { allow: [200] });
 }
 
