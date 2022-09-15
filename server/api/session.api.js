@@ -1,10 +1,6 @@
-import { headerNames } from '../constants/headers';
+import { credentials } from './api.helper';
 
 const baseUrl = `${process.env.API_CHECKOUT}/v1/checkout/sessao`;
-
-const {
-  session: sessionHeader,
-} = headerNames;
 
 const timeout = 5000;
 
@@ -19,9 +15,17 @@ export async function createFreshSession(ip, ua, env) {
     }),
     headers: {
       'content-type': 'application/json',
-      Authorization: process.env.API_CATALOG_TOKEN,
+      ...credentials(),
     },
   });
+
+  if (!res.ok) {
+    throw new Error(JSON.stringify({
+      status: res.status,
+      message: await res.text(),
+      route: baseUrl,
+    }));
+  }
 
   const { sessaoId } = await res.json();
 
@@ -30,21 +34,23 @@ export async function createFreshSession(ip, ua, env) {
   };
 }
 
-export async function refreshSession(sessionId, ip, ua, env) {
+export async function refreshSession(sessionId) {
   const res = await fetch(`${baseUrl}/esta-valida`, {
     timeout,
     headers: {
-      Authorization: process.env.API_CATALOG_TOKEN,
-      [sessionHeader]: sessionId,
+      ...credentials(sessionId),
     },
   });
 
-  const { valida } = await res.json();
-
-  if (!valida) {
-    const { novaSessao } = await createFreshSession(ip, ua, env);
-    return { sessionId: novaSessao };
+  if (res.ok) {
+    return res.json();
   }
 
-  return { valida };
+  if (res.status === 400) {
+    return { valida: false };
+  }
+
+  throw new Error(JSON.stringify({
+    status: res.status,
+  }));
 }

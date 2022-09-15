@@ -1,7 +1,12 @@
 import { getGalery } from '@/server/api/product.api';
+import { apiRouter } from '@/server/lib/api-router';
 
-export default async function handler(req, res) {
-  const galery = await getGalery(req.query.id);
-  const statusCode = galery.length > 0 ? 200 : 204;
-  res.status(statusCode).json(galery);
-}
+export default apiRouter({
+  async get(req, res) {
+    const [data, status] = await getGalery(req.query.id);
+
+    if (!status.noContent) return res.noContent();
+    if (!status.ok) return res.badRequest(data);
+    return res.ok(data);
+  },
+});

@@ -1,10 +1,12 @@
 import { getBuyTogether } from '@/server/api/product.api';
+import { apiRouter } from '@/server/lib/api-router';
 
-export default async function handler(req, res) {
-  const products = await getBuyTogether(req.query.id);
-  if (products.length > 0) {
-    return res.status(200).json(products).end();
-  }
+export default apiRouter({
+  async get(req, res) {
+    const [data, status] = await getBuyTogether(req.query.id);
 
-  return res.status(204).end();
-}
+    if (!status.noContent) return res.noContent();
+    if (!status.ok) return res.badRequest(data);
+    return res.ok(data);
+  },
+});

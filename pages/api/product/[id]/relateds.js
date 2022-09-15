@@ -1,7 +1,12 @@
 import { getRelateds } from '@/server/api/product.api';
+import { apiRouter } from '@/server/lib/api-router';
 
-export default async function handler(req, res) {
-  const relateds = await getRelateds(req.query.id);
-  const statusCode = relateds.length > 0 ? 200 : 204;
-  res.status(statusCode).json(relateds);
-}
+export default apiRouter({
+  async get(req, res) {
+    const [data, status] = await getRelateds(req.query.id);
+
+    if (!status.noContent) return res.noContent();
+    if (!status.ok) return res.badRequest(data);
+    return res.ok(data);
+  },
+});

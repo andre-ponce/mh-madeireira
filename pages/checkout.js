@@ -4,12 +4,8 @@ import { getGlobalData } from '@/server/api/global.api';
 import { CheckoutMain } from '@/components/Checkout/CheckoutMain';
 
 export const getServerSideProps = withAuthorization(async () => {
-  const global = await getGlobalData();
-  return {
-    props: {
-      global,
-    },
-  };
+  const [global] = await getGlobalData();
+  return { props: { global } };
 });
 
 export default function Checkout({ global }) {

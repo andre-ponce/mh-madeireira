@@ -1,4 +1,4 @@
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 import { cookie } from '@/server/constants/cookies';
 import { changeDeliveryProvider } from '@/server/api/checkout.api';
 
@@ -13,7 +13,7 @@ const verbs = {
 
     const result = await changeDeliveryProvider(sessionId, id);
 
-    if (result.success) {
+    if (result.ok) {
       return res.status(200).json(result);
     }
 
@@ -21,6 +21,6 @@ const verbs = {
   },
 };
 
-const routes = verbsRouter(verbs);
+const routes = apiRouter(verbs);
 
 export default routes;

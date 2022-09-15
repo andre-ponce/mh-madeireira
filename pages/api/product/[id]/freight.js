@@ -1,19 +1,17 @@
-import { getProductFreight } from '@/server/api/product.api';
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { getProductFreight } from '@/server/api/freight.api';
+import { apiRouter } from '@/server/lib/api-router';
 
-const verbs = {
+export default apiRouter({
   async get(req, res) {
     const { cep, id } = req.query;
 
     if (!cep || !id) {
-      res.status(400).send('Bad Request');
-      return;
+      return res.badRequest();
     }
-    const result = await getProductFreight(id, cep);
-    res.json(result);
+    const [data, status] = await getProductFreight(req.query.id);
+
+    if (!status.noContent) return res.noContent();
+    if (!status.ok) return res.badRequest(data);
+    return res.ok(data);
   },
-};
-
-const routes = verbsRouter(verbs);
-
-export default routes;
+});

@@ -11,8 +11,8 @@ import Brands from '../components/Brands';
 import Layout from '../components/Layout';
 
 export async function getStaticProps() {
-  const home = await getHomeData();
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
+  const [home] = await getHomeData();
   return {
     props: { home, global },
     revalidate: 1,

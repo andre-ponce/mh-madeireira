@@ -1,36 +1,32 @@
 import { addToCart, getCart } from '@/server/api/cart.api';
 import { cookie as CONSTANT } from '@/server/constants/cookies';
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 
 const { session: { COOKIE_NAME } } = CONSTANT;
 
-export default verbsRouter({
+async function get(req, res) {
+  const { cookies } = req;
+  const session = cookies[COOKIE_NAME];
+  const [cart, status] = await getCart(session);
 
-  async get(req, res) {
-    const { cookies } = req;
-    const session = cookies[COOKIE_NAME];
-    const { fail, ...cart } = await getCart(session);
+  if (!status.ok) {
+    return res.badRequest();
+  }
 
-    if (fail) {
-      res.status(400).end();
-      return;
-    }
+  return res.ok(cart);
+}
 
-    res.status(200).json(cart);
-  },
+async function post(req, res) {
+  const { cookies } = req;
+  const session = cookies[COOKIE_NAME];
+  const { product, quantity } = JSON.parse(req.body);
+  const [, status] = await addToCart(session, product, quantity);
 
-  async post(req, res) {
-    const { cookies } = req;
-    const session = cookies[COOKIE_NAME];
-    const { product, quantity } = JSON.parse(req.body);
-    const result = await addToCart(session, product, quantity);
+  if (!status.ok) {
+    return res.badRequest();
+  }
 
-    if (result.success) {
-      res.status(200).end();
-      return;
-    }
+  return res.ok();
+}
 
-    res.status(400).end();
-  },
-
-});
+export default apiRouter({ get, post });

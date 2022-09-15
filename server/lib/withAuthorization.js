@@ -1,6 +1,7 @@
 import { linkTo } from '@/helpers';
 import { cookie as CONSTANT } from '../constants/cookies';
 import { getUser } from '../api/user.api';
+import { logger } from '../logger';
 
 const { session: { COOKIE_NAME } } = CONSTANT;
 
@@ -11,21 +12,23 @@ const { session: { COOKIE_NAME } } = CONSTANT;
  * @returns The ServerSideProps function with the user in the ctx
  */
 export const withAuthorization = (fn) => async (context) => {
-  const { req: { cookies, url } } = context;
-  const sessionToken = cookies[COOKIE_NAME];
-  const user = await getUser(sessionToken);
+  const { req: { cookies }, resolvedUrl } = context;
+  const session = cookies[COOKIE_NAME];
+  const [user, status] = await getUser(session);
 
-  if (!user) {
+  if (status.unauthorized) {
+    logger.debug(`Autentication required, redirecting to login (${resolvedUrl}).`);
     return {
       redirect: {
         permanent: false,
-        destination: linkTo.login(url),
+        destination: linkTo.login(resolvedUrl),
       },
       props: {},
     };
   }
 
   context.user = user;
+  context.session = session;
 
   if (fn && typeof fn === 'function') {
     return fn(context);
@@ -36,7 +39,12 @@ export const withAuthorization = (fn) => async (context) => {
 
 export const tryAuthorization = async (context) => {
   const { req: { cookies } } = context;
-  const sessionToken = cookies[COOKIE_NAME];
-  const user = await getUser(sessionToken);
-  return user;
+  const session = cookies[COOKIE_NAME];
+  const [user, status] = await getUser(session);
+
+  if (status.ok) {
+    return user;
+  }
+
+  return null;
 };

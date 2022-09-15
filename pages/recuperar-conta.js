@@ -7,7 +7,7 @@ export async function getStaticProps({ param }) {
     returnUrl = param.returnUrl;
   }
 
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   return {
     props: { global, returnUrl },
     revalidate: 1,

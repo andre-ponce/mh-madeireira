@@ -1,9 +1,7 @@
-export async function getGlobalData() {
-  const response = await fetch(`${process.env.API_CATALOG}/dados-globais`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-    },
-  });
+import { configureResponse } from './api.helper';
+import { catalog } from './fetchClient';
 
-  return response.json();
+export async function getGlobalData() {
+  const response = await catalog.get('/dados-globais');
+  return configureResponse(response, { allow: [200] });
 }

@@ -1,4 +1,4 @@
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 import { autenticate } from '@/server/api/user.api';
 import { cookie } from '@/server/constants/cookies';
 
@@ -8,31 +8,24 @@ const verbs = {
     const { cookies } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
 
-    if (!sessionId) {
-      res.status(500).json({ error: 'Erro interno, contate nosso suporte.' });
-      res.end();
-      return;
-    }
-
     if (!user) {
-      res.status(400).json({ error: 'O E-mail é obrigatorio' });
-      res.end();
-      return;
+      return res.badRequest({ error: 'O E-mail é obrigatorio' });
     }
 
     if (!pass) {
-      res.status(400).json({ error: 'A Senha é obrigatoria' });
-      res.end();
-      return;
+      return res.badRequest({ error: 'A Senha é obrigatoria' });
     }
 
-    const authRes = await autenticate(user, pass, sessionId);
+    const [data, status] = await autenticate(user, pass, sessionId);
 
-    res.status(authRes.httpStatus).json(authRes);
-    res.end();
+    if (!status.ok) {
+      return res.badRequest({ error: 'Falha ao autenticar', ...data });
+    }
+
+    return res.ok(data);
   },
 };
 
-const routes = verbsRouter(verbs);
+const routes = apiRouter(verbs);
 
 export default routes;

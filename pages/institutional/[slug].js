@@ -1,5 +1,4 @@
 import useInsecureRawScript from '@/hooks/useInsecureRawScript';
-
 import InstitutionalMain from '@/components/InstitutionalMain';
 import InstitutionalSeo from '@/components/InstitutionalMain/InstitutionalSeo';
 import Layout from '@/components/Layout';
@@ -21,18 +20,23 @@ function Institutional({ global, page }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const global = await getGlobalData();
-  const { slug } = context.query;
-  const page = await getInstitutionalPage(slug);
-  if (page.notFound) {
-    return {
-      notFound: true,
-    };
+export async function getStaticProps({ params }) {
+  const [global] = await getGlobalData();
+  const [page, status] = await getInstitutionalPage(params.slug);
+  if (status.notFound) {
+    return { notFound: true, revalidate: 1 };
   }
 
   return {
     props: { global, page },
+    revalidate: 1,
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
   };
 }
 

@@ -1,12 +1,12 @@
 import { withAuthorization } from '@/server/lib/withAuthorization';
 import Layout from '@/components/Layout';
 import { getGlobalData } from '@/server/api/global.api';
-import { getAddresses } from '@/server/api/user.api';
+import { getAddress } from '@/server/api/address.api';
 
 export const getServerSideProps = withAuthorization(async (ctx) => {
-  const { user } = ctx;
-  const global = await getGlobalData();
-  const addresses = await getAddresses(user.id);
+  const { user, session } = ctx;
+  const [global] = await getGlobalData();
+  const [addresses] = await getAddress(session);
   return {
     props: {
       user,

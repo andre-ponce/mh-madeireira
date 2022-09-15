@@ -4,7 +4,7 @@ import { getGlobalData } from '@/server/api/global.api';
 import { useContext } from 'react';
 
 export async function getServerSideProps() {
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   return {
     props: { global },
   };

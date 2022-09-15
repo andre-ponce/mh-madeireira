@@ -1,6 +1,6 @@
-import { getCartFreight } from '@/server/api/cart.api';
+import { getCartFreight } from '@/server/api/freight.api';
 import { cookie as CONSTANT } from '@/server/constants/cookies';
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 
 const { session: { COOKIE_NAME } } = CONSTANT;
 
@@ -8,16 +8,13 @@ const verbs = {
   async get(req, res) {
     const { cookies, query: { cep } } = req;
     const session = cookies[COOKIE_NAME];
-
-    if (!cep) {
-      res.status(400).send('Bad Request');
-      return;
-    }
-    const result = await getCartFreight(session, cep);
-    res.json(result);
+    if (!cep) return res.badRequest();
+    const [data, status] = await getCartFreight(session, cep);
+    if (status.notFound) return res.notFound();
+    return res.ok(data);
   },
 };
 
-const routes = verbsRouter(verbs);
+const routes = apiRouter(verbs);
 
 export default routes;

@@ -1,4 +1,4 @@
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 import { createAccount, getUser } from '@/server/api/user.api';
 import { cookie } from '@/server/constants/cookies';
 
@@ -6,31 +6,35 @@ const verbs = {
   async get(req, res) {
     const { cookies } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
-    const user = await getUser(sessionId);
+    const [user, status] = await getUser(sessionId);
 
-    if (!user) {
-      return res.status(401).end();
+    if (status.unauthorized) {
+      return res.unauthorized();
     }
 
-    return res.status(200).json(user);
+    if (!status.ok) {
+      return res.badRequest();
+    }
+
+    return res.ok(user);
   },
 
   async post(req, res) {
     const user = req.body;
     if (!user) {
-      return res.status(400).json({ sucesso: false, erros: ['falha ao salvar sua conta, por favor, contate nosso suporte'] });
+      return res.badRequest({ erros: ['falha ao salvar sua conta, por favor, contate nosso suporte'] });
     }
 
-    const result = await createAccount(user);
+    const [data, status] = await createAccount(user);
 
-    if (result.sucesso) {
-      return res.status(200).json(result);
+    if (!status.ok) {
+      return res.badRequest(data);
     }
 
-    return res.status(400).json(result);
+    return res.ok(data);
   },
 };
 
-const routes = verbsRouter(verbs);
+const routes = apiRouter(verbs);
 
 export default routes;

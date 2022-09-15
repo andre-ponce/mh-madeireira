@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import { getGlobalData } from '@/server/api/global.api';
 
 export async function getStaticProps() {
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   return { props: { global }, revalidate: 1 };
 }
 

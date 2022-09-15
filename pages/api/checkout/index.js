@@ -1,4 +1,4 @@
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 import { cookie } from '@/server/constants/cookies';
 import { getCheckoutSession, finalize } from '@/server/api/checkout.api';
 
@@ -6,30 +6,30 @@ const verbs = {
   async get(req, res) {
     const { cookies, query: { p: paymentId } } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
-    const { error, ...checkout } = await getCheckoutSession(sessionId, paymentId);
+    const [checkout, status] = await getCheckoutSession(sessionId, paymentId);
 
-    if (error) {
-      res.status(400).end();
+    if (!status.ok) {
+      result.badRequest();
       return;
     }
 
-    res.json(checkout);
+    result.ok(checkout);
   },
 
   async post(req, res) {
     const { cookies, body } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
-    const { error, ...checkout } = await finalize(sessionId, body);
+    const [checkout, status] = await finalize(sessionId, body);
 
-    if (error) {
-      res.status(400).end();
+    if (!status.ok) {
+      result.badRequest();
       return;
     }
 
-    res.json(checkout);
+    result.ok(checkout);
   },
 };
 
-const routes = verbsRouter(verbs);
+const routes = apiRouter(verbs);
 
 export default routes;

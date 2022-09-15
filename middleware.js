@@ -1,6 +1,6 @@
 import { NextResponse, userAgent } from 'next/server';
 import { cookie as CONSTANT } from '@/server/constants/cookies';
-import { createFreshSession, refreshSession } from '@/server/api/session.api';
+import { createFreshSession } from '@/server/api/session.api';
 
 const middlewares = [];
 const {
@@ -40,12 +40,7 @@ async function executeMiddlewares(request, response, event) {
 }
 
 async function useSessionCookieMiddleware(req, res) {
-  const {
-    geo,
-    ip,
-    cookies,
-  } = req;
-
+  const { geo, ip, cookies } = req;
   const ua = userAgent(req);
   if (ua.isBot) {
     return res;
@@ -58,16 +53,17 @@ async function useSessionCookieMiddleware(req, res) {
     if (!currentSession) {
       const session = await createFreshSession(ip, ua, geo);
       sessionId = session.sessionId;
-    } else {
-      const { valida } = await refreshSession(currentSession, ip, ua, geo);
-      if (!valida) {
-        const session = await createFreshSession(ip, ua, geo);
-        sessionId = session.sessionId;
-      }
     }
+    //  else {
+    //   const { valida } = await refreshSession(currentSession);
+    //   if (!valida) {
+    //     const session = await createFreshSession(ip, ua, geo);
+    //     sessionId = session.sessionId;
+    //   }
+    // }
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.log(`Erro ao criar sessão: ${err}`);
+    console.error('Falha ao gerar nova sessão:', err);
   }
 
   if (!sessionId) {

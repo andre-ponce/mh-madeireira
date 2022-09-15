@@ -5,11 +5,11 @@ import { AccountPage } from '@/components/AccountPage/AccountPage';
 
 export const getServerSideProps = withAuthorization(async (ctx) => {
   const { user } = ctx;
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   return {
     props: {
       user,
-      global
+      global,
     },
   };
 });

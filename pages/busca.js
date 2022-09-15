@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import CategoryMain from '@/components/CategoryMain';
-
 import { getGlobalData } from '@/server/api/global.api';
 import { getSearchResults } from '@/server/api/catalog.api';
 import useCategoryFilter from '@/hooks/useCategoryFilter';
@@ -16,8 +15,8 @@ export async function getServerSideProps({ query }) {
     };
   }
 
-  const global = await getGlobalData();
-  const catalog = await getSearchResults(query);
+  const [global] = await getGlobalData();
+  const [catalog] = await getSearchResults(query);
   return {
     props: { global, catalog },
   };

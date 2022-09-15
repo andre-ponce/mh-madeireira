@@ -1,22 +1,12 @@
-export async function getHomeData() {
-  const response = await fetch(`${process.env.API_CATALOG}/home`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-    },
-  });
+import { configureResponse } from './api.helper';
+import { catalog } from './fetchClient';
 
-  return response.json();
+export async function getHomeData() {
+  const response = await catalog.get('/home');
+  return configureResponse(response, { allow: [200] });
 }
 
 export async function signupNewsletter({ email, name }) {
-  const response = await fetch(`${process.env.API_CATALOG}/newsletter`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'content-type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({ nome: name, email, cadastradoVia: 'site' }),
-  });
-
-  return response.json();
+  const response = await catalog.post('/newsletter', { nome: name, email, cadastradoVia: 'site' });
+  return configureResponse(response, { allow: [200, 201] });
 }

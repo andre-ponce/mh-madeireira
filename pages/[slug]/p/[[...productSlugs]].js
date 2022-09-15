@@ -7,25 +7,26 @@ import { ProductMain } from '@/components/ProductMain/ProductMain';
 import { getGlobalData } from '@/server/api/global.api';
 import { getProduct, getDescription } from '@/server/api/product.api';
 
-export async function getServerSideProps({ query }) {
-  const global = await getGlobalData();
-  const [id] = query.productSlugs;
-  const { notFound, ...product } = await getProduct(id);
+export async function getStaticProps({ params }) {
+  const [global] = await getGlobalData();
+  const { productSlugs } = params;
+  const [id] = productSlugs;
+  const [product, status] = await getProduct(id);
+  if (status.notFound) {
+    return { notFound: true, revalidate: 1 };
+  }
   const { descricaoHTML } = await getDescription(id);
 
-  product.descricaoHTML = descricaoHTML;
-
-  if (notFound) {
-    return {
-      notFound,
-    };
-  }
-
   return {
-    props: {
-      global,
-      product,
-    },
+    props: { global, product: { descricaoHTML, ...product } },
+    revalidate: 1,
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
   };
 }
 

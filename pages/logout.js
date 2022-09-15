@@ -1,31 +1,39 @@
 import Layout from '@/components/Layout';
-import { disconnectUser } from '@/server/api/user.api';
-import { cookie as CONSTANT } from '@/server/constants/cookies';
+import { getGlobalData } from '@/server/api/global.api';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-const { session: { COOKIE_NAME } } = CONSTANT;
-
-export async function getServerSideProps(context) {
-  const { req: { cookies } } = context;
-  const sessionToken = cookies[COOKIE_NAME];
-  const { disconnected, httpStatus } = await disconnectUser(sessionToken);
-
-  if (!disconnected) {
-    throw new Error(`Falha ao desconectar usuário: status ${httpStatus}`);
-  }
-
-  return {
-    redirect: {
-      permanent: false,
-      destination: '/',
-    },
-    props: {},
-  };
+export async function getServerSideProps() {
+  const [global] = await getGlobalData();
+  return { props: { global } };
 }
 
 function Logout({ global }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    (async () => {
+      const { ok } = await fetch('/api/auth/logout', { method: 'post' });
+      if (ok) router.push('/');
+    })();
+  }, []);
+
   return (
     <Layout globalData={global} secureArea>
-      <></>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxHeight: '300px',
+          height: '50vh',
+          fontSize: '2rem',
+        }}
+      >
+        <span style={{ marginBottom: '20px' }}><i className="fa fa-spin fa-spinner" /></span>
+        <h3>desconectando</h3>
+      </div>
     </Layout>
   );
 }

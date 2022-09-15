@@ -1,147 +1,42 @@
-export async function getUser(sessionId) {
-  const response = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'x-mw-sessao': sessionId,
-    },
-  });
+import { configureResponse } from './api.helper';
+import { account } from './fetchClient';
 
-  if (response.status === 200) {
-    return response.json();
-  }
-
-  if (response.status === 401) {
-    return null;
-  }
-
-  return null;
+export async function getUser(session) {
+  const response = await account.get('', { session });
+  return configureResponse(response, { allow: [200, 401] });
 }
 
-export async function getUserInfo(sessionId) {
-  const response = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente/cadastro`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'x-mw-sessao': sessionId,
-    },
-  });
+export async function getUserInfo(session) {
+  const response = await account.get('/cadastro', { session });
+  return configureResponse(response, { allow: [200] });
+}
 
-  if (response.status === 200) {
-    return response.json();
-  }
-
-  if (response.status === 401) {
-    return null;
-  }
-
-  return null;
+export async function checkEmailAvailability(email) {
+  const response = await account.get(`/email-disponivel?email=${email}`);
+  return configureResponse(response, { allow: [200] });
 }
 
 export async function createAccount(user) {
-  const response = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'content-type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify(user),
-  });
-
-  if ([200, 400, 415].includes(response.status)) {
-    return response.json();
-  }
-
-  return {
-    sucesso: false,
-    erros: ['falha ao salvar sua conta, por favor, contate nosso suporte'],
-  };
+  const response = await account.post('', user);
+  return configureResponse(response, { allow: [200, 401] });
 }
 
-export async function updateAccount(user) {
-  const response = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'content-type': 'application/json',
-    },
-    method: 'PUT',
-    body: JSON.stringify(user),
-  });
-
-  if ([200, 400].includes(response.status)) {
-    return response.json();
-  }
-
-  return {
-    sucesso: false,
-    erros: ['falha ao salvar sua conta, por favor, contate nosso suporte'],
-  };
+export async function updateAccount(user, session) {
+  const response = await account.post('', user, { session });
+  return configureResponse(response, { allow: [200, 401] });
 }
 
-export async function getAddresses(userId) {
-  const response = await fetch(`${process.env.API_ACCOUNT}/enderecos/${userId}`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-    },
-  });
-
-  return response.json();
+export async function changePassword(senhaAntiga, novaSenha, session) {
+  const response = await account.post('/alterar-senha', { senhaAntiga, novaSenha }, { session });
+  return configureResponse(response, { allow: [200, 401] });
 }
 
-export async function changePassword(old, newPassword) {
-  const response = await fetch(`${process.env.API_ACCOUNT}/cliente/alterar-senha`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-    },
-    body: JSON.stringify({
-      senhaAntiga: old,
-      novaSenha: newPassword,
-    }),
-  });
-
-  return response.json();
+export async function autenticate(usuario, senha, session) {
+  const response = await account.post('/autenticar', { usuario, senha }, { session });
+  return configureResponse(response, { allow: [200, 401] });
 }
 
-export async function autenticate(user, pass, sessionId) {
-  const body = JSON.stringify({
-    usuario: user,
-    senha: pass,
-  });
-
-  const res = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente/autenticar`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'x-mw-sessao': sessionId,
-      'content-type': 'application/json',
-    },
-    method: 'post',
-    body,
-  });
-
-  const json = await res.json();
-  const requestFailed = ![200, 401, 400].includes(res.status);
-  const autenticated = res.status === 200 && !!json.autenticado;
-
-  return {
-    httpStatus: requestFailed ? 500 : res.status,
-    response: !requestFailed ? json : {},
-    autenticated,
-  };
-}
-
-export async function disconnectUser(sessionId) {
-  const res = await fetch(`${process.env.API_ACCOUNT}/checkout/cliente/desconectar`, {
-    headers: {
-      authorization: process.env.API_CATALOG_TOKEN,
-      'x-mw-sessao': sessionId,
-      'content-type': 'application/json',
-    },
-    method: 'post',
-  });
-
-  const requestFailed = ![200, 400].includes(res.status);
-  const disconnected = res.status === 200;
-
-  return {
-    httpStatus: requestFailed ? 500 : res.status,
-    disconnected,
-  };
+export async function disconnectUser(session) {
+  const response = await account.post('/desconectar', null, { session });
+  return configureResponse(response, { allow: [200] });
 }

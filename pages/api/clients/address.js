@@ -1,4 +1,4 @@
-import { verbsRouter } from '@/server/lib/verbs-api-router';
+import { apiRouter } from '@/server/lib/api-router';
 import { cookie } from '@/server/constants/cookies';
 import { createAddress, getAddress, updateAddress } from '@/server/api/address.api';
 
@@ -6,13 +6,22 @@ const verbs = {
   async get(req, res) {
     const { cookies } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
-    const address = await getAddress(sessionId);
 
-    if (!address) {
-      return res.status(401).end();
+    if (!sessionId) {
+      return res.badRequest();
     }
 
-    return res.status(200).json(address);
+    const { data: address, ok, notFound } = await getAddress(sessionId);
+
+    if (ok) {
+      return res.ok(address);
+    }
+
+    if (notFound) {
+      return res.notFound();
+    }
+
+    return res.serverError();
   },
 
   async post(req, res) {
@@ -49,6 +58,6 @@ const verbs = {
   },
 };
 
-const routes = verbsRouter(verbs);
+const routes = apiRouter(verbs);
 
 export default routes;

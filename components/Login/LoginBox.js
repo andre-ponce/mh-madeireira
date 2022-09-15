@@ -2,12 +2,10 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useState } from 'react';
 import { linkTo } from '@/helpers';
-import { autenticate } from '@/server/api/user.api';
 
 export function LoginBox({ doLogin }) {
   const [loginFailed, setLoginFailed] = useState(false);
   const [internalError, setInternalError] = useState(false);
-  const [invalidForm, setInvalidForm] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
@@ -34,31 +32,18 @@ export function LoginBox({ doLogin }) {
       }
 
       setInternalError(false);
-      setInvalidForm(false);
       setLoginFailed(false);
+
       setLoading(true);
+      const { autenticado, next } = await doLogin(user, password);
+      setLoading(false);
 
-      doLogin(user, password)
-        .then(({ autenticated, httpStatus, next }) => {
-          setLoading(false);
+      if (!autenticado) {
+        setLoginFailed(true);
+        return;
+      }
 
-          if (httpStatus === 500) {
-            setInternalError(true);
-            return;
-          }
-
-          if (httpStatus === 400) {
-            setInvalidForm(true);
-            return;
-          }
-
-          if (httpStatus === 401 || !autenticated) {
-            setLoginFailed(true);
-            return;
-          }
-
-          next();
-        });
+      next();
     },
   });
 
@@ -120,19 +105,6 @@ export function LoginBox({ doLogin }) {
                 <>
                   <br />
                   <p className="text-danger text-center">Erro ao processar sua requisição, tente novamente!</p>
-                </>
-              )
-            }
-            {
-              invalidForm
-              && (
-                <>
-                  <br />
-                  <p className="text-danger text-center">
-                    Falha ao fazer login,
-                    <wbr />
-                    verifique seu E-mail/Senha e tente novamente!
-                  </p>
                 </>
               )
             }

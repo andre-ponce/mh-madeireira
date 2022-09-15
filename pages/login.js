@@ -6,15 +6,22 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 export async function getServerSideProps(context) {
-  const { param } = context;
+  const { query } = context;
   let returnUrl = '/';
-  if (param && param.returnUrl) {
-    returnUrl = param.returnUrl;
-  }
+  if (query && query.returnUrl) returnUrl = query.returnUrl;
 
   const user = await tryAuthorization(context);
 
-  const global = await getGlobalData();
+  if (user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: returnUrl || '/',
+      },
+    };
+  }
+
+  const [global] = await getGlobalData();
   return {
     props: { global, returnUrl, user },
   };
