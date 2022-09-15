@@ -6,7 +6,7 @@ import { linkTo } from '@/helpers';
 
 export async function getServerSideProps({ query }) {
   const { returnUrl, email, name } = query;
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   return {
     props: {
       global,

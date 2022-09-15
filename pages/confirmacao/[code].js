@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { linkTo } from '@/helpers';
 
 export const getServerSideProps = withAuthorization(async ({ user, query }) => {
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   //TODO: checa se o pedido é desse cliente
   //TODO: checa o status do pedido
   return {

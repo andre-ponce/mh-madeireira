@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { id, slug, ...rest } = params;
-  const global = await getGlobalData();
+  const [global] = await getGlobalData();
   const category = await getCategoryResults(id, rest);
   return {
     props: { global, category },
