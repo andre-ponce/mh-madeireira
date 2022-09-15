@@ -27,7 +27,7 @@ function configureRequest(params) {
   };
 
   const traceData = {
-    session,
+    session: session || null,
     timeout: finalConfig.timeout,
     contentType: finalConfig['content-type'],
   };
