@@ -1,5 +1,8 @@
 module.exports = {
   images: {
-    domains: ['www.braskape.com.br'],
+    domains: [
+      'static.maximaweb.com.br',
+      'maximaweb.s3.amazonaws.com',
+    ],
   },
 };
