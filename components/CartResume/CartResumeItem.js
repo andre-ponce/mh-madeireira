@@ -1,19 +1,13 @@
-import { format, image } from '@/helpers'; import Image from 'next/image';
+import { format } from '@/helpers';
+import { url } from '@/services/statics.service';
+import Image from 'next/image';
 import { CartQuantityPanel } from './CartQuantityPanel';
 
 export default function CartResumeItem(prop) {
   const { item } = prop;
-
-  function imageUrl(photo) {
-    if (!photo) {
-      return image.fallback(photo);
-    }
-    return `https://www.braskape.com.br/imagens_produtos/${photo}`;
-  }
-
   return (
     <li className="items__item">
-      <Image src={imageUrl(item.foto)} className="item__image" width={50} height={50} />
+      <Image src={url.imageProduct(item.foto)} className="item__image" width={50} height={50} />
       <span className="item__name">
         {item.nome}
       </span>

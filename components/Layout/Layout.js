@@ -5,6 +5,7 @@ import useAnimateOnRouteChange from '@/hooks/useAnimateOnRouteChange';
 import { useCart } from '@/hooks/useCart';
 import { registerDynamicScript } from '@/hooks/registerDynamicScript';
 import { useClientInfo } from '@/hooks/useClientInfo';
+import { configureStatics } from '@/services/statics.service';
 import { PublicArea } from './PublicArea';
 import { SecureArea } from './SecureArea';
 import { CartSideBar } from '../CartResume/CartSideBar';
@@ -19,6 +20,7 @@ export function Layout({ children, globalData, secureArea }) {
   const user = useClientInfo();
   useAnimateOnRouteChange();
   registerDynamicScript(globalData.site);
+  configureStatics(globalData.static);
 
   return (
     <GlobalDataProvider value={globalData}>

@@ -1,3 +1,5 @@
+import { url } from '@/services/statics.service';
+import Image from 'next/image';
 import { useEffect } from 'react';
 import Slick from 'react-slick';
 import { Loader } from './Loader';
@@ -45,7 +47,13 @@ export function PhotoGalery({ photos, slickSettings }) {
         <Slick className={`slider__product__galery ${photos.length > 1 ? 'slider__product__galery--has-thumbs' : ''}`} {...settings}>
           {galery.map((photo) => (
             <div className="slider__product__galery--photo" key={photo.id}>
-              <img src={photo.url} alt={photo.textoAlternativo} title={photo.titulo} />
+              <Image
+                src={url.imageProduct(photo.url)}
+                alt={photo.textoAlternativo}
+                title={photo.titulo}
+                height={400}
+                width={400}
+              />
             </div>
           ))}
         </Slick>

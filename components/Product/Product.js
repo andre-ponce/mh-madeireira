@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { format, image, linkTo } from '@/helpers';
 import { addToCart } from '@/services/cart.service';
 import SessionContext from '@/contexts/SessionContext';
+import Image from 'next/image';
+import { url } from '@/services/statics.service';
 
 function Product({ product }) {
   const [busy, setBusy] = useState(false);
@@ -25,7 +27,7 @@ function Product({ product }) {
       <div className=" product">
         <Link href={linkTo.product(product)} passHref>
           <a className="product__topbar">
-            <img src={image.fallback(product.fotoUrl)} alt={product.name} />
+            <Image src={url.imageProduct(product.fotoUrl)} alt={product.name} width={200} height={200} />
             {
               product.desconto > 0 && (
                 <span className="topbar__discount">

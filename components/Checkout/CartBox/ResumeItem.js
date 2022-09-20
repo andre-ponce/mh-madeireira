@@ -1,13 +1,16 @@
-import { format, image } from '@/helpers';
+import { format } from '@/helpers';
+import { url } from '@/services/statics.service';
 import Image from 'next/image';
 
 export function ResumeItem({
   nome, foto, precoUnitario, sku, codigoErp, quantidade,
 }) {
+  const fotoUrl = url.fotoProduto(foto);
+
   return (
     <div className="checkout-resume--item">
       <div className="resume-item--description">
-        <Image src={image.fallback(foto, 'https://www.braskape.com.br/imagens_produtos/')} width={70} height={70} alt={`Foto do produto ${nome}`} />
+        <Image src={fotoUrl} width={70} height={70} alt={`Foto do produto ${nome}`} />
         <div className="resume-item--info">
           <span className="resume-item--name">{nome}</span>
           <div className="resume-item--references">
