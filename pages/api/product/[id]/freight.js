@@ -10,7 +10,6 @@ export default apiRouter({
     }
     const [data, status] = await getProductFreight(req.query.id, cep);
 
-    if (!status.noContent) return res.noContent();
     if (!status.ok) return res.badRequest(data);
     return res.ok(data);
   },

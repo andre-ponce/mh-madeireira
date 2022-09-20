@@ -5,7 +5,6 @@ export default apiRouter({
   async get(req, res) {
     const [data, status] = await getPaymentConditions(req.query.id);
 
-    if (!status.noContent) return res.noContent();
     if (!status.ok) return res.badRequest(data);
     return res.ok(data);
   },
