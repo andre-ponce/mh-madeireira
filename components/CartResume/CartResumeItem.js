@@ -44,7 +44,7 @@ export default function CartResumeItem({ item }) {
         )
       }
       {
-        item.maximoPorVenda && item.quantidade > item.maximoPorVenda && (
+        !!item.maximoPorVenda && item.quantidade > item.maximoPorVenda && (
           <div className="item__message">
             Você só pode comprar
             {' '}
