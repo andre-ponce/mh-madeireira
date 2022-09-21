@@ -9,6 +9,12 @@ export function CartGrid({ cart, closeSidebar, hideFooter }) {
     ?.map(({ produtoId, quantidade }) => `${produtoId}:${quantidade}`)
     ?.join('|') || null;
 
+  const hasErrors = itens.some(({
+    estoqueDisponivel,
+    maximoPorVenda,
+    quantidade,
+  }) => quantidade > maximoPorVenda || quantidade > estoqueDisponivel);
+
   return (
     <>
       <span className="cart-container__title">RESUMO DO SEU CARRINHO</span>
@@ -20,7 +26,7 @@ export function CartGrid({ cart, closeSidebar, hideFooter }) {
           <CartFreight hash={cartHash} />
           <CartTotals paymentDetails={rest} />
           <span className="cart-coupom-alert">Possui cupom ou vale? Você poderá usá-los na etapa de pagamento.</span>
-          <CartActions closeSidebar={closeSidebar} />
+          <CartActions closeSidebar={closeSidebar} hasErrors={hasErrors} />
         </>
       )}
     </>
