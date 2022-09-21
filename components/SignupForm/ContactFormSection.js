@@ -23,7 +23,7 @@ export const ContactFormSection = connect(({ formik: { isValid, isSubmitting } }
 
       <div className="form-group mt-3">
         <div className="form-check d-flex align-items-center">
-          <input className="form-check-input mt-0" type="checkbox" value="" id="invalidCheck2" required />
+          <input className="form-check-input mt-0" type="checkbox" value="" id="invalidCheck2" />
           <label className="form-check-label mb-0" htmlFor="invalidCheck2">
             Aceito receber e-mails com promoções e informativos
           </label>
