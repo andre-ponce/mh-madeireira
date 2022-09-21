@@ -15,7 +15,11 @@ async function readResponse(response) {
   if (response.headers) {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
-      return response.json();
+      try {
+        return response.json();
+      } catch (err) {
+        return {};
+      }
     }
   }
 
@@ -51,10 +55,6 @@ export const credentials = (session) => {
 export const configureResponse = async (response, config) => {
   const allow = config.allow || [200, 201];
 
-  if (response.$error) {
-    return [response.$error, { serverError: true }];
-  }
-
   const data = await readResponse(response);
 
   if (allow.includes(200) && response.ok) {
@@ -78,11 +78,11 @@ export const configureResponse = async (response, config) => {
   }
 
   if (allow.includes(400) && response.status === 400) {
-    return [data, { badRequest: true }];
+    return [{ ...data, $error: response.$error }, { badRequest: true }];
   }
 
   if (allow.includes(response.status)) {
-    return [data, {
+    return [{ ...data, $error: response.$error }, {
       ok: response.status >= 200 && response.status < 300,
       badRequest: response.status >= 400 && response.status < 500,
       serverError: response.status >= 500,
