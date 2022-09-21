@@ -3,7 +3,7 @@ import { calculateFreight } from '@/services/freight.service';
 import { useEffect, useState } from 'react';
 import { useJSONStorage } from './useJSONStorage';
 
-export function useFreightSimulator({ type, productId }) {
+export function useFreightSimulator({ type, productId, cartHash }) {
   const [address, cacheLoading, cacheError, setAddress] = useJSONStorage('cart-freight');
   const [providers, setProviders] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -13,7 +13,7 @@ export function useFreightSimulator({ type, productId }) {
 
   async function fetchProviders() {
     setBusy(true);
-    const result = await calculateFreight(freightType, cep, productId);
+    const result = await calculateFreight(freightType, cep, productId, cartHash);
     setProviders(result);
     setBusy(false);
   }
@@ -28,7 +28,7 @@ export function useFreightSimulator({ type, productId }) {
     }
 
     fetchProviders();
-  }, [cep, freightType, productId, cacheLoading]);
+  }, [cep, freightType, productId, cartHash, cacheLoading]);
 
   async function changeAddress(zipcode) {
     if (busy) { return; }
@@ -58,7 +58,6 @@ export function useFreightSimulator({ type, productId }) {
   }
 
   function reloadProviders() {
-    console.log(cep, busy);
     if (!cep) { return; }
     if (busy) { return; }
     fetchProviders();
