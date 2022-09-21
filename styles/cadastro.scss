@@ -37,24 +37,24 @@ body .main-cadastro {
           border-color: var(--danger);
         }
 
-        &>label:after {
+        & > label:after {
           content: " (!)";
           color: var(--danger);
           font-weight: bold;
         }
 
-        .error-message{
-          color : var(--danger);
+        .error-message {
+          color: var(--danger);
           margin-top: 5px;
         }
       }
 
-      .insc-estadual-input-wrap{
+      .insc-estadual-input-wrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .form-check{
+        .form-check {
           margin-left: 10px;
         }
       }
@@ -85,8 +85,11 @@ body .main-cadastro {
     }
   }
 
-  @media screen and (min-width:768px) {
-    .tell-group {
+  .tell-group {
+    border: none !important;
+    padding: 0 !important;
+
+    @media screen and (min-width: 768px) {
       & > div {
         &:nth-child(1) {
           padding-right: 15px !important;
@@ -97,5 +100,4 @@ body .main-cadastro {
       }
     }
   }
-
 }
