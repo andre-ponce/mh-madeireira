@@ -66,7 +66,7 @@ export function useFreightSimulator({ type, productId, cartHash }) {
   return {
     address,
     providers,
-    busy,
+    busy: busy || cacheLoading,
     error,
     changeAddress,
     reloadProviders,

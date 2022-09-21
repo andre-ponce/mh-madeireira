@@ -127,13 +127,16 @@ function Provider({ price, time }) {
     deliveryDescription = `Receba em até ${time} dia útil`;
   }
 
-  if (time === 0) {
-    deliveryDescription = 'Retire na loja';
-  }
-
   let priceText = 'Frete Grátis';
   if (price > 0) {
     priceText = `${format.currency(price)}`;
+  }
+
+  if (time === 0) {
+    deliveryDescription = 'Retire na loja';
+    if (price === 0) {
+      priceText = 'Grátis';
+    }
   }
 
   return (
