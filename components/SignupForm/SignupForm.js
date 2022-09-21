@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
+import { isEmpty } from 'lodash';
 import { userSchema } from './SignupSchema';
 import { AdressFormSection } from './AdressFormSection';
 import { AccessDataFormSection } from './AccessDataFormSection';
@@ -24,8 +25,6 @@ export default function SignupForm({ user, onSubmit }) {
       : null,
   };
 
-  console.log(initialValues);
-
   return (
     <main className="main main-cadastro container_serie-ds">
       <h2 className="page-title">{user.id ? 'Minha conta' : 'Criar nova conta'}</h2>
@@ -38,7 +37,11 @@ export default function SignupForm({ user, onSubmit }) {
             <AdressFormSection />
             <ContactFormSection />
             {
-              errors.map((error) => <div className="error-message">{error}</div>)
+              !isEmpty(errors) && (
+                <div className="errors">
+                  {errors.map((error) => <div className="errors--message">{error}</div>)}
+                </div>
+              )
             }
           </Form>
         )}

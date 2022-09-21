@@ -18,7 +18,7 @@ export async function checkEmailAvailability(email) {
 
 export async function createAccount(user) {
   const response = await account.post('', user);
-  return configureResponse(response, { allow: [200, 401] });
+  return configureResponse(response, { allow: [200, 400, 401] });
 }
 
 export async function updateAccount(user, session) {

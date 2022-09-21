@@ -100,4 +100,13 @@ body .main-cadastro {
       }
     }
   }
+
+  .errors {
+    &--message {
+      text-align: center;
+      color: var(--danger);
+      padding: 10px 0;
+      font-size: 1.2em;
+    }
+  }
 }
