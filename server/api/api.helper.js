@@ -1,25 +1,14 @@
-function ApiHandleError(message, error) {
-  this.message = message;
-  this.error = error;
-}
-
-export function InvalidSessionError(message, error) {
-  this.message = message;
-  this.error = error;
-}
-
-ApiHandleError.prototype = Error;
-InvalidSessionError.prototype = Error;
+import { ApiHandleError } from '../errors/ApiHandleError';
 
 async function readResponse(response) {
+  if (response.status === 204) {
+    return undefined;
+  }
+
   if (response.headers) {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
-      try {
-        return response.json();
-      } catch (err) {
-        return {};
-      }
+      return response.json();
     }
   }
 
