@@ -8,16 +8,15 @@ const verbs = {
     const sessionId = cookies[cookie.session.COOKIE_NAME];
     const { id } = req.body || {};
     if (!id) {
-      return res.status(400).json({ sucesso: false, erros: ['falha ao alterar o endereço de entrega'] });
+      return res.badRequest({ erros: ['falha ao alterar o endereço de entrega'] });
     }
 
-    const result = await changeDeliveryAddress(sessionId, id);
-
-    if (result.success) {
-      return res.status(200).json(result);
+    const [data, status] = await changeDeliveryAddress(sessionId, id);
+    if (!status.ok) {
+      return res.badRequest();
     }
 
-    return res.status(400).json(result);
+    return res.ok(data);
   },
 };
 

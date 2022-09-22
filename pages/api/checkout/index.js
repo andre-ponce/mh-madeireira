@@ -4,16 +4,14 @@ import { getCheckoutSession, finalize } from '@/server/api/checkout.api';
 
 const verbs = {
   async get(req, res) {
-    const { cookies, query: { p: paymentId } } = req;
+    const { cookies } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
-    const [checkout, status] = await getCheckoutSession(sessionId, paymentId);
-
+    const [checkout, status] = await getCheckoutSession(sessionId);
     if (!status.ok) {
-      result.badRequest();
-      return;
+      return res.badRequest();
     }
 
-    result.ok(checkout);
+    return res.ok(checkout);
   },
 
   async post(req, res) {
@@ -22,11 +20,10 @@ const verbs = {
     const [checkout, status] = await finalize(sessionId, body);
 
     if (!status.ok) {
-      result.badRequest();
-      return;
+      return res.badRequest();
     }
 
-    result.ok(checkout);
+    return res.ok(checkout);
   },
 };
 
