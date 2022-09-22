@@ -9,6 +9,7 @@ import '../styles/all.scss';
 
 import React from 'react';
 import CookieConsent from '@/components/CookieConsent';
+import { AppErrorBoundary } from '@/components/AppErrorBoundary';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Component {...pageProps} />
+      <AppErrorBoundary>
+        <Component {...pageProps} />
+      </AppErrorBoundary>
       <div id="modal-container" />
       <div className="fixed-shadow" />
       <CookieConsent />
