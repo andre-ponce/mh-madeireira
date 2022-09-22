@@ -5,7 +5,7 @@ import Image from 'next/image';
 export function ResumeItem({
   nome, foto, precoUnitario, sku, codigoErp, quantidade,
 }) {
-  const fotoUrl = url.fotoProduto(foto);
+  const fotoUrl = url.imageProduct(foto);
 
   return (
     <div className="checkout-resume--item">
