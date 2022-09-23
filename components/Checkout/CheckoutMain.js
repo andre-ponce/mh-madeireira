@@ -8,6 +8,7 @@ import { DiscountBox } from './DiscountBox';
 import { CartBox } from './CartBox';
 import Modal from '../Modal';
 import { PersonalBox } from './PersonalBox';
+import { PickUpInStoreBox } from './PickUpInStoreBox';
 
 export function CheckoutMain() {
   const ckeckoutSession = useCheckoutSession();
@@ -19,6 +20,8 @@ export function CheckoutMain() {
   if (firstLoad && !value.loading) {
     return <div>Carregando...</div>;
   }
+
+  const { retirarNaLoja } = value || {};
 
   return (
     <CheckoutProvider value={ckeckoutSession}>
@@ -41,8 +44,9 @@ export function CheckoutMain() {
       <main className={`fechamento container_serie-ds d-flex row ${loading ? 'loading' : ''}`}>
         <div className="col-lg-4 col-md-6 col-sm-12">
           <PersonalBox />
-          <AddressBox />
-          <DeliveryBox />
+          {retirarNaLoja && <PickUpInStoreBox />}
+          {!retirarNaLoja && <AddressBox />}
+          {!retirarNaLoja && <DeliveryBox />}
         </div>
         <div className="col-lg-8 col-md-6 col-sm-12">
           <div className="row">

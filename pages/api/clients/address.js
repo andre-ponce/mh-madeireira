@@ -11,7 +11,7 @@ const verbs = {
       return res.badRequest();
     }
 
-    const { data: address, ok, notFound } = await getAddress(sessionId);
+    const [address, { ok, notFound }] = await getAddress(sessionId);
 
     if (ok) {
       return res.ok(address);
@@ -29,17 +29,16 @@ const verbs = {
     const sessionId = cookies[cookie.session.COOKIE_NAME];
     const address = req.body;
     if (!address) {
-      return res.status(400).json({ sucesso: false, erros: ['falha ao salvar endereço, por favor, contate nosso suporte'] });
+      return res.badRequest({ erros: ['falha ao salvar endereço, por favor, contate nosso suporte'] });
     }
 
-    console.log('aqui');
-    const result = await createAddress(sessionId, address);
+    const [data, result] = await createAddress(sessionId, address);
 
-    if (!result.falha) {
-      return res.status(200).json(result);
+    if (result.ok) {
+      return res.ok(data);
     }
 
-    return res.status(400).json(result);
+    return res.badRequest(data);
   },
 
   async put(req, res) {
@@ -48,13 +47,13 @@ const verbs = {
       return res.status(400).json({ sucesso: false, erros: ['falha ao salvar endereço, por favor, contate nosso suporte'] });
     }
 
-    const result = await updateAddress(address);
+    const [data, result] = await updateAddress(address);
 
-    if (!result.falha) {
-      return res.status(200).json(result);
+    if (result.ok) {
+      return res.ok(data);
     }
 
-    return res.status(400).json(result);
+    return res.badRequest(data);
   },
 };
 

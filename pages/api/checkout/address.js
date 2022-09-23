@@ -13,7 +13,7 @@ const verbs = {
 
     const [data, status] = await changeDeliveryAddress(sessionId, id);
     if (!status.ok) {
-      return res.badRequest();
+      return res.badRequest(data);
     }
 
     return res.ok(data);

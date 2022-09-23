@@ -22,13 +22,13 @@ export function GenericForm({
   return (
     <>
       <div className="payment-details--generic">
-        <span className="payment-details--generic-title">{`${title} (-${descontoPercentual}%)`}</span>
+        <span className="payment-details--generic-title">{title}</span>
         {showOldPrice && <span className="payment-details--generic-oldprice">{`de ${format.currency(valorOriginal)}`}</span>}
         <span className="payment-details--generic-newprice">
           {showOldPrice ? 'por ' : ''}
           <span>{format.currency(valorFinal)}</span>
           {' à vista'}
-          {` (${descontoPercentual}% de desconto)`}
+          {(descontoPercentual || 0) > 0 && `  com ${descontoPercentual}% de desconto`}
         </span>
         {children}
       </div>

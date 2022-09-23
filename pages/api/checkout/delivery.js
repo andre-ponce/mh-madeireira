@@ -6,12 +6,15 @@ const verbs = {
   async post(req, res) {
     const { cookies } = req;
     const sessionId = cookies[cookie.session.COOKIE_NAME];
-    const { id } = req.body || {};
-    if (!id) {
-      return res.badRequest({ erros: ['falha ao alterar opção de entrega'] });
-    }
+    const {
+      siglaProvider,
+      retirarNaLoja,
+      cepSimulador,
+    } = req.body || {};
 
-    const [data, status] = await changeDeliveryProvider(sessionId, id);
+    const [data, status] = await changeDeliveryProvider(sessionId,
+      { siglaProvider, retirarNaLoja, cepSimulador });
+
     if (!status.ok) {
       return res.badRequest();
     }

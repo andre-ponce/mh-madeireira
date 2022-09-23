@@ -18,7 +18,7 @@ export const setAddress = async (address) => {
   });
 
   if (res.ok) {
-    return res.json();
+    return {};
   }
 
   return { error: 'Não foi possível salvar seu endereço' };
@@ -27,11 +27,11 @@ export const setAddress = async (address) => {
 export const setDelivery = async (delivery) => {
   const res = await fetcher('/delivery', {
     method: 'POST',
-    body: JSON.stringify({ id: delivery }),
+    body: JSON.stringify(delivery),
   });
 
   if (res.ok) {
-    return res.json();
+    return {};
   }
 
   return { error: 'Não foi possível alterar seu endereço de entrega' };

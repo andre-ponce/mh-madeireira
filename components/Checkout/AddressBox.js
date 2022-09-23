@@ -9,7 +9,14 @@ export function AddressBox() {
   const [showingAdresses, setShowingAdresses] = useState(false);
   const [showingNewAdress, setShowingNewAdress] = useState(false);
 
-  const { value: { enderecoDeEntrega }, setAddress } = useContext(CheckoutContext);
+  const {
+    value: {
+      enderecoDeEntrega,
+      permiteRetirarNaLoja,
+    },
+    setAddress,
+    setDelivery,
+  } = useContext(CheckoutContext);
   const {
     endereco,
     numero,
@@ -47,16 +54,26 @@ export function AddressBox() {
         }
 
         <div className="mt-3">
-          <button type="button" className="button-black mb-4" onClick={() => setShowingAdresses(true)}>{enderecoDeEntrega ? 'Selecionar outro endereço' : 'Selecionar endereço'}</button>
-          <button type="button" className="button-black" onClick={() => setShowingNewAdress(true)}>Adicionar outro endereço</button>
+          <button type="button" className="button-black" onClick={() => setShowingAdresses(true)}>
+            {enderecoDeEntrega ? 'Entregar em outro endereço' : 'Selecionar endereço'}
+          </button>
+          {
+            !!permiteRetirarNaLoja && (
+              <div>
+                <div className="text-center">OU</div>
+                <button type="button" className="button-black" onClick={() => setDelivery({ retirarNaLoja: true })}>
+                  retirar no loja
+                </button>
+              </div>
+            )
+          }
         </div>
-
-        <p style={{ color: '#f00' }}>PREFIRO RETIRAR NA LOJA</p>
 
         {!!showingNewAdress
           && <NewAddressModal onSubmit={setAddress} onClose={() => setShowingNewAdress(false)} />}
 
-        {!!showingAdresses
+        {
+          !!showingAdresses
           && (
             <ChooseAddressModal
               onSubmit={setAddress}
