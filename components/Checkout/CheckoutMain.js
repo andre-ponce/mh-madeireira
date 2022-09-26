@@ -1,6 +1,7 @@
 import { CheckoutProvider } from '@/contexts/CheckoutContext';
 import { useCheckoutSession } from '@/hooks/useCheckoutSession';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { AddressBox } from './AddressBox';
 import { DeliveryBox } from './DeliveryBox';
 import { PaymentBox } from './PaymentBox';
@@ -15,13 +16,24 @@ export function CheckoutMain() {
   const { value, loading } = ckeckoutSession;
 
   const [firstLoad, setFirstLoad] = useState(true);
-  useEffect(() => { setFirstLoad(false); }, [value]);
+  useEffect(() => { if (!loading) setFirstLoad(false); }, [loading]);
 
-  if (firstLoad && !value.loading) {
+  if (firstLoad) {
     return <div>Carregando...</div>;
   }
 
-  const { retirarNaLoja } = value || {};
+  if (value.carrinho?.itens.length === 0) {
+    return (
+      <main className="fechamento">
+        <div className="empty-cart">
+          <h3>Seu carrinho está vazio</h3>
+          <Link href="/">Voltar para a Home</Link>
+        </div>
+      </main>
+    );
+  }
+
+  const { retirarNaLoja, enderecoDeEntrega } = value || {};
 
   return (
     <CheckoutProvider value={ckeckoutSession}>

@@ -20,6 +20,22 @@
     }
   }
 
+  .empty-cart {
+    text-align: center;
+    width: 100%;
+    margin: 50px 0;
+
+    h3 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    a {
+      font-size: 1.2rem;
+    }
+  }
+
   .product-mini-cart {
     border-bottom: 2px solid #eee;
     * {
@@ -535,11 +551,16 @@
         font-size: 0.8rem;
       }
 
+      &--name {
+        font-size: 0.9rem;
+      }
+
       &--references {
         margin-top: 15px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-style: italic;
       }
 
       &--details {
