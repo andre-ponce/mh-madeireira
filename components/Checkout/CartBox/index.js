@@ -42,11 +42,11 @@ export function CartBox() {
       <div className="checkout-resume--container">
         <ResumeItens items={itens || []} />
         <ResumeTotals
-          total={valorFinal}
+          total={valorFinal || subTotal}
           coupon={0}
           paymentDiscount={valorOriginal - valorFinal}
           paymentTaxes={0}
-          subTotal={valorOriginal}
+          subTotal={subTotal}
           freight={freteEscolhido}
           provider={paymentProvider}
           installment={{ quantity: parcela, price: valorParcela }}
