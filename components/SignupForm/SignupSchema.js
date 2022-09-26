@@ -32,6 +32,7 @@ export const userSchema = object({
     .min(3)
     .max(100)
     .test('avaliable', 'E-mail já cadastrado', isEmailAvaliable),
+  emailConfirmacao: string().oneOf([ref('email'), null], 'O e-mail e a confirmação devem ser iguais'),
   senha: string().required()
     .min(8)
     .max(20)

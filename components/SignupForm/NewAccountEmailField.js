@@ -15,5 +15,6 @@ export const NewAccountEmailField = connect(({ name, formik: { errors } }) => (
         </span>
       )
     }
+    <FieldBox inputMode="email" autoComplete="email" name={`${name}Confirmacao`} label="Repita seu E-mail" type="email" />
   </>
 ));
