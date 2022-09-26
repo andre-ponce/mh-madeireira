@@ -11,7 +11,7 @@ export const ContactFormSection = connect(({ formik: { isValid, isSubmitting } }
 
   return (
     <FormSection name="Dados de Contato">
-      <div className="form-row tell-group" style={{ border: 'none !important', padding: '0 !important' }}>
+      <div className="form-row tell-group">
         <FieldBox onInput={(ev) => mask.phone(ev.target.value, setCelphoneMask)} name="celular" label="Celular/Whatsapp" type="tel" inputMode="tel" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={celphoneMask} maskChar="" />
         <FieldBox onInput={(ev) => mask.phone(ev.target.value, setPhoneMask)} name="telefone" label="Telefone" type="tel" inputMode="tel" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={phoneMask} maskChar="" />
       </div>
@@ -23,7 +23,7 @@ export const ContactFormSection = connect(({ formik: { isValid, isSubmitting } }
 
       <div className="form-group mt-3">
         <div className="form-check d-flex align-items-center">
-          <input className="form-check-input mt-0" type="checkbox" value="" id="invalidCheck2" required />
+          <input className="form-check-input mt-0" type="checkbox" value="" id="invalidCheck2" />
           <label className="form-check-label mb-0" htmlFor="invalidCheck2">
             Aceito receber e-mails com promoções e informativos
           </label>

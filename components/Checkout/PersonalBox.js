@@ -30,12 +30,16 @@ export function PersonalBox() {
             </span>
             {email}
           </span>
-          <span className="personal-data--row">
-            <span className="personal-data--icon">
-              <i className="mr-3 fas fa-phone-alt" />
-            </span>
-            {format.telephone(celular || telefone)}
-          </span>
+          {
+            !!(celular || telefone) && (
+              <span className="personal-data--row">
+                <span className="personal-data--icon">
+                  <i className="mr-3 fas fa-phone-alt" />
+                </span>
+                {format.telephone(celular || telefone)}
+              </span>
+            )
+          }
           <span className="personal-data--row">
             <span className="personal-data--icon">
               <i className="mr-3 fas fa-id-card" />

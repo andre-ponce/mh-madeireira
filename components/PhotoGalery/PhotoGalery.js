@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { url } from '@/services/statics.service';
+import Image from 'next/image';
 import Slick from 'react-slick';
 import { Loader } from './Loader';
 
@@ -9,46 +10,38 @@ const defaultSettingsGalery = {
   autoplay: false,
 };
 
+const SliderWrap = ({ children, ...settings }) => (
+  <Slick className="slider__product__galery" {...settings}>{children}</Slick>
+);
+
 export function PhotoGalery({ photos, slickSettings }) {
   const settings = {
     ...defaultSettingsGalery,
     ...slickSettings,
   };
 
-  useEffect(() => {
-    if (!photos) {
-      return;
-    }
-
-    const slides = document.querySelectorAll('.slider__product__galery .slick-slide:not(.slick-cloned) img');
-    const li = document.querySelectorAll('.slider__product__galery .slick-dots > li');
-
-    slides.forEach((img, index) => {
-      if (li[index]) {
-        li[index].style.backgroundImage = `url("${img.src}")`;
-      }
-    });
-  }, [photos]);
-
-  const galery = [...(photos || [])];
+  if (photos === undefined) return (<SliderWrap {...settings}><div><Loader /></div></SliderWrap>);
+  if (!photos.length) return (<SliderWrap {...settings}><Photo /></SliderWrap>);
 
   return (
-    photos === undefined
-      ? (
-        <Slick className="slider__product__galery" {...settings}>
-          <div>
-            <Loader />
-          </div>
-        </Slick>
-      )
-      : (
-        <Slick className={`slider__product__galery ${photos.length > 1 ? 'slider__product__galery--has-thumbs' : ''}`} {...settings}>
-          {galery.map((photo) => (
-            <div className="slider__product__galery--photo" key={photo.id}>
-              <img src={photo.url} alt={photo.textoAlternativo} title={photo.titulo} />
-            </div>
-          ))}
-        </Slick>
-      )
+    <SliderWrap {...settings}>
+      {photos.map((photo) => <Photo key={photo.id} {...photo} />)}
+    </SliderWrap>
+  );
+}
+
+function Photo({ url: photoUrl, textoAlternativo, titulo }) {
+  return (
+    <div>
+      <div className="slider__product__galery--photo">
+        <Image
+          src={url.imageProduct(photoUrl)}
+          alt={textoAlternativo}
+          title={titulo}
+          height={400}
+          width={400}
+        />
+      </div>
+    </div>
   );
 }

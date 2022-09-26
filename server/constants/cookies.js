@@ -11,7 +11,7 @@ export const cookie = {
     COOKIE_NAME: 'mw_s',
     OPTIONS: {
       ...defaultCookieOptions,
-      maxAge: 1000 * 60 * 60 * 24 * 365,
+      maxAge: 60 * 60 * 24 * 365 * 5,
     },
   },
 };

@@ -1,5 +1,8 @@
 module.exports = {
   images: {
-    domains: ['static.imperiomangueiras.com.br'],
+    domains: [
+      'static.maximaweb.com.br',
+      'maximaweb.s3.amazonaws.com',
+    ],
   },
 };

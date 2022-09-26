@@ -4,9 +4,10 @@ import Slick from 'react-slick';
 import { linkTo } from '@/helpers';
 
 import settings from './settings';
+import { url } from '@/services/statics.service';
+import Image from 'next/image';
 
 function Brands({ brands }) {
-  const { staticUrl, marcas } = brands;
 
   return (
     <section
@@ -18,10 +19,10 @@ function Brands({ brands }) {
       <div className="container_serie-ds">
         <h2 className="title-border-left">Top Marcas</h2>
         <Slick {...settings}>
-          {marcas && marcas.map((brand) => (
+          {brands && brands.map((brand) => (
             <Link key={brand.id} passHref href={linkTo.brand(brand)}>
               <a href>
-                <img src={`${staticUrl}${brand.imagem}`} alt={brand.nome} />
+                <Image src={url.imageBrand(brand.imagem)} alt={brand.nome} width={125} height={125} />
               </a>
             </Link>
           ))}

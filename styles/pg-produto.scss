@@ -1,6 +1,7 @@
 .main {
   &__product {
     display: flex;
+    margin-bottom: 65px;
 
     .product {
       &__img {
@@ -905,20 +906,12 @@
 }
 
 .slider__product__galery {
-  position: relative;
-  display: block;
-  float: right;
-  width: 100%;
-  height: 423px;
-
-  &--has-thumbs {
-    width: 80%;
-  }
-
   &--photo {
-    height: 400px;
+    max-height: 400px;
     width: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
   }
 
   .slick-prev {
@@ -927,42 +920,6 @@
 
   .slick-next {
     right: 0;
-  }
-
-  img {
-    width: auto !important;
-    max-width: 100%;
-    height: auto;
-    max-height: 400px;
-    display: block !important;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-  }
-
-  .slick-dots {
-    display: block;
-    position: absolute;
-    width: 20%;
-    left: -25%;
-    bottom: auto;
-    top: 0;
-    overflow: auto;
-    height: 423px;
-
-    li {
-      height: 100px;
-      width: 73%;
-      display: block;
-      margin: 0 0 10px;
-      background-repeat: no-repeat !important;
-      background-size: 100%;
-
-      button {
-        display: none;
-      }
-    }
   }
 }
 

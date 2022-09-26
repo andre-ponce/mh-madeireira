@@ -57,6 +57,6 @@ export const userSchema = object({
     .test('format', 'CEP inválido', (value) => !value || value.replace(/[^\d]+/g, '').length === 8),
   telefone: string().test('telefone', 'Número inválido', validate.phoneNumber),
   celular: string().required().test('celular', 'Número inválido', validate.phoneNumber),
-  recebeNewsletter: boolean(),
+  recebeNewsletter: boolean().optional(),
   tipo: string().required(),
 });

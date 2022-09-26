@@ -1,5 +1,5 @@
-import { logger } from '../logger';
-import { credentials, InvalidSessionError } from './api.helper';
+import { InvalidSessionError } from '../errors/InvalidSessionError';
+import { credentials } from './api.helper';
 
 function configureRequest(params) {
   if (params && typeof (params) !== 'object') {
@@ -85,32 +85,58 @@ function getMethod(config) {
   return method.toUpperCase();
 }
 
+function getCommand(url, config) {
+  const cmdBuilder = [
+    'curl',
+    '-X',
+    getMethod(config),
+    url,
+  ];
+
+  if (config?.headers) {
+    Object
+      .keys(config.headers)
+      .forEach((key) => {
+        cmdBuilder.push(`-H "${key}: ${config.headers[key]}"`);
+      });
+  }
+
+  if (config?.body) {
+    cmdBuilder.push(`-d "${config.body}"`);
+  }
+
+  return cmdBuilder.join(' ');
+}
+
 export function fetchClient(urlBase) {
   const base = new URL(urlBase);
 
   return async (input, params) => {
     const url = prepareUrl(input, base, params);
     const [requestConfig, traceData] = configureRequest(params);
-    const needSessionValidation = !!traceData.session;
 
-    logger.debug(traceData, `${getMethod(requestConfig)} ${url}`);
+    const needSessionValidation = !!traceData.session;
 
     try {
       const response = await fetch(url, { ...requestConfig });
 
       if (response.ok) return response;
 
-      if (needSessionValidation && response.status === 403) throw new InvalidSessionError();
+      if (needSessionValidation && response.status === 403) {
+        const { errorCode } = await response.clone().json();
+        if (errorCode === 1001) {
+          throw new InvalidSessionError(traceData.session);
+        }
+      }
 
       response.$error = {
         origin: `${getMethod(requestConfig)} ${url}`,
+        try: getCommand(url, requestConfig),
         traceData,
         serverCode: response.status,
         errorType: 'remote',
-        errorDescription: '',
+        errorDescription: await response.clone().text(),
       };
-
-      logger.debug({ response }, 'fetcher response was not Ok');
 
       return response;
     } catch (err) {

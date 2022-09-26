@@ -80,9 +80,9 @@ export function BuyBox({ product, payConditions }) {
           <button onClick={buy} type="button" className="buy__button">
             {
               busy ? (
-                <span><i className="fa-solid fa-spin fa-spinner" /></span>
+                <span key="spinner"><i className="fa-solid fa-spin fa-spinner" /></span>
               ) : (
-                <span>COMPRAR</span>
+                <span key="compra">COMPRAR</span>
               )
             }
           </button>

@@ -1,5 +1,6 @@
-import { InvalidSessionError } from '../api/api.helper';
+/* eslint-disable no-console */
 import { cookie } from '../constants/cookies';
+import { InvalidSessionError } from '../errors/InvalidSessionError';
 
 function helper(req, res) {
   const generic = (response, data, status) => {
@@ -60,7 +61,14 @@ export function apiRouter(router) {
       return await route.call({ ...utils.result }, req, res, utils);
     } catch (err) {
       if (err instanceof InvalidSessionError) {
+        console.warn('\n\n\n\n\n***** Invalidando SESSÃO *****');
         res.setHeader('set-cookie', `${cookie.session.COOKIE_NAME}=; path=/; samesite=strict; httponly; maxAge=0; secure;`);
+        console.error(err);
+        console.warn('\n\n\n\n\n');
+      }
+
+      if (process.env.NODE_ENV === 'development') {
+        return res.serverError(err);
       }
 
       return res.serverError();

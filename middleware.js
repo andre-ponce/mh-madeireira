@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { NextResponse, userAgent } from 'next/server';
 import { cookie as CONSTANT } from '@/server/constants/cookies';
 import { createFreshSession } from '@/server/api/session.api';
@@ -51,18 +52,13 @@ async function useSessionCookieMiddleware(req, res) {
 
   try {
     if (!currentSession) {
+      console.warn('\n\n\n\n\n***** GERANDO NOVA SESSÃO *****');
       const session = await createFreshSession(ip, ua, geo);
+      console.warn(`> Ok: ${session.sessionId}`);
+      console.warn('\n\n\n\n\n');
       sessionId = session.sessionId;
     }
-    //  else {
-    //   const { valida } = await refreshSession(currentSession);
-    //   if (!valida) {
-    //     const session = await createFreshSession(ip, ua, geo);
-    //     sessionId = session.sessionId;
-    //   }
-    // }
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error('Falha ao gerar nova sessão:', err);
   }
 

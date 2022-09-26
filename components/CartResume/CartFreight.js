@@ -4,10 +4,10 @@ import { useFreightSimulator } from '@/hooks/useFreightSimulator';
 import { useState } from 'react';
 import ReactInputMask from 'react-input-mask';
 
-export function CartFreight() {
+export function CartFreight({ hash }) {
   const {
     address, providers, busy, error, changeAddress, reloadProviders,
-  } = useFreightSimulator({ type: 'cart' });
+  } = useFreightSimulator({ type: 'cart', cartHash: hash });
 
   return (
     <>
@@ -127,13 +127,16 @@ function Provider({ price, time }) {
     deliveryDescription = `Receba em até ${time} dia útil`;
   }
 
-  if (time === 0) {
-    deliveryDescription = 'Retire na loja';
-  }
-
   let priceText = 'Frete Grátis';
   if (price > 0) {
     priceText = `${format.currency(price)}`;
+  }
+
+  if (time === 0) {
+    deliveryDescription = 'Retire na loja';
+    if (price === 0) {
+      priceText = 'Grátis';
+    }
   }
 
   return (

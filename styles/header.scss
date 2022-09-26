@@ -1229,6 +1229,15 @@ $close-button-width: 48px;
                 width: 50%;
                 margin-left: 10px;
               }
+              &__message {
+                margin-top: 5px;
+                text-align: center;
+                width: 100%;
+                text-transform: lowercase;
+                color: var(--danger);
+                line-height: 1.2em;
+                font-size: 0.8em;
+              }
               &__values {
                 display: flex;
                 justify-content: space-between;
@@ -1337,10 +1346,16 @@ $close-button-width: 48px;
             font-size: 14px;
             border-radius: 3px;
             background: #009148;
+            cursor: pointer;
 
             display: flex;
             align-items: center;
             justify-content: center;
+
+            &:disabled {
+              background-color: #a9a9a9;
+              cursor: not-allowed;
+            }
           }
         }
       }

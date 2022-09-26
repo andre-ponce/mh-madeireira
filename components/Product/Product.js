@@ -1,31 +1,19 @@
 import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import { format, image, linkTo } from '@/helpers';
-import { addToCart } from '@/services/cart.service';
+import { addToCart, removeFromCart } from '@/services/cart.service';
 import SessionContext from '@/contexts/SessionContext';
+import Image from 'next/image';
+import { url } from '@/services/statics.service';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 function Product({ product }) {
-  const [busy, setBusy] = useState(false);
-  const { itens } = useContext(SessionContext);
-  const current = itens?.filter(item => item.produtoId == product.id)[0];
-  const alreadyIn = !!current;
-  const initialQuantity = alreadyIn ? current.quantidade : 1;
-
-  const [quantity, setQuantity] = useState(initialQuantity);
-
-
-  const add = async () => {
-    setBusy(true);
-    await addToCart(product, quantity);
-    setBusy(false);
-  };
-
   return (
     <div className='product-card'>
       <div className=" product">
         <Link href={linkTo.product(product)} passHref>
           <a className="product__topbar">
-            <img src={image.fallback(product.fotoUrl)} alt={product.name} />
+            <Image src={url.imageProduct(product.fotoUrl)} alt={product.name} width={200} height={200} />
             {
               product.desconto > 0 && (
                 <span className="topbar__discount">
@@ -70,44 +58,130 @@ function Product({ product }) {
               {product.categoria || ' '}
             </a>
           </Link>
-          <div className="actions__buy">
-            <div className="number-input buy__qtd">
-
-              <input
-                className="quantity"
-                min="0"
-                name="quantity"
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-              />
-
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="plus"
-              >
-                <i className="fa-solid fa-chevron-up" />
-              </button>
-              <button
-                disabled={quantity < 2}
-                onClick={() => setQuantity(quantity - 1)}
-                className="minus"
-              >
-                <i className="fa-solid fa-chevron-down" />
-              </button>
-            </div>
-            <button type="button" className="buy__button" onClick={async () => add(product, quantity)}>
-              {
-                busy
-                  ? <span><i className='fa fa-spin fa-spinner'></i></span>
-                  : (alreadyIn ? <>ALTERAR</> : <>COMPRAR</>)
-              }
-            </button>
-          </div>
+          <ProductCardQuickAction product={product} />
         </div>
       </div>
     </div>
   );
+}
+
+function ProductCardQuickAction({ product }) {
+  const { itens } = useContext(SessionContext);
+  const current = itens?.filter(item => item.produtoId === product.id)[0];
+  const [busy, setBusy] = useState(false);
+  const alreadyIn = !!current;
+  const initialQuantity = alreadyIn ? current.quantidade : 1;
+  const [quantity, setQuantity] = useState(initialQuantity);
+  const [alertMessage, setAlertMessage] = useState('');
+  const maxToSeal = [product.estoque, product.maximoPorVenda].filter(x => x && x > 0).sort()[0];
+
+  const add = async () => {
+    if (quantity === 0) {
+      await removeFromCart(product.id);
+      return;
+    }
+
+    if (quantity > product.estoque) {
+      setAlertMessage(`Há apenas ${product.estoque} unidades desse produto disponíveis para venda, altere a quantidade para continuar!`);
+      return;
+    }
+
+    if (product.maximoPorVenda && quantity > product.maximoPorVenda) {
+      setAlertMessage(`Você só pode comprar ${product.maximoPorVenda} unidades desse produto, altere a quantidade para continuar!`);
+      return;
+    }
+
+    setBusy(true);
+    await addToCart(product, quantity);
+    setBusy(false);
+  };
+
+  if (product.sobConsulta) {
+    return (
+      <div className="actions__buy">
+        <button type="button" className="buy__button">SOB CONSULTA</button>
+      </div>
+    );
+  }
+
+  if (product.vendaExtraSite) {
+    return (
+      <div className="actions__buy">
+        <button type="button" className="buy__button">SAIBA MAIS</button>
+      </div>
+    );
+  }
+
+  if (!product.temEstoque) {
+    return (
+      <div className="actions__buy">
+        <button type="button" className="buy__button">SEM ESTOQUE</button>
+      </div>
+    );
+  }
+
+  if (product.usaGrade) {
+    return (
+      <div className="actions__buy">
+        <Link href={linkTo.product(product)}>
+          <button type="button" className="buy__button">COMPRAR</button>
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="actions__buy">
+        <div className="number-input buy__qtd">
+
+          <input
+            className="quantity"
+            min="0"
+            name="quantity"
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+
+          <button
+            disabled={quantity < maxToSeal}
+            onClick={() => setQuantity(quantity + 1)}
+            className="plus"
+          >
+            <i className="fa-solid fa-chevron-up" />
+          </button>
+          <button
+            disabled={quantity < 2}
+            onClick={() => setQuantity(quantity - 1)}
+            className="minus"
+          >
+            <i className="fa-solid fa-chevron-down" />
+          </button>
+        </div>
+        <button type="button" className="buy__button" onClick={async () => add()}>
+          {
+            busy
+              ? <span><i className='fa fa-spin fa-spinner'></i></span>
+              : (alreadyIn ? <>ALTERAR</> : <>COMPRAR</>)
+          }
+        </button>
+      </div>
+      {
+        alertMessage
+        && (
+          <SweetAlert
+            onConfirm={() => setAlertMessage('')}
+            btnSize="sm"
+            confirmBtnText="Entendi"
+            confirmBtnStyle={{ border: '0' }}
+          >
+            {alertMessage}
+          </SweetAlert>
+        )
+      }
+    </>
+  )
 }
 
 export default Product;

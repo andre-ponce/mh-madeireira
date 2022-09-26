@@ -12,8 +12,8 @@ export function DeliveryBox() {
     setDelivery,
   } = useContext(CheckoutContext);
 
-  async function choose(provider) {
-    await setDelivery(provider);
+  async function choose(siglaProvider) {
+    await setDelivery({ siglaProvider });
   }
 
   const isSelected = (id) => id.toLowerCase() === (siglaOpcaoDeFrete || '').toLowerCase();

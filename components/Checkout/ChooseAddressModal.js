@@ -25,18 +25,34 @@ export function ChooseAddressModal({ onClose, onSubmit, newAddres }) {
     }
   }
 
-  useEffect(() => {
-    const handle = async () => {
-      const res = await fetch('/api/clients/address');
-      const list = await res.json();
-      setAddresses(list);
-      setLoaded(true);
-    };
+  const loadData = async () => {
+    setLoaded(false);
+    const res = await fetch('/api/clients/address');
+    const list = await res.json();
+    setAddresses(list);
+    setLoaded(true);
+  };
 
-    handle();
-  }, []);
-
+  useEffect(() => loadData(), []);
   const title = isEmpty(addresses) ? '' : 'Escolher Endereço de Entrega';
+
+  if (!loaded) {
+    return (
+      <div className="change-address--empty">
+        <span><i className="fa-solid fa-spin fa-spinner" /></span>
+        <span>Carregando...</span>
+      </div>
+    );
+  }
+
+  if (isEmpty(addresses)) {
+    return (
+      <div className="change-address--empty">
+        <span>Você não possuí endereços de entrega cadastrados</span>
+        <button type="button" onClick={newAddres}>Cadastrar Endereço</button>
+      </div>
+    );
+  }
 
   return (
     <FloatBox handleHide={onClose} canClose title={title}>
@@ -44,27 +60,19 @@ export function ChooseAddressModal({ onClose, onSubmit, newAddres }) {
         {
           !isEmpty(addresses)
           && addresses.map((address) => (
-            <AddressDetail key={address.id} onClick={choose} address={address} disabled={loading} />
+            <>
+              <AddressDetail
+                key={address.id}
+                onClick={choose}
+                address={address}
+                disabled={loading}
+              />
+            </>
           ))
         }
-        {
-          isEmpty(addresses) && loaded
-          && (
-            <div className="change-address--empty">
-              <span>Você ainda não possuí endereços de entrega cadastrados</span>
-              <button type="button" onClick={newAddres}>Cadastrar Endereço</button>
-            </div>
-          )
-        }
-        {
-          !loaded
-          && (
-            <div className="change-address--empty">
-              <span><i className="fa-solid fa-spin fa-spinner" /></span>
-              <span>Carregando...</span>
-            </div>
-          )
-        }
+        <button type="button" className="new-address--button" onClick={newAddres}>
+          Cadastrar outro endereço
+        </button>
       </div>
     </FloatBox>
   );

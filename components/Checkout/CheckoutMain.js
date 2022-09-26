@@ -1,6 +1,7 @@
 import { CheckoutProvider } from '@/contexts/CheckoutContext';
 import { useCheckoutSession } from '@/hooks/useCheckoutSession';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { AddressBox } from './AddressBox';
 import { DeliveryBox } from './DeliveryBox';
 import { PaymentBox } from './PaymentBox';
@@ -8,17 +9,31 @@ import { DiscountBox } from './DiscountBox';
 import { CartBox } from './CartBox';
 import Modal from '../Modal';
 import { PersonalBox } from './PersonalBox';
+import { PickUpInStoreBox } from './PickUpInStoreBox';
 
 export function CheckoutMain() {
   const ckeckoutSession = useCheckoutSession();
   const { value, loading } = ckeckoutSession;
 
   const [firstLoad, setFirstLoad] = useState(true);
-  useEffect(() => { setFirstLoad(false); }, [value]);
+  useEffect(() => { if (!loading) setFirstLoad(false); }, [loading]);
 
-  if (firstLoad && !value.loading) {
+  if (firstLoad) {
     return <div>Carregando...</div>;
   }
+
+  if (value.carrinho?.itens.length === 0) {
+    return (
+      <main className="fechamento">
+        <div className="empty-cart">
+          <h3>Seu carrinho está vazio</h3>
+          <Link href="/">Voltar para a Home</Link>
+        </div>
+      </main>
+    );
+  }
+
+  const { retirarNaLoja, enderecoDeEntrega } = value || {};
 
   return (
     <CheckoutProvider value={ckeckoutSession}>
@@ -41,8 +56,9 @@ export function CheckoutMain() {
       <main className={`fechamento container_serie-ds d-flex row ${loading ? 'loading' : ''}`}>
         <div className="col-lg-4 col-md-6 col-sm-12">
           <PersonalBox />
-          <AddressBox />
-          <DeliveryBox />
+          {retirarNaLoja && <PickUpInStoreBox />}
+          {!retirarNaLoja && <AddressBox />}
+          {!retirarNaLoja && enderecoDeEntrega && <DeliveryBox />}
         </div>
         <div className="col-lg-8 col-md-6 col-sm-12">
           <div className="row">

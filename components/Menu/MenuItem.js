@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { linkTo } from '@/helpers';
+import { url } from '@/services/statics.service';
 import MenuNivelOne from './MenuNivelOne';
+import Image from 'next/image';
 
-export function MenuItem({ linha, staticUrl }) {
+export function MenuItem({ linha }) {
   const [isSubMenuActive, setIsSubMenuActive] = useState();
 
   const subMenuClassName = isSubMenuActive ? 'menu__item--subcategoria-active' : '';
-
+  const iconSrc = url.imageCategory(linha.imagem, '');
   return (
     <li className={`menu__item menu__item--has-subcategoria ${subMenuClassName} menu__item--invisible`}>
       <Link href={linkTo.category(linha)} passHref>
-        <a>
-          <img src={`${staticUrl}${linha.imagem}`} alt={linha.nome} />
+        <a href>
+          {!!iconSrc && <Image src={iconSrc} alt={linha.nome} width={35} height={35} />}
           <span>{linha.nome}</span>
         </a>
       </Link>

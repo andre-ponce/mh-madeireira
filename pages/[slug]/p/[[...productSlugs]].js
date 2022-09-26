@@ -15,7 +15,7 @@ export async function getStaticProps({ params }) {
   if (status.notFound) {
     return { notFound: true, revalidate: 1 };
   }
-  const { descricaoHTML } = await getDescription(id);
+  const { descricao: descricaoHTML } = await getDescription(id);
 
   return {
     props: { global, product: { descricaoHTML, ...product } },

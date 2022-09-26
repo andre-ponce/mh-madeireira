@@ -20,27 +20,17 @@ export async function getStaticProps() {
 }
 
 function Home({ home, global }) {
-  const {
-    static: {
-      urlBaseEstaticos,
-      diretorioMarcas,
-    },
-    seo: {
-      tituloGlobal,
-    },
-  } = global;
+  const { seo: { tituloGlobal } } = global;
 
   const {
     maisBuscados,
     destaques,
+    lancamentos,
+    maisVendidos,
+    promocoes,
     carrosselMarcas,
     carrosselBanners,
   } = home;
-
-  const brands = {
-    staticUrl: `${urlBaseEstaticos}${diretorioMarcas}/`,
-    marcas: carrosselMarcas,
-  };
 
   return (
     <>
@@ -51,10 +41,13 @@ function Home({ home, global }) {
       <Layout globalData={global}>
         <Banner isMobile={isMobile} carousel={carrosselBanners} />
         <main style={{ paddingTop: '20px', backgroundColor: '#eeeeee' }}>
-          <ProductCarousel products={maisBuscados} title="Os mais buscados" />
+          {!!maisBuscados?.length && <ProductCarousel products={maisBuscados} title="Os mais buscados" />}
+          {!!lancamentos?.length && <ProductCarousel products={lancamentos} title="Lançamentos" />}
+          {!!maisVendidos?.length && <ProductCarousel products={maisVendidos} title="Mais Vendidos" />}
+          {!!promocoes?.length && <ProductCarousel products={promocoes} title="Promoções" />}
           <CenterBanner />
           <Highlights products={destaques} />
-          <Brands brands={brands} />
+          <Brands brands={carrosselMarcas} />
         </main>
       </Layout>
     </>

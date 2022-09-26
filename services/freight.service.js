@@ -12,7 +12,7 @@ async function fetchProviders(type, zipcode, productId) {
   return [];
 }
 
-export async function calculateFreight(type, zipcode, productId) {
+export async function calculateFreight(type, zipcode, productId, cartHash) {
   if (!zipcode) {
     return new Error('CEP inválido');
   }
@@ -25,7 +25,7 @@ export async function calculateFreight(type, zipcode, productId) {
     return new Error('Id do produto inválido');
   }
 
-  const key = type === 'cart' ? 'cart' : `product-${productId}`;
+  const key = type === 'cart' ? `cart-${cartHash}` : `product-${productId}`;
 
   localCache[zipcode] = localCache[zipcode] || {};
   const cache = localCache[zipcode];
