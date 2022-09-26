@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { bannerSettings, bannerRullerSettings } from './settings';
+import { url } from '@/services/statics.service';
+import { bannerSettings } from './settings';
 
 function Banner({ carousel, isMobile }) {
   const [isServer, setServerState] = useState(true);
@@ -13,12 +14,12 @@ function Banner({ carousel, isMobile }) {
     setServerState(false);
   }, []);
 
-  const urlImage = ({ urlMobile, url }) => {
+  const urlImage = ({ urlMobile, url: urlDesktop }) => {
     if (isMobile) {
-      return urlMobile || url;
+      return urlMobile || urlDesktop;
     }
 
-    return url;
+    return urlDesktop;
   };
 
   return (
@@ -28,30 +29,13 @@ function Banner({ carousel, isMobile }) {
           carousel.map((banner) => (
             <a href={banner.href} key={banner.href} target={banner.target || '_blank'}>
               <img
-                src={urlImage(banner)}
+                src={url.imageBanner(urlImage(banner))}
                 alt={banner.textoAlternativo}
               />
             </a>
           ))
         }
       </SliderRendered>
-
-      {/* <div className="container_serie-ds">
-        <SliderRendered {...bannerRullerSettings}>
-          <a href="/">
-            <img  src="/images/banner_regua/banner.jpg" alt="Bem vindo à nova loja" />
-          </a>
-          <a href="/">
-            <img src="/images/banner_regua/banner2.jpg" alt="Bem vindo à nova loja" />
-          </a>
-          <a href="/">
-            <img src="/images/banner_regua/banner3.jpg" alt="Bem vindo à nova loja" />
-          </a>
-          <a href="/">
-            <img src="/images/banner_regua/banner4.jpg" alt="Bem vindo à nova loja" />
-          </a>
-        </SliderRendered>
-      </div> */}
     </>
   );
 }
