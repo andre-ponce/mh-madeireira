@@ -58,7 +58,7 @@ export function CheckoutMain() {
           <PersonalBox />
           {retirarNaLoja && <PickUpInStoreBox />}
           {!retirarNaLoja && <AddressBox />}
-          {!retirarNaLoja && <DeliveryBox />}
+          {!retirarNaLoja && enderecoDeEntrega && <DeliveryBox />}
         </div>
         <div className="col-lg-8 col-md-6 col-sm-12">
           <div className="row">
