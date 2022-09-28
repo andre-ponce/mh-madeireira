@@ -236,10 +236,15 @@
     position: relative;
     width: 100%;
     text-align: center;
-    min-height: 75px;
+    min-height: 100px;
     img {
       width: 100%;
+      height: 100%;
       margin: auto;
+    }
+
+    &.no-img {
+      background-color: #eee;
     }
 
     .main__breadcrumb {

@@ -62,7 +62,7 @@ function Category({ global, category }) {
         <CategoryBanner
           breadcrumbs={<Breadcrumb path={breadcrumbsPath} />}
           banner={{
-            src: '/images/braskape_banner-category.jpg',
+            src: '',
             alt: categoria.nome,
           }}
         />
