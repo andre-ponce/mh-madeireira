@@ -92,11 +92,8 @@ export function useCheckoutSession() {
       siglaOpcaoDeFrete,
       enderecoDeEntregaId,
       codigoCupomDesconto,
-      freteEscolhido,
+      retirarNaLoja,
     } = value;
-
-    const { id: choseFreigt } = freteEscolhido || {};
-    const retiraNaLoja = (choseFreigt || '').toLowerCase() !== siglaOpcaoDeFrete.toLowerCase();
     const {
       id: paymentId, condicoes, card,
     } = paymentData;
@@ -106,7 +103,7 @@ export function useCheckoutSession() {
     const payload = {
       meioDePagamentoId: paymentId,
       enderecoDeEntregaId,
-      retiraNaLoja,
+      retirarNaLoja,
       meioDeEntregaId: siglaOpcaoDeFrete,
       codigoCupom: codigoCupomDesconto,
     };
