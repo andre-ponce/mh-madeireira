@@ -53,20 +53,9 @@ function Category({
 
             {pagination}
 
-            <p className="gallery__description" data-aos="fade-left" data-aos-duration="1000">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
-              ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-              gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-              gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-              gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-            </p>
+            {/* <p className="gallery__description" data-aos="fade-left" data-aos-duration="1000">
+              {description}
+            </p> */}
           </section>
         </div>
       </div>
