@@ -135,6 +135,7 @@ export function useCheckoutSession() {
 
     if (_error) {
       setError(_error);
+      setLoading(false);
       return [false, 'falha ao finalizar o pedido'];
     }
 
@@ -148,16 +149,7 @@ export function useCheckoutSession() {
       return { result: false };
     }
 
-    const {
-      siglaOpcaoDeFrete,
-      enderecoDeEntregaId,
-      codigoCupomDesconto,
-      cupomDeDesconto,
-      freteEscolhido,
-      condicaoDePagamentos,
-      carrinho,
-      cliente
-    } = value;
+    const { siglaOpcaoDeFrete, enderecoDeEntregaId, freteEscolhido } = value;
 
     if (!siglaOpcaoDeFrete) {
       return [false, 'freight', 'Escolha um opção de entrega'];
@@ -207,6 +199,7 @@ export function useCheckoutSession() {
     setDelivery: chooseDeliveryOptions,
     setCoupon: applyCoupon,
     finalize: tryFinalize,
+    vaidationResult: validateCheckoutSession(),
     paymentData,
     setPaymentData: configurePayment,
   };
