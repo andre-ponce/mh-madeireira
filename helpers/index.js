@@ -49,12 +49,18 @@ export const format = {
   },
 
   installment({
-    descontoPercentual, parcela, semJuros, valorParcela,
+    descontoPercentual, taxaPercentual, parcela, semJuros, valorParcela,
   }) {
-    const discount = descontoPercentual > 0 ? ` (${descontoPercentual}% de desconto)` : '';
-    const taxNote = semJuros && !discount ? ' (sem juros)' : '';
+    let explained = '';
+    if (descontoPercentual > 0) {
+      explained = ` (${descontoPercentual.toFixed(1)}% de desconto)`;
+    } else if (taxaPercentual > 0) {
+      explained = ' (com juros)';
+    } else if (semJuros) {
+      explained = ' (sem juros)';
+    }
 
-    return `${parcela} x de ${format.currency(valorParcela)}${discount}${taxNote}`;
+    return `${parcela} x de ${format.currency(valorParcela)}${explained}`;
   },
 };
 

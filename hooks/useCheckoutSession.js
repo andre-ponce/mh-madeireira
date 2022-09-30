@@ -23,9 +23,38 @@ export function useCheckoutSession() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const { id } = paymentData || {};
-        const context = await getCheckout(id);
+        const context = await getCheckout();
         setValue(context);
+        const {
+          id,
+          paymentMethod,
+          card,
+          condicoes: { parcela },
+        } = paymentData || { condicoes: {} };
+
+        if (paymentMethod) {
+          const { condicaoDePagamentos } = context;
+          const [{ provedores: brands }] = condicaoDePagamentos
+            .filter(({ slug }) => slug === paymentMethod);
+          if (isEmpty(brands)) {
+            setPaymentData({});
+            return;
+          }
+
+          const [{ condicoes }] = brands.filter((p) => p.id === id);
+          if (isEmpty(condicoes)) {
+            setPaymentData({ ...paymentData, card: { ...card, valid: false } });
+            return;
+          }
+
+          const [parcelamentoAtualizado] = condicoes.filter((c) => c.parcela === parcela);
+          if (isEmpty(parcelamentoAtualizado)) {
+            setPaymentData({ ...paymentData, condicoes: {}, card: { ...card, valid: false } });
+            return;
+          }
+
+          setPaymentData({ ...paymentData, condicoes: parcelamentoAtualizado });
+        }
       } catch (e) {
         setError(e);
       } finally {

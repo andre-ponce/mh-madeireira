@@ -2,7 +2,7 @@ import { format } from '@/helpers';
 import { useEffect } from 'react';
 
 export function GenericForm({
-  title, provedores, onConfigure, children,
+  title, provedores, onConfigure, children, slug,
 }) {
   const [provider] = provedores;
 
@@ -15,7 +15,7 @@ export function GenericForm({
   } = provider;
 
   useEffect(() => {
-    onConfigure(provider);
+    onConfigure({ ...provider, condicoes: provider.condicoes[0], paymentMethod: slug });
   }, []);
 
   const showOldPrice = valorOriginal && valorOriginal > valorFinal;

@@ -21,7 +21,7 @@ export function DeliveryBox() {
   return (
     <CheckoutBox title="Formas de envio" icon="fa-truck">
       <div>
-        {options && options.map(({
+        {options && options.filter((x) => x.id.toUpperCase() !== 'RL').map(({
           id, provedor, preco, prazo,
         }) => (
           <DeliveryOption

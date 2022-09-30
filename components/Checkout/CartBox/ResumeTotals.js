@@ -1,21 +1,12 @@
 import { format } from '@/helpers';
 
 export function ResumeTotals({
-  subTotal, total, freight, coupon, paymentDiscount, paymentTaxes, provider, installment
+  subTotal, total, freight, coupon, paymentDiscount, paymentFees, paymentTaxes, provider, installment,
 }) {
   const {
     preco: freightPrice,
     id: freightProvider,
   } = freight || {};
-
-  let secureTotal = total;
-  if (!secureTotal) {
-    secureTotal = subTotal;
-    secureTotal += (freightPrice || 0);
-    secureTotal -= (coupon || 0);
-    secureTotal -= (paymentDiscount || 0);
-    secureTotal += (paymentTaxes || 0);
-  }
 
   const {
     quantity, price,
@@ -28,6 +19,23 @@ export function ResumeTotals({
           <span className="totals--detailed-title">SUBTOTAL:</span>
           <span className="totals--detailed-value">{format.currency(subTotal)}</span>
         </div>
+        {
+          paymentDiscount > 0
+          && (
+            <div className="totals--detailed-item">
+              <span className="totals--detailed-title">DESCONTO:</span>
+              <span className="totals--detailed-value">{format.currency(paymentDiscount)}</span>
+            </div>
+          )
+        }
+        {
+          paymentFees > 0 && (
+            <div className="totals--detailed-item">
+              <span className="totals--detailed-title">JUROS:</span>
+              <span className="totals--detailed-value">{format.currency(paymentFees)}</span>
+            </div>
+          )
+        }
         {
           (freightProvider || '').toLowerCase() === 'rl'
           && (
@@ -55,15 +63,6 @@ export function ResumeTotals({
           )
         }
         {
-          paymentDiscount > 0
-          && (
-            <div className="totals--detailed-item">
-              <span className="totals--detailed-title">DESCONTO:</span>
-              <span className="totals--detailed-value">{format.currency(paymentDiscount)}</span>
-            </div>
-          )
-        }
-        {
           paymentTaxes > 0
           && (
             <div className="totals--detailed-item">
@@ -73,11 +72,15 @@ export function ResumeTotals({
           )
         }
       </div>
-      <div className="totals--final">
-        <span className="totals--final-title">TOTAL:</span>
-        <span className="totals--final-value">{format.currency(secureTotal)}</span>
-        {quantity && <span className="totals--final-installment">{`(${quantity} x ${format.currency(price)} - ${provider})`}</span>}
-      </div>
+      {
+        !!total && (
+          <div className="totals--final">
+            <span className="totals--final-title">TOTAL:</span>
+            <span className="totals--final-value">{format.currency(total)}</span>
+            {quantity && <span className="totals--final-installment">{`(${quantity} x ${format.currency(price)} - ${provider})`}</span>}
+          </div>
+        )
+      }
     </div>
   );
 }

@@ -22,17 +22,14 @@ export function CartBox() {
     itens,
   } = carrinho || {};
 
-  const {
-    nome: paymentProvider,
-    condicoes: [payment],
-  } = { nome: '', condicoes: [], ...paymentData };
+  const { nome, condicoes } = paymentData || {};
 
   const {
     parcela,
     valorParcela,
     valorFinal,
     valorOriginal,
-  } = payment || {};
+  } = condicoes || {};
 
   const onClick = () => trigger('cart:open', { hideFooter: true });
   const onFinalize = async () => {
@@ -50,10 +47,11 @@ export function CartBox() {
           total={valorFinal}
           coupon={0}
           paymentDiscount={valorOriginal - valorFinal}
+          paymentFees={valorFinal - valorOriginal}
           paymentTaxes={0}
           subTotal={subTotal}
           freight={freteEscolhido}
-          provider={paymentProvider}
+          provider={nome}
           installment={{ quantity: parcela, price: valorParcela }}
         />
         <div className="px-3">

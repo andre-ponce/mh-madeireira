@@ -9,14 +9,14 @@ import {
 } from './helper';
 
 export function CardForm({
-  provedores, onConfigure, savedValues, onCancel,
+  provedores: brands, slug, onConfigure, savedValues, onCancel,
 }) {
-  const [issuerConditions, setIssuerConditions] = useState();
   const [submited, setSubmited] = useState(false);
+  const [brand, setBrand] = useState();
   const initialValues = getInitialValues(savedValues);
 
   const {
-    values,
+    values: formValues,
     getFieldProps,
     setValues,
     getFieldMeta,
@@ -24,21 +24,21 @@ export function CardForm({
   } = useFormik({ initialValues, validationSchema });
 
   useEffect(() => {
-    const { number } = values;
+    const { number } = formValues;
     if (number?.length > 8) {
-      const { issuer, isValid } = getCardIssuer(number);
-      if (isValid) {
-        setValues({ ...values, issuer });
+      const { issuer, isValid: cardValid } = getCardIssuer(number);
+      if (cardValid) {
+        setValues({ ...formValues, issuer });
         return;
       }
     }
-    setValues({ ...values, issuer: '' });
-  }, [values.number]);
+    setValues({ ...formValues, issuer: '' });
+  }, [formValues.number]);
 
   useEffect(() => {
-    const provider = provedores.filter((x) => x.slug === values.issuer)[0];
-    setIssuerConditions(provider);
-  }, [values.issuer]);
+    const cardBrand = brands.filter((x) => x.slug === formValues.issuer)[0];
+    setBrand(cardBrand);
+  }, [formValues.issuer]);
 
   function fieldError(field) {
     const { touched, error } = getFieldMeta(field);
@@ -50,17 +50,21 @@ export function CardForm({
 
   function submit(ev) {
     setSubmited(true);
-    if (isValid) {
-      const installment = parseInt(values.installments || '1', 10);
-      const condicoes = (issuerConditions?.condicoes || [])
-        .filter((x) => x.parcela === installment)[0];
-      onConfigure({
-        ...issuerConditions,
-        condicoes: [condicoes],
-        card: { ...values, valid: isValid },
-      });
-    }
     ev.preventDefault();
+    if (!isValid) {
+      return;
+    }
+
+    const numberOfinstallment = parseInt(formValues.installments, 10);
+    const { condicoes, ...provider } = brand;
+    const installment = condicoes.filter(({ parcela }) => parcela === numberOfinstallment)[0];
+
+    onConfigure({
+      paymentMethod: slug,
+      ...provider,
+      condicoes: installment,
+      card: { ...formValues, valid: isValid },
+    });
   }
 
   return (
@@ -81,8 +85,8 @@ export function CardForm({
         <select id="issuer" {...getFieldProps('issuer')}>
           <option value="">Selecione</option>
           {
-            !isEmpty(provedores)
-            && provedores.map(({ slug, nome }) => <option key={slug} value={slug}>{nome}</option>)
+            !isEmpty(brands)
+            && brands.map(({ slug, nome }) => <option key={slug} value={slug}>{nome}</option>)
           }
         </select>
         <span className="card-form--group-error">{fieldError('issuer')}</span>
@@ -131,11 +135,11 @@ export function CardForm({
 
       <div className="card-form--group">
         <label htmlFor="installments">Parcelamento</label>
-        <select disabled={!values.number || fieldError('number')} {...getFieldProps('installments')} id="installments">
+        <select disabled={!formValues.number || !formValues.issuer} {...getFieldProps('installments')} id="installments">
           <option>Selecione o parcelmento</option>
           {
-            issuerConditions?.condicoes
-            && issuerConditions.condicoes.map((parcelamento) => (
+            brand?.condicoes
+            && brand.condicoes.map((parcelamento) => (
               <option
                 key={parcelamento.parcela}
                 value={parcelamento.parcela}
