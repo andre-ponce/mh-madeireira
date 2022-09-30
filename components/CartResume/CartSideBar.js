@@ -49,7 +49,7 @@ export function CartSideBar() {
 
   return (
     <aside className="cart">
-      <div className={`cart__cart-container block_hover ${cartActiveClassName} ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
+      <div className={`cart__cart-container ${cartActiveClassName} ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
         <button className="navbar-toggler" type="button" onClick={close}>
           <img src="/images/icons-menu/close-menu.png" alt="menu" />
         </button>

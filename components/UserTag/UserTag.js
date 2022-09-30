@@ -45,10 +45,12 @@ export default function UserTag({ isMobile }) {
                   </span>
                 </span>
               </span>
-              <span className="block_hover">
-                <Link href="/minha-conta">Minha conta</Link>
-                <Link href="/meus-pedidos">Meus pedidos</Link>
-                <Link href="/logout">Sair</Link>
+              <span className="hover_wrap">
+                <span className="block_hover">
+                  <Link href="/minha-conta">Minha conta</Link>
+                  <Link href="/meus-pedidos">Meus pedidos</Link>
+                  <Link href="/logout">Sair</Link>
+                </span>
               </span>
             </>
           )
