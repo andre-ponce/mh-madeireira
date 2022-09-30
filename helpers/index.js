@@ -128,6 +128,10 @@ export const linkTo = {
     return `/login?returnUrl=${encodeURIComponent(returnUrl)}`;
   },
 
+  logout() {
+    return '/logout';
+  },
+
   account() {
     return '/minha-conta';
   },

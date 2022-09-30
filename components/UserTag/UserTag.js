@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import UserLoggedContext from '@/contexts/UserLoggedContext';
 import { MobileWrapper } from './MobileWrapper';
 import { NotMobileWrapper } from './NotMobileWrapper';
+import { linkTo } from '@/helpers';
 
 export default function UserTag({ isMobile }) {
   const user = useContext(UserLoggedContext);
@@ -47,9 +48,9 @@ export default function UserTag({ isMobile }) {
               </span>
               <span className="hover_wrap">
                 <span className="block_hover">
-                  <Link href="/minha-conta">Minha conta</Link>
-                  <Link href="/meus-pedidos">Meus pedidos</Link>
-                  <Link href="/logout">Sair</Link>
+                  <Link href={linkTo.account()}>Minha conta</Link>
+                  <Link href={linkTo.myOrders()}>Meus pedidos</Link>
+                  <Link href={linkTo.logout()}>Sair</Link>
                 </span>
               </span>
             </>
