@@ -5,7 +5,7 @@ import { linkTo } from '@/helpers';
 
 import settings from './settings';
 import { url } from '@/services/statics.service';
-import Image from 'next/image';
+import { RemoteImage } from '../Image';
 
 function Brands({ brands }) {
 
@@ -22,7 +22,7 @@ function Brands({ brands }) {
           {brands && brands.map((brand) => (
             <Link key={brand.id} passHref href={linkTo.brand(brand)}>
               <a href>
-                <Image src={url.imageBrand(brand.imagem)} alt={brand.nome} width={125} height={125} />
+                <RemoteImage src={url.imageBrand(brand.imagem)} alt={brand.nome} width={125} height={125} />
               </a>
             </Link>
           ))}

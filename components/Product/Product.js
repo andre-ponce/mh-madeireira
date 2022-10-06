@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { format, image, linkTo } from '@/helpers';
 import { addToCart, removeFromCart } from '@/services/cart.service';
 import SessionContext from '@/contexts/SessionContext';
-import Image from 'next/image';
 import { url } from '@/services/statics.service';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import { RemoteImage } from '../Image';
 
 function Product({ product }) {
   return (
@@ -13,7 +13,7 @@ function Product({ product }) {
       <div className=" product">
         <Link href={linkTo.product(product)} passHref>
           <a className="product__topbar">
-            <Image src={url.imageProduct(product.fotoUrl)} alt={product.name} width={200} height={200} />
+            <RemoteImage src={url.imageProduct(product.fotoUrl)} alt={product.name} width={200} height={200} />
             {
               product.desconto > 0 && (
                 <span className="topbar__discount">

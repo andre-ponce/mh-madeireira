@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { linkTo } from '@/helpers';
 import { url } from '@/services/statics.service';
 import MenuNivelOne from './MenuNivelOne';
-import Image from 'next/image';
+import { RemoteImage } from '../Image';
 
 export function MenuItem({ linha }) {
   const [isSubMenuActive, setIsSubMenuActive] = useState();
@@ -14,7 +14,7 @@ export function MenuItem({ linha }) {
     <li className={`menu__item menu__item--has-subcategoria ${subMenuClassName} menu__item--invisible`}>
       <Link href={linkTo.category(linha)} passHref>
         <a href>
-          {!!iconSrc && <Image src={iconSrc} alt={linha.nome} width={35} height={35} />}
+          {!!iconSrc && <RemoteImage src={iconSrc} alt={linha.nome} width={35} height={35} />}
           <span>{linha.nome}</span>
         </a>
       </Link>

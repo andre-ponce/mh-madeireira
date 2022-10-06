@@ -1,6 +1,6 @@
 import { url } from '@/services/statics.service';
-import Image from 'next/image';
 import Slick from 'react-slick';
+import { RemoteImage } from '../Image';
 import { Loader } from './Loader';
 
 const defaultSettingsGalery = {
@@ -34,7 +34,7 @@ function Photo({ url: photoUrl, textoAlternativo, titulo }) {
   return (
     <div>
       <div className="slider__product__galery--photo">
-        <Image
+        <RemoteImage
           src={url.imageProduct(photoUrl)}
           alt={textoAlternativo}
           title={titulo}

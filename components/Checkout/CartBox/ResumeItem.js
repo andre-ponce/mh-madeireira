@@ -1,6 +1,6 @@
+import { RemoteImage } from '@/components/Image';
 import { format } from '@/helpers';
 import { url } from '@/services/statics.service';
-import Image from 'next/image';
 
 export function ResumeItem({
   nome, foto, precoUnitario, sku, codigoErp, quantidade,
@@ -10,7 +10,7 @@ export function ResumeItem({
   return (
     <div className="checkout-resume--item">
       <div className="resume-item--description">
-        <Image src={fotoUrl} width={70} height={70} alt={`Foto do produto ${nome}`} />
+        <RemoteImage src={fotoUrl} width={70} height={70} alt={`Foto do produto ${nome}`} />
         <div className="resume-item--info">
           <span className="resume-item--name">{nome}</span>
           <div className="resume-item--references">

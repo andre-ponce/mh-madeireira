@@ -1,8 +1,8 @@
 import { format } from '@/helpers';
 import { url } from '@/services/statics.service';
 import { isEmpty } from 'lodash';
-import Image from 'next/image';
 import { useState } from 'react';
+import { RemoteImage } from '../Image';
 import { CartQuantityPanel } from './CartQuantityPanel';
 
 export default function CartResumeItem({ item }) {
@@ -10,7 +10,7 @@ export default function CartResumeItem({ item }) {
 
   return (
     <li className="items__item">
-      <Image src={url.imageProduct(item.foto)} className="item__image" width={50} height={50} />
+      <RemoteImage src={url.imageProduct(item.foto)} className="item__image" width={50} height={50} />
       <span className="item__name">
         {item.nome}
       </span>
