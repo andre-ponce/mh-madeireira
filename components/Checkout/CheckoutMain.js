@@ -2,6 +2,7 @@ import { CheckoutProvider } from '@/contexts/CheckoutContext';
 import { useCheckoutSession } from '@/hooks/useCheckoutSession';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { AddressBox } from './AddressBox';
 import { DeliveryBox } from './DeliveryBox';
 import { PaymentBox } from './PaymentBox';
@@ -11,9 +12,20 @@ import Modal from '../Modal';
 import { PersonalBox } from './PersonalBox';
 import { PickUpInStoreBox } from './PickUpInStoreBox';
 
+function PaymentProviderScripts({ providers }) {
+  if (providers.includes('pag-seguro')) {
+    return <Script src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js" />;
+  }
+
+  return <></>;
+}
+
 export function CheckoutMain() {
   const ckeckoutSession = useCheckoutSession();
   const { value, loading } = ckeckoutSession;
+  const { condicaoDePagamentos } = value;
+  const providers = new Set(condicaoDePagamentos
+    .flatMap(({ provedores }) => provedores.map(({ provedor }) => provedor)));
 
   const [firstLoad, setFirstLoad] = useState(true);
   useEffect(() => { if (!loading) setFirstLoad(false); }, [loading]);
@@ -37,6 +49,7 @@ export function CheckoutMain() {
 
   return (
     <CheckoutProvider value={ckeckoutSession}>
+      <PaymentProviderScripts providers={[...providers]} />
       {
         loading && (
           <Modal>
@@ -74,17 +87,4 @@ export function CheckoutMain() {
       </main>
     </CheckoutProvider>
   );
-}
-
-export function postData() {
-  return {
-    enderecoEntrega: {},
-    formaDeEnvio: {},
-    cupomDeDesconto: {},
-    formaDePagamento: {},
-  };
-}
-
-export function getData() {
-
 }

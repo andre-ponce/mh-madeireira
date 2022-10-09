@@ -63,6 +63,16 @@ export const finalize = async (payment) => {
   return { error: 'Não foi possível concluir seu pedido.' };
 };
 
+export const initPagSeguroSession = async () => {
+  const res = await fetcher('/pag-seguro');
+
+  if (res.ok) {
+    return res.json();
+  }
+
+  return { error: 'Falha ao processar pagamento' };
+};
+
 export const getCheckout = async (paymentId) => {
   const res = await fetcher(`/?p=${paymentId || ''}`);
 

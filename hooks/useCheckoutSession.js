@@ -6,6 +6,7 @@ import {
   setDelivery,
   setAddress,
   finalize,
+  initPagSeguroSession,
   getCheckout,
 } from '@/services/checkout.service';
 import { observe } from '@/helpers/observable';
@@ -106,6 +107,45 @@ export function useCheckoutSession() {
     return res;
   };
 
+  async function withPagSeguro(payload) {
+    const { session } = await initPagSeguroSession();
+    window.PagSeguroDirectPayment.setSessionId(session);
+
+    const {
+      numero,
+      bandeira,
+      mesVencimento,
+      anoVencimento,
+      cvv,
+    } = payload.dadosCartao;
+
+    const card = {
+      cardNumber: numero,
+      brand: bandeira,
+      cvv,
+      expirationMonth: mesVencimento,
+      expirationYear: anoVencimento,
+    };
+
+    return new Promise((ok, fail) => {
+      window.PagSeguroDirectPayment.onSenderHashReady(({ senderHash }) => {
+        window.PagSeguroDirectPayment.createCardToken({
+          ...card,
+          success: ({ card: { token } }) => ok({
+            ...payload,
+            dadosCartao: {
+              ...payload.dadosCartao,
+              token,
+              clientToken: senderHash,
+            },
+          }),
+          error: fail,
+          complete: console.warn,
+        });
+      });
+    });
+  }
+
   const tryFinalize = async () => {
     const [valid, stage, validationError] = validateCheckoutSession();
     if (!valid) {
@@ -124,12 +164,12 @@ export function useCheckoutSession() {
       retirarNaLoja,
     } = value;
     const {
-      id: paymentId, condicoes, card,
+      id: paymentId, condicoes, card, provedor
     } = paymentData;
 
     const [{ valorParcela }] = condicoes;
 
-    const payload = {
+    let payload = {
       meioDePagamentoId: paymentId,
       enderecoDeEntregaId,
       retirarNaLoja,
@@ -158,6 +198,10 @@ export function useCheckoutSession() {
         numeroDeParcelas: installments,
         valorDaParcela: valorParcela,
       };
+    }
+
+    if (provedor === 'pag-seguro') {
+      payload = await withPagSeguro(payload);
     }
 
     const { error: _error, ...res } = await finalize(payload);

@@ -20,3 +20,8 @@ export async function changeDeliveryProvider(session, data) {
   const response = await checkout.post('/frete', data, { session });
   return configureResponse(response, { allow: [200, 400] });
 }
+
+export async function initPagSeguroSession() {
+  const response = await checkout.post('/pag-seguro');
+  return configureResponse(response, { allow: [200, 400] });
+}
