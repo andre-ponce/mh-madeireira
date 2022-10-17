@@ -15,8 +15,6 @@ export const format = {
       phoneEnd,
     ] = regexResult.slice(2);
 
-    if (nine !== undefined && nine !== '9') return '';
-
     return `(${ddd}) ${nine || ''} ${phoneStar}-${phoneEnd}`.replace(/\s{2,}/, ' ');
   },
 
