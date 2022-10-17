@@ -22,6 +22,6 @@ export async function changeDeliveryProvider(session, data) {
 }
 
 export async function initPagSeguroSession() {
-  const response = await checkout.post('/pag-seguro');
+  const response = await checkout.post('/pag-seguro/sessao');
   return configureResponse(response, { allow: [200, 400] });
 }

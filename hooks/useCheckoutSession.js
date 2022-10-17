@@ -120,7 +120,7 @@ export function useCheckoutSession() {
     } = payload.dadosCartao;
 
     const card = {
-      cardNumber: numero,
+      cardNumber: numero.replace(/[^\d]+/g, ''),
       brand: bandeira,
       cvv,
       expirationMonth: mesVencimento,
@@ -164,10 +164,10 @@ export function useCheckoutSession() {
       retirarNaLoja,
     } = value;
     const {
-      id: paymentId, condicoes, card, provedor
+      id: paymentId, condicoes, card, provedor,
     } = paymentData;
 
-    const [{ valorParcela }] = condicoes;
+    const { valorParcela } = condicoes;
 
     let payload = {
       meioDePagamentoId: paymentId,
@@ -198,10 +198,15 @@ export function useCheckoutSession() {
         numeroDeParcelas: installments,
         valorDaParcela: valorParcela,
       };
-    }
 
-    if (provedor === 'pag-seguro') {
-      payload = await withPagSeguro(payload);
+      if (provedor === 'pag-seguro') {
+        try {
+          payload = await withPagSeguro(payload);
+        } catch {
+          setError('Falha ao salvar seu pedido, tente novamente!');
+          setLoading(false);
+        }
+      }
     }
 
     const { error: _error, ...res } = await finalize(payload);
