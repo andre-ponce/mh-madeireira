@@ -7,12 +7,11 @@ export class AppErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError() {
-    // Atualiza o state para que a próxima renderização mostre a UI alternativa.
     return { hasError: true };
   }
 
   componentDidCatch() {
-    // Você também pode registrar o erro em um serviço de relatórios de erro
+    document.body.classList.remove('routing');
   }
 
   render() {
