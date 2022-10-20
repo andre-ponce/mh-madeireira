@@ -13,7 +13,7 @@ export function CartGrid({ cart, closeSidebar, hideFooter }) {
     estoqueDisponivel,
     maximoPorVenda,
     quantidade,
-  }) => quantidade > maximoPorVenda || quantidade > estoqueDisponivel);
+  }) => (quantidade > maximoPorVenda && maximoPorVenda > 0) || quantidade > estoqueDisponivel);
 
   return (
     <>
