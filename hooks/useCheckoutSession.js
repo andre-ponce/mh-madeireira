@@ -128,7 +128,9 @@ export function useCheckoutSession() {
     };
 
     return new Promise((ok, fail) => {
-      window.PagSeguroDirectPayment.onSenderHashReady(({ senderHash }) => {
+      if (!session) return fail();
+
+      return window.PagSeguroDirectPayment.onSenderHashReady(({ senderHash }) => {
         window.PagSeguroDirectPayment.createCardToken({
           ...card,
           success: ({ card: { token } }) => ok({
@@ -205,6 +207,7 @@ export function useCheckoutSession() {
         } catch {
           setError('Falha ao salvar seu pedido, tente novamente!');
           setLoading(false);
+          return [false, 'Falha ao salvar seu pedido, tente novamente!'];
         }
       }
     }
