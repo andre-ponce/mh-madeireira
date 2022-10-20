@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { format, linkTo } from '@/helpers';
 import Link from 'next/link';
 import { addToCart } from '@/services/cart.service';
+import GlobalDataContext from '@/contexts/GlobalDataContext';
 import PaymentOptionsModal from '../PaymentOptionsModal';
 import { ProductFreightSimulator } from './ProductFreightSimulator';
 import ProductRating from '../ProductRating';
 
 export function BuyBox({ product, payConditions }) {
+  const { institucional: { whatsapp } } = useContext(GlobalDataContext);
   const [payOptionsVisible, setPayOptionsVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [busy, setBusy] = useState(false);
@@ -20,6 +22,13 @@ export function BuyBox({ product, payConditions }) {
     await addToCart({ id: product.id }, quantity);
     setBusy(false);
   };
+
+  const moreInfo = () => {
+    const href = linkTo.whatsappApi(whatsapp, `Olá! Eu gostaria de mais informações sobre o produto '${product.nome}' (cod: ${product.sku})`);
+    window.open(href, '_blank');
+  };
+
+  const canBuy = !product.sobConsulta && !product.vendaExtraSite && product.temEstoque;
 
   return (
     <>
@@ -41,64 +50,91 @@ export function BuyBox({ product, payConditions }) {
       </div>
 
       <div className="product__price-infos">
-        <div className="price-infos__prices">
-          <span className="prices__old">{format.currency(precoDe)}</span>
-          <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
-        </div>
         {
-          product.parcelamento > 1 && (
-            <span className="price-infos__installments">
-              {product.parcelamento}
-              x de
-              {' '}
-              <strong>{format.currency(product.valorParcelamento)}</strong>
-            </span>
+          !product.sobConsulta ? (
+            <>
+              <div className="price-infos__prices">
+                <span className="prices__old">{format.currency(precoDe)}</span>
+                <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
+              </div>
+              {
+                product.parcelamento > 1 && (
+                  <span className="price-infos__installments">
+                    {product.parcelamento}
+                    x de
+                    {' '}
+                    <strong>{format.currency(product.valorParcelamento)}</strong>
+                  </span>
+                )
+              }
+              {
+                product.descontoPagamentoAvista > 0 && (
+                  <span className="price-infos__discount">
+                    {format.currency(product.precoAvista)}
+                    {' '}
+                    à vista (com
+                    {' '}
+                    {product.descontoPagamentoAvista}
+                    % de desconto)
+                  </span>
+                )
+              }
+            </>
+          ) : (
+            <>
+              <div className="price-infos__prices">
+                <span className="prices__old">&nbsp;</span>
+                <strong className="prices__actual">Preço sob Consulta</strong>
+              </div>
+            </>
           )
         }
         {
-          product.descontoPagamentoAvista > 0 && (
-            <span className="price-infos__discount">
-              {format.currency(product.precoAvista)}
-              {' '}
-              à vista (com
-              {' '}
-              {product.descontoPagamentoAvista}
-              % de desconto)
-            </span>
+          canBuy ? (
+            <div className="price-infos__buy">
+              <div className="block_qtd-item">
+                <button type="button" className="qtd-item__minus" onClick={() => quantity > 1 && setQuantity(quantity - 1)}>
+                  <i className="fa-solid fa-minus" />
+                </button>
+                <input type="number" disabled min="0" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+                <button type="button" className="qtd-item__plus" onClick={() => setQuantity(quantity + 1)}>
+                  <i className="fa-solid fa-plus" />
+                </button>
+              </div>
+              <button onClick={buy} type="button" className="buy__button">
+                {
+                  busy ? (
+                    <span key="spinner"><i className="fa-solid fa-spin fa-spinner" /></span>
+                  ) : (
+                    <span key="compra">COMPRAR</span>
+                  )
+                }
+              </button>
+            </div>
+          ) : (
+            <div className="price-infos__unavaliable">
+              <button onClick={moreInfo} type="button" className="buy__button">Fale com nosso Vendedor</button>
+            </div>
           )
         }
-        <div className="price-infos__buy">
-          <div className="block_qtd-item">
-            <button type="button" className="qtd-item__minus" onClick={() => quantity > 1 && setQuantity(quantity - 1)}>
-              <i className="fa-solid fa-minus" />
-            </button>
-            <input type="number" disabled min="0" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-            <button type="button" className="qtd-item__plus" onClick={() => setQuantity(quantity + 1)}>
-              <i className="fa-solid fa-plus" />
-            </button>
-          </div>
-          <button onClick={buy} type="button" className="buy__button">
-            {
-              busy ? (
-                <span key="spinner"><i className="fa-solid fa-spin fa-spinner" /></span>
-              ) : (
-                <span key="compra">COMPRAR</span>
-              )
-            }
-          </button>
-        </div>
-        <div className="price-infos__installments-group">
-          <button type="button" className="open__modal" onClick={() => setPayOptionsVisible(true)}>Mais opcões de pagamento</button>
-          <div className="installments-group__installments">
-            <span>
-              {product.parcelamento}
-              x de
-              {' '}
-              {format.currency(product.valorParcelamento)}
-            </span>
-          </div>
-        </div>
-        <ProductFreightSimulator productId={product.id} />
+        {
+          !product.sobConsulta && (
+            <>
+              <div className="price-infos__installments-group">
+                <button type="button" className="open__modal" onClick={() => setPayOptionsVisible(true)}>Mais opcões de pagamento</button>
+                <div className="installments-group__installments">
+                  <span>
+                    {product.parcelamento}
+                    x de
+                    {' '}
+                    {format.currency(product.valorParcelamento)}
+                  </span>
+                </div>
+              </div>
+              <ProductFreightSimulator productId={product.id} />
+            </>
+          )
+        }
       </div>
 
       {

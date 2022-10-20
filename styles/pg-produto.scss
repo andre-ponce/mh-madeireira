@@ -125,6 +125,22 @@
               }
             }
           }
+          &__unavaliable {
+            display: flex;
+            padding-top: 20px;
+            margin-bottom: 18px;
+            border-top: 1px solid #f0f0f0;
+            .buy {
+              &__button {
+                height: 42px;
+                width: 100%;
+                font-size: 14px;
+                color: white;
+                background: #459e4a;
+                text-transform: uppercase;
+              }
+            }
+          }
           &__installments-group {
             display: flex;
             margin-bottom: 18px;
