@@ -34,24 +34,34 @@ function Product({ product }) {
             </a>
           </Link>
         </div>
-        <div className="product__prices">
-          {
-            product.precoDe > product.precoPor
-              ? <span className="prices__old">{format.currency(product.precoDe)}</span>
-              : <span className="prices__old">&nbsp;</span>
-          }
-          <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
-          <span className="prices__installments">
-            {product.parcelamento}
-            x de
-            {' '}
-            <strong>
-              {format.currency(product.valorParcelamento)}
-            </strong>
-            {' '}
-            s/ juros
-          </span>
-        </div>
+        {
+          product.sobConsulta ? (
+            <div className="product__prices">
+              <span className="prices__old">&nbsp;</span>
+              <strong className="prices__actual">Preço sob consulta</strong>
+              <span className="prices__installments">&nbsp;</span>
+            </div>
+          ) : (
+            <div className="product__prices">
+              {
+                product.precoDe > product.precoPor
+                  ? <span className="prices__old">{format.currency(product.precoDe)}</span>
+                  : <span className="prices__old">&nbsp;</span>
+              }
+              <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
+              <span className="prices__installments">
+                {product.parcelamento}
+                x de
+                {' '}
+                <strong>
+                  {format.currency(product.valorParcelamento)}
+                </strong>
+                {' '}
+                s/ juros
+              </span>
+            </div>
+          )
+        }
         <div className="product__actions">
           <Link href={product.categoryLink || linkTo.product(product)}>
             <a className="actions__link-category">
@@ -96,35 +106,22 @@ function ProductCardQuickAction({ product }) {
     setBusy(false);
   };
 
+  let ctaLabel = '';
   if (product.sobConsulta) {
-    return (
-      <div className="actions__buy">
-        <button type="button" className="buy__button">SOB CONSULTA</button>
-      </div>
-    );
+    ctaLabel = 'SAIBA MAIS';
+  } else if (product.vendaExtraSite) {
+    ctaLabel = 'SAIBA MAIS';
+  } else if (!product.temEstoque) {
+    ctaLabel = 'SEM ESTOQUE';
+  } else if (product.usaGrade) {
+    ctaLabel = 'COMPRAR';
   }
 
-  if (product.vendaExtraSite) {
-    return (
-      <div className="actions__buy">
-        <button type="button" className="buy__button">SAIBA MAIS</button>
-      </div>
-    );
-  }
-
-  if (!product.temEstoque) {
-    return (
-      <div className="actions__buy">
-        <button type="button" className="buy__button">SEM ESTOQUE</button>
-      </div>
-    );
-  }
-
-  if (product.usaGrade) {
+  if (ctaLabel) {
     return (
       <div className="actions__buy">
         <Link href={linkTo.product(product)}>
-          <button type="button" className="buy__button">COMPRAR</button>
+          <button type="button" className="buy__button">{ctaLabel}</button>
         </Link>
       </div>
     );
