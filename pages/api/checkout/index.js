@@ -8,7 +8,7 @@ const verbs = {
     const sessionId = cookies[cookie.session.COOKIE_NAME];
     const [checkout, status] = await getCheckoutSession(sessionId);
     if (!status.ok) {
-      return res.badRequest();
+      return res.badRequest(checkout);
     }
 
     return res.ok(checkout);
