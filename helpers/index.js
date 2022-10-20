@@ -64,14 +64,20 @@ export const format = {
 
 export const linkTo = {
 
-  whatsappApi(number) {
+  whatsappApi(number, text) {
     if (!number) return '';
 
     let sanitize = number.toString();
     sanitize = sanitize.replace(/[^0-9]+/g, '');
     sanitize = sanitize.replace(/^0?55/, '');
 
-    return `https://wa.me/055${sanitize}`;
+    const url = new URL('https://api.whatsapp.com/send/');
+    url.searchParams.append('phone', `055${sanitize}`);
+    if (text) {
+      url.searchParams.append('text', text);
+    }
+
+    return url.href;
   },
 
   mailto(email) {
