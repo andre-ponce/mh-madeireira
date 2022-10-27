@@ -13,9 +13,7 @@ export function BuyBox({ product, payConditions }) {
   const [quantity, setQuantity] = useState(1);
   const [busy, setBusy] = useState(false);
 
-  const precoDe = product.precoDe > product.precoPor
-    ? product.precoDe
-    : product.precoPor * 1.05;
+  const hasDiscount = product.precoDe > product.precoPor;
 
   const buy = async () => {
     setBusy(true);
@@ -54,7 +52,7 @@ export function BuyBox({ product, payConditions }) {
           !product.sobConsulta ? (
             <>
               <div className="price-infos__prices">
-                <span className="prices__old">{format.currency(precoDe)}</span>
+                {hasDiscount && <span className="prices__old">{format.currency(product.precoDe)}</span>}
                 <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
               </div>
               {
