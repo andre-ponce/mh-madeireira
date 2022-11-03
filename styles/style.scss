@@ -72,9 +72,12 @@ html {
       margin-right: 6px;
       max-height: 50px;
     }
-    @media screen and (max-width: 500px) {
+  }
+  @media screen and (max-width: 500px) {
+    .logo {
+      margin: 0 15px !important;
       .logo__img {
-        display: none;
+        max-width: 100%;
       }
     }
   }
