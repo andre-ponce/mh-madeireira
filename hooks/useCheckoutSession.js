@@ -9,8 +9,8 @@ import {
   initPagSeguroSession,
   getCheckout,
 } from '@/services/checkout.service';
-import { observe } from '@/helpers/observable';
 import { isEmpty } from 'lodash';
+import { useOberve } from './useObserve';
 
 export function useCheckoutSession() {
   const router = useRouter();
@@ -66,7 +66,7 @@ export function useCheckoutSession() {
     fetchData();
   }, [lastUpdate]);
 
-  useEffect(() => observe('cart:changed', () => setLastUpdate(new Date())), []);
+  useOberve('cart:changed', () => setLastUpdate(new Date()));
 
   const chooseDeliveryAddress = async (address) => {
     const { error: _error, ...res } = await setAddress(address);

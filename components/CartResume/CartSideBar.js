@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import SessionContext from '@/contexts/SessionContext';
 import useEventListener from '@use-it/event-listener';
 import useFixedShadow from '@/hooks/useFixedShadow';
-import { observe } from '@/helpers/observable';
+import { useOberve } from '@/hooks/useObserve';
 import { CartGrid } from './CartGrid';
 import { EmptyCart } from './EmptyCart';
 
@@ -40,10 +40,8 @@ export function CartSideBar() {
 
   useEventListener('keydown', ({ keyCode }) => keyCode === 27 && close());
 
-  useEffect(() => observe([
-    'cart:open',
-    'cart:item-pushed',
-  ], open), []);
+  useOberve('cart:open', open);
+  useOberve('cart:item-pushed', open);
 
   const cartActiveClassName = oppened ? 'cart__cart-container--active' : '';
 

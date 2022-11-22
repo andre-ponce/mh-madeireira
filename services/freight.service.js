@@ -1,15 +1,25 @@
 const localCache = {
 };
 
-async function fetchProviders(type, zipcode, productId) {
-  const URL = type === 'cart' ? '/api/cart/freight' : `/api/product/${productId}/freight`;
-  const response = await fetch(`${URL}?cep=${zipcode}`);
-  if (response.status === 200) {
-    const freight = await response.json();
-    return freight;
-  }
+async function sleep(time) {
+  return new Promise((done) => setTimeout(done, time));
+}
 
-  return [];
+async function fetchProviders(type, zipcode, productId, attempt) {
+  const URL = type === 'cart' ? '/api/cart/freight' : `/api/product/${productId}/freight`;
+  if (attempt > 5) return [];
+
+  try {
+    const response = await fetch(`${URL}?cep=${zipcode}`);
+
+    if (response.status === 200) {
+      const freight = await response.json();
+      return freight;
+    }
+  } catch { }
+
+  await sleep(10_000);
+  return fetchProviders(type, zipcode, productId, ((attempt || 1) + 1));
 }
 
 export async function calculateFreight(type, zipcode, productId, cartHash) {

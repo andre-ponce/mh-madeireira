@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import Modal from '../Modal';
 import { format } from '@/helpers';
+import Modal from '../Modal';
 
 export function PaymentOptionsModal({ payConditions, handleHide }) {
+  const [group, setGroup] = useState();
+
   useEffect(() => {
     const ESC_KEY_CODE = 27;
 
@@ -20,26 +22,54 @@ export function PaymentOptionsModal({ payConditions, handleHide }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!group) {
+      setGroup(payConditions[0]);
+    }
+  }, [payConditions]);
+
+  if (!group) {
+    return (<></>);
+  }
+
+  const maxInstallments = group.bandeiras.map((b) => b.parcelas.length).sort().reverse()[0];
+  const parcelas = [...new Array(maxInstallments).keys()].filter((x) => x);
+
   return (
     <Modal handleHide={handleHide}>
-      <div className="modal__pedido" onClick={(e) => e.stopPropagation()}>
-        <a className="close" onClick={handleHide}><i className="fal fa-times" /></a>
+      <div className="modal_app" onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="close" onClick={handleHide}>
+          <i className="fal fa-times" />
+        </button>
         <div className="title">Formas de pagamento</div>
         <div className="modal__forma">
-          <a className="modal__forma__item active">Cartão de Crédito</a>
-          {/* <a className="modal__forma__item">Boleto</a> */}
+          {
+            payConditions.map((p) => (
+              <span
+                onClick={() => setGroup(p)}
+                className={`modal__forma__item ${group.id === p.id ? 'active' : ''}`}
+              >
+                {p.nome}
+              </span>
+            ))
+          }
         </div>
         <div className="modal__block">
           <table>
             <tbody>
-
+              <tr>
+                {
+                  group.bandeiras.map((b) => <th>{b.bandeira}</th>)
+                }
+              </tr>
               {
-                payConditions.map((p) => (
-                  <tr key={p.parcela}>
-                    <td>{`${p.parcela}x`}</td>
-                    <td>{`de ${format.currency(p.valor)}`}</td>
-                    <td>{p.semJuros ? 'sem juros' : 'com juros'}</td>
-                    <td>{`total ${format.currency(p.parcela * p.valor)}`}</td>
+                parcelas.map((p) => (
+                  <tr key={p}>
+                    {
+                      group.bandeiras.map((b) => (
+                        <td>{`${p}x ${format.currency(b.parcelas[p - 1]?.valorDaParcela) || '-'}`}</td>
+                      ))
+                    }
                   </tr>
                 ))
               }
