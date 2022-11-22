@@ -20,11 +20,26 @@ export function useCheckoutSession() {
   const [value, setValue] = useState({ loading: true });
   const [paymentData, setPaymentData] = useState();
 
+  async function refreshCheckoutData(attempt) {
+    if (attempt > 3) {
+      throw new Error('Falha ao carregar seu carrinho! Contate nosso suporte');
+    }
+    const context = await getCheckout();
+
+    if (context.error) {
+      return new Promise((done) => {
+        setTimeout(() => done(refreshCheckoutData((attempt || 1) + 1), 1000));
+      });
+    }
+
+    return context;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const context = await getCheckout();
+        const context = await refreshCheckoutData();
         setValue(context);
         const {
           id,
