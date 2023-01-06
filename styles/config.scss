@@ -6,6 +6,11 @@ $text-color: $contrast-color;
 $title-color: #292929;
 $title-border-color: $main-color;
 
+$button-bg-color: $main-color;
+$button-text-color: $contrast-color;
+$button-bg-hover-color: $contrast-color;
+$button-text-hover-color: $main-color;
+
 /* ------------- Configurações do header do catalogo ------------- */
 $header_bg-color: $contrast-color;
 $header_text-color: #fff;
@@ -101,8 +106,3 @@ $aside_cart-text-empty-color: var(--danger);
 
 $aside_cart-close-bg-color: $main-color;
 $aside_cart-close-icon-color: #fff;
-
-$button-bg-color: $main-color;
-$button-text-color: $contrast-color;
-$button-bg-hover-color: $contrast-color;
-$button-text-hover-color: $main-color;

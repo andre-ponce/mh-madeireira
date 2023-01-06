@@ -18,12 +18,90 @@ export const format = {
     return `(${ddd}) ${nine || ''} ${phoneStar}-${phoneEnd}`.replace(/\s{2,}/, ' ');
   },
 
+  cep(number) {
+    if (!number) return '';
+    let numberCopy = `${number}`;
+    numberCopy = numberCopy.replace(/\D{1,}/g, '');
+
+    if (numberCopy.length > 8) return '';
+
+    if (numberCopy.length < 7) return '';
+
+    numberCopy = numberCopy.padStart(8, '0');
+
+    return `CEP ${numberCopy.slice(0, 5)}-${numberCopy.slice(5)}`;
+  },
+
+  address(street, number, complement, district, zipcode, city, state) {
+    let deliveryAddress = street;
+
+    if (number) {
+      deliveryAddress = `${deliveryAddress}, ${number}`;
+    } else {
+      deliveryAddress = `${deliveryAddress}, s/n`;
+    }
+
+    if (complement) {
+      deliveryAddress = `${deliveryAddress} (${complement})`;
+    }
+
+    if (district) {
+      deliveryAddress = `${deliveryAddress} - ${district}`;
+    }
+
+    if (zipcode) {
+      deliveryAddress = `${deliveryAddress} - ${this.cep(zipcode)}`;
+    }
+
+    deliveryAddress = `${deliveryAddress} - ${city}/${state}`;
+    return deliveryAddress;
+  },
+
   currency(value) {
     return Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
       maximumFractionDigits: 2,
     }).format(value);
+  },
+
+  date(value) {
+    let date = value;
+    if (typeof date === 'string') {
+      date = new Date(date);
+    }
+
+    if (typeof date.getMonth !== 'function') {
+      return '';
+    }
+
+    if (Number.isNaN(date.getMonth())) {
+      return '';
+    }
+
+    return Intl.DateTimeFormat('pt-BR', {
+      dateStyle: 'short',
+    }).format(date);
+  },
+
+  datetime(value) {
+    let date = value;
+    if (typeof date === 'string') {
+      date = new Date(date);
+    }
+
+    if (typeof date.getMonth !== 'function') {
+      return '';
+    }
+
+    if (Number.isNaN(date.getMonth())) {
+      return '';
+    }
+
+    return Intl.DateTimeFormat('pt-BR', {
+      dateStyle: 'short',
+      timeStyle: 'short',
+    }).format(date);
   },
 
   discount(value) {
@@ -160,7 +238,7 @@ export const linkTo = {
     if (!code) {
       return this.myOrders();
     }
-    return `/minha-conta/pedido/${code}`;
+    return `/minha-conta/pedidos/${code}`;
   },
 
   treatment() {

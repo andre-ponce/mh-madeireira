@@ -8,6 +8,10 @@
   background-color: $button-bg-color;
   color: $button-text-color;
 
+  a {
+    color: $button-text-color;
+  }
+
   &:hover {
     background-color: $button-bg-hover-color;
     color: $button-text-hover-color;
@@ -17,6 +21,10 @@
 .btn-secondary {
   background-color: #000;
   color: #fff;
+
+  a {
+    color: #fff;
+  }
 
   &:hover {
     background-color: $button-bg-color;
