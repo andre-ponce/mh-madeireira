@@ -72,7 +72,7 @@ export const linkTo = {
     sanitize = sanitize.replace(/^0?55/, '');
 
     const url = new URL('https://api.whatsapp.com/send/');
-    url.searchParams.append('phone', `055${sanitize}`);
+    url.searchParams.append('phone', `55${sanitize}`);
     if (text) {
       url.searchParams.append('text', text);
     }
