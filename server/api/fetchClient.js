@@ -29,7 +29,7 @@ function configureRequest(params) {
   const traceData = {
     session: session || null,
     timeout: finalConfig.timeout,
-    contentType: finalConfig['content-type'],
+    contentType: finalConfig['content-type'] ?? null,
   };
 
   if (process.env.NODE_ENV === 'development') {
@@ -108,7 +108,7 @@ function getCommand(url, config) {
   return cmdBuilder.join(' ');
 }
 
-export function fetchClient(urlBase) {
+function fetchClient(urlBase) {
   const base = new URL(urlBase);
 
   return async (input, params) => {
@@ -129,14 +129,22 @@ export function fetchClient(urlBase) {
         }
       }
 
-      response.$error = {
-        origin: `${getMethod(requestConfig)} ${url}`,
-        try: getCommand(url, requestConfig),
-        traceData,
+      const defaultError = {
         serverCode: response.status,
         errorType: 'remote',
         errorDescription: await response.clone().text(),
       };
+
+      if (process.env.NODE_ENV === 'production') {
+        response.$error = defaultError;
+      } else {
+        response.$error = {
+          ...defaultError,
+          origin: `${getMethod(requestConfig)} ${url}`,
+          traceData,
+          try: getCommand(url, requestConfig),
+        };
+      }
 
       return response;
     } catch (err) {

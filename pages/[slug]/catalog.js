@@ -1,15 +1,12 @@
 import Head from 'next/head';
-
-import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import Breadcrumb from '@/components/Breadcrumb';
 import CategoryMain from '@/components/CategoryMain';
 import CategoryBanner from '@/components/CategoryMain/CategoryBanner';
-
 import { getGlobalData } from '@/server/api/global.api';
 import { getCategoryResults } from '@/server/api/catalog.api';
 import { linkTo } from '@/helpers';
-import useCategoryFilter from '@/hooks/useCategoryFilter';
+import { useCategoryFilter } from '@/hooks/useCategoryFilter';
 import Pagination from '@/components/Pagination';
 
 export async function getStaticPaths() {
@@ -30,10 +27,7 @@ export async function getStaticProps({ params }) {
 }
 
 function Category({ global, category }) {
-  const router = useRouter();
-  const { query } = router;
-  const page = parseInt(query.p || 1, 10);
-  const [isChecked, onToggleFilter] = useCategoryFilter();
+  const [isChecked, onToggleFilter, pagination, orderBy] = useCategoryFilter();
 
   const {
     categoria,
@@ -72,12 +66,13 @@ function Category({ global, category }) {
           filters={filtros}
           isFilterActive={isChecked}
           onFilterChange={onToggleFilter}
+          orderBy={orderBy}
           pagination={(
             <Pagination
-              currentPage={page}
+              currentPage={pagination.currentPage}
               isLastPage={ultimaPagina}
-              prevHref={{ query: { ...query, p: page - 1 } }}
-              nextHref={{ query: { ...query, p: page + 1 } }}
+              prevHref={pagination.prev}
+              nextHref={pagination.next}
             />
           )}
         />

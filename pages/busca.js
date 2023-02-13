@@ -3,7 +3,7 @@ import Layout from '@/components/Layout';
 import CategoryMain from '@/components/CategoryMain';
 import { getGlobalData } from '@/server/api/global.api';
 import { getSearchResults } from '@/server/api/catalog.api';
-import useCategoryFilter from '@/hooks/useCategoryFilter';
+import { useSearchFilter } from '@/hooks/useCategoryFilter';
 import Pagination from '@/components/Pagination';
 
 export async function getServerSideProps({ query }) {
@@ -26,7 +26,7 @@ function Busca({ global, catalog }) {
   const router = useRouter();
   const { query } = router;
   const page = parseInt(query.p || 1, 10);
-  const [isChecked, onToggleFilter] = useCategoryFilter();
+  const [isChecked, onToggleFilter, pagination, orderBy] = useSearchFilter();
 
   const {
     ultimaPagina,
@@ -42,12 +42,13 @@ function Busca({ global, catalog }) {
           filters={filtros}
           isFilterActive={isChecked}
           onFilterChange={onToggleFilter}
+          orderBy={orderBy}
           pagination={(
             <Pagination
               currentPage={page}
               isLastPage={ultimaPagina}
-              prevHref={{ query: { ...query, p: page - 1 } }}
-              nextHref={{ query: { ...query, p: page + 1 } }}
+              prevHref={pagination.prev}
+              nextHref={pagination.next}
             />
           )}
         />

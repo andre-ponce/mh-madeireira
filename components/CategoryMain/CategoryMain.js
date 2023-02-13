@@ -9,9 +9,21 @@ function Category({
   filters,
   onFilterChange,
   isFilterActive,
+  orderBy,
   pagination,
 }) {
+  const orderValues = {
+    'a-z': 'Nome A-Z',
+    'z-a': 'Nome Z-A',
+    'maior-preco': 'Menor Preço',
+    'menor-preco': 'Maior Preço',
+  };
+
+  const [orderCode] = orderBy.currentOrder;
+  const currentOrder = orderValues[orderCode] || 'Relevância';
+
   return (
+
     <main>
       <div className="app-container">
         <div className="row mx-0 mt-4">
@@ -30,15 +42,16 @@ function Category({
                 ORDENAR POR
                 <div className="dropdown">
                   <button type="button" className="btn btn-secondary" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-38,0">
-                    Selecione
+                    {currentOrder}
                     <i className="fa-solid fa-chevron-down" />
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <a className="dropdown-item" href="/">Nome A-Z</a>
-                    <a className="dropdown-item" href="/">Nome Z-A</a>
-                    <a className="dropdown-item" href="/">Menor Preço</a>
-                    <a className="dropdown-item" href="/">Maior Preço</a>
-                    <a className="dropdown-item" href="/">Mais vendidos</a>
+                    <button type="button" disabled={!orderCode} onClick={() => orderBy.reorder('')} className="dropdown-item">Relevância</button>
+                    {
+                      Object.keys(orderValues).map((order) => (
+                        <button type="button" disabled={order === orderCode} onClick={() => orderBy.reorder(order)} className="dropdown-item">{orderValues[order]}</button>
+                      ))
+                    }
                   </div>
                 </div>
               </div>

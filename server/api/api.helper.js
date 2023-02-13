@@ -5,11 +5,26 @@ async function readResponse(response) {
     return undefined;
   }
 
+  if (response.$error) {
+    return response;
+  }
+
   if (response.headers) {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
       return response.json();
     }
+  }
+
+  const clone = await response.clone();
+
+  try {
+    const { size } = await clone.blob();
+    if (size < 1) {
+      return undefined;
+    }
+  } catch {
+    return undefined;
   }
 
   return response.text();

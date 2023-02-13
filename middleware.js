@@ -19,22 +19,24 @@ const {
  * @param {NextFetchEvent} event - The middleware event
  * @return { NextResponse | Response | undefined | null }
 */
-async function executeMiddlewares(request, response, event) {
+async function executeMiddlewares(request) {
   const executionResponse = middlewares
-    .reduce(async (currentResponse, middlewareFn) => {
+    .reduce(async (prevResponse, middlewareFn) => {
+      const currentResponse = await prevResponse;
       if (currentResponse.abort) {
-        return currentResponse;
+        console.log('aborting middlewares...');
+        return currentResponse.response;
       }
       try {
-        const res = await middlewareFn(request, currentResponse, event);
+        const res = await middlewareFn(request, currentResponse);
         return res || currentResponse;
       } catch (err) {
         throw process.env.production ? Error() : err;
       }
-    }, response);
+    }, NextResponse.next());
 
   if (executionResponse.abort) {
-    return executionResponse.response || response;
+    return executionResponse.response || NextResponse.next();
   }
 
   return executionResponse;
@@ -52,10 +54,8 @@ async function useSessionCookieMiddleware(req, res) {
 
   try {
     if (!currentSession) {
-      console.warn('\n\n\n\n\n***** GERANDO NOVA SESSÃO *****');
       const session = await createFreshSession(ip, ua, geo);
-      console.warn(`> Ok: ${session.sessionId}`);
-      console.warn('\n\n\n\n\n');
+      console.warn(`>>>>>>>>>> Nova sessão: ${session.sessionId}`);
       sessionId = session.sessionId;
     }
   } catch (err) {
