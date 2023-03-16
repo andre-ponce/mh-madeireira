@@ -25,7 +25,7 @@ export function OrderListItem({ order }) {
         </div>
         <div className="status">{currentStatus?.toUpperCase()}</div>
         <div className="button btn-default"><Link href={linkTo.order(codigoPedido)}>Detalhes</Link></div>
-        <div className="change"><a>Refazer pedido</a></div>
+        {/* <div className="change"><a>Refazer pedido</a></div> */}
       </div>
     </>
   );

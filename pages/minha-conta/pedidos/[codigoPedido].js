@@ -9,6 +9,7 @@ import { FloatBox } from '@/components/Modal/Modal';
 import GlobalDataContext from '@/contexts/GlobalDataContext';
 import { RemoteImage } from '@/components/Image';
 import { url } from '@/services/statics.service';
+import { QrCodePix } from '@/components/QrCodePix/QrCodePix';
 
 export const getServerSideProps = withAuthorization(async () => {
   const [global] = await getGlobalData();
@@ -283,6 +284,11 @@ function OrderDetailed({ order }) {
             )
           }
           {
+            pagamento.tipo === 'pix' && (
+              <QrCodePix payment={pagamento} />
+            )
+          }
+          {
             pagamento.tipo === 'credit-card' && (
               <>
                 <div>
@@ -303,7 +309,11 @@ function OrderDetailed({ order }) {
           }
         </div>
       </div>
-      {showStatus && <StatusHistoryModal statuses={status} handleHide={() => setShowStatus(false)} />}
+      {
+        showStatus && (
+          <StatusHistoryModal statuses={status} handleHide={() => setShowStatus(false)} />
+        )
+      }
     </main>
   );
 }
