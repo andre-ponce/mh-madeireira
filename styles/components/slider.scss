@@ -1,3 +1,6 @@
+.slick-track {
+  min-width: 100%;
+}
 .slick-slider {
   .slick-dots {
     position: absolute;
@@ -120,7 +123,7 @@
 }
 
 .main__store-front-brands {
-  .container_serie-ds {
+  .app-container {
     .slick-track {
       display: flex;
       align-items: center;

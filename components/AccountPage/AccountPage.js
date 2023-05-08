@@ -5,7 +5,7 @@ import { AccountSection } from "./AccountSection";
 export function AccountPage({ user }) {
   return (
     <>
-      <main className="account container_serie-ds d-flex row">
+      <main className="account app-container d-flex row">
         <h2 className="page-title">{`Olá, ${user.nome}!`}</h2>
 
         <div className="account__content">

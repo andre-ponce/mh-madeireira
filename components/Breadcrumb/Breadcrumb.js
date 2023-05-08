@@ -10,7 +10,7 @@ function Breadcrumb({ path }) {
       setContainerClass('');
     }
     else {
-      setContainerClass('container_serie-ds');
+      setContainerClass('app-container');
     }
   }, [isMobile]);
 

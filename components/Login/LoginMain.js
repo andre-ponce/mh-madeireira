@@ -31,7 +31,7 @@ export default function LoginMain({ returnUrl }) {
   };
 
   return (
-    <main className="main main-login container_serie-ds d-flex row">
+    <main className="main main-login app-container d-flex row">
       <h2 className="page-title">Faça seu login para continuar</h2>
       <LoginBox doLogin={doLogin} />
       <SignupBox signup={signup} />

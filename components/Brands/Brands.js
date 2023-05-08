@@ -16,7 +16,7 @@ function Brands({ brands }) {
       data-aos-duration="2000"
       data-aos-offset="500"
     >
-      <div className="container_serie-ds">
+      <div className="app-container">
         <h2 className="title-border-left">Top Marcas</h2>
         <Slick {...settings}>
           {brands && brands.map((brand) => (

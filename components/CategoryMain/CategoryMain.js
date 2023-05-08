@@ -13,7 +13,7 @@ function Category({
 }) {
   return (
     <main>
-      <div className="container_serie-ds">
+      <div className="app-container">
         <div className="row mx-0 mt-4">
 
           <CatalogFilter

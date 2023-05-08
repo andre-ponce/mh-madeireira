@@ -81,7 +81,7 @@ export function LoginBox({ doLogin }) {
             <Link href={linkTo.recoveryAccount()}>Esqueceu sua senha?</Link>
           </p>
           <div className="col-md-12 mb-3">
-            <button className="main__form__button" type="submit">
+            <button className="main__form__button btn-secondary" type="submit">
               {
                 loading ? (
                   <div className="spinner-border text-light" role="status">

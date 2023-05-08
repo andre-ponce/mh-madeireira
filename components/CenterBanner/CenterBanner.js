@@ -2,7 +2,7 @@ import React from 'react';
 
 function CenterBanner() {
   return (
-    <div className="main__banners-centrais container_serie-ds">
+    <div className="main__banners-centrais app-container">
       <a href="/" data-aos="fade-right" data-aos-duration="1000">
         <img src="/images/braskape-image-mosaico-1.jpg" alt="Ofertas 50% OFF" />
       </a>

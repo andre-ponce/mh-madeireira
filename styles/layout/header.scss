@@ -1,0 +1,301 @@
+.help,
+.login {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  line-height: 16px;
+
+  .tag_image {
+    display: flex;
+    margin-right: 10px;
+    color: $header_icons-color;
+    svg {
+      color: $header_icons-color;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.header {
+  border-top: 1px solid $header_topline-color;
+  position: relative;
+
+  .form-search {
+    display: flex;
+    align-items: center;
+  }
+
+  &__topbar {
+    .topbar__top {
+      background: $header_bg-color;
+      padding: 5px 0;
+      .app-container {
+        color: $header_text-color;
+        .topbar--contact {
+          color: $header_links-color;
+        }
+        .login__container {
+          color: $header_text-color;
+        }
+        .navbar-toggler {
+          padding: 0;
+          display: none;
+          color: $header_icons-color;
+          svg {
+            color: $header_icons-color;
+          }
+        }
+        @media screen and (max-width: 1100px) {
+          .navbar-toggler {
+            display: none;
+          }
+        }
+
+        @media screen and (max-width: 992px) {
+          .navbar-toggler {
+            display: block;
+          }
+          .logo {
+            margin-left: 15px;
+          }
+          & > span,
+          .login,
+          .help {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__simple-topbar {
+    background: $header_simple_bg-color;
+    color: $header_simple_text-color;
+    & > .app-container {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .secure-info {
+      text-align: right;
+      font-size: 14px;
+      font-weight: bold;
+
+      span {
+        margin-left: 10px;
+      }
+
+      svg {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      & > .app-container {
+        height: 60px;
+        justify-content: center;
+      }
+
+      .simple-topbar {
+        &__site-seguro-img {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__topbar--fixed {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    position: fixed;
+    background: $header_fixed_bg-color;
+    color: $header_fixed_text-color;
+    & > .app-container {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .topbar--fixed {
+      &__menu {
+        padding: 5px 6px;
+        border-radius: 3px;
+        margin-right: -20px;
+        border: 1px solid $header_fixed_menu_button-color;
+
+        .menu-icon {
+          font-size: 24px;
+          color: $header_fixed_menu_button-color;
+        }
+      }
+    }
+    .login__container {
+      color: $header_fixed_text-color;
+    }
+    .logo {
+      width: 123px;
+      max-width: 123px;
+      .logo {
+        &__img {
+          height: 50px;
+        }
+        &__text {
+          width: 88px;
+        }
+      }
+    }
+    .help,
+    .login {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      line-height: 16px;
+
+      .tag_image {
+        display: flex;
+        margin-right: 10px;
+        color: $header_fixed_icons-color;
+        svg {
+          color: $header_fixed_icons-color;
+        }
+      }
+    }
+
+    .form-search {
+      width: 52%;
+      button {
+        height: 34px;
+        width: 34px;
+        border-radius: 3px;
+        background: $header_fixed_search_button-bg-color;
+        color: $header_fixed_search_button-text-color;
+        svg {
+          transform: rotate(90deg);
+          font-size: 22px;
+          color: $header_fixed_search_button-text-color;
+        }
+      }
+    }
+    .cart {
+      .cart__qtd {
+        background-color: $header_fixed_cart-qtd-bg-color;
+        color: $header_fixed_cart-qtd-text-color;
+      }
+    }
+    @media screen and (max-width: 1150px) {
+      .topbar--fixed {
+        &__menu {
+          margin-right: -10px;
+        }
+      }
+      .form-search {
+        width: 49%;
+      }
+    }
+    @media screen and (max-width: 1000px) {
+      .topbar--fixed {
+        &__menu {
+          margin-right: 0px;
+        }
+      }
+      .form-search {
+        width: 46%;
+      }
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .help,
+    .login {
+      .hover_wrap {
+        top: 30px;
+        padding-top: 15px;
+        z-index: 999;
+        display: none;
+        position: absolute;
+        min-width: 130px;
+        .block_hover {
+          display: block;
+          color: black;
+          background: white;
+          padding: 15px 15px 5px 15px;
+          box-shadow: 1px 1px 3px #00000020;
+          & > * {
+            display: block;
+            margin-bottom: 10px;
+            color: #6d6a6a;
+          }
+          & > a:hover {
+            color: #292929;
+          }
+          &::before {
+            content: "";
+            top: 0px;
+            display: flex;
+            position: absolute;
+            left: calc(50% - 8px);
+            border: 8px solid transparent;
+            border-bottom-color: white;
+          }
+        }
+      }
+
+      &:hover {
+        .hover_wrap {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.cart {
+  &__icon_group {
+    width: 45px;
+    height: 50px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    transform: scale(1);
+    transition: all 0.1s;
+    cursor: pointer;
+
+    svg {
+      color: $header_icons-color;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__qtd {
+    top: 0;
+    right: 0;
+    width: 27px;
+    height: 27px;
+    color: $header_cart-qtd-text-color;
+    font-weight: bold;
+    border-radius: 50%;
+    background: $header_cart-qtd-bg-color;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.mobile_shadow--active {
+  .header__topbar--fixed {
+    top: -100px;
+    transition: all 0.2s;
+  }
+
+  .header__menu.fixed {
+    display: none;
+  }
+}

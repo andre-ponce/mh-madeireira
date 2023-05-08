@@ -15,13 +15,17 @@ export function MenuItem({ linha }) {
       <Link href={linkTo.category(linha)} passHref>
         <a href>
           {!!iconSrc && <RemoteImage src={iconSrc} alt={linha.nome} width={35} height={35} />}
-          <span>{linha.nome}</span>
+          <span className="menu__item--name">{linha.nome}</span>
         </a>
       </Link>
 
-      <button className="navbar-toggler" type="button" onClick={() => setIsSubMenuActive(!isSubMenuActive)}>
-        <i className="fa-solid fa-chevron-right" />
-      </button>
+      {
+        !!linha.subMenus?.length && (
+          <button className="navbar-toggler" type="button" onClick={() => setIsSubMenuActive(!isSubMenuActive)}>
+            <i className="fa-solid fa-chevron-right" />
+          </button>
+        )
+      }
 
       <ul className="item__subcategorias navbar-collapse nvl-1">
         <li className="category_father_name">

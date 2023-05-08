@@ -54,7 +54,7 @@ export function CheckoutMain() {
           </Modal>
         )
       }
-      <main className={`fechamento container_serie-ds d-flex row ${loading ? 'loading' : ''}`}>
+      <main className={`fechamento app-container d-flex row ${loading ? 'loading' : ''}`}>
         <div className="col-lg-4 col-md-6 col-sm-12">
           <PersonalBox />
           {retirarNaLoja && <PickUpInStoreBox />}

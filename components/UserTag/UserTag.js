@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useContext } from 'react';
 import UserLoggedContext from '@/contexts/UserLoggedContext';
 import { MobileWrapper } from './MobileWrapper';
 import { NotMobileWrapper } from './NotMobileWrapper';
 import { linkTo } from '@/helpers';
+import { Account } from '../Icons/Account';
 
 export default function UserTag({ isMobile }) {
   const user = useContext(UserLoggedContext);
@@ -21,7 +21,7 @@ export default function UserTag({ isMobile }) {
               <Link href="/login" passHref>
                 <a href className="login__container d-flex align-items-center">
                   <span className="tag_image">
-                    <Image src="/images/login.svg" alt="Login" width="30px" height="30px" />
+                    <Account />
                   </span>
                   <div className="d-flex flex-column">
                     <span>Entre ou </span>
@@ -35,7 +35,7 @@ export default function UserTag({ isMobile }) {
             <>
               <span className="login__container d-flex align-items-center">
                 <span className="tag_image">
-                  <Image src="/images/login.svg" alt="Login" width="30px" height="30px" />
+                  <Account />
                 </span>
                 <span className="d-flex flex-column">
                   <span>Olá, {nome}</span>

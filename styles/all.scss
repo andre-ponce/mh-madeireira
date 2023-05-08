@@ -1,54 +1,27 @@
-$main-color: #f9d901;
+@import "./config.scss";
 
-@import "./style.scss";
-@import "./header.scss";
-@import "./footer.scss";
-@import "./normalize.scss";
-@import "./product.scss";
-@import "./slider.scss";
-@import "./breadcrumb.scss";
+@import "./layout/style.scss";
+@import "./layout/header.scss";
+@import "./layout/searchbar.scss";
+@import "./layout/category-menu.scss";
+@import "./layout/footer.scss";
+@import "./layout/scroolbar.scss";
+@import "./layout/normalize.scss";
+@import "./layout/cookie-consent.scss";
 
-@import "./main.scss";
-@import "./categoria.scss";
-@import "./pg-institutional";
-@import "./pg-produto.scss";
-@import "./login.scss";
-@import "./cadastro.scss";
-@import "./minha-conta.scss";
-@import "./pedidos.scss";
-@import "./fechamento.scss";
-@import "./carrinho.scss";
-@import "./confirmacao.scss";
+@import "./components/product-card.scss";
+@import "./components/slider.scss";
+@import "./components/breadcrumb.scss";
+@import "./components/aside-card.scss";
+@import "./components/button.scss";
 
-.overlay {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 3;
-
-  .float-box {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    max-width: 96vw;
-    max-height: 96vh;
-    overflow: auto;
-    background-color: #eeeeee;
-    padding: 20px 20px;
-  }
-
-  .close {
-    width: 30px;
-    text-align: center;
-    margin: 0 0 5px;
-    position: absolute;
-    top: 7px;
-    right: 0;
-    cursor: pointer;
-  }
-}
+@import "./pages/home.scss";
+@import "./pages/categoria.scss";
+@import "./pages/pg-institutional";
+@import "./pages/pg-produto.scss";
+@import "./pages/login.scss";
+@import "./pages/cadastro.scss";
+@import "./pages/minha-conta.scss";
+@import "./pages/pedidos.scss";
+@import "./pages/fechamento.scss";
+@import "./pages/confirmacao.scss";

@@ -1,0 +1,24 @@
+.topbar__search {
+  padding: 5px 0;
+  background: $search_bg-color;
+  .search__input-search {
+    width: 100%;
+    padding: 4px 0;
+    input {
+      width: 100%;
+    }
+
+    button {
+      height: 34px;
+      width: 34px;
+      border-radius: 3px;
+      background: $search_button-bg-color;
+      color: $search_button-text-color;
+      svg {
+        transform: rotate(90deg);
+        font-size: 22px;
+        color: $search_button-text-color;
+      }
+    }
+  }
+}

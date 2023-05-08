@@ -22,7 +22,6 @@ export default function CategorySearch({ categoyName }) {
         && (
           <button
             type="button"
-            className="yellow-button"
             onClick={() => {
               const query = { ...router.query, q: search };
               router.push({ query }, { ...router.asPath }, { scroll: false });
@@ -37,7 +36,6 @@ export default function CategorySearch({ categoyName }) {
         && (
           <button
             type="button"
-            className="yellow-button"
             onClick={() => {
               const query = { ...router.query };
               delete query.q;

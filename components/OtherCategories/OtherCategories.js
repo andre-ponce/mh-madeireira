@@ -3,7 +3,7 @@ import React from 'react';
 function OtherCategories() {
   return (
     <section
-      className="main__others-categories container_serie-ds"
+      className="main__others-categories app-container"
       data-aos="fade-up-left"
       data-aos-duration="2000"
       data-aos-offset="500"

@@ -110,7 +110,7 @@ export function DiscountBox() {
               <div className="discount-coupon--form-group">
                 <input ref={inputCode} onKeyDown={handleKeyDown} type="text" value={code} onChange={(e) => setCode(e.target.value)} />
                 {error && <span className="discount-coupon--form-error">{error}</span>}
-                <button type="button" onClick={() => applyCode(code)}>APLICAR CUPOM</button>
+                <button className="box-button btn-secondary" type="button" onClick={() => applyCode(code)}>APLICAR CUPOM</button>
               </div>
             </div>
           )}

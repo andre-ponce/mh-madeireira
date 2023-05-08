@@ -67,7 +67,7 @@ export function NewAddressModal({ onSubmit, onClose }) {
               </FormSection>
               <AdressFormSection />
               {error && <div className="new-address--error">Falha ao salvar seu endereço, tente no vamente.</div>}
-              <button type="submit" disabled={!isValid || isSubmitting} className="new-address--action">
+              <button type="submit" disabled={!isValid || isSubmitting} className="new-address--action btn-secondary">
                 {isSubmitting ? 'Salvando...' : 'Salvar'}
               </button>
             </Form>

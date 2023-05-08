@@ -49,7 +49,7 @@ export function CartSideBar() {
     <aside className="cart">
       <div className={`cart__cart-container ${cartActiveClassName} ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
         <button className="navbar-toggler" type="button" onClick={close}>
-          <img src="/images/icons-menu/close-menu.png" alt="menu" />
+          <i className="fa-solid fa-times" />
         </button>
         {isEmpty(itens)
           ? <EmptyCart />

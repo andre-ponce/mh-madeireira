@@ -12,14 +12,17 @@ export function SecureAreaHeader() {
   return (
     <>
       <header className="header__simple-topbar">
-        <div className="container_serie-ds">
+        <div className="app-container">
           <Link href="/" passHref>
             <a href className="logo">
               <img className="logo__img" src="/images/logo_img.png" alt="Logo" />
               <h1 className="d-none">{nomeFantasia.toUpperCase()}</h1>
             </a>
           </Link>
-          <img className="simple-topbar__site-seguro-img" src="/images/site_seguro.png" alt="Site 100% Seguro" />
+          <div className="secure-info">
+            <i className="fa-solid fa-lock" />
+            <span>SITE 100% SEGURO</span>
+          </div>
         </div>
       </header>
     </>

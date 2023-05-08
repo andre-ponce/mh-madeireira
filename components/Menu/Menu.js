@@ -24,13 +24,13 @@ function Menu({ isFixed, isMenuMobileActive, closeMenuMobile }) {
       {
         isFixed && (
           <nav className="header__menu">
-            <ul className="container_serie-ds categorias_container--sd" />
+            <ul className="app-container categorias_container--sd" />
           </nav>
         )
       }
       <nav className={`header__menu ${isMenuMobileActive ? 'header__menu--active' : ''} ${isFixed ? 'fixed' : ''}`}>
         <ButtonCloseMenuMobile close={closeMenuMobile} />
-        <ul className="container_serie-ds categorias_container--sd calculating" ref={ulRef}>
+        <ul className="app-container categorias_container--sd calculating" ref={ulRef}>
           <MenuSeeAll itens={menu} />
           <li className="menu__item menu__login">
             <UserTag isMobile />

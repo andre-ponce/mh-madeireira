@@ -6,8 +6,8 @@ import { linkTo } from '@/helpers';
 
 export const getServerSideProps = withAuthorization(async ({ user, query }) => {
   const [global] = await getGlobalData();
-  //TODO: checa se o pedido é desse cliente
-  //TODO: checa o status do pedido
+  // TODO: checa se o pedido é desse cliente
+  // TODO: checa o status do pedido
   return {
     props: {
       user,
@@ -38,7 +38,7 @@ export default function Confirmacao({ global, user, code }) {
           <span className="confirmacao--code">{code}</span>
           <br />
           <Link href={linkTo.order(code)} passHref>
-            <a className="confirmacao--action">Acompanhar seu Pedido</a>
+            <a className="confirmacao--action btn-secondary">Acompanhar seu Pedido</a>
           </Link>
         </div>
       </main>

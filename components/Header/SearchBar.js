@@ -16,7 +16,7 @@ export default function SearchBar() {
 
   return (
     <div className="topbar__search">
-      <div className="container_serie-ds d-flex align-items-center">
+      <div className="app-container d-flex align-items-center">
         <form className="search__input-search form-search d-flex" onSubmit={doSearch}>
           <input
             value={search}
@@ -26,7 +26,7 @@ export default function SearchBar() {
             className="input-text"
             placeholder="Digite o que busca"
           />
-          <button className="yellow-button" type="submit">
+          <button type="submit">
             <i className="fa-solid fa-magnifying-glass" />
           </button>
         </form>

@@ -24,7 +24,7 @@ export default function MyOrders({ orders, global }) {
 function MyOrdersMain({ orders }) {
   return (
     <>
-      <main className="main-order container_serie-ds d-flex row">
+      <main className="main-order app-container d-flex row">
         <h2 className="page-title">Seus Pedidos</h2>
         <OrderList orders={orders} />
       </main>

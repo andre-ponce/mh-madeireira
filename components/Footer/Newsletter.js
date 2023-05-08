@@ -48,11 +48,13 @@ function Newsletter() {
     <div className="footer__newsletter">
       <div className="newsletter__container">
         <div className="newsletter__text">
-          <img src="/images/envelope.png" alt="carta" style={{ filter: 'grayscale(100%)' }} />
-          <span>
+          <span className="newsletter__text--img">
+            <i className="fa-regular fa-envelope" />
+          </span>
+          <span className="newsletter__text--content">
             Cadastre-se e receba descontos e
             {' '}
-            <strong className="txt-yellow">ofertas exclusivas</strong>
+            <strong className="newsletter__text--highlight">ofertas exclusivas</strong>
           </span>
         </div>
         <form className="newsletter__form" onSubmit={handleSubmit}>
@@ -81,21 +83,20 @@ function Newsletter() {
             {touched.email && errors.email && <span>{errors.email}</span>}
           </div>
           <div className="form__inputs">
-            <button className="yellow-button" type="submit">
+            <button type="submit">
+              <span>
+                {
+                  isSubmitting
+                    ? <i className="fa-solid fa-spin fa-spinner" key="spinner" />
+                    : <i className="fa-solid fa-paper-plane" key="plane" />
+                }
+              </span>
               {
-                isSubmitting
-                  ? (
-                    <span>
-                      <i className="fa-solid fa-spin fa-spinner" />
-                    </span>
-                  )
-                  : <img src="/images/braskape_logo-aviao.png" alt="avião" />
-              }
-              {
-                alertMessage &&
-                <SweetAlert onConfirm={() => setAlertMessage('')} btnSize="sm" confirmBtnText="Voltar" confirmBtnStyle={{ border: '0' }}>
-                  {alertMessage}
-                </SweetAlert>
+                alertMessage && (
+                  <SweetAlert onConfirm={() => setAlertMessage('')} btnSize="sm" confirmBtnText="Voltar" confirmBtnStyle={{ border: '0' }}>
+                    {alertMessage}
+                  </SweetAlert>
+                )
               }
             </button>
           </div>

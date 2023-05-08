@@ -54,14 +54,14 @@ export function AddressBox() {
         }
 
         <div className="mt-3">
-          <button type="button" className="button-black" onClick={() => setShowingAdresses(true)}>
+          <button type="button" className="box-button btn-secondary" onClick={() => setShowingAdresses(true)}>
             {enderecoDeEntrega ? 'Entregar em outro endereço' : 'Selecionar endereço'}
           </button>
           {
             !!permiteRetirarNaLoja && (
               <div>
                 <div className="text-center">OU</div>
-                <button type="button" className="button-black" onClick={() => setDelivery({ retirarNaLoja: true })}>
+                <button type="button" className="box-button btn-secondary" onClick={() => setDelivery({ retirarNaLoja: true })}>
                   retirar no loja
                 </button>
               </div>

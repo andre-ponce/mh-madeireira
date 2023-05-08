@@ -18,7 +18,7 @@ export function ProductMain({
   payConditions,
 }) {
   return (
-    <main className="container_serie-ds pg-product">
+    <main className="app-container pg-product">
 
       <Breadcrumb
         path={[{

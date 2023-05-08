@@ -26,7 +26,7 @@ export default function SignupForm({ user, onSubmit }) {
   };
 
   return (
-    <main className="main main-cadastro container_serie-ds">
+    <main className="main main-cadastro app-container">
       <h2 className="page-title">{user.id ? 'Minha conta' : 'Criar nova conta'}</h2>
       <Formik initialValues={initialValues} validationSchema={userSchema} onSubmit={submit}>
         {({ values }) => (

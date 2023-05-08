@@ -49,7 +49,7 @@ export function ChooseAddressModal({ onClose, onSubmit, newAddres }) {
     return (
       <div className="change-address--empty">
         <span>Você não possuí endereços de entrega cadastrados</span>
-        <button type="button" onClick={newAddres}>Cadastrar Endereço</button>
+        <button className="btn-secondary" type="button" onClick={newAddres}>Cadastrar Endereço</button>
       </div>
     );
   }
@@ -70,7 +70,7 @@ export function ChooseAddressModal({ onClose, onSubmit, newAddres }) {
             </>
           ))
         }
-        <button type="button" className="new-address--button" onClick={newAddres}>
+        <button type="button" className="new-address--button btn-secondary" onClick={newAddres}>
           Cadastrar outro endereço
         </button>
       </div>
@@ -116,7 +116,7 @@ function AddressDetail({ address, onClick, disabled }) {
           <br />
           {`${format.telephone(`${ddd}${telefone}`)}`}
         </span>
-        <button className="item--action" type="button" onClick={() => post(address)} disabled={loading || disabled}>
+        <button className="item--action btn-secondary" type="button" onClick={() => post(address)} disabled={loading || disabled}>
           {
             loading
               ? 'Aguarde...'

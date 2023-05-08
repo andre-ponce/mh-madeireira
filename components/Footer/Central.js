@@ -13,7 +13,7 @@ function Central({
 }) {
   return (
     <div className="footer__footer-central">
-      <div className="container_serie-ds">
+      <div className="app-container">
         <div className="footer-central__institucional">
           <h2>INSTITUCIONAL</h2>
           {pages.map((p) => (
@@ -38,7 +38,7 @@ function Central({
               facebook
               && (
                 <a href={facebook}>
-                  <img src="/images/facebook.svg" alt="facebook" />
+                  <i className="fa-brands fa-facebook" />
                 </a>
               )
             }
@@ -46,7 +46,7 @@ function Central({
               instagram
               && (
                 <a href={instagram}>
-                  <img src="/images/instagram.svg" alt="instagram" />
+                  <i className="fa-brands fa-instagram" />
                 </a>
               )
             }
@@ -54,7 +54,7 @@ function Central({
               youtube
               && (
                 <a href={youtube}>
-                  <img src="/images/youtube.svg" alt="youtube" />
+                  <i className="fa-brands fa-youtube" />
                 </a>
               )
             }

@@ -23,7 +23,7 @@ export function SignupBox({ signup }) {
             Informe um e-mail válido para que possamos enviar o link de confirmação.
           </p>
           <div className="col-md-12 mb-3">
-            <button type="submit" className="main__form__button">Cadastre-se</button>
+            <button type="submit" className="main__form__button btn-secondary">Cadastre-se</button>
           </div>
         </div>
       </form>

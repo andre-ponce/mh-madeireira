@@ -6,7 +6,7 @@ import Product from '../Product';
 function Highlights({ products }) {
   return (
     <section
-      className="main__vitrine-destaques container_serie-ds"
+      className="main__vitrine-destaques app-container"
       data-aos="zoom-in"
       data-aos-duration="2000"
       data-aos-offset="500"

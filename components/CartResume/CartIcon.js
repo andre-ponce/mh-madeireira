@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import SessionContext from '@/contexts/SessionContext';
 import { trigger } from '@/helpers/observable';
+import { Cart } from '../Icons/Cart';
 
 export function CartIcon() {
   const cart = useContext(SessionContext);
@@ -11,7 +12,7 @@ export function CartIcon() {
   return (
     <div className="cart">
       <span className="cart__icon_group" onClick={onClick}>
-        <img src="/images/cart.svg" alt="Carrinho" />
+        <Cart />
         {
           error
           && (

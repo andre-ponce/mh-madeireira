@@ -30,7 +30,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
 
   return (
     <div className={`header__topbar--fixed ${isFixed ? 'fixed' : 'd-none'}`}>
-      <div className="container_serie-ds d-flex justify-content-between align-items-center">
+      <div className="app-container d-flex justify-content-between align-items-center">
         <Link href="/" passHref>
           <a href className="logo">
             <img className="logo__img" src="/images/logo_img--fixed.png" alt="Logo" />
@@ -50,7 +50,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
             className="input-text"
             placeholder="Digite o que busca ou o código original da peça"
           />
-          <button type="submit" className="yellow-button">
+          <button type="submit">
             <i className="fa-solid fa-magnifying-glass" />
           </button>
         </form>

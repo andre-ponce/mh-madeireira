@@ -19,7 +19,7 @@ function Topbar({ openMenuMobile }) {
 
   return (
     <div className="topbar__top">
-      <div className="container_serie-ds d-flex justify-content-between align-items-center">
+      <div className="app-container d-flex justify-content-between align-items-center">
 
         <button className="navbar-toggler" type="button" onClick={openMenuMobile}>
           <i className="fa-solid fa-bars menu-icon" />
@@ -28,21 +28,20 @@ function Topbar({ openMenuMobile }) {
         <Link href="/" passHref>
           <a href className="logo">
             <img className="logo__img" src="/images/logo_img.png" alt={`${nomeFantasia} Logo`} />
-            {/* <img className="logo__text" src="/images/logo_text.svg" alt={nomeFantasia} /> */}
             <h1 className="d-none">{nomeFantasia}</h1>
           </a>
         </Link>
 
-        <span className="topbar__top">
+        <span>
           <strong>
-            <a className="txt-yellow" href={linkTo.mailto(emailAtendimento)}>{emailAtendimento}</a>
+            <a className='topbar--contact' href={linkTo.mailto(emailAtendimento)}>{emailAtendimento}</a>
           </strong>
         </span>
 
-        <span className="topbar__top">
+        <span>
           Televendas:
           {' '}
-          <strong className="txt-yellow">{format.telephone(telefone)}</strong>
+          <a className='topbar--contact' href={linkTo.tel(telefone)}>{format.telephone(telefone)}</a>
         </span>
 
         <HelpInfo

@@ -1,7 +1,7 @@
 function InstitutionalMain({ titulo, conteudo }) {
   return (
     <main className="main intitutional">
-      <section className="container_serie-ds">
+      <section className="app-container">
         <h2 className="page-title">{titulo}</h2>
         <div className="intitutional__content" dangerouslySetInnerHTML={{ __html: conteudo }} />
       </section>

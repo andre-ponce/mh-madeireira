@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { format } from '@/helpers';
-import Modal from '../Modal';
+import { FloatBox } from '../Modal/Modal';
 
 export function PaymentOptionsModal({ payConditions, handleHide }) {
   const [group, setGroup] = useState();
@@ -33,50 +33,44 @@ export function PaymentOptionsModal({ payConditions, handleHide }) {
   }
 
   const maxInstallments = group.bandeiras.map((b) => b.parcelas.length).sort().reverse()[0];
-  const parcelas = [...new Array(maxInstallments).keys()].filter((x) => x);
+  const parcelas = [...new Array(maxInstallments + 1).keys()].filter((x) => x);
 
   return (
-    <Modal handleHide={handleHide}>
-      <div className="modal_app" onClick={(e) => e.stopPropagation()}>
-        <button type="button" className="close" onClick={handleHide}>
-          <i className="fal fa-times" />
-        </button>
-        <div className="title">Formas de pagamento</div>
-        <div className="modal__forma">
-          {
-            payConditions.map((p) => (
-              <span
-                onClick={() => setGroup(p)}
-                className={`modal__forma__item ${group.id === p.id ? 'active' : ''}`}
-              >
-                {p.nome}
-              </span>
-            ))
-          }
-        </div>
-        <div className="modal__block">
-          <table>
-            <tbody>
-              <tr>
-                {
-                  group.bandeiras.map((b) => <th>{b.bandeira}</th>)
-                }
-              </tr>
-              {
-                parcelas.map((p) => (
-                  <tr key={p}>
-                    {
-                      group.bandeiras.map((b) => (
-                        <td>{`${p}x ${format.currency(b.parcelas[p - 1]?.valorDaParcela) || '-'}`}</td>
-                      ))
-                    }
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
+    <FloatBox canClose handleHide={handleHide} title="Formas de pagamento" className="modal_app">
+      <div className="modal__forma">
+        {
+          payConditions.map((p) => (
+            <span
+              onClick={() => setGroup(p)}
+              className={`modal__forma__item ${group.id === p.id ? 'active' : ''}`}
+            >
+              {p.nome}
+            </span>
+          ))
+        }
       </div>
-    </Modal>
+      <div className="modal__block">
+        <table>
+          <tbody>
+            <tr>
+              {
+                group.bandeiras.map((b) => <th key={b.id}>{b.bandeira}</th>)
+              }
+            </tr>
+            {
+              parcelas.map((p) => (
+                <tr key={p}>
+                  {
+                    group.bandeiras.map((b) => (
+                      <td key={b.id}>{`${p}x ${format.currency(b.parcelas[p - 1]?.valorDaParcela) || '-'}`}</td>
+                    ))
+                  }
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </FloatBox>
   );
 }

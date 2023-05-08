@@ -14,7 +14,7 @@ export default function Cart({ global }) {
   return (
     <>
       <Layout globalData={global} secureArea>
-        <main className="carrinho container_serie-ds d-flex row">
+        <main className="carrinho app-container d-flex row">
           <Grid />
           <Sidebar />
         </main>
