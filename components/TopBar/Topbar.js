@@ -5,6 +5,8 @@ import { format, linkTo } from '@/helpers';
 import HelpInfo from './HelpInfo';
 import UserTag from '../UserTag/UserTag';
 import { CartIcon } from '../CartResume/CartIcon';
+import { RemoteImage } from '../Image';
+import { url } from '@/services/statics.service';
 
 function Topbar({ openMenuMobile }) {
   const {
@@ -14,6 +16,9 @@ function Topbar({ openMenuMobile }) {
       telefone,
       whatsapp,
       anoDaFundacao,
+    },
+    site: {
+      logoFileName,
     },
   } = useContext(GlobalDataContext);
 
@@ -27,7 +32,8 @@ function Topbar({ openMenuMobile }) {
 
         <Link href="/" passHref>
           <a href className="logo">
-            <img className="logo__img" src="/images/logo_img.png" alt={`${nomeFantasia} Logo`} />
+            {/* <RemoteImage src={url.imageLayout(logoFileName)} width="200" height="50" /> */}
+            <img className="logo__img" src={url.imageLayout(logoFileName)} alt={`${nomeFantasia} Logo`} />
             <h1 className="d-none">{nomeFantasia}</h1>
           </a>
         </Link>

@@ -5,7 +5,8 @@ import useAnimateOnRouteChange from '@/hooks/useAnimateOnRouteChange';
 import { useCart } from '@/hooks/useCart';
 import { registerDynamicScript } from '@/hooks/registerDynamicScript';
 import { useClientInfo } from '@/hooks/useClientInfo';
-import { configureStatics } from '@/services/statics.service';
+import { configureStatics, url } from '@/services/statics.service';
+import Head from 'next/head';
 import { PublicArea } from './PublicArea';
 import { SecureArea } from './SecureArea';
 import { CartSideBar } from '../CartResume/CartSideBar';
@@ -27,6 +28,9 @@ export function Layout({ children, globalData, secureArea }) {
       <UserLoggedProvider value={user}>
         <SessionProvider value={{ ...cart, loading: cartLoading, error: cartErrors }}>
           <Area globalData={globalData}>
+            <Head>
+              <link rel="icon" href={url.imageLayout(globalData.site.faviconFileName)} />
+            </Head>
             {children}
           </Area>
           <CartSideBar />

@@ -6,6 +6,7 @@ import { CartIcon } from '../CartResume/CartIcon';
 import HelpInfo from '../TopBar/HelpInfo';
 import UserTag from '../UserTag/UserTag';
 import Link from 'next/link';
+import { url } from '@/services/statics.service';
 
 function TopbarFixed({ isFixed, toggleMenu }) {
   const {
@@ -13,6 +14,10 @@ function TopbarFixed({ isFixed, toggleMenu }) {
       telefone,
       whatsapp,
       emailAtendimento,
+      nomeFantasia,
+    },
+    site: {
+      logoFloatFileName,
     },
   } = useContext(GlobalDataContext);
 
@@ -33,7 +38,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
       <div className="app-container d-flex justify-content-between align-items-center">
         <Link href="/" passHref>
           <a href className="logo">
-            <img className="logo__img" src="/images/logo_img--fixed.png" alt="Logo" />
+            <img className="logo__img" src={url.imageLayout(logoFloatFileName)} alt={`${nomeFantasia} Logo`} />
           </a>
         </Link>
 

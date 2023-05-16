@@ -23,6 +23,7 @@ let statics = {
   banner: undefined,
   documentos: undefined,
   anexos: undefined,
+  layouts: undefined,
 };
 
 export function configureStatics(data) {
@@ -36,6 +37,7 @@ export function configureStatics(data) {
     banner: new URL(normalize(data.diretorioBanners), urlBase).href,
     documentos: new URL(normalize(data.diretorioDocumentos), urlBase).href,
     anexos: new URL(normalize(data.diretorioAnexos), urlBase).href,
+    layouts: new URL(normalize(data.diretorioLayouts), urlBase).href,
   };
 }
 
@@ -44,4 +46,5 @@ export const url = {
   imageBrand: (fileName, fallbackImage) => fallback(fileName, statics.brand, fallbackImage),
   imageCategory: (fileName, fallbackImage) => fallback(fileName, statics.category, fallbackImage),
   imageBanner: (fileName, fallbackImage) => fallback(fileName, statics.banner, fallbackImage),
+  imageLayout: (fileName, fallbackImage) => fallback(fileName, statics.layouts, fallbackImage),
 };

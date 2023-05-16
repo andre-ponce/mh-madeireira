@@ -1,4 +1,5 @@
 import GlobalDataContext from "@/contexts/GlobalDataContext";
+import { url } from "@/services/statics.service";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -7,6 +8,9 @@ export function SecureAreaHeader() {
     institucional: {
       nomeFantasia,
     },
+    site: {
+      logoAccountFileName
+    }
   } = useContext(GlobalDataContext);
 
   return (
@@ -15,7 +19,7 @@ export function SecureAreaHeader() {
         <div className="app-container">
           <Link href="/" passHref>
             <a href className="logo">
-              <img className="logo__img" src="/images/logo_img.png" alt="Logo" />
+              <img className="logo__img" src={url.imageLayout(logoAccountFileName)} alt={`${nomeFantasia} Logo`} />
               <h1 className="d-none">{nomeFantasia.toUpperCase()}</h1>
             </a>
           </Link>
