@@ -111,7 +111,6 @@
           &__buy {
             display: flex;
             padding-top: 20px;
-            margin-bottom: 18px;
             border-top: 1px solid #f0f0f0;
             .buy {
               &__button {
@@ -161,11 +160,29 @@
           }
           &__unavaliable {
             display: flex;
-            padding-top: 20px;
-            margin-bottom: 18px;
-            border-top: 1px solid #f0f0f0;
             .buy {
               &__button {
+                height: 42px;
+                width: 100%;
+                font-size: 14px;
+                color: white;
+                background: #999;
+                text-transform: uppercase;
+              }
+            }
+          }
+          &__offsite {
+            .no-price {
+              text-align: center;
+              font-size: 22px;
+              text-transform: uppercase;
+              font-weight: 700;
+              margin: 10px 0;
+            }
+
+            .buy {
+              &__button {
+                display: block;
                 height: 42px;
                 width: 100%;
                 font-size: 14px;
@@ -177,7 +194,7 @@
           }
           &__installments-group {
             display: flex;
-            margin-bottom: 18px;
+            margin: 18px 0;
             align-items: center;
             .installments-group__installments {
               width: 100%;
