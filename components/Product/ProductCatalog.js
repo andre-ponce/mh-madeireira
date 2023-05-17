@@ -1,67 +1,37 @@
 import React, { useContext, useState } from 'react';
 import Link from 'next/link';
-import { format, image, linkTo } from '@/helpers';
+import { format, linkTo } from '@/helpers';
 import { addToCart, removeFromCart } from '@/services/cart.service';
 import SessionContext from '@/contexts/SessionContext';
 import { url } from '@/services/statics.service';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { RemoteImage } from '../Image';
 
-function Product({ product }) {
+function ProductCatalog({ product }) {
   return (
-    <div className='product-card'>
-      <div className=" product">
+    <div className="product-card">
+      <div className="product">
         <Link href={linkTo.product(product)} passHref>
           <a className="product__topbar">
-            <RemoteImage src={url.imageProduct(product.fotoUrl)} alt={product.name} width={200} height={200} />
-            {
-              product.desconto > 0 && (
-                <span className="topbar__discount">
-                  {format.discount(product.desconto)}
-                </span>
-              )
-            }
+            <RemoteImage
+              src={url.imageProduct(product.fotoUrl)}
+              alt={product.name}
+              width={200}
+              height={200}
+            />
+            <DiscountTag discount={product.desconto} />
           </a>
         </Link>
         <div className="product__infos">
           <strong className="infos__brand">{product.marcaNome}</strong>
-          <span className="infos__ref">{product.sku}</span>
+          <span className="infos__ref">{`ref: ${product.sku}`}</span>
           <Link href={linkTo.product(product)} passHref>
-            <a href>
-              <h3 className="infos__name">
-                {product.nome}
-              </h3>
+            <a>
+              <h3 className="infos__name">{product.nome}</h3>
             </a>
           </Link>
         </div>
-        {
-          product.sobConsulta ? (
-            <div className="product__prices">
-              <span className="prices__old">&nbsp;</span>
-              <strong className="prices__actual">Preço sob consulta</strong>
-              <span className="prices__installments">&nbsp;</span>
-            </div>
-          ) : (
-            <div className="product__prices">
-              {
-                product.precoDe > product.precoPor
-                  ? <span className="prices__old">{format.currency(product.precoDe)}</span>
-                  : <span className="prices__old">&nbsp;</span>
-              }
-              <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
-              <span className="prices__installments">
-                {product.parcelamento}
-                x de
-                {' '}
-                <strong>
-                  {format.currency(product.valorParcelamento)}
-                </strong>
-                {' '}
-                s/ juros
-              </span>
-            </div>
-          )
-        }
+        <Price product={product} />
         <div className="product__actions">
           <Link href={product.categoryLink || linkTo.product(product)}>
             <a className="actions__link-category">
@@ -75,15 +45,27 @@ function Product({ product }) {
   );
 }
 
+function DiscountTag({ discount }) {
+  if (discount <= 0) {
+    return <></>;
+  }
+
+  return (
+    <span className="topbar__discount">
+      {format.discount(discount)}
+    </span>
+  );
+}
+
 function ProductCardQuickAction({ product }) {
   const { itens } = useContext(SessionContext);
-  const current = itens?.filter(item => item.produtoId === product.id)[0];
+  const current = itens?.filter(({ produtoId }) => produtoId === product.id)[0];
   const [busy, setBusy] = useState(false);
   const alreadyIn = !!current;
   const initialQuantity = alreadyIn ? current.quantidade : 1;
   const [quantity, setQuantity] = useState(initialQuantity);
   const [alertMessage, setAlertMessage] = useState('');
-  const maxToSeal = [product.estoque, product.maximoPorVenda].filter(x => x && x > 0).sort()[0];
+  const maxToSeal = [product.estoque, product.maximoPorVenda].filter((x) => x && x > 0).sort()[0];
 
   const add = async () => {
     if (quantity === 0) {
@@ -111,8 +93,6 @@ function ProductCardQuickAction({ product }) {
     ctaLabel = 'SAIBA MAIS';
   } else if (product.vendaExtraSite) {
     ctaLabel = 'SAIBA MAIS';
-  } else if (!product.temEstoque) {
-    ctaLabel = 'SEM ESTOQUE';
   } else if (product.usaGrade) {
     ctaLabel = 'COMPRAR';
   }
@@ -125,6 +105,10 @@ function ProductCardQuickAction({ product }) {
         </Link>
       </div>
     );
+  }
+
+  if (!product.temEstoque) {
+    return <></>;
   }
 
   return (
@@ -142,6 +126,7 @@ function ProductCardQuickAction({ product }) {
           />
 
           <button
+            type="button"
             disabled={quantity < maxToSeal}
             onClick={() => setQuantity(quantity + 1)}
             className="plus"
@@ -149,6 +134,7 @@ function ProductCardQuickAction({ product }) {
             <i className="fa-solid fa-chevron-up" />
           </button>
           <button
+            type="button"
             disabled={quantity < 2}
             onClick={() => setQuantity(quantity - 1)}
             className="minus"
@@ -157,11 +143,8 @@ function ProductCardQuickAction({ product }) {
           </button>
         </div>
         <button type="button" className="buy__button" onClick={async () => add()}>
-          {
-            busy
-              ? <span><i className='fa fa-spin fa-spinner'></i></span>
-              : (alreadyIn ? <>ALTERAR</> : <>COMPRAR</>)
-          }
+          {!!busy && (<span><i className="fa fa-spin fa-spinner" /></span>)}
+          {!busy && (alreadyIn ? <span key="alterar">ALTERAR</span> : <span key="comprar">COMPRAR</span>)}
         </button>
       </div>
       {
@@ -178,7 +161,46 @@ function ProductCardQuickAction({ product }) {
         )
       }
     </>
-  )
+  );
 }
 
-export default Product;
+function Price({ product }) {
+  if (product.sobConsulta) {
+    return (
+      <div className="product__prices">
+        <strong className="prices__actual">Preço sob consulta</strong>
+      </div>
+    );
+  }
+
+  if (!product.temEstoque) {
+    return (
+      <div className="product__prices">
+        <strong className="prices__actual">Produto Indisponível</strong>
+      </div>
+    );
+  }
+
+  return (
+    <div className="product__prices">
+      {
+        product.precoDe > product.precoPor
+          ? <span className="prices__old">{format.currency(product.precoDe)}</span>
+          : <span className="prices__old">&nbsp;</span>
+      }
+      <strong className="prices__actual">{format.currency(product.precoPor)}</strong>
+      <span className="prices__installments">
+        {product.parcelamento}
+        x de
+        {' '}
+        <strong>
+          {format.currency(product.valorParcelamento)}
+        </strong>
+        {' '}
+        s/ juros
+      </span>
+    </div>
+  );
+}
+
+export default ProductCatalog;

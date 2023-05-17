@@ -1,6 +1,6 @@
 import React from 'react';
 import CatalogFilter from '../CatalogFilter';
-import Product from '../Product';
+import ProductCatalog from '../Product';
 import CategorySearch from './CategorySearch';
 
 function Category({
@@ -60,7 +60,7 @@ function Category({
 
             <div className="gallery__products">
               {products.map((product) => (
-                <Product key={product.id} product={product} />
+                <ProductCatalog key={product.id} product={product} />
               ))}
             </div>
 

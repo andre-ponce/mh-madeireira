@@ -1,6 +1,6 @@
 import React from 'react';
 import Slick from 'react-slick';
-import Product from '../Product';
+import ProductCatalog from '../Product';
 
 import settings from './settings';
 
@@ -10,7 +10,7 @@ function ProductCarousel({ products, title }) {
       <h2 className="title-border-left">{title}</h2>
       <Slick className="products-carousel" {...settings}>
         {products.map((product) => (
-          <Product product={product} mostWanted key={product.id} />
+          <ProductCatalog product={product} mostWanted key={product.id} />
         ))}
       </Slick>
     </section>

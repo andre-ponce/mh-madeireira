@@ -1,7 +1,7 @@
 import React from 'react';
 import shortid from 'shortid';
 
-import Product from '../Product';
+import ProductCatalog from '../Product';
 
 function Highlights({ products }) {
   return (
@@ -14,7 +14,7 @@ function Highlights({ products }) {
       <h2 className="title-border-left">Destaques</h2>
       <div className="vitrine-destaques__produtos">
         {products.map((product) => (
-          <Product product={product} key={shortid()} />
+          <ProductCatalog product={product} key={shortid()} />
         ))}
       </div>
     </section>
