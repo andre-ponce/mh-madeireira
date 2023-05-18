@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Provider } from './Provider';
 
 export function FreightData({
@@ -10,7 +11,7 @@ export function FreightData({
   return (
     <>
       <div className="cart-freight--data">
-        <span className="cart-freight--icon"><i className="fa-solid fa-location-dot" /></span>
+        <span className="cart-freight--icon"><FontAwesomeIcon icon="fa-location-dot" /></span>
         <span className="cart-freight--address">{`${street} - ${city}/${state}`}</span>
         <span className="cart-freight--link" onClick={clearAddress}>alterar endereço</span>
       </div>
@@ -18,7 +19,7 @@ export function FreightData({
         && (
           <div>
             Calculando frete...
-            <span><i className="fa-solid fa-spin fa-spinner" /></span>
+            <span><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>
           </div>
         )}
       {!loading
@@ -37,7 +38,7 @@ export function FreightData({
               && (
                 <div>
                   Nenhuma opção de frete encontrada para esse endereço
-                  <span onClick={reload}><i className="fa-solid fa-reload" /></span>
+                  <span onClick={reload}><FontAwesomeIcon icon="fa-reload" /></span>
                 </div>
               )}
           </div>

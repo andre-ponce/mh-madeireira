@@ -3,6 +3,7 @@ import { format, linkTo } from '@/helpers';
 import Link from 'next/link';
 import { addToCart } from '@/services/cart.service';
 import GlobalDataContext from '@/contexts/GlobalDataContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PaymentOptionsModal from '../PaymentOptionsModal';
 import { ProductFreightSimulator } from './ProductFreightSimulator';
 import ProductRating from '../ProductRating';
@@ -115,17 +116,17 @@ function BuyButton({ productId }) {
     <div className="price-infos__buy">
       <div className="block_qtd-item">
         <button type="button" className="qtd-item__minus" onClick={() => quantity > 1 && setQuantity(quantity - 1)}>
-          <i className="fa-solid fa-minus" />
+          <FontAwesomeIcon icon="fa-minus" />
         </button>
         <input type="number" disabled min="0" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
         <button type="button" className="qtd-item__plus" onClick={() => setQuantity(quantity + 1)}>
-          <i className="fa-solid fa-plus" />
+          <FontAwesomeIcon icon="fa-plus" />
         </button>
       </div>
       <button onClick={buy} type="button" className="buy__button">
         {
           busy ? (
-            <span key="spinner"><i className="fa-solid fa-spin fa-spinner" /></span>
+            <span key="spinner"><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>
           ) : (
             <span key="compra">COMPRAR</span>
           )

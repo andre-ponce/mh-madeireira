@@ -4,6 +4,7 @@ import UserLoggedContext from '@/contexts/UserLoggedContext';
 import { MobileWrapper } from './MobileWrapper';
 import { NotMobileWrapper } from './NotMobileWrapper';
 import { linkTo } from '@/helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Account } from '../Icons/Account';
 
 export default function UserTag({ isMobile }) {
@@ -42,7 +43,7 @@ export default function UserTag({ isMobile }) {
                   <span className="login__account">
                     Minha conta
                     {' '}
-                    <i className="fa-solid fa-chevron-down" />
+                    <FontAwesomeIcon icon="fa-chevron-down" />
                   </span>
                 </span>
               </span>

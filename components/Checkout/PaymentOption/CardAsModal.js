@@ -1,5 +1,6 @@
 import { FloatBox } from '@/components/Modal/Modal';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CardForm } from '../CardForm';
 
 export function CardAsModal({ data, onConfigure, config }) {
@@ -35,7 +36,7 @@ export function CardAsModal({ data, onConfigure, config }) {
           {nome}
         </span>
         <span className={`payment-details--generic-link ${invalid ? 'invalid' : ''}`} onClick={() => setActive(true)}>
-          {invalid ? (<span className="payment-details--generic-icon"><i className="fa-solid fa-triangle-exclamation" /></span>) : <></>}
+          {invalid ? (<span className="payment-details--generic-icon"><FontAwesomeIcon icon="fa-triangle-exclamation" /></span>) : <></>}
           {
             invalid ? 'Preencher dados do cartão' : 'Revisar dados do cartão'
           }

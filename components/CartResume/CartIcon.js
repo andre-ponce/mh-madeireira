@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import SessionContext from '@/contexts/SessionContext';
 import { trigger } from '@/helpers/observable';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Cart } from '../Icons/Cart';
 
 export function CartIcon() {
@@ -17,7 +18,7 @@ export function CartIcon() {
           error
           && (
             <span className="cart__qtd" title={error}>
-              <i className="fa-solid fa-rotate text-danger" />
+              <FontAwesomeIcon icon="fa-rotate" className="text-danger" />
             </span>
           )
         }
@@ -25,7 +26,7 @@ export function CartIcon() {
           loading
           && (
             <span className="cart__qtd">
-              <i className="fa-solid fa-spinner fa-spin" />
+              <FontAwesomeIcon icon="fa-spinner fa-spin" />
             </span>
           )
         }

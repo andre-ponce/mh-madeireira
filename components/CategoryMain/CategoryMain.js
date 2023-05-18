@@ -1,10 +1,9 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CatalogFilter from '../CatalogFilter';
 import ProductCatalog from '../Product';
-import CategorySearch from './CategorySearch';
 
 function Category({
-  name,
   products,
   filters,
   onFilterChange,
@@ -43,7 +42,7 @@ function Category({
                 <div className="dropdown">
                   <button type="button" className="btn btn-secondary" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-38,0">
                     {currentOrder}
-                    <i className="fa-solid fa-chevron-down" />
+                    <FontAwesomeIcon icon="fa-chevron-down" />
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                     <button type="button" disabled={!orderCode} onClick={() => orderBy.reorder('')} className="dropdown-item">Relevância</button>

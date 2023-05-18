@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Newsletter() {
   const [alertMessage, setAlertMessage] = useState('');
@@ -49,7 +50,7 @@ function Newsletter() {
       <div className="newsletter__container">
         <div className="newsletter__text">
           <span className="newsletter__text--img">
-            <i className="fa-regular fa-envelope" />
+            <FontAwesomeIcon icon="fa-regular fa-envelope" />
           </span>
           <span className="newsletter__text--content">
             Cadastre-se e receba descontos e

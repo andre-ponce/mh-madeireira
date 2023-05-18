@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react';
 import GlobalDataContext from '@/contexts/GlobalDataContext';
 import { format } from '@/helpers';
@@ -43,7 +44,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
         </Link>
 
         <button type="button" className="topbar--fixed__menu" onClick={toggleMenu}>
-          <i className="fa-solid fa-bars menu-icon" />
+          <FontAwesomeIcon icon="fa-bars" className="menu-icon" />
         </button>
 
         <form className="form-search d-flex" onSubmit={doSearch}>
@@ -56,7 +57,7 @@ function TopbarFixed({ isFixed, toggleMenu }) {
             placeholder="Digite o que busca ou o código original da peça"
           />
           <button type="submit">
-            <i className="fa-solid fa-magnifying-glass" />
+            <FontAwesomeIcon icon="fa-magnifying-glass" />
           </button>
         </form>
 

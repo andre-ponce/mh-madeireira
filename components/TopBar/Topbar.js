@@ -6,6 +6,7 @@ import HelpInfo from './HelpInfo';
 import UserTag from '../UserTag/UserTag';
 import { CartIcon } from '../CartResume/CartIcon';
 import { RemoteImage } from '../Image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { url } from '@/services/statics.service';
 
 function Topbar({ openMenuMobile }) {
@@ -27,7 +28,7 @@ function Topbar({ openMenuMobile }) {
       <div className="app-container d-flex justify-content-between align-items-center">
 
         <button className="navbar-toggler" type="button" onClick={openMenuMobile}>
-          <i className="fa-solid fa-bars menu-icon" />
+          <FontAwesomeIcon icon="fa-bars" />
         </button>
 
         <Link href="/" passHref>

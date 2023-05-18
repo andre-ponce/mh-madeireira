@@ -1,5 +1,6 @@
 import SessionContext from '@/contexts/SessionContext';
 import { removeFromCart, updateCartItem } from '@/services/cart.service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState } from 'react';
 
 export function CartQuantityPanel({
@@ -51,7 +52,7 @@ export function CartQuantityPanel({
   return (
     <span className="item__control">
       <button type="button" className="item__delete" disabled={loading || busy} onClick={() => remove()}>
-        <i className="fa-solid fa-times" />
+        <FontAwesomeIcon icon="fa-times" />
       </button>
       <button
         type="button"
@@ -59,7 +60,7 @@ export function CartQuantityPanel({
         onClick={() => decrement()}
         disabled={loading || busy || quantity < 2}
       >
-        <i className="fa-solid fa-chevron-down" />
+        <FontAwesomeIcon icon="fa-chevron-down" />
       </button>
       <input
         type="number"
@@ -75,7 +76,7 @@ export function CartQuantityPanel({
         onClick={() => increment()}
         disabled={loading || busy}
       >
-        <i className="fa-solid fa-chevron-up" />
+        <FontAwesomeIcon icon="fa-chevron-up" />
       </button>
     </span>
   );

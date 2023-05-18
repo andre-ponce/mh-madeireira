@@ -4,6 +4,7 @@ import SessionContext from '@/contexts/SessionContext';
 import useEventListener from '@use-it/event-listener';
 import useFixedShadow from '@/hooks/useFixedShadow';
 import { useOberve } from '@/hooks/useObserve';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CartGrid } from './CartGrid';
 import { EmptyCart } from './EmptyCart';
 
@@ -49,7 +50,7 @@ export function CartSideBar() {
     <aside className="cart">
       <div className={`cart__cart-container ${cartActiveClassName} ${isEmpty(itens) ? 'cart__cart-container--empty' : ''}`}>
         <button className="navbar-toggler" type="button" onClick={close}>
-          <i className="fa-solid fa-times" />
+          <FontAwesomeIcon icon=" fa-times" />
         </button>
         {isEmpty(itens)
           ? <EmptyCart />

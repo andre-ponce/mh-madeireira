@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CatalogFilterGroup } from './CatalogFilterGroup';
 
 function CatalogFilter({ filters, onFilterChange, isFilterActive }) {
@@ -14,7 +15,7 @@ function CatalogFilter({ filters, onFilterChange, isFilterActive }) {
 
       <button className="navbar-toggler mb-4 filters__title" type="button" data-toggle="collapse" data-target="#filtros" aria-controls="filtros" aria-expanded="true" aria-label="Toggle navigation">
         FILTRAR POR
-        <i className="fa-solid fa-filter" />
+        <FontAwesomeIcon icon="fa-filter" />
       </button>
 
       <div className={`collapse navbar-collapse ${show ? 'show' : ''}`} id="filtros">

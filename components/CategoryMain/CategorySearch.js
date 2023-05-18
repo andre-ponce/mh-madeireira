@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 
 export default function CategorySearch({ categoyName }) {
@@ -27,7 +28,7 @@ export default function CategorySearch({ categoyName }) {
               router.push({ query }, { ...router.asPath }, { scroll: false });
             }}
           >
-            <i className="fa-solid fa-magnifying-glass" />
+            <FontAwesomeIcon icon="fa-magnifying-glass" />
           </button>
         )
       }
@@ -43,7 +44,7 @@ export default function CategorySearch({ categoyName }) {
               setSearch('');
             }}
           >
-            <i className="fa-solid fa-times" />
+            <FontAwesomeIcon icon="fa-times" />
           </button>
         )
       }

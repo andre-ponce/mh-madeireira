@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format, linkTo } from '@/helpers';
 import { addToCart, removeFromCart } from '@/services/cart.service';
 import SessionContext from '@/contexts/SessionContext';
@@ -131,7 +132,7 @@ function ProductCardQuickAction({ product }) {
             onClick={() => setQuantity(quantity + 1)}
             className="plus"
           >
-            <i className="fa-solid fa-chevron-up" />
+            <FontAwesomeIcon icon="fa-chevron-up" />
           </button>
           <button
             type="button"
@@ -139,7 +140,7 @@ function ProductCardQuickAction({ product }) {
             onClick={() => setQuantity(quantity - 1)}
             className="minus"
           >
-            <i className="fa-solid fa-chevron-down" />
+            <FontAwesomeIcon icon="fa-chevron-down" />
           </button>
         </div>
         <button type="button" className="buy__button" onClick={async () => add()}>

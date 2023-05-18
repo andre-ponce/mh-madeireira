@@ -1,4 +1,5 @@
 import CheckoutContext from '@/contexts/CheckoutContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from '@/helpers';
 import {
   useContext, useEffect, useRef, useState,
@@ -57,7 +58,7 @@ export function DiscountBox() {
             <div className="discount-coupon--ticket">
               <span className="discount-coupon--title">Cupom</span>
               <span className="discount-coupon--remove">
-                <i className="fa-solid fa-times" />
+                <FontAwesomeIcon icon="fa-times" />
                 {' '}
                 remover cupom
               </span>

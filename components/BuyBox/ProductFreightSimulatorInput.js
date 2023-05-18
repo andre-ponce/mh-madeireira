@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import ReactInputMask from 'react-input-mask';
 
@@ -27,10 +28,17 @@ export function ProductFreightSimulatorInput({ initialCep, submit, busy }) {
           onChange={(e) => setCep(e.target.value)} />
         <button type="button" onClick={() => submit(cep)}>
           {!busy && <span key="calcular">CALCULAR</span>}
-          {!!busy && <span key="calculando"><i className="fa fa-spin fa-spinner"></i></span>}
+          {!!busy && <span key="calculando"><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>}
         </button>
       </div>
-      <a className="freigth-form--link" href>Não sei meu CEP</a>
+      <a
+        className="freigth-form--link"
+        href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Não sei meu CEP
+      </a>
     </div>
   );
 }

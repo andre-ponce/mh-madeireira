@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.css';
 
 export default function Modal({ children, handleHide }) {
@@ -52,7 +53,7 @@ export function FloatBox({
           canClose
           && (
             <button type="button" className={styles.close} onClick={handleHide}>
-              <i className="fa-solid fa-times" />
+              <FontAwesomeIcon icon="fa-times" />
             </button>
           )
         }

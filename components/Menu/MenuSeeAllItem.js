@@ -1,5 +1,6 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 import { linkTo } from '@/helpers';
@@ -20,7 +21,7 @@ function MenuSeeAllItem({ item: linha }) {
         && (
           <>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#departamentos" aria-controls="departamentos" aria-expanded="false" aria-label="Toggle navigation">
-              <i className="fa-solid fa-chevron-right" />
+              <FontAwesomeIcon icon="fa-chevron-right" />
             </button>
 
             <ul className="item__subcategorias collapse navbar-collapse nvl-1" id="departamentos">
@@ -38,7 +39,7 @@ function MenuSeeAllItem({ item: linha }) {
                       && (
                         <>
                           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#subdepartamentos" aria-controls="subdepartamentos" aria-expanded="false" aria-label="Toggle navigation">
-                            <i className="fa-solid fa-chevron-right" />
+                            <FontAwesomeIcon icon="fa-chevron-right" />
                           </button>
                           <ul className="subcategoria__group collapse navbar-collapse nvl-2" id="subdepartamentos">
                             {

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { linkTo } from '@/helpers';
 
 function Central({
@@ -38,7 +39,7 @@ function Central({
               facebook
               && (
                 <a href={facebook}>
-                  <i className="fa-brands fa-facebook" />
+                  <FontAwesomeIcon icon="fa-brands fa-facebook" />
                 </a>
               )
             }
@@ -46,7 +47,7 @@ function Central({
               instagram
               && (
                 <a href={instagram}>
-                  <i className="fa-brands fa-instagram" />
+                  <FontAwesomeIcon icon="fa-brands fa-instagram" />
                 </a>
               )
             }
@@ -54,7 +55,7 @@ function Central({
               youtube
               && (
                 <a href={youtube}>
-                  <i className="fa-brands fa-youtube" />
+                  <FontAwesomeIcon icon="fa-brands fa-youtube" />
                 </a>
               )
             }
@@ -65,18 +66,18 @@ function Central({
           <div className="pagamentos-envios__pagamentos">
             <h2>FORMAS DE PAGAMENTO</h2>
             <div>
-              <img src="/images/braskape-formas-pagamento-visa.jpg" alt="facebook" />
-              <img src="/images/braskape-formas-pagamento-mastercard.jpg" alt="instagram" />
-              <img src="/images/braskape-formas-pagamento-dinners.jpg" alt="youtube" />
-              <img src="/images/braskape-formas-pagamento-american-express.jpg" alt="youtube" />
+              <img src="/images/braskape-formas-pagamento-visa.jpg" alt="visa" />
+              <img src="/images/braskape-formas-pagamento-mastercard.jpg" alt="mastercard" />
+              <img src="/images/braskape-formas-pagamento-dinners.jpg" alt="dinners" />
+              <img src="/images/braskape-formas-pagamento-american-express.jpg" alt="american-express" />
             </div>
           </div>
 
           <div className="pagamentos-envios__envios">
             <h2>FORMAS DE ENVIO</h2>
             <div>
-              <img src="/images/braskape-formas-de-envio-pac.jpg" alt="facebook" />
-              <img src="/images/braskape-formas-de-envio-sedex.jpg" alt="instagram" />
+              <img src="/images/braskape-formas-de-envio-pac.jpg" alt="pac" />
+              <img src="/images/braskape-formas-de-envio-sedex.jpg" alt="sedex" />
             </div>
           </div>
         </div>

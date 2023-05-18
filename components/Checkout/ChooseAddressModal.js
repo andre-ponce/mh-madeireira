@@ -1,4 +1,5 @@
 import { FloatBox } from '@/components/Modal/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from '@/helpers';
 import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
@@ -39,7 +40,7 @@ export function ChooseAddressModal({ onClose, onSubmit, newAddres }) {
   if (!loaded) {
     return (
       <div className="change-address--empty">
-        <span><i className="fa-solid fa-spin fa-spinner" /></span>
+        <span><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>
         <span>Carregando...</span>
       </div>
     );

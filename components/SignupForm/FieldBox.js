@@ -4,6 +4,7 @@ import {
   connect,
   getIn,
 } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function FieldBoxComp({
   label, name, type, tip, children, busy, className, ...rest
@@ -28,7 +29,7 @@ function FieldBoxComp({
           </Field>
         )
         : <Field {...rest} type={type} name={name} id={name} className="form-control" />}
-      {busy && <span className="input-busy"><i className="fa-solid fa-spin fa-spinner" /></span>}
+      {busy && <span className="input-busy"><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>}
       <ErrorMessage name={name} component="div" className="error-message" />
     </div>
   );

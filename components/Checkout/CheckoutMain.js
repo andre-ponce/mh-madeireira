@@ -2,6 +2,7 @@ import { CheckoutProvider } from '@/contexts/CheckoutContext';
 import { useCheckoutSession } from '@/hooks/useCheckoutSession';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AddressBox } from './AddressBox';
 import { DeliveryBox } from './DeliveryBox';
 import { PaymentBox } from './PaymentBox';
@@ -49,7 +50,7 @@ export function CheckoutMain() {
               height: '100vh',
             }}
             >
-              <i className="fa-solid fa-spin fa-spinner" style={{ fontSize: '3em' }} />
+              <FontAwesomeIcon icon="fa-spin fa-spinner" style={{ fontSize: '3em' }} />
             </div>
           </Modal>
         )

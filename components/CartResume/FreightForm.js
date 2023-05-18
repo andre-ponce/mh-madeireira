@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import ReactInputMask from 'react-input-mask';
 
@@ -16,8 +17,8 @@ export function FreightForm({ submit, busy, error }) {
       <div className="cart-freight--form">
         <ReactInputMask value={cep} onKeyDown={handleKeyDown} onChange={(e) => setCep(e.target.value)} mask="99999-999" type="text" inputMode="numeric" maskChar="" />
         <button type="button" onClick={() => submit(cep)}>
-          {busy && (<span><i className="fa-solid fa-spin fa-spinner" /></span>)}
-          {!busy && (<span><i className="fa-solid fa-calculator" /></span>)}
+          {busy && (<span><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>)}
+          {!busy && (<span><FontAwesomeIcon icon="fa-calculator" /></span>)}
         </button>
         <span className="cart-freight--link-correios">
           <a

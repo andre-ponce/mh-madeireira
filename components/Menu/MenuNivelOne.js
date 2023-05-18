@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { isEmpty } from 'lodash';
 import { linkTo } from '@/helpers';
@@ -20,7 +21,7 @@ function MenuNivelOne({ category }) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <i className="fa-solid fa-chevron-right" />
+            <FontAwesomeIcon icon="fa-chevron-right" />
           </button>
 
           <ul className="subcategoria__group collapse navbar-collapse nvl-2" id="subcategorias">

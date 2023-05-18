@@ -2,6 +2,7 @@ import { format } from '@/helpers';
 import { useFormik } from 'formik';
 import { isEmpty } from 'lodash';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactInputMask from 'react-input-mask';
 import { cardSchema as validationSchema } from './schema';
 import {
@@ -74,7 +75,7 @@ export function CardForm({
         <span className="input-icon">
           <ReactInputMask type="text" inputMode="numeric" mask="9999 9999 9999 9999" maskChar="" id="number" {...getFieldProps('number')} />
           <span className="card-form--group-icon">
-            <i className="fa-solid fa-credit-card" />
+            <FontAwesomeIcon icon="fa-credit-card" />
           </span>
         </span>
         <span className="card-form--group-error">{fieldError('number')}</span>
@@ -101,7 +102,7 @@ export function CardForm({
         <span className="input-icon">
           <input id="name" type="text" inputMode="text" {...getFieldProps('name')} />
           <span className="card-form--group-icon">
-            <i className="fa-solid fa-user" />
+            <FontAwesomeIcon icon="fa-user" />
           </span>
         </span>
         <span className="card-form--group-error">{fieldError('name')}</span>

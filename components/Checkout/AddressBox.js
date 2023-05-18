@@ -1,4 +1,5 @@
 import CheckoutContext from '@/contexts/CheckoutContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from '@/helpers';
 import { useContext, useState } from 'react';
 import { CheckoutBox } from './CheckoutBox';
@@ -37,7 +38,7 @@ export function AddressBox() {
           enderecoDeEntrega && (
             <div className="enderecos--escolhido">
               <span className="enderecos--itentificacao">
-                <span className="mr-2"><i className="fa-solid fa-arrow-right" /></span>
+                <span className="mr-2"><FontAwesomeIcon icon="fa-arrow-right" /></span>
                 {identificacao}
               </span>
               <span>

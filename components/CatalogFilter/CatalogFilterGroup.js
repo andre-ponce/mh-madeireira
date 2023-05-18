@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CatalogFilterItem, CatalogFilterLink } from './CatalogFilterItem';
 
 export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
@@ -10,7 +11,7 @@ export function CatalogFilterGroup({ filter, onFilterChange, isFilterActive }) {
 
       <button className="navbar-toggler mb-3" type="button" data-toggle="collapse" data-target={`#navbarNav_${filter.query}`} aria-controls={`navbarNav_${filter.query}`} aria-expanded="true" aria-label="Toggle navigation">
         {filter.nome}
-        <i className="fa-solid fa-chevron-down" />
+        <FontAwesomeIcon icon="fa-chevron-down" />
       </button>
 
       <div className="collapse navbar-collapse show" id={`navbarNav_${filter.query}`}>

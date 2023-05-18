@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { isMobile } from 'react-device-detect';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Breadcrumb({ path }) {
   const [containerClass, setContainerClass] = useState('');
@@ -8,8 +9,7 @@ function Breadcrumb({ path }) {
   useEffect(() => {
     if (isMobile) {
       setContainerClass('');
-    }
-    else {
+    } else {
       setContainerClass('app-container');
     }
   }, [isMobile]);
@@ -24,17 +24,15 @@ function Breadcrumb({ path }) {
           path.map((item, index) => (
             <Fragment key={item.slug}>
               <li className="breadcrumb__icon">
-                <i className="fa-solid fa-chevron-right" style={{ fontSize: '1em' }} />
+                <FontAwesomeIcon icon="fa-chevron-right" style={{ fontSize: '1em' }} />
               </li>
               <li>
                 <Link href={item.slug} passHref>
-                  <a href>
-                    {
-                      index < path.length - 1
-                        ? <>{item.nome.toUpperCase()}</>
-                        : <h1>{item.nome.toUpperCase()}</h1>
-                    }
-                  </a>
+                  {
+                    index < path.length - 1
+                      ? <>{item.nome.toUpperCase()}</>
+                      : <h1>{item.nome.toUpperCase()}</h1>
+                  }
                 </Link>
               </li>
             </Fragment>

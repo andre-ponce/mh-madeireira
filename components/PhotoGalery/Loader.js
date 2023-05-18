@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export function Loader() {
   return (
     <div
@@ -11,7 +13,7 @@ export function Loader() {
         color: '#ccc',
       }}
     >
-      <i className="fa-solid fa-spin fa-spinner" />
+      <FontAwesomeIcon icon="fa-spin fa-spinner" />
     </div>
   );
 }

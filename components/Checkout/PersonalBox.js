@@ -1,6 +1,7 @@
 import CheckoutContext from '@/contexts/CheckoutContext';
 import { format } from '@/helpers';
 import { useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CheckoutBox } from './CheckoutBox';
 
 export function PersonalBox() {
@@ -20,13 +21,13 @@ export function PersonalBox() {
         <div className="personal-data">
           <span className="personal-data--row" style={{ textTransform: 'capitalize' }}>
             <span className="personal-data--icon">
-              <i className="mr-3 fas fa-user-circle" />
+              <FontAwesomeIcon icon="fa-user-circle" className="mr-3" />
             </span>
             {nome}
           </span>
           <span className="personal-data--row" style={{ textTransform: 'lowercase' }}>
             <span className="personal-data--icon">
-              <i className="mr-3 fas fa-envelope" />
+              <FontAwesomeIcon icon="fa-envelope" className="mr-3" />
             </span>
             {email}
           </span>
@@ -34,7 +35,7 @@ export function PersonalBox() {
             !!(celular || telefone) && (
               <span className="personal-data--row">
                 <span className="personal-data--icon">
-                  <i className="mr-3 fas fa-phone-alt" />
+                  <FontAwesomeIcon icon="fa-phone-alt" className="mr-3" />
                 </span>
                 {format.telephone(celular || telefone)}
               </span>
@@ -42,7 +43,7 @@ export function PersonalBox() {
           }
           <span className="personal-data--row">
             <span className="personal-data--icon">
-              <i className="mr-3 fas fa-id-card" />
+              <FontAwesomeIcon icon="fa-id-card" className="mr-3" />
             </span>
             {format.brasilianDocument(documentoNacional)}
           </span>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 
 export default function SearchBar() {
@@ -27,7 +28,7 @@ export default function SearchBar() {
             placeholder="Digite o que busca"
           />
           <button type="submit">
-            <i className="fa-solid fa-magnifying-glass" />
+            <FontAwesomeIcon icon="fa-magnifying-glass" />
           </button>
         </form>
         <button id="btn_clean-filter" className="btn_clean-filter d-none" type="button">

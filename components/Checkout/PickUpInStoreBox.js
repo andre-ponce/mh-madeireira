@@ -1,4 +1,5 @@
 import CheckoutContext from '@/contexts/CheckoutContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GlobalDataContext from '@/contexts/GlobalDataContext';
 import { format } from '@/helpers';
 import { useContext } from 'react';
@@ -17,7 +18,7 @@ export function PickUpInStoreBox() {
     <CheckoutBox icon="fa-map-marker-alt" title="Dados para retirada">
       <div className="enderecos--escolhido">
         <span className="enderecos--itentificacao">
-          <span className="mr-2"><i className="fa-solid fa-arrow-right" /></span>
+          <span className="mr-2"><FontAwesomeIcon icon="fa-arrow-right" /></span>
           Endereço da nossa loja
         </span>
         <span>
