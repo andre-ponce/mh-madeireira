@@ -426,6 +426,21 @@
   }
 }
 
+.product__description {
+  max-width: 100%;
+  overflow-x: auto;
+
+  div,
+  span,
+  p {
+    margin: initial;
+    padding: initial;
+    line-height: initial;
+    font-size: 1rem;
+    color: $text-color;
+  }
+}
+
 .pg-product {
   .main__breadcrumb {
     margin: 8px 0 20px;
@@ -451,12 +466,6 @@
 .triade__item {
   margin: 0 0 20px;
   min-height: 200px;
-
-  p {
-    font-size: 14px;
-    line-height: 17px;
-    margin: 0 0 45px;
-  }
 
   .triade__item__title {
     font-size: 14px;
@@ -499,7 +508,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1240px) {
   .product__lateral-gallery {
     width: 17%;
 
@@ -518,10 +527,10 @@
     text-align: left;
   }
 
-  .product__container-left,
-  .product__container-right {
-    width: 100% !important;
-  }
+  // .product__container-left,
+  // .product__container-right {
+  //   width: 100% !important;
+  // }
 
   .product__container-left {
     padding: 0 30px 0 0;
@@ -643,7 +652,7 @@
   padding: 20px;
   border: 2px solid #eee;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1240px) {
     flex-direction: column;
   }
 
@@ -670,7 +679,7 @@
     padding: 0 0 0 90px;
     margin: 0 18px 0 0;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1240px) {
       width: 49%;
       margin: 0 1% 0 0;
       padding: 0;
@@ -701,7 +710,7 @@
     width: 591px;
     padding: 0 90px 0 0;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1240px) {
       width: 49%;
       margin: 0 0 0 1%;
       padding: 0;
@@ -828,7 +837,8 @@
   }
 }
 .modal_app {
-  width: 70vw;
+  max-width: 70vw;
+  width: 90%;
   height: fit-content;
   overflow: auto;
   background-color: #eeeeee;
@@ -883,6 +893,8 @@
     width: 100%;
     background-color: #ffffff;
     padding: 10px;
+    max-width: 100%;
+    overflow: auto;
 
     table {
       width: 100%;

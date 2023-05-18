@@ -56,6 +56,10 @@
         @media screen and (max-width: 992px) {
           .navbar-toggler {
             display: block;
+
+            svg {
+              font-size: 24px;
+            }
           }
           .logo {
             margin-left: 15px;

@@ -1,15 +1,19 @@
-import { linkTo } from "@/helpers";
-import Link from "next/link";
-import { AccountSection } from "./AccountSection";
+import { linkTo } from '@/helpers';
+import Link from 'next/link';
+import { useContext } from 'react';
+import GlobalDataContext from '@/contexts/GlobalDataContext';
+import { AccountSection } from './AccountSection';
 
 export function AccountPage({ user }) {
+  const { institucional: { whatsapp } } = useContext(GlobalDataContext);
+
   return (
     <>
       <main className="account app-container d-flex row">
         <h2 className="page-title">{`Olá, ${user.nome}!`}</h2>
 
         <div className="account__content">
-          <section className={`account-section`}>
+          <section className="account-section">
             <AccountSection title="Meu cadastro" subtitle="Visualize suas informações pessoais e altere-as quando desejar:">
               <Link href={linkTo.usersData()}>Altere seus dados cadastrais</Link>
               <Link href={linkTo.usersAddresses()}>Veja seus endereços de entrega</Link>
@@ -19,9 +23,14 @@ export function AccountPage({ user }) {
           </section>
 
           <section className="account-section">
-            <AccountSection title="Meus serviços" subtitle="Confira as facilidades que disponibilizamos para você:">
-              <Link href={linkTo.treatment()}>Central de Atendimento</Link>
-            </AccountSection>
+            {
+              !!whatsapp && (
+                <AccountSection title="Meus serviços" subtitle="Confira as facilidades que disponibilizamos para você:">
+                  <Link href={linkTo.whatsappApi(whatsapp)}>Central de Atendimento</Link>
+                  {/* <Link href={linkTo.treatment()}>Central de Atendimento</Link> */}
+                </AccountSection>
+              )
+            }
 
             <AccountSection title="Meus pedidos" subtitle="Veja o histórico de compras e acompanhe seus pedidos:">
               <Link href={linkTo.myOrders('all')}>Acompanhe seus pedidos</Link>
@@ -31,7 +40,5 @@ export function AccountPage({ user }) {
         </div>
       </main>
     </>
-  )
+  );
 }
-
-

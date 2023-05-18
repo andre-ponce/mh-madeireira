@@ -541,25 +541,27 @@ $close-button-width: 48px;
               padding: 10px;
             }
 
-            .login__account,
-            svg {
+            .login__account {
               display: none;
             }
 
             .login__container {
-              font-size: 1.2rem;
+              font-size: 1.1rem;
             }
 
-            .block_hover {
+            .hover_wrap {
+              display: block;
               width: 100%;
-              background-color: var(--main-color);
+              margin-left: 50px;
+              padding: 0;
+              margin-bottom: 50px;
 
               a {
-                color: #232323;
-                font-size: 0.8rem;
+                color: $menu_mob_text-color;
+                font-size: 1rem;
+                line-height: 1.2rem;
                 display: block;
                 padding: 5px 0;
-                margin-top: 5px;
               }
             }
 

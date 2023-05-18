@@ -88,7 +88,6 @@ export function buildUrl(href, {
 
 export function buildSearchUrl(href, query) {
   const url = new URL(href);
-  console.log(query);
   const filters = [...url.searchParams.keys()];
 
   filters.forEach((key) => {
