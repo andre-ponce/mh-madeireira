@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { getGlobalData } from '@/server/api/global.api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -31,7 +32,7 @@ function Logout({ global }) {
           fontSize: '2rem',
         }}
       >
-        <span style={{ marginBottom: '20px' }}><i className="fa fa-spin fa-spinner" /></span>
+        <span style={{ marginBottom: '20px' }}><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>
         <h3>desconectando</h3>
       </div>
     </Layout>

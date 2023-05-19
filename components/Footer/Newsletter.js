@@ -88,8 +88,8 @@ function Newsletter() {
               <span>
                 {
                   isSubmitting
-                    ? <i className="fa-solid fa-spin fa-spinner" key="spinner" />
-                    : <i className="fa-solid fa-paper-plane" key="plane" />
+                    ? <FontAwesomeIcon icon="fa-spin fa-spinner" key="spinner" />
+                    : <FontAwesomeIcon icon="fa-paper-plane" key="plane" />
                 }
               </span>
               {

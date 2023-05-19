@@ -144,7 +144,7 @@ function ProductCardQuickAction({ product }) {
           </button>
         </div>
         <button type="button" className="buy__button" onClick={async () => add()}>
-          {!!busy && (<span><i className="fa fa-spin fa-spinner" /></span>)}
+          {!!busy && (<span><FontAwesomeIcon icon="fa-spin fa-spinner" /></span>)}
           {!busy && (alreadyIn ? <span key="alterar">ALTERAR</span> : <span key="comprar">COMPRAR</span>)}
         </button>
       </div>
