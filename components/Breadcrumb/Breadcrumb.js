@@ -27,10 +27,10 @@ function Breadcrumb({ path }) {
                 <FontAwesomeIcon icon="fa-chevron-right" style={{ fontSize: '1em' }} />
               </li>
               <li>
-                <Link href={item.slug} passHref>
+                <Link href={item.slug}>
                   {
                     index < path.length - 1
-                      ? <>{item.nome.toUpperCase()}</>
+                      ? <h3>{item.nome.toUpperCase()}</h3>
                       : <h1>{item.nome.toUpperCase()}</h1>
                   }
                 </Link>
