@@ -17,8 +17,11 @@ export function BuyBox({ product, payConditions }) {
       <Head
         name={product.nome}
         sku={product.sku}
-        brandId={product.marcaId}
-        brandName={product.marca}
+        brand={{
+          id: product.marcaId,
+          name: product.marcaNome,
+          slug: product.marcaSlug,
+        }}
       />
 
       <div className="product__price-infos">
@@ -48,8 +51,7 @@ export function BuyBox({ product, payConditions }) {
 function Head({
   name,
   sku,
-  brandId,
-  brandName,
+  brand,
 }) {
   return (
     <>
@@ -57,8 +59,8 @@ function Head({
         <span className="infos__title">{name}</span>
         <span className="infos__cod">{`COD: ${sku}`}</span>
         <span className="infos__brand">
-          <Link href={linkTo.brand({ slug: 'marca', id: brandId })}>
-            {`MARCA: ${brandName}`}
+          <Link href={linkTo.brand(brand)}>
+            {`MARCA: ${brand.name}`}
           </Link>
         </span>
         <ProductRating />
