@@ -28,37 +28,36 @@ function Central({
         <div className="footer-central__atendimento">
           <h2>ATENDIMENTO</h2>
 
-          {supportPhone && <span><a href={linkTo.tel(supportPhone)}>{supportPhone}</a></span>}
+          {supportPhone && (
+            <span>
+              <a href={linkTo.tel(supportPhone)}>{supportPhone}</a>
+            </span>
+          )}
 
           {informacoesDeAtendimento && <span>{informacoesDeAtendimento}</span>}
 
-          {supportEmail && <span><a href={linkTo.mailto(supportEmail)}>{supportEmail}</a></span>}
+          {supportEmail && (
+            <span>
+              <a href={linkTo.mailto(supportEmail)}>{supportEmail}</a>
+            </span>
+          )}
 
           <div className="atendimento__social-medias">
-            {
-              facebook
-              && (
-                <a href={facebook}>
-                  <FontAwesomeIcon icon="fa-brands fa-facebook" />
-                </a>
-              )
-            }
-            {
-              instagram
-              && (
-                <a href={instagram}>
-                  <FontAwesomeIcon icon="fa-brands fa-instagram" />
-                </a>
-              )
-            }
-            {
-              youtube
-              && (
-                <a href={youtube}>
-                  <FontAwesomeIcon icon="fa-brands fa-youtube" />
-                </a>
-              )
-            }
+            {facebook && (
+              <a href={facebook} target="_blank" rel="noreferrer">
+                <FontAwesomeIcon icon="fa-brands fa-facebook" />
+              </a>
+            )}
+            {instagram && (
+              <a href={instagram} target="_blank" rel="noreferrer">
+                <FontAwesomeIcon icon="fa-brands fa-instagram" />
+              </a>
+            )}
+            {youtube && (
+              <a href={youtube} target="_blank" rel="noreferrer">
+                <FontAwesomeIcon icon="fa-brands fa-youtube" />
+              </a>
+            )}
           </div>
         </div>
 
@@ -69,7 +68,10 @@ function Central({
               <img src="/images/braskape-formas-pagamento-visa.jpg" alt="visa" />
               <img src="/images/braskape-formas-pagamento-mastercard.jpg" alt="mastercard" />
               <img src="/images/braskape-formas-pagamento-dinners.jpg" alt="dinners" />
-              <img src="/images/braskape-formas-pagamento-american-express.jpg" alt="american-express" />
+              <img
+                src="/images/braskape-formas-pagamento-american-express.jpg"
+                alt="american-express"
+              />
             </div>
           </div>
 
