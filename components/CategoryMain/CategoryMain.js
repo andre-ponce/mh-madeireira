@@ -37,23 +37,46 @@ function Category({
 
             <div className="gallery__top-filter mb-3">
               {/* <CategorySearch categoyName={name} /> */}
-              <div className="gallery__order-by">
+              {/* <div className="gallery__order-by">
                 ORDENAR POR
                 <div className="dropdown">
-                  <button type="button" className="btn btn-secondary" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-38,0">
+                  <button
+                    type="button"
+                    className="btn
+                    btn-secondary"
+                    id="dropdownMenuOffset"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-offset="-38,0"
+                  >
                     {currentOrder}
                     <FontAwesomeIcon icon="fa-chevron-down" />
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                    <button type="button" disabled={!orderCode} onClick={() => orderBy.reorder('')} className="dropdown-item">Relevância</button>
+                    <button
+                      type="button"
+                      disabled={!orderCode}
+                      onClick={() => orderBy.reorder('')}
+                      className="dropdown-item"
+                    >
+                      Relevância
+                    </button>
                     {
                       Object.keys(orderValues).map((order) => (
-                        <button type="button" disabled={order === orderCode} onClick={() => orderBy.reorder(order)} className="dropdown-item">{orderValues[order]}</button>
+                        <button
+                          type="button"
+                          disabled={order === orderCode}
+                          onClick={() => orderBy.reorder(order)}
+                          className="dropdown-item"
+                        >
+                          {orderValues[order]}
+                        </button>
                       ))
                     }
                   </div>
                 </div>
-              </div>
+              </div> */}
 
             </div>
 
