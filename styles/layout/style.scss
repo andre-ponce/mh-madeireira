@@ -1,9 +1,11 @@
 html {
+  scroll-behavior: smooth;
+
   * {
     font-size: 12px;
     outline: none !important;
     box-sizing: border-box !important;
-    font-family: "Open Sans", sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
   }
 
   body {
@@ -44,6 +46,26 @@ html {
     text-decoration: none;
     &:hover {
       text-decoration: none;
+    }
+  }
+
+  .navigate-to-top {
+    position: fixed;
+    bottom: 85px;
+    left: calc(100vw + 40px);
+    opacity: 0;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    background-color: $main-color;
+    color: $contrast-color;
+    transition: all 0.5s;
+    z-index: 2;
+
+    &.visible {
+      left: calc(100vw - 78px);
+      opacity: 1;
     }
   }
 

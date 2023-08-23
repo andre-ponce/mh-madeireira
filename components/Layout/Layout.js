@@ -10,6 +10,7 @@ import Head from 'next/head';
 import { PublicArea } from './PublicArea';
 import { SecureArea } from './SecureArea';
 import { CartSideBar } from '../CartResume/CartSideBar';
+import { GoToTopButton } from '../GoToTopButton/GoToTopButton';
 
 export function Layout({ children, globalData, secureArea }) {
   if (!globalData) {
@@ -32,6 +33,7 @@ export function Layout({ children, globalData, secureArea }) {
               <link rel="icon" href={url.imageLayout(globalData.site.faviconFileName)} />
             </Head>
             {children}
+            <GoToTopButton />
           </Area>
           <CartSideBar />
         </SessionProvider>
