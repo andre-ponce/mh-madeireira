@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useFixedShadow from '@/hooks/useFixedShadow';
+import { useRouter } from 'next/router';
 import Topbar from '../TopBar';
 import Menu from '../Menu';
 import SearchBar from './SearchBar';
@@ -10,6 +11,17 @@ export function Header() {
   const [isMenuFixed, setIsMenuFixed] = useState(false);
   const [isMenuMobileActive, setIsMenuMobileActive] = useState();
   const { addShadow, popShadow } = useFixedShadow();
+  const router = useRouter();
+
+  function toggleMenu() {
+    setIsMenuFixed(!isMenuFixed);
+  }
+
+  function toggleMenuMobile(state) {
+    setIsMenuMobileActive(state);
+    const fn = state ? addShadow : popShadow;
+    fn();
+  }
 
   useEffect(() => {
     function toogleFixed() {
@@ -17,20 +29,16 @@ export function Header() {
       setIsTopFixed(shouldBeFixed);
     }
     window.addEventListener('scroll', toogleFixed);
+
+    const closeMenu = () => toggleMenuMobile(false);
+
+    router.events.on('routeChangeComplete', closeMenu);
+
     return () => {
       window.removeEventListener('scroll', toogleFixed);
+      router.events.off('routeChangeComplete', closeMenu);
     };
   }, []);
-
-  const toggleMenu = () => {
-    setIsMenuFixed(!isMenuFixed);
-  };
-
-  const toggleMenuMobile = (state) => {
-    setIsMenuMobileActive(state);
-    const fn = state ? addShadow : popShadow;
-    fn();
-  };
 
   return (
     <header className="header">
