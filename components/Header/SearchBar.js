@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 
 export default function SearchBar() {
   const router = useRouter();
-  const [search, setSearch] = useState('');
+  const { query: { q } } = router;
+  const [search, setSearch] = useState(q || '');
 
   async function doSearch(ev) {
     ev.preventDefault();

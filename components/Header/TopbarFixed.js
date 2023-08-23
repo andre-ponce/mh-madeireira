@@ -23,7 +23,8 @@ function TopbarFixed({ isFixed, toggleMenu }) {
   } = useContext(GlobalDataContext);
 
   const router = useRouter();
-  const [search, setSearch] = useState('');
+  const { query: { q }} = router;
+  const [search, setSearch] = useState(q || '');
 
   async function doSearch(ev) {
     ev.preventDefault();
