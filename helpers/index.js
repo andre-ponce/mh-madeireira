@@ -283,6 +283,7 @@ export const mask = {
   cep: '99999-999',
   cpf: '999.999.999-99',
   cnpj: '99.999.999/9999-99',
+  date: '99/99/9999',
 };
 
 export const validate = {

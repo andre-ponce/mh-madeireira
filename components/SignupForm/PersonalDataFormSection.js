@@ -10,7 +10,7 @@ export const PersonalDataFormSection = connect(() => (
     <FieldBox autocapitalize="none" name="documentoEstadual" label="RG" type="text" />
     <FieldBox autocapitalize="words" name="nome" label="Nome completo" type="text" />
     <FieldBox name="apelido" label="Como você gosta de ser chamado?" type="text" />
-    <FieldBox name="dataNascimento" label="Data de nascimento" type="date" />
+    <FieldBox inputMode="numeric" name="dataNascimento" label="Data de nascimento" type="text" as={ReactInputMask} mask={mask.date} maskChar="" />
     <FieldBox name="genero" label="Gênero" type="select">
       <option>Selecione</option>
       <option value="F">Feminino</option>

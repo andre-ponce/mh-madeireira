@@ -23,6 +23,19 @@ function brasilianDocument(errorMessage) {
   });
 }
 
+function parseDateString(value, originalValue) {
+  if (!originalValue) {
+    return null;
+  }
+
+  if (originalValue.constructor === Date) {
+    return originalValue;
+  }
+
+  const [d, m, y] = originalValue.split('/');
+  return new Date(y, m, d);
+}
+
 addMethod(string, 'brasilianDocument', brasilianDocument);
 
 export const userSchema = object({
@@ -46,7 +59,9 @@ export const userSchema = object({
     .max(18)
     .brasilianDocument('Documento inválido, confira o número digitado'),
   documentoEstadual: string(),
-  dataNascimento: date().nullable().min(new Date(1920, 1, 1), 'Data de nascimento inválida'),
+  dataNascimento: date().transform(parseDateString).nullable()
+    .min(new Date(1920, 1, 1), 'Data de nascimento inválida')
+    .max(new Date(), 'Data de nascimento inválida'),
   genero: string().nullable().test('genero', 'Selecione um gênero', (value) => /^(M|F)$/i.test(value)),
   endereco: string().required(),
   numero: string().required(),
