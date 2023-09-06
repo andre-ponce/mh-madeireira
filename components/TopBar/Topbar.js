@@ -23,6 +23,8 @@ function Topbar({ openMenuMobile }) {
     },
   } = useContext(GlobalDataContext);
 
+  const televendas = telefone || whatsapp;
+
   return (
     <div className="topbar__top">
       <div className="app-container d-flex justify-content-between align-items-center">
@@ -48,7 +50,7 @@ function Topbar({ openMenuMobile }) {
         <span>
           Televendas:
           {' '}
-          <a className='topbar--contact' href={linkTo.tel(telefone)}>{format.telephone(telefone)}</a>
+          <a className='topbar--contact' href={linkTo.tel(televendas)}>{format.telephone(televendas)}</a>
         </span>
 
         <HelpInfo

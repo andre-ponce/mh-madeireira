@@ -23,6 +23,8 @@ function Footer({ pages, hideNewsletter, hideWhatsapp }) {
     },
   } = useContext(GlobalDataContext);
 
+  const televendas = telefone || whatsapp;
+
   return (
     <footer className="footer">
       {!hideWhatsapp && <Whatsapp whatsapp={whatsapp} />}
@@ -30,7 +32,7 @@ function Footer({ pages, hideNewsletter, hideWhatsapp }) {
       <Central
         pages={pages}
         informacoesDeAtendimento={informacoesDeAtendimento}
-        supportPhone={format.telephone(telefone)}
+        supportPhone={format.telephone(televendas)}
         supportEmail={emailAtendimento}
         facebook={facebook}
         instagram={instagram}
