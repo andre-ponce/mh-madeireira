@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GlobalDataContext from '@/contexts/GlobalDataContext';
 import { format } from '@/helpers';
 import { CartIcon } from '../CartResume/CartIcon';
@@ -23,8 +23,10 @@ function TopbarFixed({ isFixed, toggleMenu }) {
   } = useContext(GlobalDataContext);
 
   const router = useRouter();
-  const { query: { q }} = router;
+  const { query: { q } } = router;
   const [search, setSearch] = useState(q || '');
+
+  useEffect(() => setSearch(q), [q]);
 
   async function doSearch(ev) {
     ev.preventDefault();

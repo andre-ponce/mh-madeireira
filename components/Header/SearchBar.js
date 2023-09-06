@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 
@@ -6,6 +6,8 @@ export default function SearchBar() {
   const router = useRouter();
   const { query: { q } } = router;
   const [search, setSearch] = useState(q || '');
+
+  useEffect(() => setSearch(q), [q]);
 
   async function doSearch(ev) {
     ev.preventDefault();
