@@ -10,7 +10,7 @@ export function Header() {
   const [isTopFixed, setIsTopFixed] = useState(false);
   const [isMenuFixed, setIsMenuFixed] = useState(false);
   const [isMenuMobileActive, setIsMenuMobileActive] = useState();
-  const { addShadow, popShadow } = useFixedShadow();
+  const { addShadow, flush } = useFixedShadow();
   const router = useRouter();
 
   function toggleMenu() {
@@ -19,7 +19,7 @@ export function Header() {
 
   function toggleMenuMobile(state) {
     setIsMenuMobileActive(state);
-    const fn = state ? addShadow : popShadow;
+    const fn = state ? addShadow : flush;
     fn();
   }
 
