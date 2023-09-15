@@ -11,7 +11,12 @@ import { ContactFormSection } from './ContactFormSection';
 export default function SignupForm({ user, onSubmit }) {
   const [errors, setErrors] = useState([]);
   async function submit(values, { setSubmitting }) {
-    const res = await onSubmit(values);
+    const { dataNascimento, ...body } = values;
+    if (dataNascimento) {
+      body.dataNascimento = new Date(dataNascimento);
+    }
+
+    const res = await onSubmit(body);
     if (!res.sucesso) {
       setSubmitting(false);
       setErrors(res.erros);
