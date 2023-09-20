@@ -1,23 +1,41 @@
-.intitutional{
+.intitutional {
     padding: 15px 0 50px;
-
-    @media screen and (max-width: 800px){
-        padding: 30px 0 20px;
+  
+    @media screen and (max-width: 800px) {
+      padding: 30px 0 20px;
     }
-
-    &__content{
-        width: 100%;
-        text-align: center;
-        padding: 10px 5%;
-
-        p{
-            font-size: 14px;
-            line-height: initial;
-        }
-
-        @media screen and (max-width: 800px){
-            padding: 0;
-        }
+  
+    &__content {
+      width: 100%;
+      padding: 10px 5%;
+  
+      * {
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
+      }
+  
+      small {
+        font-size: 0.8rem;
+      }
+  
+      h1 {
+        font-weight: bold;
+        font-weight: extraboldbold;
+        font-size: 2rem;
+      }
+  
+      h2 {
+        font-weight: bold;
+        font-size: 1.6rem;
+      }
+  
+      h3 {
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+  
+      @media screen and (max-width: 800px) {
+        padding: 0;
+      }
     }
-
-}
+  }
