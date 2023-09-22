@@ -187,6 +187,10 @@ export const linkTo = {
     return `/${brd.slug}/m/${brd.id}`;
   },
 
+  institutional({ slug }) {
+    return `/institutional/${slug}`;
+  },
+
   product(product, category) {
     let categoryPath = '';
     if (category) {

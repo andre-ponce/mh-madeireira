@@ -1,41 +1,42 @@
 .intitutional {
-    padding: 15px 0 50px;
-  
-    @media screen and (max-width: 800px) {
-      padding: 30px 0 20px;
+  padding: 15px 0 50px;
+
+  @media screen and (max-width: 800px) {
+    padding: 30px 0 20px;
+  }
+
+  &__content {
+    width: 100%;
+    padding: 10px 5%;
+
+    * {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+      line-height: initial;
     }
-  
-    &__content {
-      width: 100%;
-      padding: 10px 5%;
-  
-      * {
-        font-size: 1rem;
-        margin-bottom: 0.7rem;
-      }
-  
-      small {
-        font-size: 0.8rem;
-      }
-  
-      h1 {
-        font-weight: bold;
-        font-weight: extraboldbold;
-        font-size: 2rem;
-      }
-  
-      h2 {
-        font-weight: bold;
-        font-size: 1.6rem;
-      }
-  
-      h3 {
-        font-weight: bold;
-        font-size: 1.3rem;
-      }
-  
-      @media screen and (max-width: 800px) {
-        padding: 0;
-      }
+
+    small {
+      font-size: 0.8rem;
+    }
+
+    h1 {
+      font-weight: bold;
+      font-weight: extrabold;
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    @media screen and (max-width: 800px) {
+      padding: 0;
     }
   }
+}

@@ -18,7 +18,7 @@ function Central({
         <div className="footer-central__institucional">
           <h2>INSTITUCIONAL</h2>
           {pages.map((p) => (
-            <Link href={`/institutional/${p.slug}`} passHref key={p.id}>
+            <Link href={linkTo.institutional(p)} passHref key={p.id}>
               <a className="mg-b-5">
                 {p.titulo}
               </a>

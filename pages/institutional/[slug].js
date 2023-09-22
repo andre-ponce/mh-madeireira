@@ -4,16 +4,28 @@ import InstitutionalSeo from '@/components/InstitutionalMain/InstitutionalSeo';
 import Layout from '@/components/Layout';
 import { getInstitutionalPage } from '@/server/api/institutional.api';
 import { getGlobalData } from '@/server/api/global.api';
+import CategoryBanner from '@/components/CategoryMain/CategoryBanner';
+import Breadcrumb from '@/components/Breadcrumb';
+import { linkTo } from '@/helpers';
 
 function Institutional({ global, page }) {
   if (page.scripts) {
     useInsecureRawScript(page.scripts);
   }
 
+  const breadcrumbs = [{ slug: linkTo.institutional(page), nome: page.titulo }];
+
   return (
     <>
       <Layout globalData={global}>
         <InstitutionalSeo {...page} />
+        <CategoryBanner
+          breadcrumbs={<Breadcrumb path={breadcrumbs} />}
+          banner={{
+            src: page.banner,
+            alt: page.titulo,
+          }}
+        />
         <InstitutionalMain titulo={page.titulo} conteudo={page.conteudo} />
       </Layout>
     </>
