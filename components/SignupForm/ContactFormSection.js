@@ -15,11 +15,11 @@ export const ContactFormSection = connect(({ formik: { isValid, isSubmitting } }
         <FieldBox onInput={(ev) => mask.phone(ev.target.value, setCelphoneMask)} name="celular" label="Celular/Whatsapp" type="tel" inputMode="tel" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={celphoneMask} maskChar="" />
         <FieldBox onInput={(ev) => mask.phone(ev.target.value, setPhoneMask)} name="telefone" label="Telefone" type="tel" inputMode="tel" className="col-sm-12 col-md-6 mb-3" as={ReactInputMask} mask={phoneMask} maskChar="" />
       </div>
-      <FieldBox name="segmento" label="Interesse" type="select">
+      {/* <FieldBox name="segmento" label="Interesse" type="select">
         <option>Selecione</option>
         <option value="2">Oficina</option>
         <option value="3">Funilaria</option>
-      </FieldBox>
+      </FieldBox> */}
 
       <div className="form-group mt-3">
         <div className="form-check d-flex align-items-center">
