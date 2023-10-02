@@ -2,7 +2,7 @@ export default {
   className: 'store-front-brands__carousel',
   slidesToShow: 7,
   variableWidth: true,
-  centerMode: true,
+  centerMode: false,
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
