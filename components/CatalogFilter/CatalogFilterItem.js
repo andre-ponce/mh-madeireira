@@ -16,7 +16,7 @@ export function CatalogFilterItem({ item, onChange, isActive }) {
         className="custom-control-label"
         htmlFor={`catalogFilterItem_${item.uid}`}
       >
-        {`${item.nome} PP (${item.correspondecias})`}
+        {`${item.nome} (${item.correspondecias})`}
       </label>
     </div>
   );
