@@ -21,18 +21,29 @@ function Category({
   const [orderCode] = orderBy.currentOrder;
   const currentOrder = orderValues[orderCode] || 'Relevância';
 
-  return (
+  if (products.length === 0) {
+    return (
+      <main>
+        <div className="app-container">
+          <div className="row mx-0 mt-4">
+            <section className="col-12 main__gallery d-flex pr-0" data-aos="fade-left" data-aos-duration="1000" data-aos-offset="-200">
+              <div className="gallery__empty">Nenhum produto encontrado!</div>
+            </section>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
+  return (
     <main>
       <div className="app-container">
         <div className="row mx-0 mt-4">
-
           <CatalogFilter
             filters={filters}
             onFilterChange={onFilterChange}
             isFilterActive={isFilterActive}
           />
-
           <section className="col-12 col-lg-9 main__gallery d-flex pr-0" data-aos="fade-left" data-aos-duration="1000" data-aos-offset="-200">
 
             <div className="gallery__top-filter mb-3">

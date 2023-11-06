@@ -71,6 +71,15 @@
         }
       }
 
+      &__empty {
+        width: 100%;
+        padding: 5rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.4rem;
+        font-style: italic;
+      }
+
       &__pagination {
         display: flex;
         margin-top: 10px;
