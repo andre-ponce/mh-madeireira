@@ -1,0 +1,141 @@
+.main-enderecos {
+  .addresses {
+    padding: 2rem 0;
+    max-width: 800px;
+    margin: auto;
+
+    &--empty {
+      text-align: center;
+
+      span {
+        display: block;
+        padding: 20px 0;
+        color: #999;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      button {
+        padding: 10px 30px;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    }
+
+    .new-address--button {
+      padding: 10px 30px;
+      text-transform: uppercase;
+      font-size: 14px;
+      display: block;
+      margin: 30px auto 0;
+    }
+
+    &--list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    &--item {
+      padding: 10px;
+      border: 2px solid #ddd;
+      transition: all 0.2s;
+      font-size: 14px;
+      width: 100%;
+
+      .item {
+        &--title {
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+          margin-bottom: 10px;
+        }
+
+        &--content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 1em;
+
+          @media screen and (max-width: 540px) {
+            flex-wrap: wrap;
+          }
+        }
+
+        &--adress {
+          line-height: 1.2em;
+          flex-grow: 1;
+
+          .enderecos--destinatario {
+            color: $contrast-color;
+            background-color: $main-color;
+          }
+        }
+
+        &--action {
+          padding: 5px 10px;
+          max-width: 220px;
+          text-transform: uppercase;
+
+          @media screen and (max-width: 540px) {
+            margin-top: 20px;
+            max-width: unset;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .new-address {
+    &--container {
+      max-width: 400px;
+      width: 80vw;
+
+      .title-border-left {
+        display: none;
+      }
+
+      div > label {
+        margin-bottom: 5px;
+        font-size: 0.9em;
+      }
+    }
+
+    &--action {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+  }
+}
+
+/*
+
+  .enderecos {
+    &--escolhido {
+      font-size: 1em;
+      line-height: 1.2em;
+    }
+
+    &--itentificacao {
+      display: flex;
+      align-items: center;
+      font-size: 0.8em;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    &--destinatario {
+      display: inline-block;
+      font-size: 0.7em;
+      background-color: #666;
+      color: #fff;
+      padding: 0px 5px;
+      margin-bottom: 2px;
+    }
+  }
+*/

@@ -32,7 +32,14 @@ const verbs = {
       return res.badRequest({ erros: ['falha ao salvar endereço, por favor, contate nosso suporte'] });
     }
 
-    const [data, result] = await createAddress(sessionId, address);
+    let serviceRes;
+    if (!address.id) {
+      serviceRes = await createAddress(sessionId, address);
+    } else {
+      serviceRes = await updateAddress(sessionId, address);
+    }
+
+    const [data, result] = serviceRes;
 
     if (result.ok) {
       return res.ok(data);
@@ -41,20 +48,6 @@ const verbs = {
     return res.badRequest(data);
   },
 
-  async put(req, res) {
-    const address = req.body;
-    if (!address) {
-      return res.status(400).json({ sucesso: false, erros: ['falha ao salvar endereço, por favor, contate nosso suporte'] });
-    }
-
-    const [data, result] = await updateAddress(address);
-
-    if (result.ok) {
-      return res.ok(data);
-    }
-
-    return res.badRequest(data);
-  },
 };
 
 const routes = apiRouter(verbs);

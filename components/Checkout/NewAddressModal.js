@@ -11,16 +11,25 @@ import { FormSection } from '../SignupForm/FormSection';
 
 setLocale(ptShort);
 
-export function NewAddressModal({ onSubmit, onClose }) {
-  const [error, setError] = useState();
-  const [phone, setPhone] = useState('');
+export function NewAddressModal({ onSubmit, onClose, address }) {
+  const initialValues = address || { cep: '', complemento: '' };
+  if (!initialValues.complemento) {
+    initialValues.complemento = '';
+  }
 
-  async function submit(address) {
+  if (initialValues.telefone) {
+    initialValues.telefone = `${initialValues.ddd}${initialValues.telefone}`;
+  }
+
+  const [error, setError] = useState();
+  const [phone, setPhone] = useState(mask.phone(initialValues.telefone));
+
+  async function submit(newAddress) {
     setError(false);
     const res = await fetch('/api/clients/address', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(address),
+      body: JSON.stringify(newAddress),
     });
 
     if (res.ok) {
@@ -49,8 +58,8 @@ export function NewAddressModal({ onSubmit, onClose }) {
   return (
     <FloatBox handleHide={onClose} canClose title="Cadastrar Novo Endereço">
       <div className="new-address--container">
-        <Formik initialValues={{ cep: '' }} validationSchema={addressSchema} onSubmit={submit}>
-          {({ isValid, isSubmitting }) => (
+        <Formik initialValues={initialValues} validationSchema={addressSchema} onSubmit={submit}>
+          {({ isValid, isSubmitting, errors }) => (
             <Form>
               <FormSection>
                 <FieldBox label="Identificação do Endereço" tip="casa, trabalho..." name="identificacao" />

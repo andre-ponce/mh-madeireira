@@ -12,6 +12,6 @@ export async function createAddress(session, address) {
 }
 
 export async function updateAddress(session, address) {
-  const response = await account.put('/enderecos', address, { session });
+  const response = await account.put(`/enderecos/${address.id}`, address, { session });
   return configureResponse(response, { allow: [200, 201] });
 }

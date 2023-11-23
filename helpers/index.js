@@ -271,14 +271,26 @@ export const image = {
 
 export const mask = {
   phone(value, set) {
-    const phone = value.replace(/[^0-9]+/g, '');
+    if (!value) return '';
+    const phone = value.toString().replace(/[^0-9]+/g, '');
 
     if (phone.length > 10) {
-      set('(99) 9 9999-9999');
-      return;
+      const msk = '(99) 9 9999-9999';
+      if (typeof set === 'function') {
+        set(msk);
+      } else {
+        return msk;
+      }
+    } else {
+      const msk = '(99)  9999-99999';
+      if (typeof set === 'function') {
+        set(msk);
+      } else {
+        return msk;
+      }
     }
 
-    set('(99)  9999-99999');
+    return '';
   },
   cep: '99999-999',
   cpf: '999.999.999-99',
