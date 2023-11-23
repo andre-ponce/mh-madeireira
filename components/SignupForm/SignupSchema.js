@@ -39,19 +39,6 @@ function parseDateString(value, originalValue) {
 addMethod(string, 'brasilianDocument', brasilianDocument);
 
 export const userSchema = object({
-  email: string().required().email()
-    .lowercase()
-    .trim()
-    .min(3)
-    .max(100)
-    .test('avaliable', 'E-mail já cadastrado', isEmailAvaliable),
-  emailConfirmacao: string().oneOf([ref('email'), null], 'O e-mail e a confirmação devem ser iguais'),
-  senha: string().required()
-    .min(8)
-    .max(20)
-    .test('dificuldade', 'A senha deve conter pelo menos um caracter númerico', (senha) => /\d/g.test(senha))
-    .test('dificuldade', 'A senha deve conter pelo menos uma letra', (senha) => /\D/g.test(senha)),
-  senhaConfirmacao: string().oneOf([ref('senha'), null], 'A senha e a confirmação devem ser iguais'),
   nome: string().required(),
   apelido: string().required(),
   documentoNacional: string().required()
@@ -65,7 +52,7 @@ export const userSchema = object({
   genero: string().nullable().test('genero', 'Selecione um gênero', (value) => /^(M|F)$/i.test(value)),
   endereco: string().required(),
   numero: string().required(),
-  complemento: string(),
+  complemento: string().nullable(),
   bairro: string().required(),
   cidade: string().required(),
   estado: string().required().max(2),
@@ -75,4 +62,20 @@ export const userSchema = object({
   celular: string().required().test('celular', 'Número inválido', validate.phoneNumber),
   recebeNewsletter: boolean().optional(),
   tipo: string().required(),
+});
+
+export const newUserSchema = object({
+  email: string().required().email()
+    .lowercase()
+    .trim()
+    .min(3)
+    .max(100)
+    .test('avaliable', 'E-mail já cadastrado', isEmailAvaliable),
+  emailConfirmacao: string().oneOf([ref('email'), null], 'O e-mail e a confirmação devem ser iguais'),
+  senha: string().required()
+    .min(8)
+    .max(20)
+    .test('dificuldade', 'A senha deve conter pelo menos um caracter númerico', (senha) => /\d/g.test(senha))
+    .test('dificuldade', 'A senha deve conter pelo menos uma letra', (senha) => /\D/g.test(senha)),
+  senhaConfirmacao: string().oneOf([ref('senha'), null], 'A senha e a confirmação devem ser iguais'),
 });

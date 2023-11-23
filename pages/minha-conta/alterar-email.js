@@ -1,6 +1,7 @@
 import { withAuthorization } from '@/server/lib/withAuthorization';
 import Layout from '@/components/Layout';
 import { getGlobalData } from '@/server/api/global.api';
+import { ChangeEmailForm } from '@/components/SignupForm/ChangeEmailForm';
 
 export const getServerSideProps = withAuthorization(async (ctx) => {
   const { user } = ctx;
@@ -16,7 +17,7 @@ export const getServerSideProps = withAuthorization(async (ctx) => {
 export default function ChangePassword({ user, global }) {
   return (
     <Layout secureArea globalData={global}>
-      <p>Nova senha</p>
+      <ChangeEmailForm user={user} />
     </Layout>
   );
 }

@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
 import { isEmpty } from 'lodash';
-import { userSchema } from './SignupSchema';
+import { newUserSchema, userSchema } from './SignupSchema';
 import { AdressFormSection } from './AdressFormSection';
 import { AccessDataFormSection } from './AccessDataFormSection';
 import { BusinessDataFormSection } from './BusinessDataFormSection';
@@ -10,6 +10,7 @@ import { ContactFormSection } from './ContactFormSection';
 
 export default function SignupForm({ user, onSubmit }) {
   const [errors, setErrors] = useState([]);
+
   async function submit(values, { setSubmitting }) {
     const { dataNascimento, ...body } = values;
     if (dataNascimento) {
@@ -26,15 +27,19 @@ export default function SignupForm({ user, onSubmit }) {
   const initialValues = {
     ...user,
     dataNascimento: user.dataNascimento
-      ? new Date(user.dataNascimento).toISOString().split('T')[0]
+      ? new Date(user.dataNascimento)
       : null,
   };
+
+  const schema = user !== null
+    ? userSchema
+    : userSchema.concat(newUserSchema);
 
   return (
     <main className="main main-cadastro app-container">
       <h2 className="page-title">{user.id ? 'Minha conta' : 'Criar nova conta'}</h2>
-      <Formik initialValues={initialValues} validationSchema={userSchema} onSubmit={submit}>
-        {({ values }) => (
+      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submit}>
+        {({ values, errors: formErros }) => (
           <Form className="main__form">
             {!user.id && <AccessDataFormSection />}
             {values.tipo && values.tipo.toLowerCase() === 'j' && <BusinessDataFormSection />}
@@ -42,9 +47,9 @@ export default function SignupForm({ user, onSubmit }) {
             <AdressFormSection />
             <ContactFormSection />
             {
-              !isEmpty(errors) && (
+              !isEmpty([...errors, ...Object.values(formErros)]) && (
                 <div className="errors">
-                  {errors.map((error) => <div className="errors--message">{error}</div>)}
+                  {[...errors, ...Object.values(formErros)].map((error) => <div className="errors--message">{error}</div>)}
                 </div>
               )
             }
