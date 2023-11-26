@@ -1,5 +1,5 @@
 import { apiRouter } from '@/server/lib/api-router';
-import { createAccount, getUser } from '@/server/api/user.api';
+import { createAccount, getUser, updateAccount } from '@/server/api/user.api';
 import { cookie } from '@/server/constants/cookies';
 
 const verbs = {
@@ -26,6 +26,21 @@ const verbs = {
     }
 
     const [data, status] = await createAccount(user);
+
+    if (!status.ok) {
+      return res.badRequest(data);
+    }
+
+    return res.ok(data);
+  },
+
+  async put(req, res) {
+    const user = req.body;
+    if (!user) {
+      return res.badRequest({ erros: ['falha ao salvar sua conta, por favor, contate nosso suporte'] });
+    }
+
+    const [data, status] = await updateAccount(user);
 
     if (!status.ok) {
       return res.badRequest(data);

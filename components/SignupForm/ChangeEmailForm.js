@@ -15,12 +15,10 @@ export const schema = object({
 
 export function ChangeEmailForm({ user, onSubmit }) {
   async function submit(values, { setSubmitting }) {
+    setSubmitting(true);
     const { email } = values;
-
-    const res = await onSubmit(body);
-    if (!res.sucesso) {
-      setSubmitting(false);
-    }
+    await onSubmit({ novoEmail: email });
+    setSubmitting(false);
   }
 
   const initialValues = {
@@ -34,7 +32,7 @@ export function ChangeEmailForm({ user, onSubmit }) {
     <main className="main main-cadastro app-container">
       <h2 className="page-title">Alterar e-mail de acesso</h2>
       <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submit}>
-        {({ errors }) => (
+        {() => (
           <Form className="main__form">
             <FieldBox inputMode="email" autoComplete="email" name="email" label="E-mail" type="email" />
             <FieldBox inputMode="email" autoComplete="email" name="emailConfirmacao" label="Repita seu E-mail" type="email" />

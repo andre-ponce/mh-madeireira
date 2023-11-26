@@ -11,8 +11,8 @@ export async function getUserInfo(session) {
   return configureResponse(response, { allow: [200] });
 }
 
-export async function checkEmailAvailability(email) {
-  const response = await account.get('/email-disponivel', { query: { email } });
+export async function checkEmailAvailability(email, session) {
+  const response = await account.get('/email-disponivel', { query: { email }, session });
   return configureResponse(response, { allow: [200] });
 }
 
@@ -22,13 +22,18 @@ export async function createAccount(user) {
 }
 
 export async function updateAccount(user, session) {
-  const response = await account.post('', user, { session });
+  const response = await account.put('', user, { session });
   return configureResponse(response, { allow: [200, 401] });
 }
 
-export async function changePassword(senhaAntiga, novaSenha, session) {
-  const response = await account.post('/alterar-senha', { senhaAntiga, novaSenha }, { session });
-  return configureResponse(response, { allow: [200, 401] });
+export async function changePassword(senhaAtual, novaSenha, session) {
+  const response = await account.put('/alterar-senha', { senhaAtual, novaSenha }, { session });
+  return configureResponse(response, { allow: [200, 400, 401] });
+}
+
+export async function changeEmail(novoEmail, session) {
+  const response = await account.put('/alterar-email', { novoEmail }, { session });
+  return configureResponse(response, { allow: [200, 400, 401] });
 }
 
 export async function autenticate(usuario, senha, session) {

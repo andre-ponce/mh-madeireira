@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
 import { isEmpty } from 'lodash';
+import { format } from '@/helpers';
 import { newUserSchema, userSchema } from './SignupSchema';
 import { AdressFormSection } from './AdressFormSection';
 import { AccessDataFormSection } from './AccessDataFormSection';
@@ -14,7 +15,8 @@ export default function SignupForm({ user, onSubmit }) {
   async function submit(values, { setSubmitting }) {
     const { dataNascimento, ...body } = values;
     if (dataNascimento) {
-      body.dataNascimento = new Date(dataNascimento);
+      const [d, m, y] = dataNascimento.split('/').map((x) => parseInt(x, 10));
+      body.dataNascimento = new Date(y, m - 1, d);
     }
 
     const res = await onSubmit(body);
@@ -27,8 +29,8 @@ export default function SignupForm({ user, onSubmit }) {
   const initialValues = {
     ...user,
     dataNascimento: user.dataNascimento
-      ? new Date(user.dataNascimento)
-      : null,
+      ? format.date(new Date(user.dataNascimento))
+      : '',
   };
 
   const schema = user !== null

@@ -3,8 +3,8 @@ import { withAuthorization } from '@/server/lib/withAuthorization';
 import Layout from '@/components/Layout';
 import { getGlobalData } from '@/server/api/global.api';
 import { getUserInfo } from '@/server/api/user.api';
-import { useRouter } from 'next/router';
-import { linkTo } from '@/helpers';
+import { useState } from 'react';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 export const getServerSideProps = withAuthorization(async (ctx) => {
   const { session } = ctx;
@@ -19,7 +19,7 @@ export const getServerSideProps = withAuthorization(async (ctx) => {
 });
 
 export default function ClientDetails({ user, global }) {
-  const router = useRouter();
+  const [alertMessage, setAlertMessage] = useState('');
 
   async function saveChanges(values) {
     const res = await fetch('/api/clients', {
@@ -30,16 +30,21 @@ export default function ClientDetails({ user, global }) {
       method: 'PUT',
     });
 
-    const result = await res.json();
-
-    if (result.sucesso) {
-      router.push(linkTo.account());
+    if (res.ok) {
+      setAlertMessage('Cadastro alterado com sucesso!');
     }
   }
 
   return (
     <Layout secureArea globalData={global}>
       <SignupForm user={user} onSubmit={saveChanges} />
+      {
+        alertMessage && (
+          <SweetAlert onConfirm={() => setAlertMessage('')} btnSize="sm" confirmBtnText="Ok" confirmBtnStyle={{ border: '0' }}>
+            {alertMessage}
+          </SweetAlert>
+        )
+      }
     </Layout>
   );
 }

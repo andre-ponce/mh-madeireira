@@ -7,8 +7,8 @@ import { FormSection } from './FormSection';
 export const PersonalDataFormSection = connect(() => (
   <FormSection name="Dados pessoais">
     <FieldBox inputMode="numeric" name="documentoNacional" label="CPF" type="text" as={ReactInputMask} mask={mask.cpf} maskChar="" />
-    <FieldBox autocapitalize="none" name="documentoEstadual" label="RG" type="text" />
-    <FieldBox autocapitalize="words" name="nome" label="Nome completo" type="text" />
+    <FieldBox autoCapitalize="none" name="documentoEstadual" label="RG" type="text" />
+    <FieldBox autoCapitalize="words" name="nome" label="Nome completo" type="text" />
     <FieldBox name="apelido" label="Como você gosta de ser chamado?" type="text" />
     <FieldBox inputMode="numeric" name="dataNascimento" label="Data de nascimento" type="text" as={ReactInputMask} mask={mask.date} maskChar="" />
     <FieldBox name="genero" label="Gênero" type="select">
