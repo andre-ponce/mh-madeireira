@@ -16,8 +16,8 @@ export const schema = object({
 export function ChangeEmailForm({ user, onSubmit }) {
   async function submit(values, { setSubmitting }) {
     setSubmitting(true);
-    const { email } = values;
-    await onSubmit({ novoEmail: email });
+    const { novoEmail } = values;
+    await onSubmit({ novoEmail });
     setSubmitting(false);
   }
 
@@ -34,7 +34,8 @@ export function ChangeEmailForm({ user, onSubmit }) {
       <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submit}>
         {() => (
           <Form className="main__form">
-            <FieldBox inputMode="email" autoComplete="email" name="email" label="E-mail" type="email" />
+            <FieldBox name="email" label="E-mail Atual" readOnly />
+            <FieldBox inputMode="email" autoComplete="email" name="novoEmail" label="Novo E-mail" type="email" />
             <FieldBox inputMode="email" autoComplete="email" name="emailConfirmacao" label="Repita seu E-mail" type="email" />
             <div style={{ textAlign: 'center' }}>
               <button className="btn btn-secondary mt-3" style={{ borderRadius: 0 }} type="submit">Alterar E-mail</button>
