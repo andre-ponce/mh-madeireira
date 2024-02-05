@@ -245,14 +245,25 @@ export function useCheckoutSession() {
       return { result: false };
     }
 
-    const { siglaOpcaoDeFrete, enderecoDeEntregaId, freteEscolhido } = value;
+    const {
+      siglaOpcaoDeFrete,
+      enderecoDeEntregaId,
+      freteEscolhido,
+      retirarNaLoja,
+    } = value;
 
     if (!siglaOpcaoDeFrete) {
       return [false, 'freight', 'Escolha um opção de entrega'];
     }
 
+    // o frete escolhido está vindo null
     const { id: choseFreigt } = freteEscolhido || {};
-    if (!choseFreigt || choseFreigt.toLowerCase() !== siglaOpcaoDeFrete.toLowerCase()) {
+    if (!retirarNaLoja && !choseFreigt) {
+      return [false, 'freight', 'Escolha um opção de entrega'];
+    }
+
+    const freteInconsistente = choseFreigt?.toLowerCase() !== siglaOpcaoDeFrete?.toLowerCase();
+    if (!retirarNaLoja && freteInconsistente) {
       return [false, 'freight', 'Escolha um opção de entrega'];
     }
 
