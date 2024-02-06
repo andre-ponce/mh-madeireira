@@ -43,5 +43,7 @@ export function useCart() {
     return () => clearTimeout(id);
   }, [error]);
 
+  useEffect(() => trigger('cart:refresh'), []);
+
   return [cart, busy, error];
 }
