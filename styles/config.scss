@@ -1,19 +1,19 @@
-$main-color: #bf383c;
-$contrast-color: #292929;
+$main-color: #952020;
+$contrast-color: #f8f8f8;
 $bg-color: #f8f8f8;
-$text-color: $contrast-color;
+$text-color: #333;
 
 $title-color: #292929;
 $title-border-color: $main-color;
 
-$button-bg-color: $main-color;
+$button-bg-color: #444;
 $button-text-color: $contrast-color;
 $button-bg-hover-color: $contrast-color;
 $button-text-hover-color: $main-color;
 
 /* ------------- Configurações do header do catalogo ------------- */
 $header_bg-color: $contrast-color;
-$header_text-color: #fff;
+$header_text-color: $text-color;
 $header_topline-color: $main-color;
 $header_links-color: $main-color;
 $header_icons-color: $main-color;
@@ -22,7 +22,7 @@ $header_cart-qtd-text-color: $contrast-color;
 
 /* ------------- Configurações do header fixo do catálogo ------------- */
 $header_fixed_bg-color: $contrast-color;
-$header_fixed_text-color: #fff;
+$header_fixed_text-color: $text-color;
 $header_fixed_icons-color: $main-color;
 $header_fixed_search_button-bg-color: $main-color;
 $header_fixed_search_button-text-color: $contrast-color;
@@ -32,20 +32,20 @@ $header_fixed_cart-qtd-text-color: $contrast-color;
 
 /* ------------- Configurações do header da 'minha área' ------------- */
 $header_simple_bg-color: $contrast-color;
-$header_simple_text-color: #fff;
+$header_simple_text-color: $text-color;
 
 /* ------------- Configurações da barra de busca ------------- */
-$search_bg-color: $main-color;
-$search_button-bg-color: darken($main-color, 15%);
+$search_bg-color: $contrast-color;
+$search_button-bg-color: #333;
 $search_button-text-color: #fff;
 
 /* ------------- Configurações do menu de categorias ------------- */
-$menu_bg-color: #fff;
+$menu_bg-color: $main-color;
 $menu_text-color: #fff;
-$menu_img-bg-color: #fff;
+$menu_img-bg-color: transparent;
 $menu_img-radius: 0;
 $menu_border-color: #e5e5e5;
-$menu_seeall_icon-color: $main-color;
+$menu_seeall_icon-color: #fff;
 $menu_seeall_text-color: $contrast-color;
 $menu_seeall_arrow-color: $contrast-color;
 
@@ -73,13 +73,13 @@ $menu_mob_subcategory_close-bg-color: $contrast-color;
 $menu_mob_subcategory_close-text-color: #fff;
 
 /* ------------- Configurações do scrool global ------------- */
-$scroolbar_fg_color: $main-color;
+$scroolbar_fg_color: #ccc;
 $scroolbar_bg_color: #eeeeee;
 
 /* ------------- Configurações do footer ------------- */
 $footer_bg-color: $contrast-color;
 $footer_titles-color: $main-color;
-$footer_text-color: #b0b0b0;
+$footer_text-color: $text-color;
 $footer_icons-color: $main-color;
 
 /* ------------- Configurações da barra de newsletter ------------- */
